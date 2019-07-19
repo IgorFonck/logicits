@@ -27,6 +27,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bgSistemaProva = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -45,20 +46,23 @@ public class jfPrincipal extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jmMenuSuperior = new javax.swing.JMenuBar();
+        jmArquivo = new javax.swing.JMenu();
+        miNovo = new javax.swing.JMenuItem();
+        miAbrir = new javax.swing.JMenuItem();
+        miSalvar = new javax.swing.JMenuItem();
+        miSair = new javax.swing.JMenuItem();
+        jmConfig = new javax.swing.JMenu();
+        jmSistemaProva = new javax.swing.JMenu();
+        miProposicional = new javax.swing.JRadioButtonMenuItem();
+        miPredicaodos = new javax.swing.JRadioButtonMenuItem();
+        miIdioma = new javax.swing.JMenuItem();
+        jmAjuda = new javax.swing.JMenu();
+        miGuia = new javax.swing.JMenuItem();
+        miSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(218, 231, 240));
 
@@ -207,43 +211,53 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addContainerGap(65, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("Arquivo");
+        jmArquivo.setText("Arquivo");
 
-        jMenuItem1.setText("Nova prova");
-        jMenu1.add(jMenuItem1);
+        miNovo.setText("Nova prova");
+        jmArquivo.add(miNovo);
 
-        jMenuItem6.setText("Abrir");
-        jMenu1.add(jMenuItem6);
+        miAbrir.setText("Abrir");
+        jmArquivo.add(miAbrir);
 
-        jMenuItem7.setText("Salvar");
-        jMenu1.add(jMenuItem7);
+        miSalvar.setText("Salvar");
+        jmArquivo.add(miSalvar);
 
-        jMenuItem8.setText("Sair");
-        jMenu1.add(jMenuItem8);
+        miSair.setText("Sair");
+        jmArquivo.add(miSair);
 
-        jMenuBar1.add(jMenu1);
+        jmMenuSuperior.add(jmArquivo);
 
-        jMenu2.setText("Configurações");
+        jmConfig.setText("Configurações");
 
-        jMenuItem2.setText("Sistema de prova");
-        jMenu2.add(jMenuItem2);
+        jmSistemaProva.setText("Sistema de prova");
 
-        jMenuItem3.setText("Idioma");
-        jMenu2.add(jMenuItem3);
+        bgSistemaProva.add(miProposicional);
+        miProposicional.setSelected(true);
+        miProposicional.setText("Lógica proposicional");
+        jmSistemaProva.add(miProposicional);
 
-        jMenuBar1.add(jMenu2);
+        bgSistemaProva.add(miPredicaodos);
+        miPredicaodos.setText("Lógica de predicados");
+        jmSistemaProva.add(miPredicaodos);
 
-        jMenu4.setText("Ajuda");
+        jmConfig.add(jmSistemaProva);
 
-        jMenuItem4.setText("Guia do usuário");
-        jMenu4.add(jMenuItem4);
+        miIdioma.setText("Idioma");
+        jmConfig.add(miIdioma);
 
-        jMenuItem5.setText("Sobre");
-        jMenu4.add(jMenuItem5);
+        jmMenuSuperior.add(jmConfig);
 
-        jMenuBar1.add(jMenu4);
+        jmAjuda.setText("Ajuda");
 
-        setJMenuBar(jMenuBar1);
+        miGuia.setText("Guia do usuário");
+        jmAjuda.add(miGuia);
+
+        miSobre.setText("Sobre");
+        jmAjuda.add(miSobre);
+
+        jmMenuSuperior.add(jmAjuda);
+
+        setJMenuBar(jmMenuSuperior);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -307,6 +321,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgSistemaProva;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
@@ -321,21 +336,23 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JMenu jmAjuda;
+    private javax.swing.JMenu jmArquivo;
+    private javax.swing.JMenu jmConfig;
+    private javax.swing.JMenuBar jmMenuSuperior;
+    private javax.swing.JMenu jmSistemaProva;
+    private javax.swing.JMenuItem miAbrir;
+    private javax.swing.JMenuItem miGuia;
+    private javax.swing.JMenuItem miIdioma;
+    private javax.swing.JMenuItem miNovo;
+    private javax.swing.JRadioButtonMenuItem miPredicaodos;
+    private javax.swing.JRadioButtonMenuItem miProposicional;
+    private javax.swing.JMenuItem miSair;
+    private javax.swing.JMenuItem miSalvar;
+    private javax.swing.JMenuItem miSobre;
     // End of variables declaration//GEN-END:variables
 }
