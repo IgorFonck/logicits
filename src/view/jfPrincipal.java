@@ -47,10 +47,16 @@ public class jfPrincipal extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -202,19 +208,40 @@ public class jfPrincipal extends javax.swing.JFrame {
         );
 
         jMenu1.setText("Arquivo");
+
+        jMenuItem1.setText("Nova prova");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem6.setText("Abrir");
+        jMenu1.add(jMenuItem6);
+
+        jMenuItem7.setText("Salvar");
+        jMenu1.add(jMenuItem7);
+
+        jMenuItem8.setText("Sair");
+        jMenu1.add(jMenuItem8);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Sistema de prova");
+        jMenu2.setText("Configurações");
+
+        jMenuItem2.setText("Sistema de prova");
+        jMenu2.add(jMenuItem2);
+
+        jMenuItem3.setText("Idioma");
+        jMenu2.add(jMenuItem3);
+
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Idioma");
-        jMenuBar1.add(jMenu3);
-
         jMenu4.setText("Ajuda");
-        jMenuBar1.add(jMenu4);
 
-        jMenu5.setText("Sair");
-        jMenuBar1.add(jMenu5);
+        jMenuItem4.setText("Guia do usuário");
+        jMenu4.add(jMenuItem4);
+
+        jMenuItem5.setText("Sobre");
+        jMenu4.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -296,10 +323,16 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
