@@ -38,6 +38,11 @@
             <Property name="text" type="java.lang.String" value="Configura&#xe7;&#xf5;es"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Alterar dom&#xed;nio"/>
+              </Properties>
+            </MenuItem>
             <Menu class="javax.swing.JMenu" name="jmSistemaProva">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sistema de prova"/>

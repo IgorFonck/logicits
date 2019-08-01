@@ -53,6 +53,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         miSalvar = new javax.swing.JMenuItem();
         miSair = new javax.swing.JMenuItem();
         jmConfig = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jmSistemaProva = new javax.swing.JMenu();
         miProposicional = new javax.swing.JRadioButtonMenuItem();
         miPredicaodos = new javax.swing.JRadioButtonMenuItem();
@@ -229,6 +230,9 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         jmConfig.setText("Configurações");
 
+        jMenuItem1.setText("Alterar domínio");
+        jmConfig.add(jMenuItem1);
+
         jmSistemaProva.setText("Sistema de prova");
 
         bgSistemaProva.add(miProposicional);
@@ -336,6 +340,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
