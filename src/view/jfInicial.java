@@ -6,8 +6,10 @@
 package view;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.PerfilDAO;
 
 /**
  *
@@ -17,11 +19,19 @@ public class jfInicial extends javax.swing.JFrame {
 
     /**
      * Creates new form jfInicial
+     * @throws java.sql.SQLException
      */
-    public jfInicial() {
+    public jfInicial() throws SQLException {
         initComponents();
         
         // Preenche jList com perfis cadastrados
+        /*List<Object> perfis = dao.listar();
+        String[] lista = new String[perfis.size()];
+        for(int i = 0; i > perfis.size(); i++) {
+            lista[i] = perfis.get(i).toString();
+        }*/
+        String[] dados = {"Igor", "Maria"};
+        jlPerfis.setListData(dados);
         
     }
 
@@ -47,11 +57,6 @@ public class jfInicial extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Selecionar perfil");
 
-        jlPerfis.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Nenhum" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jlPerfis);
 
         jLabel1.setText("Perfis cadastrados:");
@@ -86,14 +91,14 @@ public class jfInicial extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(btSelecionar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btImportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,6 +120,7 @@ public class jfInicial extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarActionPerformed
@@ -162,7 +168,11 @@ public class jfInicial extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jfInicial().setVisible(true);
+                try {
+                    new jfInicial().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(jfInicial.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -176,4 +186,7 @@ public class jfInicial extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> jlPerfis;
     // End of variables declaration//GEN-END:variables
+
+    PerfilDAO dao = new PerfilDAO();
+    
 }

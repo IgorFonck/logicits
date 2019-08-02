@@ -80,13 +80,12 @@ public class PerfilDAO {
     
     /**
      * Retorna todos os perfis cadastradas.
-     * @param id
      * @return <code>List<Perfil></code> a lista de todos os objetos Perfil
      * @throws SQLException 
      */
-    public List<Perfil> listar(Integer id) throws SQLException {
-        String sql = "SELECT * FROM estudante ORDER BY nome_perfil";
-        List<Perfil> lista = new ArrayList<>();
+    public List<Object> listar() throws SQLException {
+        String sql = "SELECT * FROM estudante ORDER BY nome";
+        List<Object> lista = new ArrayList<>();
 
         try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
             ResultSet rset = stmt.executeQuery();

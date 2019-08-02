@@ -5,6 +5,10 @@
  */
 package view;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author igorfonseca
@@ -51,6 +55,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         miNovo = new javax.swing.JMenuItem();
         miAbrir = new javax.swing.JMenuItem();
         miSalvar = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        miUsuario = new javax.swing.JMenuItem();
         miSair = new javax.swing.JMenuItem();
         jmConfig = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -222,6 +228,15 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         miSalvar.setText("Salvar");
         jmArquivo.add(miSalvar);
+        jmArquivo.add(jSeparator1);
+
+        miUsuario.setText("Selecionar usuário");
+        miUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miUsuarioActionPerformed(evt);
+            }
+        });
+        jmArquivo.add(miUsuario);
 
         miSair.setText("Sair");
         jmArquivo.add(miSair);
@@ -297,6 +312,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -315,6 +331,17 @@ public class jfPrincipal extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void miUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miUsuarioActionPerformed
+        
+        try {
+            new jfInicial().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(jfPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        dispose();
+        
+    }//GEN-LAST:event_miUsuarioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
@@ -337,6 +364,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenu jmAjuda;
     private javax.swing.JMenu jmArquivo;
     private javax.swing.JMenu jmConfig;
@@ -351,5 +379,6 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem miSair;
     private javax.swing.JMenuItem miSalvar;
     private javax.swing.JMenuItem miSobre;
+    private javax.swing.JMenuItem miUsuario;
     // End of variables declaration//GEN-END:variables
 }

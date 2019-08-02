@@ -125,6 +125,7 @@ public class jfPerfil extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOKActionPerformed
@@ -142,7 +143,11 @@ public class jfPerfil extends javax.swing.JFrame {
             Logger.getLogger(jfPerfil.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        new jfInicial().setVisible(true);
+        try {
+            new jfInicial().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(jfPerfil.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dispose();
         
     }//GEN-LAST:event_btOKActionPerformed
