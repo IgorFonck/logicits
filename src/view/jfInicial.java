@@ -20,6 +20,9 @@ public class jfInicial extends javax.swing.JFrame {
      */
     public jfInicial() {
         initComponents();
+        
+        // Preenche jList com perfis cadastrados
+        
     }
 
     /**
