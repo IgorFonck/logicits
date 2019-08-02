@@ -5,6 +5,13 @@
  */
 package view;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.Perfil;
+import model.PerfilDAO;
+
 /**
  *
  * @author igorfonseca
@@ -57,6 +64,11 @@ public class jfPerfil extends javax.swing.JFrame {
         });
 
         btLimpar.setText("Limpar");
+        btLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimparActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Criar perfil");
@@ -117,10 +129,29 @@ public class jfPerfil extends javax.swing.JFrame {
 
     private void btOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOKActionPerformed
         
+        // Insere no BD
+        perfil.setNome(tfNome.getText());
+        perfil.setIdade((Integer)jsIdade.getValue());
+        perfil.setGenero((String) cbGenero.getSelectedItem());
+        
+        try {
+            dao.adicionar(perfil);
+            JOptionPane.showMessageDialog(rootPane, "Perfil cadastrado com sucesso!", "Informação", 1);
+            limparCampos();
+        } catch (SQLException ex) {
+            Logger.getLogger(jfPerfil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         new jfInicial().setVisible(true);
         dispose();
         
     }//GEN-LAST:event_btOKActionPerformed
+
+    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
+        
+        limparCampos();
+        
+    }//GEN-LAST:event_btLimparActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLimpar;
@@ -133,4 +164,17 @@ public class jfPerfil extends javax.swing.JFrame {
     private javax.swing.JSpinner jsIdade;
     private javax.swing.JTextField tfNome;
     // End of variables declaration//GEN-END:variables
+
+    Perfil perfil = new Perfil();
+    PerfilDAO dao = new PerfilDAO();
+    
+    /**
+     * Limpa os campos do formulário.
+     */
+    private void limparCampos() {
+        tfNome.setText(null);
+        jsIdade.setValue(0);
+        cbGenero.setSelectedItem(null);
+    }
+
 }
