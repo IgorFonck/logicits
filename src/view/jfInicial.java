@@ -57,6 +57,8 @@ public class jfInicial extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Selecionar perfil");
 
+        jlPerfis.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jlPerfis.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jlPerfis);
 
         jLabel1.setText("Perfis cadastrados:");
