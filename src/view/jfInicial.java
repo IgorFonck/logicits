@@ -8,6 +8,9 @@ package view;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import mdlaf.MaterialLookAndFeel;
 import model.PerfilDAO;
 
 /**
@@ -148,6 +151,15 @@ public class jfInicial extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
+        /* Design Material */
+        try {
+            UIManager.setLookAndFeel (new MaterialLookAndFeel ());
+        } catch (UnsupportedLookAndFeelException e) {
+            java.util.logging.Logger.getLogger(jfInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+        }
+
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
@@ -165,7 +177,8 @@ public class jfInicial extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(jfInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

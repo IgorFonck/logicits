@@ -5,6 +5,7 @@
  */
 package view;
 
+import control.Exercicio;
 import control.Tutor;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -26,7 +27,10 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         ativ = Tutor.selecAtividade();
         
-        jlAtivAtual.setText(ativ.getPremissas() + " |- " + ativ.getConclusao());
+        String exercicio = ativ.getPremissas() + " |- " + ativ.getConclusao();
+        exercicio = Exercicio.formatarFormula(exercicio);
+        
+        jlAtivAtual.setText(exercicio);
     }
 
     /**
