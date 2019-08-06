@@ -16,22 +16,21 @@ import javax.swing.JOptionPane;
  *
  * @author igorfonseca
  */
-public class PerfilDAO {
+public class AtividadeDAO {
     
     /**
-      * Adiciona um perfil ao BD.
-      * @param perfil o perfil a ser gravado no BD
+      * Adiciona uma atividade ao BD.
+      * @param atividade a atividade a ser gravada no BD
       * @throws SQLException 
       */
-     public void adicionar(Perfil perfil) throws SQLException {
-        String sql = "INSERT INTO estudante (nome,idade,genero) VALUES (?,?,?)";
+     public void adicionar(Atividade atividade) throws SQLException {
+        String sql = "INSERT INTO atividade (premissas,conclusao) VALUES (?,?)";
         
         try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
-            stmt.setString(1, perfil.getNome());
-            stmt.setInt(2, perfil.getIdade());
-            stmt.setString(3, perfil.getGenero());
+            stmt.setString(1, atividade.getPremissas());
+            stmt.setString(2, atividade.getConclusao());
             if (!stmt.execute()) { //executa o INSERT
-                System.out.println("Adicionou o perfil \""+ perfil.getNome() +"\" ao banco!");
+                System.out.println("Adicionou o atividade ao banco!");
             }
         } catch (SQLException ex) {
             System.out.println("SQLException em adicionar! Erro detectado: " + ex.getMessage());
@@ -39,21 +38,20 @@ public class PerfilDAO {
     }
      
    /**
-     * Altera um registro de Perfil no BD.
-     * @param perfil o perfil a ser alterado no BD
+     * Altera um registro de Atividade no BD.
+     * @param atividade a atividade a ser alterada no BD
      * @throws SQLException 
      */
-    public void alterar(Perfil perfil) throws SQLException {
-        String sql = "UPDATE estudante SET nome=?,idade=?,genero=? WHERE cod_estudante=?";
+    public void alterar(Atividade atividade) throws SQLException {
+        String sql = "UPDATE atividade SET premissas=?,conclusao=? WHERE cod_atividade=?";
 
         try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
-            stmt.setString(1, perfil.getNome());
-            stmt.setInt(2, perfil.getIdade());
-            stmt.setString(3, perfil.getGenero());
-            stmt.setInt(4, perfil.getCod_estudante());
+            stmt.setString(1, atividade.getPremissas());
+            stmt.setString(2, atividade.getConclusao());
+            stmt.setInt(3, atividade.getCod());
             if (!stmt.execute()) { 
                 //executa o UPDATE
-                System.out.println("Alterou o perfil (" + perfil.getCod_estudante()+ ") \"" + perfil.getNome()+ "\" no banco!");
+                System.out.println("Alterou a atividade (" + atividade.getCod()+ ") no banco!");
             }
         } catch (SQLException ex) {
             System.out.println("SQLException em alterar! Erro detectado: " + ex.getMessage());
@@ -61,17 +59,17 @@ public class PerfilDAO {
     }
     
     /**
-     * Apaga um registro de Perfil do BD.
-     * @param perfil o perfil a ser deletado
+     * Apaga um registro de Atividade do BD.
+     * @param atividade a atividade a ser deletada
      * @throws SQLException 
      */
-    public void excluir(Perfil perfil) throws SQLException {
-        String sql = "DELETE FROM estudante WHERE cod_estudante = " + perfil.getCod_estudante();
+    public void excluir(Atividade atividade) throws SQLException {
+        String sql = "DELETE FROM atividade WHERE cod_atividade = " + atividade.getCod();
 
         try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
             if (stmt.executeUpdate() == 1) { 
                 //executa o DELETE
-                System.out.println("Exluiu o perfil do banco!");
+                System.out.println("Exluiu a atividade do banco!");
             }
         } catch (SQLException ex) {
             System.out.println("SQLException em excluir! Erro detectado: " + ex.getMessage());
@@ -79,23 +77,22 @@ public class PerfilDAO {
     }
     
     /**
-     * Retorna todos os perfis cadastrados.
-     * @return <code>List<Perfil></code> a lista de todos os objetos Perfil
+     * Retorna todas as atividades cadastradas.
+     * @return <code>List<Atividade></code> a lista de todos os objetos Atividade
      * @throws SQLException 
      */
     public List<Object> listar() throws SQLException {
-        String sql = "SELECT * FROM estudante ORDER BY nome";
+        String sql = "SELECT * FROM atividade ORDER BY cod_atividade";
         List<Object> lista = new ArrayList<>();
 
         try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
             ResultSet rset = stmt.executeQuery();
             while (rset.next()) {   //move o cursor para a próxima linha do ResultSet
-                Perfil perfil = new Perfil();
-                perfil.setCod_estudante(rset.getInt("cod_estudante"));
-                perfil.setNome(rset.getString("nome"));
-                perfil.setIdade(rset.getInt("idade"));
-                perfil.setGenero(rset.getString("genero"));
-                lista.add(perfil);
+                Atividade atividade = new Atividade();
+                atividade.setCod(rset.getInt("cod_atividade"));
+                atividade.setPremissas(rset.getString("premissas"));
+                atividade.setConclusao(rset.getString("conclusao"));
+                lista.add(atividade);
             }
         } catch (SQLException ex) {
             System.out.println("SQLException em listar! Erro detectado: " + ex.getMessage());
@@ -104,23 +101,22 @@ public class PerfilDAO {
     }
     
     /**
-     * Retorna um Perfil de acordo com o ID pesquisado.
+     * Retorna uma Atividade de acordo com o ID pesquisado.
      * @param id o ID a ser pesquisado
-     * @return Perfil
+     * @return Atividade
      */
-    public Perfil consultar(Integer id) {
-        String sql = "SELECT * FROM estudante WHERE cod_estudante = ?";
-        Perfil perfil = new Perfil();
+    public Atividade consultar(Integer id) {
+        String sql = "SELECT * FROM atividade WHERE cod_atividade = ?";
+        Atividade atividade = new Atividade();
         
         try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
             stmt.setInt(1, id);
             ResultSet rset = stmt.executeQuery();
             while (rset.next()) {
-                perfil.setCod_estudante(rset.getInt("cod_estudante"));
-                perfil.setNome(rset.getString("nome"));
-                perfil.setIdade(rset.getInt("idade"));
-                perfil.setGenero(rset.getString("genero"));
-                return perfil;
+                atividade.setCod(rset.getInt("cod_atividade"));
+                atividade.setPremissas(rset.getString("premissas"));
+                atividade.setConclusao(rset.getString("conclusao"));
+                return atividade;
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + ex.getMessage());
