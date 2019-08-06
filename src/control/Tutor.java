@@ -5,10 +5,26 @@
  */
 package control;
 
+import model.Atividade;
+import model.AtividadeDAO;
+
 /**
  *
  * @author igorfonseca
  */
 public class Tutor {
+    
+    public static Atividade selecAtividade(/*int id*/) {
+        
+        Atividade ativ = new Atividade();
+        AtividadeDAO ativ_dao = new AtividadeDAO();
+        
+        ativ = ativ_dao.consultar(1);
+
+        // TODO: sistema de seleção da próxima atividade
+        
+        return ativ;
+        
+    }
     
 }

@@ -5,9 +5,12 @@
  */
 package view;
 
+import control.Tutor;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Atividade;
+import model.AtividadeDAO;
 
 /**
  *
@@ -20,6 +23,10 @@ public class jfPrincipal extends javax.swing.JFrame {
      */
     public jfPrincipal() {
         initComponents();
+        
+        ativ = Tutor.selecAtividade();
+        
+        jlAtivAtual.setText(ativ.getPremissas() + " |- " + ativ.getConclusao());
     }
 
     /**
@@ -34,6 +41,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         bgSistemaProva = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jlAtivAtual = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
@@ -75,13 +83,18 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("Atividade");
 
+        jlAtivAtual.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jlAtivAtual.setText("a -> b");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jlAtivAtual))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -89,7 +102,9 @@ public class jfPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jlAtivAtual)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(245, 228, 228));
@@ -144,7 +159,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addContainerGap(253, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(228, 213, 231));
@@ -365,6 +380,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JLabel jlAtivAtual;
     private javax.swing.JMenu jmAjuda;
     private javax.swing.JMenu jmArquivo;
     private javax.swing.JMenu jmConfig;
@@ -381,4 +397,8 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem miSobre;
     private javax.swing.JMenuItem miUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private Atividade ativ = new Atividade();
+    private AtividadeDAO ativ_dao = new AtividadeDAO();
+
 }
