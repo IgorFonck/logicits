@@ -318,7 +318,7 @@ public class jfDominio extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btVoltar))
-                        .addGap(0, 294, Short.MAX_VALUE))))
+                        .addGap(0, 13, Short.MAX_VALUE))))
         );
         jtEstruturaLayout.setVerticalGroup(
             jtEstruturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,7 +342,7 @@ public class jfDominio extends javax.swing.JFrame {
         jtAtividades.setLayout(jtAtividadesLayout);
         jtAtividadesLayout.setHorizontalGroup(
             jtAtividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1028, Short.MAX_VALUE)
+            .addGap(0, 747, Short.MAX_VALUE)
         );
         jtAtividadesLayout.setVerticalGroup(
             jtAtividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,7 +356,7 @@ public class jfDominio extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tpAbasDominio)
+                .addComponent(tpAbasDominio, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
