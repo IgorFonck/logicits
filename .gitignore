@@ -23,7 +23,7 @@
 hs_err_pid*
 
 # IDE files
-nbproject/*
-build/*
-build.xml
-/dist/
+# nbproject/*
+# build/*
+# build.xml
+# /dist/
