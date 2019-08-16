@@ -27,7 +27,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         ativ = Tutor.selecAtividade();
         
-        String exercicio = ativ.getPremissas() + " |- " + ativ.getConclusao();
+        String exercicio = "<html><font face='Roboto'>" + ativ.getPremissas() + " |- " + ativ.getConclusao() + "</font></html>";
         exercicio = Exercicio.formatarFormula(exercicio);
         
         jlAtivAtual.setText(exercicio);
