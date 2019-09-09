@@ -7,10 +7,21 @@ package view;
 
 import control.Exercicio;
 import control.Tutor;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.OverlayLayout;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.Atividade;
@@ -74,20 +85,20 @@ public class jfPrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        jpResolucao = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtResolucao = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btIntroConju = new javax.swing.JButton();
+        btElimConju = new javax.swing.JButton();
+        btIntroDisju = new javax.swing.JButton();
+        btElimDisju = new javax.swing.JButton();
+        btIntroImpl = new javax.swing.JButton();
+        btElimImpl = new javax.swing.JButton();
+        btIntroNeg = new javax.swing.JButton();
+        btElimNeg = new javax.swing.JButton();
         jmMenuSuperior = new javax.swing.JMenuBar();
         jmArquivo = new javax.swing.JMenu();
         miNovo = new javax.swing.JMenuItem();
@@ -171,10 +182,11 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel3.setBackground(new java.awt.Color(232, 244, 232));
+        jpResolucao.setBackground(new java.awt.Color(232, 244, 232));
 
         jLabel3.setText("Resolução");
 
+        jtResolucao.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jtResolucao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -205,22 +217,22 @@ public class jfPrincipal extends javax.swing.JFrame {
         jtResolucao.setShowVerticalLines(false);
         jScrollPane1.setViewportView(jtResolucao);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpResolucaoLayout = new javax.swing.GroupLayout(jpResolucao);
+        jpResolucao.setLayout(jpResolucaoLayout);
+        jpResolucaoLayout.setHorizontalGroup(
+            jpResolucaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpResolucaoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jpResolucaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpResolucaoLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jpResolucaoLayout.setVerticalGroup(
+            jpResolucaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpResolucaoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -232,34 +244,34 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         jLabel1.setText("Regras de inferência");
 
-        jButton1.setText("<html><font face='Roboto'>∧<sub>i</sub></font></html>");
-        jButton1.setToolTipText("Introdução da conjunção");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btIntroConju.setText("<html><font face='Roboto'>∧<sub>i</sub></font></html>");
+        btIntroConju.setToolTipText("Introdução da conjunção");
+        btIntroConju.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btIntroConjuActionPerformed(evt);
             }
         });
 
-        jButton2.setText("<html><font face='Roboto'>∧<sub>e</sub></font></html>");
-        jButton2.setToolTipText("Eliminação da conjunção");
+        btElimConju.setText("<html><font face='Roboto'>∧<sub>e</sub></font></html>");
+        btElimConju.setToolTipText("Eliminação da conjunção");
 
-        jButton3.setText("<html>∨<sub>i</sub></html>");
-        jButton3.setToolTipText("Introdução da disjunção");
+        btIntroDisju.setText("<html>∨<sub>i</sub></html>");
+        btIntroDisju.setToolTipText("Introdução da disjunção");
 
-        jButton4.setText("<html>∨<sub>e</sub></html>");
-        jButton4.setToolTipText("Eliminação da disjunção");
+        btElimDisju.setText("<html>∨<sub>e</sub></html>");
+        btElimDisju.setToolTipText("Eliminação da disjunção");
 
-        jButton5.setText("<html>→<sub>i</sub></html>");
-        jButton5.setToolTipText("Introdução da implicação");
+        btIntroImpl.setText("<html>→<sub>i</sub></html>");
+        btIntroImpl.setToolTipText("Introdução da implicação");
 
-        jButton6.setText("<html>→<sub>e</sub></html>");
-        jButton6.setToolTipText("Eliminação da implicação");
+        btElimImpl.setText("<html>→<sub>e</sub></html>");
+        btElimImpl.setToolTipText("Eliminação da implicação");
 
-        jButton7.setText("<html>¬<sub>i</sub></html>");
-        jButton7.setToolTipText("Introdução da negação");
+        btIntroNeg.setText("<html>¬<sub>i</sub></html>");
+        btIntroNeg.setToolTipText("Introdução da negação");
 
-        jButton8.setText("<html>¬<sub>e</sub></html>");
-        jButton8.setToolTipText("Eliminação da negação");
+        btElimNeg.setText("<html>¬<sub>e</sub></html>");
+        btElimNeg.setToolTipText("Eliminação da negação");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -271,20 +283,20 @@ public class jfPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
+                            .addComponent(btIntroConju)
+                            .addComponent(btElimConju))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4))
+                            .addComponent(btIntroDisju)
+                            .addComponent(btElimDisju))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton5)
-                            .addComponent(jButton6))
+                            .addComponent(btIntroImpl)
+                            .addComponent(btElimImpl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton8)
-                            .addComponent(jButton7))))
+                            .addComponent(btElimNeg)
+                            .addComponent(btIntroNeg))))
                 .addContainerGap(443, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -294,16 +306,16 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btIntroConju, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btIntroDisju, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btIntroImpl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btIntroNeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btElimConju, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btElimDisju, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btElimImpl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btElimNeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
 
@@ -384,7 +396,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpResolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -394,7 +406,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpResolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -404,9 +416,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btIntroConjuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIntroConjuActionPerformed
+        
+        String name = JOptionPane.showInternalInputDialog(jPanel2, "Selecionar linhas");
+        
+    }//GEN-LAST:event_btIntroConjuActionPerformed
 
     private void miSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSobreActionPerformed
         
@@ -434,15 +448,15 @@ public class jfPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btElimConju;
+    private javax.swing.JButton btElimDisju;
+    private javax.swing.JButton btElimImpl;
+    private javax.swing.JButton btElimNeg;
+    private javax.swing.JButton btIntroConju;
+    private javax.swing.JButton btIntroDisju;
+    private javax.swing.JButton btIntroImpl;
+    private javax.swing.JButton btIntroNeg;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -451,7 +465,6 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
@@ -461,6 +474,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jmConfig;
     private javax.swing.JMenuBar jmMenuSuperior;
     private javax.swing.JMenu jmSistemaProva;
+    private javax.swing.JPanel jpResolucao;
     private javax.swing.JTable jtResolucao;
     private javax.swing.JMenuItem miAbrir;
     private javax.swing.JMenuItem miGuia;
