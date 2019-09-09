@@ -10,6 +10,9 @@ import control.Tutor;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import model.Atividade;
 import model.AtividadeDAO;
 
@@ -23,14 +26,35 @@ public class jfPrincipal extends javax.swing.JFrame {
      * Creates new form jfPrincipal
      */
     public jfPrincipal() {
+
         initComponents();
         
+        // Seleciona a atividade a ser mostrada
         ativ = Tutor.selecAtividade();
         
+        // Formata a fórmula da atividade para ser exibida
         String exercicio = "<html><font face='Roboto'>" + ativ.getPremissas() + " |- " + ativ.getConclusao() + "</font></html>";
         exercicio = Exercicio.formatarFormula(exercicio);
-        
         jlAtivAtual.setText(exercicio);
+        
+        // Mostra as premissas da atividade na resolução
+        String premissas[] = Exercicio.getPremissas(exercicio);
+        DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
+        
+        
+        int i = 0;
+        for (String s : premissas) {
+            dtm.addRow(new Object[]{i++ + ".", s, "Premissa"});
+        }
+        
+        // Configura a tabela
+        jtResolucao.getTableHeader().setUI(null);
+        jtResolucao.getColumnModel().getColumn(0).setMaxWidth(40);
+        jtResolucao.getColumnModel().getColumn(2).setMaxWidth(85);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        jtResolucao.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+        
     }
 
     /**
@@ -52,6 +76,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtResolucao = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -149,21 +175,57 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         jLabel3.setText("Resolução");
 
+        jtResolucao.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "", "", ""
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtResolucao.setFillsViewportHeight(true);
+        jtResolucao.setRowHeight(22);
+        jtResolucao.setRowSelectionAllowed(false);
+        jtResolucao.setShowHorizontalLines(false);
+        jtResolucao.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(jtResolucao);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(228, 213, 231));
@@ -391,6 +453,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel jlAtivAtual;
     private javax.swing.JMenu jmAjuda;
@@ -398,6 +461,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jmConfig;
     private javax.swing.JMenuBar jmMenuSuperior;
     private javax.swing.JMenu jmSistemaProva;
+    private javax.swing.JTable jtResolucao;
     private javax.swing.JMenuItem miAbrir;
     private javax.swing.JMenuItem miGuia;
     private javax.swing.JMenuItem miIdioma;
