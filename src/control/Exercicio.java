@@ -23,25 +23,13 @@ public class Exercicio {
     }
     
     public static String[] getPremissas(String exercicio) {
-        
         String premissas[];
-//        System.out.println(exercicio);
-        
         // Remove tags HTML <html><font face='Roboto'> e </font></html>
         exercicio = exercicio.substring(26, exercicio.length()-14);
-//        System.out.println(exercicio);
-        
         // Remove a conclusão
         exercicio = exercicio.substring(0, exercicio.indexOf('⊢')-1);
-//        System.out.println(exercicio);
-        
         premissas = exercicio.split(", ");
-        
-//        for (String s : premissas) 
-//            System.out.println(s); 
-        
         return premissas;
-        
     }
     
 }

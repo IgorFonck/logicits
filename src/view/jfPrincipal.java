@@ -69,7 +69,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         jtResolucao.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
         
         // Configura o painel de regras
-        
+        jbAplicarRegra.setEnabled(false);
+        jbLimparLinhas.setEnabled(false);
         
     }
 
@@ -105,11 +106,13 @@ public class jfPrincipal extends javax.swing.JFrame {
         btElimImpl = new javax.swing.JButton();
         btIntroNeg = new javax.swing.JButton();
         btElimNeg = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jpConfigRegra = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jbCancelarRegra = new javax.swing.JButton();
         jlNomeRegra = new javax.swing.JLabel();
         jlLinhasSelecionadas = new javax.swing.JLabel();
+        jbAplicarRegra = new javax.swing.JButton();
+        jbLimparLinhas = new javax.swing.JButton();
         jmMenuSuperior = new javax.swing.JMenuBar();
         jmArquivo = new javax.swing.JMenu();
         miNovo = new javax.swing.JMenuItem();
@@ -343,7 +346,7 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         tpRegras.addTab("", jpRegras);
 
-        jPanel1.setBackground(new java.awt.Color(228, 213, 231));
+        jpConfigRegra.setBackground(new java.awt.Color(228, 213, 231));
 
         jLabel5.setText("Selecione as linhas para aplicar a regra");
 
@@ -360,36 +363,53 @@ public class jfPrincipal extends javax.swing.JFrame {
         jlLinhasSelecionadas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlLinhasSelecionadas.setText("<selecionadas>");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jbAplicarRegra.setText("Aplicar");
+
+        jbLimparLinhas.setText("Limpar");
+        jbLimparLinhas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimparLinhasActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpConfigRegraLayout = new javax.swing.GroupLayout(jpConfigRegra);
+        jpConfigRegra.setLayout(jpConfigRegraLayout);
+        jpConfigRegraLayout.setHorizontalGroup(
+            jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpConfigRegraLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpConfigRegraLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(4, 4, 4)
                         .addComponent(jlNomeRegra)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbCancelarRegra))
-                    .addComponent(jlLinhasSelecionadas))
+                    .addComponent(jlLinhasSelecionadas)
+                    .addGroup(jpConfigRegraLayout.createSequentialGroup()
+                        .addComponent(jbAplicarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbLimparLinhas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(363, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jpConfigRegraLayout.setVerticalGroup(
+            jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpConfigRegraLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jbCancelarRegra)
                     .addComponent(jlNomeRegra))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlLinhasSelecionadas)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbAplicarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbLimparLinhas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        tpRegras.addTab("", jPanel1);
+        tpRegras.addTab("", jpConfigRegra);
 
         jmArquivo.setText("Arquivo");
 
@@ -491,22 +511,32 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void btIntroConjuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIntroConjuActionPerformed
         
         // Configura texto das linhas selecionadas
+        jlNomeRegra.setText("<html><font face='Roboto'>∧<sub>i</sub></font></html>");
         textoLinhas = "<html>";
         jlLinhasSelecionadas.setText(textoLinhas);
         contLinhas = 0;
         lastSelectedRow = -1;
         jtResolucao.clearSelection();
+        linhasSelec = new int[2];
         
-        jlNomeRegra.setText("<html><font face='Roboto'>∧<sub>i</sub></font></html>");
+        
+        // Muda para a aba de selecionar linhas
         tpRegras.setSelectedIndex(1);
         
+        // Verifica a seleção de linhas na tabela
         tableListener = new ListSelectionListener(){
             @Override
             public void valueChanged(ListSelectionEvent event) {
+                // Adiciona a linha selecionada à lista
                 if(contLinhas < 2 && jtResolucao.getSelectedRow() != lastSelectedRow) {
-                    textoLinhas = textoLinhas + jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 0).toString() + " " + jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 1).toString() + "<br>";
-                    contLinhas++;
+                    // Adiciona texto aos labels
+                    String col1 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 0).toString();
+                    String col2 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 1).toString();
+                    textoLinhas = textoLinhas + col1 + " " + col2 + "<br>";
                     jlLinhasSelecionadas.setText(textoLinhas);
+                    // Adiciona índice ao array
+                    linhasSelec[contLinhas] = jtResolucao.getSelectedRow();
+                    contLinhas++;
                 }
                 else if (jtResolucao.getSelectedRow() == lastSelectedRow)
                     System.out.println("Linha duplicada: " + jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 0).toString());
@@ -514,6 +544,12 @@ public class jfPrincipal extends javax.swing.JFrame {
                     System.out.println("Número máximo de linhas para esta regra excedido.");
                 
                 lastSelectedRow = jtResolucao.getSelectedRow();
+                jbLimparLinhas.setEnabled(true);
+                
+                if(contLinhas >= 2) {
+                    jbAplicarRegra.setEnabled(true);
+                    System.out.println("["+linhasSelec[0]+"], ["+linhasSelec[1]+"]");
+                }
             }
         };
                 
@@ -549,8 +585,27 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         tpRegras.setSelectedIndex(0);        
         jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
+        jbAplicarRegra.setVisible(false);
+        jbLimparLinhas.setVisible(false);
         
     }//GEN-LAST:event_jbCancelarRegraActionPerformed
+
+    private void jbLimparLinhasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparLinhasActionPerformed
+        
+        jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
+        
+        textoLinhas = "<html>";
+        jlLinhasSelecionadas.setText(textoLinhas);
+        contLinhas = 0;
+        lastSelectedRow = -1;
+        jtResolucao.clearSelection();
+        
+        jbAplicarRegra.setEnabled(false);
+        jbLimparLinhas.setEnabled(false);
+        
+        jtResolucao.getSelectionModel().addListSelectionListener(tableListener);
+        
+    }//GEN-LAST:event_jbLimparLinhasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
@@ -568,11 +623,12 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JButton jbAjuda;
+    private javax.swing.JButton jbAplicarRegra;
     private javax.swing.JButton jbCancelarRegra;
+    private javax.swing.JButton jbLimparLinhas;
     private javax.swing.JButton jbRevisar;
     private javax.swing.JLabel jlAtivAtual;
     private javax.swing.JLabel jlLinhasSelecionadas;
@@ -583,6 +639,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jmMenuSuperior;
     private javax.swing.JMenu jmSistemaProva;
     private javax.swing.JPanel jpAtividade;
+    private javax.swing.JPanel jpConfigRegra;
     private javax.swing.JPanel jpFeedback;
     private javax.swing.JPanel jpRegras;
     private javax.swing.JPanel jpResolucao;
@@ -603,9 +660,11 @@ public class jfPrincipal extends javax.swing.JFrame {
     private Atividade ativ = new Atividade();
     private AtividadeDAO ativ_dao = new AtividadeDAO();
     
+    // Variáveis da aplicação de regras
     private String textoLinhas;
     private int contLinhas;
     private int lastSelectedRow;
+    private int linhasSelec[];
     
     private ListSelectionListener tableListener;
 

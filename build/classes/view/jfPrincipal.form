@@ -498,7 +498,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Container class="javax.swing.JPanel" name="jpConfigRegra">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e7" green="d5" red="e4" type="rgb"/>
@@ -526,6 +526,11 @@
                               <Component id="jbCancelarRegra" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jlLinhasSelecionadas" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jbAplicarRegra" min="-2" pref="85" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jbLimparLinhas" min="-2" pref="75" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace pref="363" max="32767" attributes="0"/>
                   </Group>
@@ -542,7 +547,12 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jlLinhasSelecionadas" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="96" max="32767" attributes="0"/>
+                      <EmptySpace pref="54" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jbAplicarRegra" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="jbLimparLinhas" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -576,6 +586,19 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&lt;selecionadas&gt;"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jbAplicarRegra">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Aplicar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jbLimparLinhas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Limpar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbLimparLinhasActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
