@@ -495,9 +495,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         jlLinhasSelecionadas.setText(textoLinhas);
         contLinhas = 0;
         lastSelectedRow = -1;
-        jtResolucao.setRowSelectionAllowed(true);
-        jtResolucao.setRowSelectionAllowed(false);
-                
+        jtResolucao.clearSelection();
+        
         jlNomeRegra.setText("<html><font face='Roboto'>∧<sub>i</sub></font></html>");
         tpRegras.setSelectedIndex(1);
         
