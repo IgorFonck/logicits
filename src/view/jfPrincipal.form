@@ -136,30 +136,30 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel1" max="32767" attributes="0"/>
+                  <Component id="jpAtividade" max="32767" attributes="0"/>
                   <Component id="jpResolucao" max="32767" attributes="0"/>
-                  <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tpRegras" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <Component id="jpFeedback" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <Component id="jpAtividade" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jpResolucao" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+              <Component id="tpRegras" min="-2" pref="182" max="-2" attributes="0"/>
           </Group>
-          <Component id="jPanel2" max="32767" attributes="0"/>
+          <Component id="jpFeedback" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="jpAtividade">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f0" green="e7" red="da" type="rgb"/>
@@ -207,7 +207,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel2">
+    <Container class="javax.swing.JPanel" name="jpFeedback">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="e4" green="e4" red="f5" type="rgb"/>
@@ -220,12 +220,12 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton9" pref="181" max="32767" attributes="0"/>
+                      <Component id="jbRevisar" pref="181" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jButton10" max="32767" attributes="0"/>
+                      <Component id="jbAjuda" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -237,9 +237,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jButton10" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbAjuda" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton9" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbRevisar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -251,12 +251,12 @@
             <Property name="text" type="java.lang.String" value="Feedback"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton9">
+        <Component class="javax.swing.JButton" name="jbRevisar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Revisar material"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton10">
+        <Component class="javax.swing.JButton" name="jbAjuda">
           <Properties>
             <Property name="text" type="java.lang.String" value="Solicitar ajuda"/>
           </Properties>
@@ -293,7 +293,7 @@
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="212" max="-2" attributes="0"/>
-                  <EmptySpace pref="113" max="32767" attributes="0"/>
+                  <EmptySpace pref="148" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -336,127 +336,249 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel4">
+    <Container class="javax.swing.JTabbedPane" name="tpRegras">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e7" green="d5" red="e4" type="rgb"/>
-        </Property>
+        <Property name="tabPlacement" type="int" value="3"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
 
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="btIntroConju" max="32767" attributes="0"/>
-                              <Component id="btElimConju" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btIntroDisju" max="32767" attributes="0"/>
-                              <Component id="btElimDisju" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btIntroImpl" max="32767" attributes="0"/>
-                              <Component id="btElimImpl" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btElimNeg" max="32767" attributes="0"/>
-                              <Component id="btIntroNeg" max="32767" attributes="0"/>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="jpRegras">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e7" green="d5" red="e4" type="rgb"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="">
+                <Property name="tabTitle" type="java.lang.String" value=""/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="btIntroConju" pref="60" max="32767" attributes="0"/>
+                                  <Component id="btElimConju" pref="60" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btIntroDisju" pref="60" max="32767" attributes="0"/>
+                                  <Component id="btElimDisju" pref="60" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btIntroImpl" pref="60" max="32767" attributes="0"/>
+                                  <Component id="btElimImpl" pref="60" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btElimNeg" pref="60" max="32767" attributes="0"/>
+                                  <Component id="btIntroNeg" pref="60" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
+                      <EmptySpace pref="438" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="443" max="32767" attributes="0"/>
               </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btIntroConju" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btIntroDisju" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btIntroImpl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btIntroNeg" alignment="3" min="-2" max="-2" attributes="0"/>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btIntroConju" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="btIntroDisju" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="btIntroImpl" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="btIntroNeg" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btElimConju" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="btElimDisju" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="btElimImpl" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="btElimNeg" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="45" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btElimConju" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btElimDisju" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btElimImpl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btElimNeg" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="65" max="32767" attributes="0"/>
               </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Regras de infer&#xea;ncia"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btIntroConju">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="16" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;font face=&apos;Roboto&apos;&gt;&#x2227;&lt;sub&gt;i&lt;/sub&gt;&lt;/font&gt;&lt;/html&gt;"/>
+                <Property name="toolTipText" type="java.lang.String" value="Introdu&#xe7;&#xe3;o da conjun&#xe7;&#xe3;o"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btIntroConjuActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btElimConju">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="16" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;font face=&apos;Roboto&apos;&gt;&#x2227;&lt;sub&gt;e&lt;/sub&gt;&lt;/font&gt;&lt;/html&gt;"/>
+                <Property name="toolTipText" type="java.lang.String" value="Elimina&#xe7;&#xe3;o da conjun&#xe7;&#xe3;o"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btIntroDisju">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="16" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;&#x2228;&lt;sub&gt;i&lt;/sub&gt;&lt;/html&gt;"/>
+                <Property name="toolTipText" type="java.lang.String" value="Introdu&#xe7;&#xe3;o da disjun&#xe7;&#xe3;o"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btElimDisju">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="16" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;&#x2228;&lt;sub&gt;e&lt;/sub&gt;&lt;/html&gt;"/>
+                <Property name="toolTipText" type="java.lang.String" value="Elimina&#xe7;&#xe3;o da disjun&#xe7;&#xe3;o"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btIntroImpl">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="16" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;&#x2192;&lt;sub&gt;i&lt;/sub&gt;&lt;/html&gt;"/>
+                <Property name="toolTipText" type="java.lang.String" value="Introdu&#xe7;&#xe3;o da implica&#xe7;&#xe3;o"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btElimImpl">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="16" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;&#x2192;&lt;sub&gt;e&lt;/sub&gt;&lt;/html&gt;"/>
+                <Property name="toolTipText" type="java.lang.String" value="Elimina&#xe7;&#xe3;o da implica&#xe7;&#xe3;o"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btIntroNeg">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="16" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xac;&lt;sub&gt;i&lt;/sub&gt;&lt;/html&gt;"/>
+                <Property name="toolTipText" type="java.lang.String" value="Introdu&#xe7;&#xe3;o da nega&#xe7;&#xe3;o"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btElimNeg">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="16" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xac;&lt;sub&gt;e&lt;/sub&gt;&lt;/html&gt;"/>
+                <Property name="toolTipText" type="java.lang.String" value="Elimina&#xe7;&#xe3;o da nega&#xe7;&#xe3;o"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Regras de infer&#xea;ncia"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e7" green="d5" red="e4" type="rgb"/>
+            </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btIntroConju">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;font face=&apos;Roboto&apos;&gt;&#x2227;&lt;sub&gt;i&lt;/sub&gt;&lt;/font&gt;&lt;/html&gt;"/>
-            <Property name="toolTipText" type="java.lang.String" value="Introdu&#xe7;&#xe3;o da conjun&#xe7;&#xe3;o"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btIntroConjuActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btElimConju">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;font face=&apos;Roboto&apos;&gt;&#x2227;&lt;sub&gt;e&lt;/sub&gt;&lt;/font&gt;&lt;/html&gt;"/>
-            <Property name="toolTipText" type="java.lang.String" value="Elimina&#xe7;&#xe3;o da conjun&#xe7;&#xe3;o"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btIntroDisju">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#x2228;&lt;sub&gt;i&lt;/sub&gt;&lt;/html&gt;"/>
-            <Property name="toolTipText" type="java.lang.String" value="Introdu&#xe7;&#xe3;o da disjun&#xe7;&#xe3;o"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btElimDisju">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#x2228;&lt;sub&gt;e&lt;/sub&gt;&lt;/html&gt;"/>
-            <Property name="toolTipText" type="java.lang.String" value="Elimina&#xe7;&#xe3;o da disjun&#xe7;&#xe3;o"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btIntroImpl">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#x2192;&lt;sub&gt;i&lt;/sub&gt;&lt;/html&gt;"/>
-            <Property name="toolTipText" type="java.lang.String" value="Introdu&#xe7;&#xe3;o da implica&#xe7;&#xe3;o"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btElimImpl">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#x2192;&lt;sub&gt;e&lt;/sub&gt;&lt;/html&gt;"/>
-            <Property name="toolTipText" type="java.lang.String" value="Elimina&#xe7;&#xe3;o da implica&#xe7;&#xe3;o"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btIntroNeg">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xac;&lt;sub&gt;i&lt;/sub&gt;&lt;/html&gt;"/>
-            <Property name="toolTipText" type="java.lang.String" value="Introdu&#xe7;&#xe3;o da nega&#xe7;&#xe3;o"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btElimNeg">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xac;&lt;sub&gt;e&lt;/sub&gt;&lt;/html&gt;"/>
-            <Property name="toolTipText" type="java.lang.String" value="Elimina&#xe7;&#xe3;o da nega&#xe7;&#xe3;o"/>
-          </Properties>
-        </Component>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="">
+                <Property name="tabTitle" type="java.lang.String" value=""/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                              <Component id="jlNomeRegra" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jbCancelarRegra" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jlLinhasSelecionadas" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="363" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbCancelarRegra" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlNomeRegra" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jlLinhasSelecionadas" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="96" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Selecione as linhas para aplicar a regra"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jbCancelarRegra">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cancelar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbCancelarRegraActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jlNomeRegra">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="16" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&lt;nome&gt;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jlLinhasSelecionadas">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&lt;selecionadas&gt;"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>
