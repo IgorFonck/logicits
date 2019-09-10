@@ -250,8 +250,8 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         tpRegras.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
@@ -364,6 +364,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         jlLinhasSelecionadas.setText("<selecionadas>");
 
         jbAplicarRegra.setText("Aplicar");
+        jbAplicarRegra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAplicarRegraActionPerformed(evt);
+            }
+        });
 
         jbLimparLinhas.setText("Limpar");
         jbLimparLinhas.addActionListener(new java.awt.event.ActionListener() {
@@ -539,24 +544,30 @@ public class jfPrincipal extends javax.swing.JFrame {
                     contLinhas++;
                 }
                 else if (jtResolucao.getSelectedRow() == lastSelectedRow)
-                    System.out.println("Linha duplicada: " + jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 0).toString());
+                    System.out.print("");
                 else
                     System.out.println("Número máximo de linhas para esta regra excedido.");
                 
                 lastSelectedRow = jtResolucao.getSelectedRow();
                 jbLimparLinhas.setEnabled(true);
                 
+                System.out.println("Selecionou linha " + jtResolucao.getSelectedRow() + ".");
+                
                 if(contLinhas >= 2) {
                     jbAplicarRegra.setEnabled(true);
-                    System.out.println("["+linhasSelec[0]+"], ["+linhasSelec[1]+"]");
+                    //System.out.println("["+linhasSelec[0]+"], ["+linhasSelec[1]+"]");
                 }
             }
         };
-                
+        
         jtResolucao.getSelectionModel().addListSelectionListener(tableListener);
         
     }//GEN-LAST:event_btIntroConjuActionPerformed
 
+    // umaFormula()
+    // duasFormulas()
+    // tresFormulas()
+    
     private void miSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSobreActionPerformed
         
         new jfSobre().setVisible(true);
@@ -583,29 +594,29 @@ public class jfPrincipal extends javax.swing.JFrame {
 
     private void jbCancelarRegraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarRegraActionPerformed
         
-        tpRegras.setSelectedIndex(0);        
-        jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
-        jbAplicarRegra.setVisible(false);
-        jbLimparLinhas.setVisible(false);
+        fecharConfig();
         
     }//GEN-LAST:event_jbCancelarRegraActionPerformed
 
     private void jbLimparLinhasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparLinhasActionPerformed
         
-        jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
-        
-        textoLinhas = "<html>";
-        jlLinhasSelecionadas.setText(textoLinhas);
-        contLinhas = 0;
-        lastSelectedRow = -1;
-        jtResolucao.clearSelection();
-        
-        jbAplicarRegra.setEnabled(false);
-        jbLimparLinhas.setEnabled(false);
-        
-        jtResolucao.getSelectionModel().addListSelectionListener(tableListener);
+        limparLinhas();
         
     }//GEN-LAST:event_jbLimparLinhasActionPerformed
+
+    private void jbAplicarRegraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAplicarRegraActionPerformed
+        
+        // Introdução da conjunção
+        String col1 = jtResolucao.getRowCount()+1 + ".";
+        String col2 = "<html>(" + jtResolucao.getValueAt(linhasSelec[0], 1).toString() + ") ∧ (" + jtResolucao.getValueAt(linhasSelec[1], 1).toString() + ")";
+        String col3 = "<html>∧<sub>i</sub> " + (linhasSelec[0]+1) + ", " + (linhasSelec[1]+1) + "";
+        
+        DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
+        dtm.addRow(new Object[]{col1, col2, col3});
+        
+        fecharConfig();
+        
+    }//GEN-LAST:event_jbAplicarRegraActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
@@ -667,5 +678,26 @@ public class jfPrincipal extends javax.swing.JFrame {
     private int linhasSelec[];
     
     private ListSelectionListener tableListener;
+    
+    private void limparLinhas() {
+        jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
+        
+        textoLinhas = "<html>";
+        jlLinhasSelecionadas.setText(textoLinhas);
+        contLinhas = 0;
+        lastSelectedRow = -1;
+        jtResolucao.clearSelection();
+        
+        jbAplicarRegra.setEnabled(false);
+        jbLimparLinhas.setEnabled(false);
+        
+        jtResolucao.getSelectionModel().addListSelectionListener(tableListener);
+    }
+    
+    private void fecharConfig() {
+        limparLinhas();
+        jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
+        tpRegras.setSelectedIndex(0);        
+    }
 
 }
