@@ -306,6 +306,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         btElimConju.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btElimConju.setText("<html><font face='Roboto'>∧<sub>e</sub></font></html>");
         btElimConju.setToolTipText("Eliminação da conjunção");
+        btElimConju.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btElimConjuActionPerformed(evt);
+            }
+        });
 
         btIntroDisju.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btIntroDisju.setText("<html>∨<sub>i</sub></html>");
@@ -559,52 +564,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         
     private void btIntroConjuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIntroConjuActionPerformed
         
-        // Configura texto das linhas selecionadas
-        jlNomeRegra.setText("<html><font face='Roboto'>∧<sub>i</sub></font></html>");
-        textoLinhas = "<html>";
-        jlLinhasSelecionadas.setText(textoLinhas);
-        contLinhas = 0;
-        lastSelectedRow = -1;
-        jtResolucao.clearSelection();
-        linhasSelec = new int[2];
-        
-        
-        // Muda para a aba de selecionar linhas
-        tpRegras.setSelectedIndex(1);
-        
-        // Verifica a seleção de linhas na tabela
-        tableListener = new ListSelectionListener(){
-            @Override
-            public void valueChanged(ListSelectionEvent event) {
-                // Adiciona a linha selecionada à lista
-                if(contLinhas < 2 && jtResolucao.getSelectedRow() != lastSelectedRow) {
-                    // Adiciona texto aos labels
-                    String col1 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 0).toString();
-                    String col2 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 1).toString();
-                    textoLinhas = textoLinhas + col1 + " " + col2 + "<br>";
-                    jlLinhasSelecionadas.setText(textoLinhas);
-                    // Adiciona índice ao array
-                    linhasSelec[contLinhas] = jtResolucao.getSelectedRow();
-                    contLinhas++;
-                }
-                else if (jtResolucao.getSelectedRow() == lastSelectedRow)
-                    System.out.print("");
-                else
-                    System.out.println("Número máximo de linhas para esta regra excedido.");
-                
-                lastSelectedRow = jtResolucao.getSelectedRow();
-                jbLimparLinhas.setEnabled(true);
-                
-                System.out.println("Selecionou linha " + jtResolucao.getSelectedRow() + ".");
-                
-                if(contLinhas >= 2) {
-                    jbAplicarRegra.setEnabled(true);
-                    //System.out.println("["+linhasSelec[0]+"], ["+linhasSelec[1]+"]");
-                }
-            }
-        };
-        
-        jtResolucao.getSelectionModel().addListSelectionListener(tableListener);
+        regraAtual = Regra.INTRO_CONJ;
+        selecionarFormulas(2);
         
     }//GEN-LAST:event_btIntroConjuActionPerformed
 
@@ -650,15 +611,19 @@ public class jfPrincipal extends javax.swing.JFrame {
 
     private void jbAplicarRegraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAplicarRegraActionPerformed
         
-        // Introdução da conjunção
-        String col1 = jtResolucao.getRowCount()+1 + ".";
-        String col2 = "<html>(" + jtResolucao.getValueAt(linhasSelec[0], 1).toString() + ") ∧ (" + jtResolucao.getValueAt(linhasSelec[1], 1).toString() + ")";
-        String col3 = "<html>∧<sub>i</sub> " + (linhasSelec[0]+1) + ", " + (linhasSelec[1]+1) + "";
-        
-        DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
-        dtm.addRow(new Object[]{col1, col2, col3});
-        
-        fecharConfig();
+        switch(regraAtual) {
+            case INTRO_CONJ:
+                // Introdução da conjunção
+                String col1 = jtResolucao.getRowCount()+1 + ".";
+                String col2 = "<html>(" + jtResolucao.getValueAt(linhasSelec[0], 1).toString() + ") ∧ (" + jtResolucao.getValueAt(linhasSelec[1], 1).toString() + ")";
+                String col3 = "<html>∧<sub>i</sub> " + (linhasSelec[0]+1) + ", " + (linhasSelec[1]+1) + "";
+
+                DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
+                dtm.addRow(new Object[]{col1, col2, col3});
+
+                fecharConfig();
+                regraAtual = null;
+        }
         
     }//GEN-LAST:event_jbAplicarRegraActionPerformed
 
@@ -676,7 +641,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         String ultimaRegra = jtResolucao.getValueAt(ultimaLinha, 2).toString();
         if(ultimaRegra.compareTo("Premissa") == 0) {
             podeDesfazer = false;
-            System.out.println("A última linha é premissa.");
             novoFeedback("Não é possível desfazer.");
         }
         
@@ -687,6 +651,12 @@ public class jfPrincipal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jbDesfazerActionPerformed
+
+    private void btElimConjuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btElimConjuActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_btElimConjuActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
@@ -749,7 +719,18 @@ public class jfPrincipal extends javax.swing.JFrame {
     private int contLinhas;         // Quantidades de linhas já selecionadas
     private int lastSelectedRow;    // Última linha selecionada (evida leitura duplicada do listener)
     private int[] linhasSelec;      // Índices das linhas selecionadas
-    //private 
+    Regra regraAtual;
+    
+    enum Regra {
+        INTRO_CONJ,
+        ELIM_CONJ,
+        INTRO_DISJ,
+        ELIM_DISJ,
+        INTRO_IMPL,
+        ELIM_IMPL,
+        INTRO_NEG,
+        ELIM_NEG
+    }
     
     private ListSelectionListener tableListener;
     
@@ -779,6 +760,52 @@ public class jfPrincipal extends javax.swing.JFrame {
         jpListaFeedback.add(novaMensagem);
         jpListaFeedback.revalidate();
         jpListaFeedback.repaint();
+    }
+    
+    private void selecionarFormulas(final int numFormulas) {
+        // Configura texto das linhas selecionadas
+        jlNomeRegra.setText("<html><font face='Roboto'>∧<sub>i</sub></font></html>");
+        textoLinhas = "<html>";
+        jlLinhasSelecionadas.setText(textoLinhas);
+        contLinhas = 0;
+        lastSelectedRow = -1;
+        jtResolucao.clearSelection();
+        linhasSelec = new int[numFormulas];
+        
+        
+        // Muda para a aba de selecionar linhas
+        tpRegras.setSelectedIndex(1);
+        
+        // Verifica a seleção de linhas na tabela
+        tableListener = new ListSelectionListener(){
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                // Adiciona a linha selecionada à lista
+                if(contLinhas < numFormulas && jtResolucao.getSelectedRow() != lastSelectedRow) {
+                    // Adiciona texto aos labels
+                    String col1 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 0).toString();
+                    String col2 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 1).toString();
+                    textoLinhas = textoLinhas + col1 + " " + col2 + "<br>";
+                    jlLinhasSelecionadas.setText(textoLinhas);
+                    // Adiciona índice ao array
+                    linhasSelec[contLinhas] = jtResolucao.getSelectedRow();
+                    contLinhas++;
+                }
+                else if (jtResolucao.getSelectedRow() == lastSelectedRow)
+                    System.out.print("");
+                else
+                    System.out.println("Número máximo de linhas para esta regra excedido.");
+                
+                lastSelectedRow = jtResolucao.getSelectedRow();
+                jbLimparLinhas.setEnabled(true);
+                
+                if(contLinhas >= numFormulas) {
+                    jbAplicarRegra.setEnabled(true);
+                }
+            }
+        };
+        
+        jtResolucao.getSelectionModel().addListSelectionListener(tableListener);
     }
 
 }

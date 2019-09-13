@@ -486,6 +486,9 @@
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;font face=&apos;Roboto&apos;&gt;&#x2227;&lt;sub&gt;e&lt;/sub&gt;&lt;/font&gt;&lt;/html&gt;"/>
                 <Property name="toolTipText" type="java.lang.String" value="Elimina&#xe7;&#xe3;o da conjun&#xe7;&#xe3;o"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btElimConjuActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btIntroDisju">
               <Properties>
