@@ -404,7 +404,6 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="btIntroConju" pref="60" max="32767" attributes="0"/>
@@ -426,6 +425,8 @@
                                   <Component id="btIntroNeg" pref="60" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbDesfazer" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="439" max="32767" attributes="0"/>
                   </Group>
@@ -438,12 +439,12 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btIntroNeg" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btIntroConju" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="btIntroDisju" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="btIntroImpl" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="btIntroNeg" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -452,7 +453,9 @@
                           <Component id="btElimImpl" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="btElimNeg" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="45" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jbDesfazer" min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -537,6 +540,14 @@
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xac;&lt;sub&gt;e&lt;/sub&gt;&lt;/html&gt;"/>
                 <Property name="toolTipText" type="java.lang.String" value="Elimina&#xe7;&#xe3;o da nega&#xe7;&#xe3;o"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jbDesfazer">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Desfazer"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbDesfazerActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -112,6 +112,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         btElimImpl = new javax.swing.JButton();
         btIntroNeg = new javax.swing.JButton();
         btElimNeg = new javax.swing.JButton();
+        jbDesfazer = new javax.swing.JButton();
         jpConfigRegra = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jbCancelarRegra = new javax.swing.JButton();
@@ -330,6 +331,13 @@ public class jfPrincipal extends javax.swing.JFrame {
         btElimNeg.setText("<html>¬<sub>e</sub></html>");
         btElimNeg.setToolTipText("Eliminação da negação");
 
+        jbDesfazer.setText("Desfazer");
+        jbDesfazer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDesfazerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpRegrasLayout = new javax.swing.GroupLayout(jpRegras);
         jpRegras.setLayout(jpRegrasLayout);
         jpRegrasLayout.setHorizontalGroup(
@@ -337,7 +345,6 @@ public class jfPrincipal extends javax.swing.JFrame {
             .addGroup(jpRegrasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(jpRegrasLayout.createSequentialGroup()
                         .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btIntroConju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
@@ -353,7 +360,9 @@ public class jfPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btElimNeg, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                            .addComponent(btIntroNeg, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))))
+                            .addComponent(btIntroNeg, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))
+                    .addComponent(jLabel1)
+                    .addComponent(jbDesfazer))
                 .addContainerGap(439, Short.MAX_VALUE))
         );
         jpRegrasLayout.setVerticalGroup(
@@ -363,18 +372,20 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btIntroNeg, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btIntroConju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btIntroDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btIntroImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btIntroImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btIntroNeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btElimConju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btElimDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btElimImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btElimNeg, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbDesfazer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tpRegras.addTab("", jpRegras);
@@ -656,6 +667,27 @@ public class jfPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbAjudaActionPerformed
 
+    private void jbDesfazerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDesfazerActionPerformed
+        
+        boolean podeDesfazer = true;
+        int ultimaLinha = jtResolucao.getRowCount()-1;
+        
+        // Verifica se a última regra não é premissa
+        String ultimaRegra = jtResolucao.getValueAt(ultimaLinha, 2).toString();
+        if(ultimaRegra.compareTo("Premissa") == 0) {
+            podeDesfazer = false;
+            System.out.println("A última linha é premissa.");
+            novoFeedback("Não é possível desfazer.");
+        }
+        
+        // Desfaz a última regra, se permitido
+        if(podeDesfazer) {
+            DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
+            dtm.removeRow(ultimaLinha);
+        }
+        
+    }//GEN-LAST:event_jbDesfazerActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
     private javax.swing.JButton btElimConju;
@@ -678,6 +710,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jbAjuda;
     private javax.swing.JButton jbAplicarRegra;
     private javax.swing.JButton jbCancelarRegra;
+    private javax.swing.JButton jbDesfazer;
     private javax.swing.JButton jbLimparLinhas;
     private javax.swing.JButton jbRevisar;
     private javax.swing.JLabel jlAtivAtual;
@@ -739,6 +772,13 @@ public class jfPrincipal extends javax.swing.JFrame {
         limparLinhas();
         jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
         tpRegras.setSelectedIndex(0);        
+    }
+    
+    private void novoFeedback(String mensagem) {
+        JLabel novaMensagem = new JLabel(mensagem);
+        jpListaFeedback.add(novaMensagem);
+        jpListaFeedback.revalidate();
+        jpListaFeedback.repaint();
     }
 
 }
