@@ -231,6 +231,10 @@ class Tree {
                 System.out.print(")");
         }
     }
+    
+    public Node getRoot() {
+        return root;
+    }
  
 }
  
@@ -249,5 +253,24 @@ public class ExpressionTree {
             System.out.print("Enter y to continue ");
             ch = inp.readLine();
         }
+    }
+
+    // Método público para transformar a String em árvore
+    // Retorna o símbolo da raiz
+    public static String parseString(String expr) {
+        Tree t1 = new Tree();
+        expr = parseFormat(expr);
+        t1.insert(expr);
+        t1.traverse(2);
+        return t1.getRoot().toString();
+    }
+    
+    // Traduz os caracteres do exercício para o formato lido no parser
+    private static String parseFormat(String in) {
+        String out = in.replace("\u2192", ">");
+        out = out.replace("\u2227", "*");
+        out = out.replace("\u2228", "+");
+        out = out.replace("<html>", "");
+        return out;
     }
 }

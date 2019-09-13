@@ -6,6 +6,7 @@
 package view;
 
 import control.Exercicio;
+import control.ExpressionTree;
 import control.Tutor;
 import java.awt.GridLayout;
 import java.sql.SQLException;
@@ -612,8 +613,8 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void jbAplicarRegraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAplicarRegraActionPerformed
         
         switch(regraAtual) {
-            case INTRO_CONJ: introConj();
-            case ELIM_CONJ: elimConj();
+            case INTRO_CONJ: introConj(); break;
+            case ELIM_CONJ: elimConj(); break;
         }
         
     }//GEN-LAST:event_jbAplicarRegraActionPerformed
@@ -821,15 +822,26 @@ public class jfPrincipal extends javax.swing.JFrame {
     }
     
     private void elimConj() {
-        String col2 = "<html>(" + jtResolucao.getValueAt(linhasSelec[0], 1).toString() + ") ∧ (" + jtResolucao.getValueAt(linhasSelec[1], 1).toString() + ")";
-        String col3 = "<html>∧<sub>i</sub> " + (linhasSelec[0]+1) + ", " + (linhasSelec[1]+1) + "";
+        String col2;
+        String col3 = "<html>∧<sub>i</sub> " + (linhasSelec[0]+1) + "";
+        
+        //System.out.println("Fórmula: $$" + formula + "$$");
         
         // Lê a fórumula e verifica se é uma conjunção
-        
+        String formula = jtResolucao.getValueAt(linhasSelec[0], 1).toString();
+        String raiz = ExpressionTree.parseString(formula);
+        if(raiz.compareTo("*") == 0) {
+            System.out.println("É conjunção");
+        }
+        else
+            System.out.println("Não é conjunção");
         
         // Separa os elementos da conjunção
         
         // Seleciona um deles
         
+        // Encerra
+        fecharConfig();
+        regraAtual = null;
     }
 }
