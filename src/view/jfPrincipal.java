@@ -612,17 +612,8 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void jbAplicarRegraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAplicarRegraActionPerformed
         
         switch(regraAtual) {
-            case INTRO_CONJ:
-                // Introdução da conjunção
-                String col1 = jtResolucao.getRowCount()+1 + ".";
-                String col2 = "<html>(" + jtResolucao.getValueAt(linhasSelec[0], 1).toString() + ") ∧ (" + jtResolucao.getValueAt(linhasSelec[1], 1).toString() + ")";
-                String col3 = "<html>∧<sub>i</sub> " + (linhasSelec[0]+1) + ", " + (linhasSelec[1]+1) + "";
-
-                DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
-                dtm.addRow(new Object[]{col1, col2, col3});
-
-                fecharConfig();
-                regraAtual = null;
+            case INTRO_CONJ: introConj();
+            case ELIM_CONJ: elimConj();
         }
         
     }//GEN-LAST:event_jbAplicarRegraActionPerformed
@@ -654,7 +645,8 @@ public class jfPrincipal extends javax.swing.JFrame {
 
     private void btElimConjuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btElimConjuActionPerformed
         
-        
+        regraAtual = Regra.ELIM_CONJ;
+        selecionarFormulas(1);
         
     }//GEN-LAST:event_btElimConjuActionPerformed
 
@@ -734,6 +726,8 @@ public class jfPrincipal extends javax.swing.JFrame {
     
     private ListSelectionListener tableListener;
     
+    // Funções internas
+    
     private void limparLinhas() {
         jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
         
@@ -807,5 +801,35 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         jtResolucao.getSelectionModel().addListSelectionListener(tableListener);
     }
+    
+    private void novaLinha(String col2, String col3) {
+        String col1 = jtResolucao.getRowCount()+1 + ".";
+        DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
+        dtm.addRow(new Object[]{col1, col2, col3});
+    }
 
+    // Funções das regras
+    private void introConj() {
+        // Introdução da conjunção
+        String col2 = "<html>(" + jtResolucao.getValueAt(linhasSelec[0], 1).toString() + ") ∧ (" + jtResolucao.getValueAt(linhasSelec[1], 1).toString() + ")";
+        String col3 = "<html>∧<sub>i</sub> " + (linhasSelec[0]+1) + ", " + (linhasSelec[1]+1) + "";
+
+        novaLinha(col2, col3);
+
+        fecharConfig();
+        regraAtual = null;
+    }
+    
+    private void elimConj() {
+        String col2 = "<html>(" + jtResolucao.getValueAt(linhasSelec[0], 1).toString() + ") ∧ (" + jtResolucao.getValueAt(linhasSelec[1], 1).toString() + ")";
+        String col3 = "<html>∧<sub>i</sub> " + (linhasSelec[0]+1) + ", " + (linhasSelec[1]+1) + "";
+        
+        // Lê a fórumula e verifica se é uma conjunção
+        
+        
+        // Separa os elementos da conjunção
+        
+        // Seleciona um deles
+        
+    }
 }
