@@ -7,21 +7,12 @@ package view;
 
 import control.Exercicio;
 import control.Tutor;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.GridLayout;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
-import javax.swing.JComponent;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.OverlayLayout;
-import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -72,6 +63,19 @@ public class jfPrincipal extends javax.swing.JFrame {
         jbAplicarRegra.setEnabled(false);
         jbLimparLinhas.setEnabled(false);
         
+        // TEST: Lista de feedbacks
+        jpListaFeedback.setLayout(new BoxLayout(jpListaFeedback, BoxLayout.Y_AXIS));
+        jpListaFeedback.add(new JLabel("Msg A"));
+        jpListaFeedback.add(new JLabel("Msg B"));
+        jpListaFeedback.add(new JLabel("Msg C"));
+        jpListaFeedback.add(new JLabel("Msg D"));
+        jpListaFeedback.add(new JLabel("Msg E"));
+        jpListaFeedback.add(new JLabel("Msg F"));
+        jpListaFeedback.add(new JLabel("Msg G"));
+        jpListaFeedback.add(new JLabel("Msg H"));
+        
+        
+        
     }
 
     /**
@@ -91,6 +95,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jbRevisar = new javax.swing.JButton();
         jbAjuda = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jpListaFeedback = new javax.swing.JPanel();
         jpResolucao = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -169,6 +175,29 @@ public class jfPrincipal extends javax.swing.JFrame {
         jbRevisar.setText("Revisar material");
 
         jbAjuda.setText("Solicitar ajuda");
+        jbAjuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAjudaActionPerformed(evt);
+            }
+        });
+
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(180, 600));
+
+        jpListaFeedback.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jpListaFeedbackLayout = new javax.swing.GroupLayout(jpListaFeedback);
+        jpListaFeedback.setLayout(jpListaFeedbackLayout);
+        jpListaFeedbackLayout.setHorizontalGroup(
+            jpListaFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 179, Short.MAX_VALUE)
+        );
+        jpListaFeedbackLayout.setVerticalGroup(
+            jpListaFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 593, Short.MAX_VALUE)
+        );
+
+        jScrollPane2.setViewportView(jpListaFeedback);
 
         javax.swing.GroupLayout jpFeedbackLayout = new javax.swing.GroupLayout(jpFeedback);
         jpFeedback.setLayout(jpFeedbackLayout);
@@ -177,11 +206,12 @@ public class jfPrincipal extends javax.swing.JFrame {
             .addGroup(jpFeedbackLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbRevisar, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                    .addComponent(jbRevisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jpFeedbackLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jbAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpFeedbackLayout.setVerticalGroup(
@@ -189,7 +219,9 @@ public class jfPrincipal extends javax.swing.JFrame {
             .addGroup(jpFeedbackLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbAjuda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbRevisar)
@@ -250,7 +282,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -322,7 +354,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                         .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btElimNeg, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                             .addComponent(btIntroNeg, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))))
-                .addContainerGap(438, Short.MAX_VALUE))
+                .addContainerGap(439, Short.MAX_VALUE))
         );
         jpRegrasLayout.setVerticalGroup(
             jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,11 +362,12 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btIntroConju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btIntroDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btIntroImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btIntroNeg, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btIntroNeg, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btIntroConju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btIntroDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btIntroImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btElimConju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -395,7 +428,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                         .addComponent(jbAplicarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbLimparLinhas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(363, Short.MAX_VALUE))
+                .addContainerGap(364, Short.MAX_VALUE))
         );
         jpConfigRegraLayout.setVerticalGroup(
             jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -618,6 +651,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbAplicarRegraActionPerformed
 
+    private void jbAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAjudaActionPerformed
+       
+        
+    }//GEN-LAST:event_jbAjudaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
     private javax.swing.JButton btElimConju;
@@ -635,6 +673,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JButton jbAjuda;
     private javax.swing.JButton jbAplicarRegra;
@@ -652,6 +691,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jpAtividade;
     private javax.swing.JPanel jpConfigRegra;
     private javax.swing.JPanel jpFeedback;
+    private javax.swing.JPanel jpListaFeedback;
     private javax.swing.JPanel jpRegras;
     private javax.swing.JPanel jpResolucao;
     private javax.swing.JTable jtResolucao;
@@ -672,10 +712,11 @@ public class jfPrincipal extends javax.swing.JFrame {
     private AtividadeDAO ativ_dao = new AtividadeDAO();
     
     // Variáveis da aplicação de regras
-    private String textoLinhas;
-    private int contLinhas;
-    private int lastSelectedRow;
-    private int linhasSelec[];
+    private String textoLinhas;     // Imprime as linhas que foram selecionadas
+    private int contLinhas;         // Quantidades de linhas já selecionadas
+    private int lastSelectedRow;    // Última linha selecionada (evida leitura duplicada do listener)
+    private int[] linhasSelec;      // Índices das linhas selecionadas
+    //private 
     
     private ListSelectionListener tableListener;
     
