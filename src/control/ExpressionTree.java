@@ -163,7 +163,7 @@ class Tree {
         root = null;
     }
  
-    public void insert(String s) {
+    public String insert(String s) {
         Conversion c = new Conversion(s);
         s = c.inToPost();
         System.out.println("Postfix: " + s);
@@ -177,13 +177,13 @@ class Tree {
                     && symbol <= 'Z' || symbol >= 'a' && symbol <= 'z') {
                 newNode = new Node(symbol);
                 stk.push(newNode);
-                System.out.println("Pushed: " + newNode);
+//                System.out.println("Pushed: " + newNode);
             } 
             else if (symbol == '>' || symbol == '+' || symbol == '*') {
                 Node ptr1 = stk.pop();
                 Node ptr2 = stk.pop();
-                System.out.println("POPPED 1: " + ptr1);
-                System.out.println("POPPED 2: " + ptr2);
+//                System.out.println("POPPED 1: " + ptr1);
+//                System.out.println("POPPED 2: " + ptr2);
                 newNode = new Node(symbol);
                 newNode.leftChild = ptr2;
                 newNode.rightChild = ptr1;
@@ -202,38 +202,40 @@ class Tree {
             symbol = s.charAt(++i);
         }
         root = stk.pop();
-    }
- 
-    public void traverse(int type) {
-        switch (type) {
-            case 2:
-                System.out.print("Inorder Traversal:-     ");
-                inOrder(root);
-                break;
-            default:
-                System.out.println("Invalid Choice");
-        }
+        
+        // Traverse
+        String re;
+        re = inOrder(root);
+        System.out.print("Inorder Traversal: " + re);
+        return re;
     }
   
-    private void inOrder(Node localRoot) {
+    private String inOrder(Node localRoot) {
+        String expression = "";
         if (localRoot != null) {
             boolean printParenthesis;
             printParenthesis = localRoot.leftChild != null;
             
-            if(printParenthesis)
-                System.out.print("(");
+            if(printParenthesis) 
+                expression = expression.concat("(");
             
-            inOrder(localRoot.leftChild);
-            localRoot.displayNode();
-            inOrder(localRoot.rightChild);
+            expression = expression.concat(inOrder(localRoot.leftChild));
+            expression = expression.concat(localRoot.data+"");
+            expression = expression.concat(inOrder(localRoot.rightChild));
             
-            if(printParenthesis)
-                System.out.print(")");
+            if(printParenthesis) 
+                expression = expression.concat(")");
         }
+        return expression;
     }
     
     public Node getRoot() {
         return root;
+    }
+    
+    public String getChildString(Node child) {
+        String re = inOrder(child);
+        return re;
     }
  
 }
@@ -248,7 +250,6 @@ public class ExpressionTree {
             System.out.println("Enter the Expression");
             String a = inp.readLine();
             t1.insert(a);
-            t1.traverse(2);
             System.out.println("");
             System.out.print("Enter y to continue ");
             ch = inp.readLine();
@@ -257,20 +258,37 @@ public class ExpressionTree {
 
     // Método público para transformar a String em árvore
     // Retorna o símbolo da raiz
-    public static String parseString(String expr) {
+    public static String getRootString(String expr) {
         Tree t1 = new Tree();
-        expr = parseFormat(expr);
+        expr = parseToFormat(expr);
         t1.insert(expr);
-        t1.traverse(2);
         return t1.getRoot().toString();
     }
     
     // Traduz os caracteres do exercício para o formato lido no parser
-    private static String parseFormat(String in) {
+    private static String parseToFormat(String in) {
         String out = in.replace("\u2192", ">");
         out = out.replace("\u2227", "*");
         out = out.replace("\u2228", "+");
         out = out.replace("<html>", "");
         return out;
+    }
+    
+    public static String getLeftNode(String in) {
+        Tree t1 = new Tree();
+        Tree t2 = new Tree();
+        in = parseToFormat(in);
+        t1.insert(in);
+        String re = t2.getChildString(t1.getRoot().leftChild);
+        return re;
+    }
+    
+    public static String getRightNode(String in) {
+        Tree t1 = new Tree();
+        Tree t2 = new Tree();
+        in = parseToFormat(in);
+        t1.insert(in);
+        String re = t2.getChildString(t1.getRoot().rightChild);
+        return re;
     }
 }

@@ -14,6 +14,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -822,23 +825,35 @@ public class jfPrincipal extends javax.swing.JFrame {
     }
     
     private void elimConj() {
-        String col2;
-        String col3 = "<html>∧<sub>i</sub> " + (linhasSelec[0]+1) + "";
-        
-        //System.out.println("Fórmula: $$" + formula + "$$");
+        boolean regraValida;
+        String col3 = "<html>∧<sub>e</sub> " + (linhasSelec[0]+1) + "";
         
         // Lê a fórumula e verifica se é uma conjunção
         String formula = jtResolucao.getValueAt(linhasSelec[0], 1).toString();
-        String raiz = ExpressionTree.parseString(formula);
-        if(raiz.compareTo("*") == 0) {
-            System.out.println("É conjunção");
+        String raiz = ExpressionTree.getRootString(formula);
+        regraValida = raiz.compareTo("*") == 0;
+        
+        if(regraValida) {
+            // Separa os elementos da conjunção
+            String opt1 = Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(formula));
+            String opt2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula));
+            
+            Object[] options = { opt1 , opt2 };
+
+            // Seleciona um dos elementos
+            JPanel panel = new JPanel();
+            panel.add(new JLabel("Escolha uma das regras para utilizar:"));
+
+            int result = JOptionPane.showOptionDialog(null, panel, "Selecionar resultado",
+                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
+                    null, options, null);
+            if (result == JOptionPane.YES_OPTION)
+                novaLinha("<html>".concat(opt1), col3);
+            else
+                novaLinha("<html>".concat(opt2), col3);
         }
         else
-            System.out.println("Não é conjunção");
-        
-        // Separa os elementos da conjunção
-        
-        // Seleciona um deles
+            novoFeedback("Esta regra só pode ser aplicada em uma conjunção.");
         
         // Encerra
         fecharConfig();

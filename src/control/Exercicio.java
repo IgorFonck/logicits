@@ -11,6 +11,7 @@ package control;
  */
 public class Exercicio {
     
+    // Transforma o formato armazenado no BD para o formato legível pelo usuário
     public static String formatarFormula(String texto) {
         
         String formatado = texto.replace("->", "\u2192");
@@ -20,6 +21,15 @@ public class Exercicio {
         
         return formatado;
         
+    }
+    
+    // Transforma o resultado de saída do parser para o formato legível pelo usuário
+    public static String formatarParserParaLegivel(String texto) {
+        String formatado = texto.replace(">", " \u2192 ");
+        formatado = formatado.replace("*", " \u2227 ");
+        //formatado = formatado.replace("~", "\TODO");
+        formatado = formatado.replace("+", " \u2228 ");
+        return formatado;
     }
     
     public static String[] getPremissas(String exercicio) {
