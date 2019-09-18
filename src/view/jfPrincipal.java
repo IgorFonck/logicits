@@ -676,7 +676,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         int result = JOptionPane.showConfirmDialog(null, inputs, "Adicionar hipótese", JOptionPane.PLAIN_MESSAGE);
         if (result == JOptionPane.OK_OPTION) {
             String hip = tfHipotese.getText();
-            novaLinha("| "+hip, "Hipótese");
+            hipLevel++;
+            novaLinha(hip, "Hipótese");
         } else {
             System.out.println("User canceled / closed the dialog, result = " + result);
         }
@@ -745,6 +746,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private int contLinhas;         // Quantidades de linhas já selecionadas
     private int lastSelectedRow;    // Última linha selecionada (evida leitura duplicada do listener)
     private int[] linhasSelec;      // Índices das linhas selecionadas
+    private int hipLevel = 0;       // Contador de níveis de hipóteses
     Regra regraAtual;
     
     enum Regra {
@@ -837,6 +839,13 @@ public class jfPrincipal extends javax.swing.JFrame {
     
     private void novaLinha(String col2, String col3) {
         String col1 = jtResolucao.getRowCount()+1 + ".";
+        
+        // Adiciona níveis de hipótese
+        for(int i = 0; i < hipLevel; i++)
+            col2 = "| ".concat(col2);
+        
+        col2 = "<html>".concat(col2);
+        
         DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
         dtm.addRow(new Object[]{col1, col2, col3});
     }
@@ -849,9 +858,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         String arg2 = jtResolucao.getValueAt(linhasSelec[1], 1).toString();
         
         if(arg1.length() == 1)
-            col2 = "<html>" + arg1;
+            col2 = arg1;
         else
-            col2 = "<html>(" + arg1 + ")";
+            col2 = "(" + arg1 + ")";
         
         if(arg2.length() == 1)
             col2 = col2.concat(" ∧ " + arg2);
@@ -890,9 +899,9 @@ public class jfPrincipal extends javax.swing.JFrame {
                     JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
                     null, options, null);
             if (result == JOptionPane.YES_OPTION)
-                novaLinha("<html>".concat(opt1), col3);
+                novaLinha(opt1, col3);
             else
-                novaLinha("<html>".concat(opt2), col3);
+                novaLinha(opt2, col3);
         }
         else
             novoFeedback("Esta regra só pode ser aplicada em uma conjunção.");
