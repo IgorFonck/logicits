@@ -53,7 +53,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         int i = 0;
         for (String s : premissas) {
-            dtm.addRow(new Object[]{++i + ".", s, "Premissa"});
+            dtm.addRow(new Object[]{++i + ".", "<html>"+s, "Premissa"});
         }
         
         // Configura a tabela
@@ -364,9 +364,9 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpRegrasLayout.createSequentialGroup()
-                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btIntroConju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                            .addComponent(btElimConju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btElimConju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(btIntroConju))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btIntroDisju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
@@ -582,6 +582,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void btIntroConjuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIntroConjuActionPerformed
         
         regraAtual = Regra.INTRO_CONJ;
+        jlNomeRegra.setText("<html><font face='Roboto'>∧<sub>i</sub></font></html>");
         selecionarFormulas(2);
         
     }//GEN-LAST:event_btIntroConjuActionPerformed
@@ -663,6 +664,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void btElimConjuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btElimConjuActionPerformed
         
         regraAtual = Regra.ELIM_CONJ;
+        jlNomeRegra.setText("<html><font face='Roboto'>∧<sub>e</sub></font></html>");
         selecionarFormulas(1);
         
     }//GEN-LAST:event_btElimConjuActionPerformed
@@ -790,7 +792,6 @@ public class jfPrincipal extends javax.swing.JFrame {
     
     private void selecionarFormulas(final int numFormulas) {
         // Configura texto das linhas selecionadas
-        jlNomeRegra.setText("<html><font face='Roboto'>∧<sub>i</sub></font></html>");
         textoLinhas = "<html>";
         jlLinhasSelecionadas.setText(textoLinhas);
         contLinhas = 0;
@@ -843,7 +844,20 @@ public class jfPrincipal extends javax.swing.JFrame {
     // Funções das regras
     private void introConj() {
         // Introdução da conjunção
-        String col2 = "<html>(" + jtResolucao.getValueAt(linhasSelec[0], 1).toString() + ") ∧ (" + jtResolucao.getValueAt(linhasSelec[1], 1).toString() + ")";
+        String col2;
+        String arg1 = jtResolucao.getValueAt(linhasSelec[0], 1).toString();
+        String arg2 = jtResolucao.getValueAt(linhasSelec[1], 1).toString();
+        
+        if(arg1.length() == 1)
+            col2 = "<html>" + arg1;
+        else
+            col2 = "<html>(" + arg1 + ")";
+        
+        if(arg2.length() == 1)
+            col2 = col2.concat(" ∧ " + arg2);
+        else
+            col2 = col2.concat(" ∧ (" + arg2 + ")");
+        
         String col3 = "<html>∧<sub>i</sub> " + (linhasSelec[0]+1) + ", " + (linhasSelec[1]+1) + "";
 
         novaLinha(col2, col3);

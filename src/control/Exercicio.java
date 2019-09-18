@@ -18,6 +18,7 @@ public class Exercicio {
         formatado = formatado.replace("^", "\u2227");
         formatado = formatado.replace("|-", "\u22A2");
         formatado = formatado.replace("|", "\u2228");
+        formatado = formatado.replace("~", "\u00AC");
         
         return formatado;
         
@@ -27,7 +28,7 @@ public class Exercicio {
     public static String formatarParserParaLegivel(String texto) {
         String formatado = texto.replace(">", " \u2192 ");
         formatado = formatado.replace("*", " \u2227 ");
-        //formatado = formatado.replace("~", "\TODO");
+        formatado = formatado.replace("~", "\u00AC");
         formatado = formatado.replace("+", " \u2228 ");
         return formatado;
     }

@@ -270,6 +270,7 @@ public class ExpressionTree {
         String out = in.replace("\u2192", ">");
         out = out.replace("\u2227", "*");
         out = out.replace("\u2228", "+");
+        out = out.replace("\u00AC", "~");
         out = out.replace("<html>", "");
         return out;
     }
