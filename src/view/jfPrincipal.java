@@ -849,14 +849,14 @@ public class jfPrincipal extends javax.swing.JFrame {
         DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
         dtm.addRow(new Object[]{col1, col2, col3});
     }
-
+    
     // Funções das regras
     private void introConj() {
         // Introdução da conjunção
         String col2;
-        String arg1 = jtResolucao.getValueAt(linhasSelec[0], 1).toString();
-        String arg2 = jtResolucao.getValueAt(linhasSelec[1], 1).toString();
-        
+        String arg1 = Exercicio.removeTagHtml(jtResolucao.getValueAt(linhasSelec[0], 1).toString());
+        String arg2 = Exercicio.removeTagHtml(jtResolucao.getValueAt(linhasSelec[1], 1).toString());
+
         if(arg1.length() == 1)
             col2 = arg1;
         else

@@ -17,7 +17,7 @@ public class Exercicio {
         String formatado = texto.replace("->", "\u2192");
         formatado = formatado.replace("^", "\u2227");
         formatado = formatado.replace("|-", "\u22A2");
-        formatado = formatado.replace("|", "\u2228");
+        formatado = formatado.replace("+", "\u2228");
         formatado = formatado.replace("~", "\u00AC");
         
         return formatado;
@@ -31,6 +31,14 @@ public class Exercicio {
         formatado = formatado.replace("~", "\u00AC");
         formatado = formatado.replace("+", " \u2228 ");
         return formatado;
+    }
+    
+    public static String removeTagHtml(String s) {
+        return s.replace("<html>", "");
+    }
+    
+    public static String removeHipoteses(String s) {
+        return s.replace("| ", "");
     }
     
     public static String[] getPremissas(String exercicio) {
