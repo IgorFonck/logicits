@@ -852,10 +852,11 @@ public class jfPrincipal extends javax.swing.JFrame {
     
     // Funções das regras
     private void introConj() {
+        
         // Introdução da conjunção
         String col2;
-        String arg1 = Exercicio.removeTagHtml(jtResolucao.getValueAt(linhasSelec[0], 1).toString());
-        String arg2 = Exercicio.removeTagHtml(jtResolucao.getValueAt(linhasSelec[1], 1).toString());
+        String arg1 = Exercicio.limpaFormula(jtResolucao.getValueAt(linhasSelec[0], 1).toString());
+        String arg2 = Exercicio.limpaFormula(jtResolucao.getValueAt(linhasSelec[1], 1).toString());
 
         if(arg1.length() == 1)
             col2 = arg1;

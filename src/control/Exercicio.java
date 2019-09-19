@@ -41,6 +41,10 @@ public class Exercicio {
         return s.replace("| ", "");
     }
     
+    public static String limpaFormula(String s) {
+        return s.replace("<html>", "").replace("| ", "");
+    }
+    
     public static String[] getPremissas(String exercicio) {
         String premissas[];
         // Remove tags HTML <html><font face='Roboto'> e </font></html>
