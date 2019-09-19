@@ -648,7 +648,10 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         // Verifica se a última regra não é premissa
         String ultimaRegra = jtResolucao.getValueAt(ultimaLinha, 2).toString();
-        if(ultimaRegra.compareTo("Premissa") == 0) {
+        if(ultimaRegra.compareTo("Hipótese") == 0) {
+            hipLevel--;
+        }
+        else if(ultimaRegra.compareTo("Premissa") == 0) {
             podeDesfazer = false;
             novoFeedback("Não é possível desfazer.");
         }
