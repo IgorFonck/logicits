@@ -286,6 +286,7 @@ public class ExpressionTree {
         in = parseLegivelToExpression(in);
         t1.insert(in);
         String re = t2.getChildString(t1.getRoot().leftChild);
+        //re = re.substring(1, re.length()-1);
         return re;
     }
     
@@ -295,6 +296,7 @@ public class ExpressionTree {
         in = parseLegivelToExpression(in);
         t1.insert(in);
         String re = t2.getChildString(t1.getRoot().rightChild);
+        //re = re.substring(1, re.length()-1);
         return re;
     }
 }

@@ -675,11 +675,21 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void jbHipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHipActionPerformed
        
         JTextField tfHipotese = new JTextField();
-        final JComponent[] inputs = new JComponent[] {new JLabel("Hipótese"), tfHipotese};
+        final JComponent[] inputs = new JComponent[] {
+            new JLabel("Hipótese: "), 
+            tfHipotese, 
+            new JLabel("<html><br>Legenda:<br>"
+                    + ">: implicação<br>"
+                    + "+: disjunção<br>"
+                    + "*: conjunção<br>"
+                    + "~: negação")
+        };
         int result = JOptionPane.showConfirmDialog(null, inputs, "Adicionar hipótese", JOptionPane.PLAIN_MESSAGE);
+        
         if (result == JOptionPane.OK_OPTION) {
             String hip = tfHipotese.getText();
             hipLevel++;
+            hip = Exercicio.formatarParserParaLegivel(hip);
             novaLinha(hip, "Hipótese");
         } else {
             System.out.println("User canceled / closed the dialog, result = " + result);
