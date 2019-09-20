@@ -982,13 +982,15 @@ public class jfPrincipal extends javax.swing.JFrame {
             // Pega o antecedente da primeira e compara com a segunda
             antecedente = Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(formula1));
             outra = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula2));
-            regraAntecedente = true;
+            if(antecedente.compareTo(outra) == 0)
+                regraAntecedente = true;
         }
         else if (posicaoImpl == 2) {
             // Pega o antecedente da segunda e compara com a primeira
             antecedente = Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(formula2));
             outra = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula1));
-            regraAntecedente = true;
+            if(antecedente.compareTo(outra) == 0)
+                regraAntecedente = true;
         }
         
         if(regraImplicacao && regraAntecedente) {
