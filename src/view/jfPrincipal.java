@@ -643,6 +643,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             case INTRO_CONJ: introConj(); break;
             case ELIM_CONJ: elimConj(); break;
             case ELIM_IMPL: elimImpl(); break;
+            case INTRO_IMPL: introImpl(); break;
         }
         
     }//GEN-LAST:event_jbAplicarRegraActionPerformed
@@ -709,6 +710,12 @@ public class jfPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbHipActionPerformed
 
     private void btIntroImplActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIntroImplActionPerformed
+
+        // Restrição da regra
+        if(hipLevel <= 0) {
+            novoFeedback("É preciso iniciar uma hipótese para utilizar esta regra!");
+            return;
+        }
         
         regraAtual = Regra.INTRO_IMPL;
         jlNomeRegra.setText("<html><font face='Roboto'>→<sub>i</sub></font></html>");
@@ -997,6 +1004,41 @@ public class jfPrincipal extends javax.swing.JFrame {
         else
             novoFeedback("Para eliminar uma implicação, uma das fórmulas deve ser seu antecedente!");
         
+        // Encerra
+        fecharConfig();
+    }
+    
+    private void introImpl() {
+        
+        String col3 = "<html>→<sub>i</sub> " + (linhasSelec[0]+1) + "-" + (linhasSelec[1]+1) + "";
+        
+        // Verifica se as regras selecionadas estão na última hipótese
+        String formula1 = jtResolucao.getValueAt(linhasSelec[0], 1).toString();
+        String formula2 = jtResolucao.getValueAt(linhasSelec[1], 1).toString();
+        
+        int contNivelFormula1 = (formula1.length() - formula1.replace("| ", "").length()) / "| ".length();
+        int contNivelFormula2 = (formula2.length() - formula2.replace("| ", "").length()) / "| ".length();
+
+        if(contNivelFormula1 != hipLevel || contNivelFormula2 != hipLevel) {
+            novoFeedback("As fórmulas selecionadas devem estar na última hipótese.");
+            fecharConfig();
+            return;
+        }
+        
+        // Verifica se é a primeira da hipótese
+        String tipoRegra1 = jtResolucao.getValueAt(linhasSelec[0], 2).toString();
+        if(tipoRegra1.compareTo("Hipótese") != 0) {
+            novoFeedback("A primeira fórmula precisa ser o início da hipótese.");
+            fecharConfig();
+            return;
+        }
+        
+        // Aplica regra
+        //if (regraValida) hipLevel--; ...
+        hipLevel--;
+        novaLinha("("+Exercicio.limpaFormula(formula1)+") → ("+Exercicio.limpaFormula(formula2)+")", col3);
+        
+
         // Encerra
         fecharConfig();
     }
