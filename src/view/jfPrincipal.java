@@ -348,6 +348,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         btIntroNeg.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btIntroNeg.setText("<html>¬<sub>i</sub></html>");
         btIntroNeg.setToolTipText("Introdução da negação");
+        btIntroNeg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btIntroNegActionPerformed(evt);
+            }
+        });
 
         btElimNeg.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btElimNeg.setText("<html>¬¬<sub>e</sub></html>");
@@ -650,6 +655,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             case INTRO_CONJ: introConj(); break;
             case ELIM_IMPL: elimImpl(); break;
             case INTRO_IMPL: introImpl(); break;
+            case INTRO_NEG: introNeg(); break;
         }
         
     }//GEN-LAST:event_jbAplicarRegraActionPerformed
@@ -744,6 +750,20 @@ public class jfPrincipal extends javax.swing.JFrame {
         selecionarFormulas(1);
         
     }//GEN-LAST:event_btElimNegActionPerformed
+
+    private void btIntroNegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIntroNegActionPerformed
+        
+        // Restrição da regra
+        if(hipLevel <= 0) {
+            novoFeedback("É preciso iniciar uma hipótese para utilizar esta regra!");
+            return;
+        }
+        
+        regraAtual = Regra.INTRO_NEG;
+        jlNomeRegra.setText("<html><font face='Roboto'>¬<sub>i</sub></font></html>");
+        selecionarFormulas(2);
+        
+    }//GEN-LAST:event_btIntroNegActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
@@ -1042,7 +1062,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     
     private void introImpl() {
         
-        String col3 = "<html>→<sub>i</sub> " + (linhasSelec[0]+1) + "-" + (linhasSelec[1]+1) + "";
+        String col3 = "<html>→<sub>i</sub> " + (linhasSelec[0]+1) + "-" + (linhasSelec[1]+1);
         
         // Verifica se as regras selecionadas estão na última hipótese
         String formula1 = jtResolucao.getValueAt(linhasSelec[0], 1).toString();
@@ -1097,6 +1117,45 @@ public class jfPrincipal extends javax.swing.JFrame {
         }
         else 
             novoFeedback("Esta regra deve ser aplicada na dupla negação.");
+        
+        fecharConfig();
+    }
+    
+    private void introNeg() {
+        
+        String formula1 = jtResolucao.getValueAt(linhasSelec[0], 1).toString();
+        String formula2 = jtResolucao.getValueAt(linhasSelec[1], 1).toString();
+        
+        // Verifica se as regras selecionadas estão na última hipótese
+        int contNivelFormula1 = (formula1.length() - formula1.replace("| ", "").length()) / "| ".length();
+        int contNivelFormula2 = (formula2.length() - formula2.replace("| ", "").length()) / "| ".length();
+
+        if(contNivelFormula1 != hipLevel || contNivelFormula2 != hipLevel) {
+            novoFeedback("As fórmulas selecionadas devem estar na última hipótese.");
+            fecharConfig();
+            return;
+        }
+        
+        // Verifica se é a primeira da hipótese
+        String tipoRegra1 = jtResolucao.getValueAt(linhasSelec[0], 2).toString();
+        if(tipoRegra1.compareTo("Hipótese") != 0) {
+            novoFeedback("A primeira fórmula precisa ser o início da hipótese.");
+            fecharConfig();
+            return;
+        }
+        
+        formula2 = Exercicio.limpaFormula(formula2);
+        // Verifica se a segunda é a contradição
+        if(formula2.compareTo("⊥") != 0) {
+            novoFeedback("A segunda fórmula precisa ser uma contradição.");
+            fecharConfig();
+            return;
+        }
+        
+        // Aplica regra
+        hipLevel--;
+        String col3 = "<html>¬<sub>i</sub> " + (linhasSelec[0]+1) + "-" + (linhasSelec[1]+1);
+        novaLinha("¬("+Exercicio.limpaFormula(formula1)+")", col3);
         
         fecharConfig();
     }
