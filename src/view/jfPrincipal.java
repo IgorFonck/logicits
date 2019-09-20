@@ -42,8 +42,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         ativ = Tutor.selecAtividade();
         
         // Formata a fórmula da atividade para ser exibida
-        String exercicio = "<html><font face='Roboto'>" + ativ.getPremissas() + " |- " + ativ.getConclusao() + "</font></html>";
+        String exercicio = ativ.getPremissas() + " |- " + ativ.getConclusao();
         exercicio = Exercicio.formatarFormula(exercicio);
+        exercicio = "<html><font face='Roboto'>".concat(exercicio);
         jlAtivAtual.setText(exercicio);
         
         // Mostra as premissas da atividade na resolução
@@ -349,7 +350,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         btIntroNeg.setToolTipText("Introdução da negação");
 
         btElimNeg.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btElimNeg.setText("<html>¬<sub>e</sub></html>");
+        btElimNeg.setText("<html>¬¬<sub>e</sub></html>");
         btElimNeg.setToolTipText("Eliminação da negação");
 
         jbDesfazer.setText("Desfazer");
@@ -387,13 +388,13 @@ public class jfPrincipal extends javax.swing.JFrame {
                             .addComponent(btElimImpl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btElimNeg, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                            .addComponent(btIntroNeg, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                            .addComponent(btElimNeg)
+                            .addComponent(btIntroNeg))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbHip))
                     .addComponent(jLabel1)
                     .addComponent(jbDesfazer))
-                .addContainerGap(312, Short.MAX_VALUE))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
         jpRegrasLayout.setVerticalGroup(
             jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -850,13 +851,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         jtResolucao.clearSelection();
         linhasSelec = new int[numFormulas];
         
-        // Para regras de uma única fórmula, não é necessário clicar em aplicar
-        if(numFormulas == 1) {
-            if(regraAtual == Regra.ELIM_CONJ) {
-                
-            }
-        }
-        
         // Muda para a aba de selecionar linhas
         tpRegras.setSelectedIndex(1);
         
@@ -883,7 +877,8 @@ public class jfPrincipal extends javax.swing.JFrame {
                 lastSelectedRow = jtResolucao.getSelectedRow();
                 jbLimparLinhas.setEnabled(true);
                 
-                
+                // Se a regra for de uma fórmula, aplica automaticamente
+                // Se for de duas fórmulas ou mais, ativa o botão aplicar
                 if(contLinhas >= numFormulas) {
                     if(numFormulas == 1) {
                         if (regraAtual == Regra.ELIM_CONJ) elimConj();
