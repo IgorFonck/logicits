@@ -352,6 +352,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         btElimNeg.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btElimNeg.setText("<html>¬¬<sub>e</sub></html>");
         btElimNeg.setToolTipText("Eliminação da negação");
+        btElimNeg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btElimNegActionPerformed(evt);
+            }
+        });
 
         jbDesfazer.setText("Desfazer");
         jbDesfazer.addActionListener(new java.awt.event.ActionListener() {
@@ -643,7 +648,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         // Regras de 2 ou 3 fórmulas
         switch(regraAtual) {
             case INTRO_CONJ: introConj(); break;
-            //case ELIM_CONJ: elimConj(); break;
             case ELIM_IMPL: elimImpl(); break;
             case INTRO_IMPL: introImpl(); break;
         }
@@ -732,6 +736,14 @@ public class jfPrincipal extends javax.swing.JFrame {
         selecionarFormulas(2);
         
     }//GEN-LAST:event_btElimImplActionPerformed
+
+    private void btElimNegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btElimNegActionPerformed
+        
+        regraAtual = Regra.ELIM_NEG;
+        jlNomeRegra.setText("<html><font face='Roboto'>¬¬<sub>e</sub></font></html>");
+        selecionarFormulas(1);
+        
+    }//GEN-LAST:event_btElimNegActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
@@ -881,7 +893,10 @@ public class jfPrincipal extends javax.swing.JFrame {
                 // Se for de duas fórmulas ou mais, ativa o botão aplicar
                 if(contLinhas >= numFormulas) {
                     if(numFormulas == 1) {
-                        if (regraAtual == Regra.ELIM_CONJ) elimConj();
+                        switch(regraAtual) {
+                            case ELIM_CONJ: elimConj(); break;
+                            case ELIM_NEG: elimNeg(); break;
+                        }
                     }
                     else
                         jbAplicarRegra.setEnabled(true);
@@ -1057,4 +1072,33 @@ public class jfPrincipal extends javax.swing.JFrame {
         // Encerra
         fecharConfig();
     }
+    
+    private void elimNeg() {
+        String formula = jtResolucao.getValueAt(linhasSelec[0], 1).toString();
+        formula = Exercicio.limpaFormula(formula);
+
+        //Verifica se a raiz e o ramo direito são negação
+        String raiz;
+        String raizDireita;
+        String formulaDireita;
+        
+        if(formula.length() > 1) {
+            raiz = ExpressionTree.getRootString(formula);
+            formulaDireita = ExpressionTree.getRightNode(formula);
+            raizDireita = ExpressionTree.getRootString(formulaDireita);
+
+            if(raiz.compareTo("~")==0 && raizDireita.compareTo("~")==0) {
+                String col3 = "<html>¬¬<sub>e</sub> " + (linhasSelec[0]+1);
+                String resultado = ExpressionTree.getRightNode(formulaDireita);
+                novaLinha(resultado, col3);
+            }
+            else 
+                novoFeedback("Esta regra deve ser aplicada na dupla negação.");
+        }
+        else 
+            novoFeedback("Esta regra deve ser aplicada na dupla negação.");
+        
+        fecharConfig();
+    }
+    
 }
