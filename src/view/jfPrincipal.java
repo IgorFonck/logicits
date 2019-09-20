@@ -329,10 +329,20 @@ public class jfPrincipal extends javax.swing.JFrame {
         btIntroImpl.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btIntroImpl.setText("<html>→<sub>i</sub></html>");
         btIntroImpl.setToolTipText("Introdução da implicação");
+        btIntroImpl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btIntroImplActionPerformed(evt);
+            }
+        });
 
         btElimImpl.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btElimImpl.setText("<html>→<sub>e</sub></html>");
         btElimImpl.setToolTipText("Eliminação da implicação");
+        btElimImpl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btElimImplActionPerformed(evt);
+            }
+        });
 
         btIntroNeg.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btIntroNeg.setText("<html>¬<sub>i</sub></html>");
@@ -632,6 +642,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         switch(regraAtual) {
             case INTRO_CONJ: introConj(); break;
             case ELIM_CONJ: elimConj(); break;
+            case ELIM_IMPL: elimImpl(); break;
         }
         
     }//GEN-LAST:event_jbAplicarRegraActionPerformed
@@ -696,6 +707,22 @@ public class jfPrincipal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jbHipActionPerformed
+
+    private void btIntroImplActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIntroImplActionPerformed
+        
+        regraAtual = Regra.INTRO_IMPL;
+        jlNomeRegra.setText("<html><font face='Roboto'>→<sub>i</sub></font></html>");
+        selecionarFormulas(2);
+        
+    }//GEN-LAST:event_btIntroImplActionPerformed
+
+    private void btElimImplActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btElimImplActionPerformed
+        
+        regraAtual = Regra.ELIM_IMPL;
+        jlNomeRegra.setText("<html><font face='Roboto'>→<sub>e</sub></font></html>");
+        selecionarFormulas(2);
+        
+    }//GEN-LAST:event_btElimImplActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
@@ -795,7 +822,8 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void fecharConfig() {
         limparLinhas();
         jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
-        tpRegras.setSelectedIndex(0);        
+        tpRegras.setSelectedIndex(0);    
+        regraAtual = null;
     }
     
     private void novoFeedback(String mensagem) {
@@ -886,7 +914,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         novaLinha(col2, col3);
 
         fecharConfig();
-        regraAtual = null;
     }
     
     private void elimConj() {
@@ -922,6 +949,55 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         // Encerra
         fecharConfig();
-        regraAtual = null;
+    }
+    
+    private void elimImpl() {
+        
+        boolean regraImplicacao, regraAntecedente = false;
+        String col3 = "<html>→<sub>e</sub> " + (linhasSelec[0]+1) + ", " + (linhasSelec[1]+1) + "";
+        
+        // Verifica se uma das fórmulas é implicação
+        // Lê a fórumula e verifica se é uma conjunção
+        String formula1 = jtResolucao.getValueAt(linhasSelec[0], 1).toString();
+        String formula2 = jtResolucao.getValueAt(linhasSelec[1], 1).toString();
+        String raiz1 = ExpressionTree.getRootString(formula1);
+        String raiz2 = ExpressionTree.getRootString(formula2);
+        byte posicaoImpl = 0;
+        if (raiz1.compareTo(">") == 0)
+            posicaoImpl = 1;
+        if (raiz2.compareTo(">") == 0)
+            posicaoImpl = 2;
+        regraImplicacao = (posicaoImpl > 0);
+       
+        String antecedente, outra;
+        // Verifica se uma das fórmulas é o antecedente
+        if(posicaoImpl == 1) {
+            // Pega o antecedente da primeira e compara com a segunda
+            antecedente = Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(formula1));
+            outra = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula2));
+            regraAntecedente = true;
+        }
+        else if (posicaoImpl == 2) {
+            // Pega o antecedente da segunda e compara com a primeira
+            antecedente = Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(formula2));
+            outra = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula1));
+            regraAntecedente = true;
+        }
+        
+        if(regraImplicacao && regraAntecedente) {
+            String col2;
+            if(posicaoImpl == 1)
+                col2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula1));
+            else
+                col2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula2));
+            novaLinha(col2, col3);
+        }
+        else if(!regraImplicacao)
+            novoFeedback("Uma das fórmulas precisa ser uma implicação!");
+        else
+            novoFeedback("Para eliminar uma implicação, uma das fórmulas deve ser seu antecedente!");
+        
+        // Encerra
+        fecharConfig();
     }
 }

@@ -166,7 +166,7 @@ class Tree {
     public String insert(String s) {
         Conversion c = new Conversion(s);
         s = c.inToPost();
-        System.out.println("Postfix: " + s);
+        //System.out.println("Postfix: " + s);
         Stack1 stk = new Stack1(s.length());
         s = s + "#";
         int i = 0;
@@ -206,7 +206,7 @@ class Tree {
         // Traverse
         String re;
         re = inOrder(root);
-        System.out.print("Inorder Traversal: " + re);
+        //System.out.print("Inorder Traversal: " + re);
         return re;
     }
   
@@ -233,7 +233,7 @@ class Tree {
         return root;
     }
     
-    public String getChildString(Node child) {
+    public String getExpressionString(Node child) {
         String re = inOrder(child);
         return re;
     }
@@ -285,7 +285,7 @@ public class ExpressionTree {
         Tree t2 = new Tree();
         in = parseLegivelToExpression(in);
         t1.insert(in);
-        String re = t2.getChildString(t1.getRoot().leftChild);
+        String re = t2.getExpressionString(t1.getRoot().leftChild);
         //re = re.substring(1, re.length()-1);
         return re;
     }
@@ -295,7 +295,17 @@ public class ExpressionTree {
         Tree t2 = new Tree();
         in = parseLegivelToExpression(in);
         t1.insert(in);
-        String re = t2.getChildString(t1.getRoot().rightChild);
+        String re = t2.getExpressionString(t1.getRoot().rightChild);
+        //re = re.substring(1, re.length()-1);
+        return re;
+    }
+    
+    public static String getFullNode(String in) {
+        Tree t1 = new Tree();
+        Tree t2 = new Tree();
+        in = parseLegivelToExpression(in);
+        t1.insert(in);
+        String re = t2.getExpressionString(t1.getRoot());
         //re = re.substring(1, re.length()-1);
         return re;
     }

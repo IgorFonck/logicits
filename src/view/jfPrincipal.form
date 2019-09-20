@@ -521,6 +521,9 @@
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&#x2192;&lt;sub&gt;i&lt;/sub&gt;&lt;/html&gt;"/>
                 <Property name="toolTipText" type="java.lang.String" value="Introdu&#xe7;&#xe3;o da implica&#xe7;&#xe3;o"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btIntroImplActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btElimImpl">
               <Properties>
@@ -530,6 +533,9 @@
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&#x2192;&lt;sub&gt;e&lt;/sub&gt;&lt;/html&gt;"/>
                 <Property name="toolTipText" type="java.lang.String" value="Elimina&#xe7;&#xe3;o da implica&#xe7;&#xe3;o"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btElimImplActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btIntroNeg">
               <Properties>
