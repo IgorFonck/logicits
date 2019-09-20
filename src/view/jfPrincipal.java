@@ -639,9 +639,10 @@ public class jfPrincipal extends javax.swing.JFrame {
 
     private void jbAplicarRegraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAplicarRegraActionPerformed
         
+        // Regras de 2 ou 3 fórmulas
         switch(regraAtual) {
             case INTRO_CONJ: introConj(); break;
-            case ELIM_CONJ: elimConj(); break;
+            //case ELIM_CONJ: elimConj(); break;
             case ELIM_IMPL: elimImpl(); break;
             case INTRO_IMPL: introImpl(); break;
         }
@@ -849,6 +850,12 @@ public class jfPrincipal extends javax.swing.JFrame {
         jtResolucao.clearSelection();
         linhasSelec = new int[numFormulas];
         
+        // Para regras de uma única fórmula, não é necessário clicar em aplicar
+        if(numFormulas == 1) {
+            if(regraAtual == Regra.ELIM_CONJ) {
+                
+            }
+        }
         
         // Muda para a aba de selecionar linhas
         tpRegras.setSelectedIndex(1);
@@ -876,8 +883,13 @@ public class jfPrincipal extends javax.swing.JFrame {
                 lastSelectedRow = jtResolucao.getSelectedRow();
                 jbLimparLinhas.setEnabled(true);
                 
+                
                 if(contLinhas >= numFormulas) {
-                    jbAplicarRegra.setEnabled(true);
+                    if(numFormulas == 1) {
+                        if (regraAtual == Regra.ELIM_CONJ) elimConj();
+                    }
+                    else
+                        jbAplicarRegra.setEnabled(true);
                 }
             }
         };
@@ -1036,10 +1048,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         }
         
         // Aplica regra
-        //if (regraValida) hipLevel--; ...
         hipLevel--;
         novaLinha("("+Exercicio.limpaFormula(formula1)+") → ("+Exercicio.limpaFormula(formula2)+")", col3);
-        
 
         // Encerra
         fecharConfig();
