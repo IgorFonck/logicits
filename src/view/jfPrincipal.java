@@ -910,9 +910,18 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         // Introdução da conjunção
         String col2;
+        String col3 = "<html>∧<sub>i</sub> " + (linhasSelec[0]+1) + ", " + (linhasSelec[1]+1) + "";
+        
         String arg1 = Exercicio.limpaFormula(jtResolucao.getValueAt(linhasSelec[0], 1).toString());
         String arg2 = Exercicio.limpaFormula(jtResolucao.getValueAt(linhasSelec[1], 1).toString());
 
+        // Verifica se são contrários
+        if(arg1.compareTo("¬"+arg2) == 0 | arg2.compareTo("¬"+arg1) == 0) {
+            novaLinha("⊥", col3);
+            fecharConfig();
+            return;
+        }
+        
         if(arg1.length() == 1)
             col2 = arg1;
         else
@@ -923,7 +932,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         else
             col2 = col2.concat(" ∧ (" + arg2 + ")");
         
-        String col3 = "<html>∧<sub>i</sub> " + (linhasSelec[0]+1) + ", " + (linhasSelec[1]+1) + "";
 
         novaLinha(col2, col3);
 
