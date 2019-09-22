@@ -503,6 +503,9 @@
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&#x2228;&lt;sub&gt;i&lt;/sub&gt;&lt;/html&gt;"/>
                 <Property name="toolTipText" type="java.lang.String" value="Introdu&#xe7;&#xe3;o da disjun&#xe7;&#xe3;o"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btIntroDisjuActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btElimDisju">
               <Properties>

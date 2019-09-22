@@ -322,6 +322,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         btIntroDisju.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btIntroDisju.setText("<html>∨<sub>i</sub></html>");
         btIntroDisju.setToolTipText("Introdução da disjunção");
+        btIntroDisju.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btIntroDisjuActionPerformed(evt);
+            }
+        });
 
         btElimDisju.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btElimDisju.setText("<html>∨<sub>e</sub></html>");
@@ -656,6 +661,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             case ELIM_IMPL: elimImpl(); break;
             case INTRO_IMPL: introImpl(); break;
             case INTRO_NEG: introNeg(); break;
+            case INTRO_DISJ: introDisj(); break;
         }
         
     }//GEN-LAST:event_jbAplicarRegraActionPerformed
@@ -764,6 +770,14 @@ public class jfPrincipal extends javax.swing.JFrame {
         selecionarFormulas(2);
         
     }//GEN-LAST:event_btIntroNegActionPerformed
+
+    private void btIntroDisjuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIntroDisjuActionPerformed
+        
+        regraAtual = Regra.INTRO_DISJ;
+        jlNomeRegra.setText("<html><font face='Roboto'>∨<sub>i</sub></font></html>");
+        selecionarFormulas(2);
+        
+    }//GEN-LAST:event_btIntroDisjuActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
@@ -938,6 +952,12 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
         dtm.addRow(new Object[]{col1, col2, col3});
+    }
+    
+    private boolean isHipoteseEncerrada(int linha) {
+        
+        
+        return false;
     }
     
     // Funções das regras
@@ -1158,6 +1178,32 @@ public class jfPrincipal extends javax.swing.JFrame {
         novaLinha("¬("+Exercicio.limpaFormula(formula1)+")", col3);
         
         fecharConfig();
+    }
+    
+    private void introDisj() {
+        
+        // Introdução da conjunção
+        String col2;
+        String col3 = "<html>∨<sub>i</sub> " + (linhasSelec[0]+1) + ", " + (linhasSelec[1]+1) + "";
+        
+        String arg1 = Exercicio.limpaFormula(jtResolucao.getValueAt(linhasSelec[0], 1).toString());
+        String arg2 = Exercicio.limpaFormula(jtResolucao.getValueAt(linhasSelec[1], 1).toString());
+
+        if(arg1.length() == 1)
+            col2 = arg1;
+        else
+            col2 = "(" + arg1 + ")";
+        
+        if(arg2.length() == 1)
+            col2 = col2.concat(" ∨ " + arg2);
+        else
+            col2 = col2.concat(" ∨ (" + arg2 + ")");
+        
+
+        novaLinha(col2, col3);
+        
+        fecharConfig();
+        
     }
     
 }
