@@ -48,7 +48,7 @@ public class Exercicio {
     public static String[] getPremissas(String exercicio) {
         String premissas[];
         // Remove tags HTML <html><font face='Roboto'> e </font></html>
-        exercicio = exercicio.substring(26, exercicio.length()-1);
+        //exercicio = exercicio.substring(26, exercicio.length()-1);
         // Remove a conclusão
         exercicio = exercicio.substring(0, exercicio.indexOf('⊢')-1);
         premissas = exercicio.split(", ");

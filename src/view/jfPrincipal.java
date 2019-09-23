@@ -37,6 +37,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     public jfPrincipal() {
 
         initComponents();
+        setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         
         // Seleciona a atividade a ser mostrada
         ativ = Tutor.selecAtividade();
@@ -44,8 +45,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         // Formata a fórmula da atividade para ser exibida
         String exercicio = ativ.getPremissas() + " |- " + ativ.getConclusao();
         exercicio = Exercicio.formatarFormula(exercicio);
-        exercicio = "<html><font face='Roboto'>".concat(exercicio);
-        jlAtivAtual.setText(exercicio);
+        //exercicio = "<html><font face='Roboto'>".concat(exercicio);
+        jlAtivAtual.setText("<html><font face='Roboto'>"+exercicio);
         
         // Mostra as premissas da atividade na resolução
         String premissas[] = Exercicio.getPremissas(exercicio);
@@ -64,6 +65,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         jtResolucao.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.LEFT );
+        jtResolucao.getColumnModel().getColumn(1).setCellRenderer( leftRenderer );
         
         // Configura o painel de regras
         jbAplicarRegra.setEnabled(false);
@@ -74,13 +78,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         jpListaFeedback.add(new JLabel("Msg A"));
         jpListaFeedback.add(new JLabel("Msg B"));
         jpListaFeedback.add(new JLabel("Msg C"));
-        jpListaFeedback.add(new JLabel("Msg D"));
-        jpListaFeedback.add(new JLabel("Msg E"));
-        jpListaFeedback.add(new JLabel("Msg F"));
-        jpListaFeedback.add(new JLabel("Msg G"));
-        jpListaFeedback.add(new JLabel("Msg H"));
-        
-        
         
     }
 
@@ -94,9 +91,6 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         bgSistemaProva = new javax.swing.ButtonGroup();
-        jpAtividade = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jlAtivAtual = new javax.swing.JLabel();
         jpFeedback = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jbRevisar = new javax.swing.JButton();
@@ -107,6 +101,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtResolucao = new javax.swing.JTable();
+        jpAtividade = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jlAtivAtual = new javax.swing.JLabel();
         tpRegras = new javax.swing.JTabbedPane();
         jpRegras = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -146,42 +143,24 @@ public class jfPrincipal extends javax.swing.JFrame {
         miSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        setTitle("LogicITS | Tutor de Lógica");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(1010, 640));
 
-        jpAtividade.setBackground(new java.awt.Color(218, 231, 240));
+        jpFeedback.setBackground(new java.awt.Color(255, 255, 255));
+        jpFeedback.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(222, 226, 230), 1, true));
 
-        jLabel2.setText("Atividade");
-
-        jlAtivAtual.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jlAtivAtual.setText("a -> b");
-
-        javax.swing.GroupLayout jpAtividadeLayout = new javax.swing.GroupLayout(jpAtividade);
-        jpAtividade.setLayout(jpAtividadeLayout);
-        jpAtividadeLayout.setHorizontalGroup(
-            jpAtividadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpAtividadeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpAtividadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jlAtivAtual))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jpAtividadeLayout.setVerticalGroup(
-            jpAtividadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpAtividadeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jlAtivAtual)
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
-
-        jpFeedback.setBackground(new java.awt.Color(245, 228, 228));
-
+        jLabel4.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         jLabel4.setText("Feedback");
 
+        jbRevisar.setBackground(new java.awt.Color(6, 158, 79));
+        jbRevisar.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        jbRevisar.setForeground(new java.awt.Color(255, 255, 255));
         jbRevisar.setText("Revisar material");
 
+        jbAjuda.setBackground(new java.awt.Color(6, 158, 79));
+        jbAjuda.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        jbAjuda.setForeground(new java.awt.Color(255, 255, 255));
         jbAjuda.setText("Solicitar ajuda");
         jbAjuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,7 +177,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         jpListaFeedback.setLayout(jpListaFeedbackLayout);
         jpListaFeedbackLayout.setHorizontalGroup(
             jpListaFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 179, Short.MAX_VALUE)
+            .addGap(0, 233, Short.MAX_VALUE)
         );
         jpListaFeedbackLayout.setVerticalGroup(
             jpListaFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +198,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                     .addGroup(jpFeedbackLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpFeedbackLayout.setVerticalGroup(
@@ -228,7 +207,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbAjuda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -236,11 +215,12 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jpResolucao.setBackground(new java.awt.Color(232, 244, 232));
+        jpResolucao.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel3.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         jLabel3.setText("Resolução");
 
-        jtResolucao.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jtResolucao.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         jtResolucao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -271,6 +251,38 @@ public class jfPrincipal extends javax.swing.JFrame {
         jtResolucao.setShowVerticalLines(false);
         jScrollPane1.setViewportView(jtResolucao);
 
+        jpAtividade.setBackground(new java.awt.Color(238, 238, 238));
+        jpAtividade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(238, 238, 238), 10, true));
+
+        jLabel2.setBackground(new java.awt.Color(238, 238, 238));
+        jLabel2.setFont(new java.awt.Font("Nirmala UI", 0, 28)); // NOI18N
+        jLabel2.setText("Atividade");
+
+        jlAtivAtual.setBackground(new java.awt.Color(238, 238, 238));
+        jlAtivAtual.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        jlAtivAtual.setText("a -> b");
+
+        javax.swing.GroupLayout jpAtividadeLayout = new javax.swing.GroupLayout(jpAtividade);
+        jpAtividade.setLayout(jpAtividadeLayout);
+        jpAtividadeLayout.setHorizontalGroup(
+            jpAtividadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpAtividadeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpAtividadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jlAtivAtual))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jpAtividadeLayout.setVerticalGroup(
+            jpAtividadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpAtividadeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jlAtivAtual)
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jpResolucaoLayout = new javax.swing.GroupLayout(jpResolucao);
         jpResolucao.setLayout(jpResolucaoLayout);
         jpResolucaoLayout.setHorizontalGroup(
@@ -283,25 +295,33 @@ public class jfPrincipal extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
+            .addComponent(jpAtividade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpResolucaoLayout.setVerticalGroup(
             jpResolucaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpResolucaoLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jpAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
+        tpRegras.setBackground(new java.awt.Color(255, 255, 255));
+        tpRegras.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(222, 226, 230), 1, true));
         tpRegras.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
         tpRegras.setEnabled(false);
 
-        jpRegras.setBackground(new java.awt.Color(228, 213, 231));
+        jpRegras.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         jLabel1.setText("Regras de inferência");
 
-        btIntroConju.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btIntroConju.setBackground(new java.awt.Color(6, 158, 79));
+        btIntroConju.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btIntroConju.setForeground(new java.awt.Color(255, 255, 255));
         btIntroConju.setText("<html><font face='Roboto'>∧<sub>i</sub></font></html>");
         btIntroConju.setToolTipText("Introdução da conjunção");
         btIntroConju.addActionListener(new java.awt.event.ActionListener() {
@@ -310,7 +330,9 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btElimConju.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btElimConju.setBackground(new java.awt.Color(6, 158, 79));
+        btElimConju.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btElimConju.setForeground(new java.awt.Color(255, 255, 255));
         btElimConju.setText("<html><font face='Roboto'>∧<sub>e</sub></font></html>");
         btElimConju.setToolTipText("Eliminação da conjunção");
         btElimConju.addActionListener(new java.awt.event.ActionListener() {
@@ -319,7 +341,9 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btIntroDisju.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btIntroDisju.setBackground(new java.awt.Color(6, 158, 79));
+        btIntroDisju.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btIntroDisju.setForeground(new java.awt.Color(255, 255, 255));
         btIntroDisju.setText("<html>∨<sub>i</sub></html>");
         btIntroDisju.setToolTipText("Introdução da disjunção");
         btIntroDisju.addActionListener(new java.awt.event.ActionListener() {
@@ -328,7 +352,9 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btElimDisju.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btElimDisju.setBackground(new java.awt.Color(6, 158, 79));
+        btElimDisju.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btElimDisju.setForeground(new java.awt.Color(255, 255, 255));
         btElimDisju.setText("<html>∨<sub>e</sub></html>");
         btElimDisju.setToolTipText("Eliminação da disjunção");
         btElimDisju.addActionListener(new java.awt.event.ActionListener() {
@@ -337,7 +363,9 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btIntroImpl.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btIntroImpl.setBackground(new java.awt.Color(6, 158, 79));
+        btIntroImpl.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btIntroImpl.setForeground(new java.awt.Color(255, 255, 255));
         btIntroImpl.setText("<html>→<sub>i</sub></html>");
         btIntroImpl.setToolTipText("Introdução da implicação");
         btIntroImpl.addActionListener(new java.awt.event.ActionListener() {
@@ -346,7 +374,9 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btElimImpl.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btElimImpl.setBackground(new java.awt.Color(6, 158, 79));
+        btElimImpl.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btElimImpl.setForeground(new java.awt.Color(255, 255, 255));
         btElimImpl.setText("<html>→<sub>e</sub></html>");
         btElimImpl.setToolTipText("Eliminação da implicação");
         btElimImpl.addActionListener(new java.awt.event.ActionListener() {
@@ -355,7 +385,9 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btIntroNeg.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btIntroNeg.setBackground(new java.awt.Color(6, 158, 79));
+        btIntroNeg.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btIntroNeg.setForeground(new java.awt.Color(255, 255, 255));
         btIntroNeg.setText("<html>¬<sub>i</sub></html>");
         btIntroNeg.setToolTipText("Introdução da negação");
         btIntroNeg.addActionListener(new java.awt.event.ActionListener() {
@@ -364,7 +396,9 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btElimNeg.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btElimNeg.setBackground(new java.awt.Color(6, 158, 79));
+        btElimNeg.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btElimNeg.setForeground(new java.awt.Color(255, 255, 255));
         btElimNeg.setText("<html>¬¬<sub>e</sub></html>");
         btElimNeg.setToolTipText("Eliminação da negação");
         btElimNeg.addActionListener(new java.awt.event.ActionListener() {
@@ -380,7 +414,10 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jbHip.setText("Adicionar hipótese");
+        jbHip.setBackground(new java.awt.Color(6, 158, 79));
+        jbHip.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        jbHip.setForeground(new java.awt.Color(255, 255, 255));
+        jbHip.setText("<html><font weight='700'>Adicionar hipótese");
         jbHip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbHipActionPerformed(evt);
@@ -411,10 +448,10 @@ public class jfPrincipal extends javax.swing.JFrame {
                             .addComponent(btElimNeg)
                             .addComponent(btIntroNeg))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbHip))
+                        .addComponent(jbHip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
                     .addComponent(jbDesfazer))
-                .addContainerGap(309, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
         jpRegrasLayout.setVerticalGroup(
             jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -422,14 +459,14 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btIntroConju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btIntroDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btIntroImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jbHip, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btIntroNeg, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbHip)
+                    .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btIntroConju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btIntroDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btIntroImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btIntroNeg)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btElimConju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -443,7 +480,7 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         tpRegras.addTab("", jpRegras);
 
-        jpConfigRegra.setBackground(new java.awt.Color(228, 213, 231));
+        jpConfigRegra.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel5.setText("Selecione as linhas para aplicar a regra");
 
@@ -481,18 +518,20 @@ public class jfPrincipal extends javax.swing.JFrame {
             .addGroup(jpConfigRegraLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlLinhasSelecionadas, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpConfigRegraLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(4, 4, 4)
-                        .addComponent(jlNomeRegra)
+                        .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpConfigRegraLayout.createSequentialGroup()
+                                .addComponent(jbAplicarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbLimparLinhas, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpConfigRegraLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(4, 4, 4)
+                                .addComponent(jlNomeRegra)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbCancelarRegra))
-                    .addComponent(jlLinhasSelecionadas)
-                    .addGroup(jpConfigRegraLayout.createSequentialGroup()
-                        .addComponent(jbAplicarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbLimparLinhas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(364, Short.MAX_VALUE))
+                        .addComponent(jbCancelarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jpConfigRegraLayout.setVerticalGroup(
             jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,16 +542,21 @@ public class jfPrincipal extends javax.swing.JFrame {
                     .addComponent(jbCancelarRegra)
                     .addComponent(jlNomeRegra))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlLinhasSelecionadas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(jlLinhasSelecionadas, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAplicarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbLimparLinhas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tpRegras.addTab("", jpConfigRegra);
 
+        jmMenuSuperior.setBackground(new java.awt.Color(6, 158, 79));
+        jmMenuSuperior.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(6, 158, 79), 3, true));
+        jmMenuSuperior.setForeground(new java.awt.Color(255, 255, 255));
+
+        jmArquivo.setForeground(new java.awt.Color(255, 255, 255));
         jmArquivo.setText("Arquivo");
 
         miNovo.setText("Nova prova");
@@ -538,6 +582,7 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         jmMenuSuperior.add(jmArquivo);
 
+        jmConfig.setForeground(new java.awt.Color(255, 255, 255));
         jmConfig.setText("Configurações");
 
         jMenuItem1.setText("Alterar domínio");
@@ -566,6 +611,7 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         jmMenuSuperior.add(jmConfig);
 
+        jmAjuda.setForeground(new java.awt.Color(255, 255, 255));
         jmAjuda.setText("Ajuda");
 
         miGuia.setText("Guia do usuário");
@@ -588,22 +634,25 @@ public class jfPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpAtividade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpResolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 13, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jpResolucao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tpRegras))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jpFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jpAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpResolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tpRegras, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jpFeedback, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpFeedback, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jpResolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tpRegras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         pack();
