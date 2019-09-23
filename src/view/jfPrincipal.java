@@ -331,6 +331,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         btElimDisju.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btElimDisju.setText("<html>∨<sub>e</sub></html>");
         btElimDisju.setToolTipText("Eliminação da disjunção");
+        btElimDisju.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btElimDisjuActionPerformed(evt);
+            }
+        });
 
         btIntroImpl.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btIntroImpl.setText("<html>→<sub>i</sub></html>");
@@ -662,6 +667,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             case INTRO_IMPL: introImpl(); break;
             case INTRO_NEG: introNeg(); break;
             case INTRO_DISJ: introDisj(); break;
+            case ELIM_DISJ: elimDisj(); break;
         }
         
     }//GEN-LAST:event_jbAplicarRegraActionPerformed
@@ -778,6 +784,14 @@ public class jfPrincipal extends javax.swing.JFrame {
         selecionarFormulas(2);
         
     }//GEN-LAST:event_btIntroDisjuActionPerformed
+
+    private void btElimDisjuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btElimDisjuActionPerformed
+        
+        regraAtual = Regra.ELIM_DISJ;
+        jlNomeRegra.setText("<html><font face='Roboto>∨<sub>e</sub></font></html>");
+        selecionarFormulas(3);
+        
+    }//GEN-LAST:event_btElimDisjuActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
@@ -1201,6 +1215,64 @@ public class jfPrincipal extends javax.swing.JFrame {
         
 
         novaLinha(col2, col3);
+        
+        fecharConfig();
+        
+    }
+    
+    private void elimDisj() {
+        
+        String col3 = "<html>∨<sub>e</sub> " + (linhasSelec[0]+1) + ", " + (linhasSelec[1]+1) + ", " + (linhasSelec[2]+1);
+        String formula1 = jtResolucao.getValueAt(linhasSelec[0], 1).toString();
+        String formula2 = jtResolucao.getValueAt(linhasSelec[1], 1).toString();
+        String formula3 = jtResolucao.getValueAt(linhasSelec[2], 1).toString();
+        
+        // Verifica se uma das regras é disjunção
+        // Guarda os dois lados da disjunção
+         boolean regraDisjuncao;
+        
+        String raiz1 = ExpressionTree.getRootString(formula1);
+        String raiz2 = ExpressionTree.getRootString(formula2);
+        String raiz3 = ExpressionTree.getRootString(formula3);
+        String disjEsq = null, disjDir = null, outra1 = null, outra2 = null;
+        byte posicaoDisj = 0;
+        if (raiz1.compareTo("+") == 0) {
+            posicaoDisj = 1;
+            disjEsq = Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(formula1));
+            disjDir = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula1));
+            outra1 = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula2));
+            outra2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula3));
+        }
+        if (raiz2.compareTo("+") == 0) {
+            posicaoDisj = 2;
+            disjEsq = Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(formula2));
+            disjDir = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula2));
+            outra1 = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula1));
+            outra2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula3));
+        }
+        if (raiz3.compareTo("+") == 0) {
+            posicaoDisj = 3;
+            disjEsq = Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(formula3));
+            disjDir = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula3));
+            outra1 = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula1));
+            outra2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula2));
+        }
+        regraDisjuncao = (posicaoDisj > 0);
+              
+        if(regraDisjuncao) {
+            // Compara se as outras fórmulas são implicações
+            
+            // Compara se os lados da disjunção são os antecedentes das implicações
+            
+            // Compara se a conclusão das implicações é igual
+            
+            // Aplica, se for o caso
+            
+        }
+        else {
+            novoFeedback("Uma das fórmulas precisa ser uma disjunção.");
+        }
+
         
         fecharConfig();
         

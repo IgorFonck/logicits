@@ -515,6 +515,9 @@
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&#x2228;&lt;sub&gt;e&lt;/sub&gt;&lt;/html&gt;"/>
                 <Property name="toolTipText" type="java.lang.String" value="Elimina&#xe7;&#xe3;o da disjun&#xe7;&#xe3;o"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btElimDisjuActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btIntroImpl">
               <Properties>
