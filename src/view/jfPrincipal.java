@@ -1081,7 +1081,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                     null, options, null);
             if (result == JOptionPane.YES_OPTION)
                 novaLinha(opt1, col3);
-            else
+            else if (result == JOptionPane.NO_OPTION)
                 novaLinha(opt2, col3);
         }
         else

@@ -537,14 +537,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jbHip" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btIntroConju" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="btIntroDisju" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="btIntroImpl" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="btIntroNeg" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btIntroConju" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="btIntroDisju" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="btIntroImpl" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="btIntroNeg" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
