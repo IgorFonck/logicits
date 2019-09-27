@@ -1278,12 +1278,14 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         // Verifica se uma das regras é disjunção
         // Guarda os dois lados da disjunção
-         boolean regraDisjuncao;
+         boolean regraDisjuncao, duasImpl;
         
         String raiz1 = ExpressionTree.getRootString(formula1);
         String raiz2 = ExpressionTree.getRootString(formula2);
         String raiz3 = ExpressionTree.getRootString(formula3);
-        String disjEsq = null, disjDir = null, outra1 = null, outra2 = null;
+        String disjEsq = null, disjDir = null;
+        String outra1 = null, outra2 = null;
+        String raizOutra1 = null, raizOutra2 = null;
         byte posicaoDisj = 0;
         if (raiz1.compareTo("+") == 0) {
             posicaoDisj = 1;
@@ -1291,6 +1293,8 @@ public class jfPrincipal extends javax.swing.JFrame {
             disjDir = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula1));
             outra1 = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula2));
             outra2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula3));
+            raizOutra1 = raiz2;
+            raizOutra2 = raiz3;
         }
         if (raiz2.compareTo("+") == 0) {
             posicaoDisj = 2;
@@ -1298,6 +1302,8 @@ public class jfPrincipal extends javax.swing.JFrame {
             disjDir = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula2));
             outra1 = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula1));
             outra2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula3));
+            raizOutra1 = raiz1;
+            raizOutra2 = raiz3;
         }
         if (raiz3.compareTo("+") == 0) {
             posicaoDisj = 3;
@@ -1305,17 +1311,35 @@ public class jfPrincipal extends javax.swing.JFrame {
             disjDir = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula3));
             outra1 = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula1));
             outra2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula2));
+            raizOutra1 = raiz1;
+            raizOutra2 = raiz2;
         }
         regraDisjuncao = (posicaoDisj > 0);
+        duasImpl = (raizOutra1.compareTo(">")==0 && raizOutra2.compareTo(">")==0);
               
-        if(regraDisjuncao) {
-            // Compara se as outras fórmulas são implicações
-            
+        if(regraDisjuncao && duasImpl) {
             // Compara se os lados da disjunção são os antecedentes das implicações
+            String antecedente1 = Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(outra1));
+            String antecedente2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(outra2));
             
-            // Compara se a conclusão das implicações é igual
+            boolean esqIgual, dirIgual;
+            esqIgual = (disjEsq.compareTo(antecedente1)==0 || disjEsq.compareTo(antecedente2)==0);
+            dirIgual = (disjDir.compareTo(antecedente1)==0 || disjDir.compareTo(antecedente2)==0);
+            
+            // Compara se o consequente das implicações é igual
+            String consequente1 = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(outra1));
+            String consequente2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(outra2));
+            
+            boolean conseqIgual = (consequente1.compareTo(consequente2)==0);
             
             // Aplica, se for o caso
+            if(esqIgual && dirIgual && conseqIgual) {
+                novaLinha(consequente1, col3);
+            }
+            else {
+                // As regras não fecham
+                novoFeedback("Não é possível aplicar a eliminação da disjunção nessa regras.");
+            }
             
         }
         else {
