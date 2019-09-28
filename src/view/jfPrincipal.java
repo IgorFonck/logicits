@@ -8,7 +8,6 @@ package view;
 import control.Exercicio;
 import control.ExpressionTree;
 import control.Tutor;
-import java.awt.GridLayout;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,11 +46,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         exercicio = Exercicio.formatarFormula(exercicio);
         //exercicio = "<html><font face='Roboto'>".concat(exercicio);
         jlAtivAtual.setText("<html><font face='Roboto'>"+exercicio);
+        respostaFinal = Exercicio.formatarFormula(ativ.getConclusao());
         
         // Mostra as premissas da atividade na resolução
         String premissas[] = Exercicio.getPremissas(exercicio);
         DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
-        
         
         int i = 0;
         for (String s : premissas) {
@@ -461,12 +460,11 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jbHip)
-                    .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btIntroConju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btIntroDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btIntroImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(btIntroNeg)))
+                    .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btIntroConju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btIntroDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btIntroImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btIntroNeg))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btElimConju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -530,17 +528,20 @@ public class jfPrincipal extends javax.swing.JFrame {
                                 .addGap(4, 4, 4)
                                 .addComponent(jlNomeRegra)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbCancelarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jbCancelarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jpConfigRegraLayout.setVerticalGroup(
             jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpConfigRegraLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jbCancelarRegra)
-                    .addComponent(jlNomeRegra))
+                .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(jlNomeRegra))
+                    .addGroup(jpConfigRegraLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jbCancelarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlLinhasSelecionadas, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -905,7 +906,8 @@ public class jfPrincipal extends javax.swing.JFrame {
     private int lastSelectedRow;    // Última linha selecionada (evida leitura duplicada do listener)
     private int[] linhasSelec;      // Índices das linhas selecionadas
     private int hipLevel = 0;       // Contador de níveis de hipóteses
-    Regra regraAtual;
+    private Regra regraAtual;       // Registra qual regra foi selecionada
+    private String respostaFinal;   // Armazena a conclusão
     
     enum Regra {
         INTRO_CONJ,
@@ -1004,8 +1006,10 @@ public class jfPrincipal extends javax.swing.JFrame {
         jtResolucao.getSelectionModel().addListSelectionListener(tableListener);
     }
     
-    private void novaLinha(String col2, String col3) {
+    private void novaLinha(String formula, String col3) {
         String col1 = jtResolucao.getRowCount()+1 + ".";
+        
+        String col2 = formula;
         
         // Adiciona níveis de hipótese
         for(int i = 0; i < hipLevel; i++)
@@ -1015,12 +1019,31 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
         dtm.addRow(new Object[]{col1, col2, col3});
+        
+        // Verifica se chegou à conclusão
+        if(formula.compareTo(respostaFinal)==0) {
+            respostaCorreta();
+        }
     }
     
     private boolean isHipoteseEncerrada(int linha) {
         
         
+        
         return false;
+    }
+    
+    private boolean validarHipotese(String hip) {
+        
+        
+        
+        return false;
+    }
+    
+    private void respostaCorreta() {
+        
+        JOptionPane.showMessageDialog(null, "Você chegou à resposta final!");
+        
     }
     
     // Funções das regras
