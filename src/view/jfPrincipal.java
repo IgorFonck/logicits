@@ -1315,32 +1315,37 @@ public class jfPrincipal extends javax.swing.JFrame {
             raizOutra2 = raiz2;
         }
         regraDisjuncao = (posicaoDisj > 0);
-        duasImpl = (raizOutra1.compareTo(">")==0 && raizOutra2.compareTo(">")==0);
-              
-        if(regraDisjuncao && duasImpl) {
-            // Compara se os lados da disjunção são os antecedentes das implicações
-            String antecedente1 = Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(outra1));
-            String antecedente2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(outra2));
-            
-            boolean esqIgual, dirIgual;
-            esqIgual = (disjEsq.compareTo(antecedente1)==0 || disjEsq.compareTo(antecedente2)==0);
-            dirIgual = (disjDir.compareTo(antecedente1)==0 || disjDir.compareTo(antecedente2)==0);
-            
-            // Compara se o consequente das implicações é igual
-            String consequente1 = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(outra1));
-            String consequente2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(outra2));
-            
-            boolean conseqIgual = (consequente1.compareTo(consequente2)==0);
-            
-            // Aplica, se for o caso
-            if(esqIgual && dirIgual && conseqIgual) {
-                novaLinha(consequente1, col3);
+        
+        if(regraDisjuncao) {
+            duasImpl = (raizOutra1.compareTo(">")==0 && raizOutra2.compareTo(">")==0);
+            if(duasImpl) {
+                // Compara se os lados da disjunção são os antecedentes das implicações
+                String antecedente1 = Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(outra1));
+                String antecedente2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(outra2));
+
+                boolean esqIgual, dirIgual;
+                esqIgual = (disjEsq.compareTo(antecedente1)==0 || disjEsq.compareTo(antecedente2)==0);
+                dirIgual = (disjDir.compareTo(antecedente1)==0 || disjDir.compareTo(antecedente2)==0);
+
+                // Compara se o consequente das implicações é igual
+                String consequente1 = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(outra1));
+                String consequente2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(outra2));
+
+                boolean conseqIgual = (consequente1.compareTo(consequente2)==0);
+
+                // Aplica, se for o caso
+                if(esqIgual && dirIgual && conseqIgual) {
+                    novaLinha(consequente1, col3);
+                }
+                else {
+                    // As regras não fecham
+                    novoFeedback("Não é possível aplicar a eliminação da disjunção nessa regras.");
+                }
             }
             else {
-                // As regras não fecham
-                novoFeedback("Não é possível aplicar a eliminação da disjunção nessa regras.");
+                // Não tem duas implicações
+                novoFeedback("É necessário uma conjunção e duas implicações.");
             }
-            
         }
         else {
             novoFeedback("Uma das fórmulas precisa ser uma disjunção.");
