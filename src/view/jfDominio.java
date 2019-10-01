@@ -5,6 +5,10 @@
  */
 package view;
 
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  *
  * @author igorfonseca
@@ -16,6 +20,15 @@ public class jfDominio extends javax.swing.JFrame {
      */
     public jfDominio() {
         initComponents();
+        
+        TreeSelectionListener tsl = new TreeSelectionListener() {
+            @Override
+            public void valueChanged(TreeSelectionEvent e) {
+                DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode)jtDominio.getLastSelectedPathComponent();
+                atualizaInfo(selectedNode);
+            }
+        };
+        jtDominio.addTreeSelectionListener(tsl);
     }
 
     /**
@@ -27,16 +40,12 @@ public class jfDominio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bgVisualizacao = new javax.swing.ButtonGroup();
         tpAbasDominio = new javax.swing.JTabbedPane();
         jtEstrutura = new javax.swing.JPanel();
-        btLista = new javax.swing.JToggleButton();
-        btArvore = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jlClasse = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -44,40 +53,19 @@ public class jfDominio extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jlNome = new javax.swing.JLabel();
         btVoltar = new javax.swing.JButton();
-        tpVisualizacao = new javax.swing.JTabbedPane();
-        painelLista = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
-        jLabel3 = new javax.swing.JLabel();
-        painelArvore = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        jtDominio = new javax.swing.JTree();
         jtAtividades = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        bgVisualizacao.add(btLista);
-        btLista.setSelected(true);
-        btLista.setText("Lista");
-
-        bgVisualizacao.add(btArvore);
-        btArvore.setText("Árvore");
 
         jPanel1.setBackground(new java.awt.Color(224, 255, 224));
 
         jLabel4.setText("Nome:");
 
         jLabel5.setText("Classe:");
-
-        jLabel6.setText("Matéria");
 
         jLabel7.setText("Anteriores:");
 
@@ -87,41 +75,36 @@ public class jfDominio extends javax.swing.JFrame {
 
         jButton2.setText("Salvar");
 
-        jButton4.setText("Excluir");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(59, 59, 59)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel4))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel9))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField2)
-                                .addComponent(jTextField3)
-                                .addComponent(jTextField4))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)))
-                .addContainerGap(158, Short.MAX_VALUE))
+                    .addComponent(jTextField2)
+                    .addComponent(jTextField3)
+                    .addComponent(jTextField4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 138, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(126, 126, 126))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jlNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlClasse, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,11 +112,11 @@ public class jfDominio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(13, 13, 13)
+                    .addComponent(jlClasse))
+                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jlNome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -146,10 +129,8 @@ public class jfDominio extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -160,85 +141,10 @@ public class jfDominio extends javax.swing.JFrame {
             }
         });
 
-        painelLista.setBackground(new java.awt.Color(244, 244, 244));
-
-        jLabel1.setText("Matérias");
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Lógica proposicional", "Lógica de predicados" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(jList1);
-
-        jLabel2.setText("Noções");
-
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Negação", "Conjunção", "Disjunção", "Implicação", "Bicondicional", "Quantificador existencial", "Quantificador universal" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane4.setViewportView(jList2);
-
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Introdução da negação", "Eliminação da negação", "Introdução da conjunção", "Eliminação da conjunção", "Introdução da disjunção", "Eliminação da disjunção", "Introdução da implicação", "Eliminação da implicação", "Introdução da bicondicional", "Eliminação da bicondicional", "Introdução do quantificador existencial", "Eliminação do quantificador existencial", "Introdução do quantificador universal", "Eliminação do quantificador universal" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane5.setViewportView(jList3);
-
-        jLabel3.setText("Conceitos");
-
-        javax.swing.GroupLayout painelListaLayout = new javax.swing.GroupLayout(painelLista);
-        painelLista.setLayout(painelListaLayout);
-        painelListaLayout.setHorizontalGroup(
-            painelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelListaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(painelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane4)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-                    .addGroup(painelListaLayout.createSequentialGroup()
-                        .addGroup(painelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        painelListaLayout.setVerticalGroup(
-            painelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelListaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        tpVisualizacao.addTab("Lista", painelLista);
-
-        painelArvore.setBackground(new java.awt.Color(244, 244, 244));
-
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Domínio");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Lógica proposicional");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Negação");
-        javax.swing.tree.DefaultMutableTreeNode treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Introdução da negação");
-        treeNode3.add(treeNode4);
-        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Eliminação da negação");
-        treeNode3.add(treeNode4);
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Conjunção");
-        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Introdução da conjunção");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Conjunção");
+        javax.swing.tree.DefaultMutableTreeNode treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Introdução da conjunção");
         treeNode3.add(treeNode4);
         treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Eliminação da conjunção");
         treeNode3.add(treeNode4);
@@ -255,10 +161,10 @@ public class jfDominio extends javax.swing.JFrame {
         treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Eliminação da implicação");
         treeNode3.add(treeNode4);
         treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Bicondicional");
-        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Introdução da bicondicional");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Negação");
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Introdução da negação");
         treeNode3.add(treeNode4);
-        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Eliminação da bicondicional");
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Eliminação da negação");
         treeNode3.add(treeNode4);
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
@@ -276,27 +182,10 @@ public class jfDominio extends javax.swing.JFrame {
         treeNode3.add(treeNode4);
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane1.setViewportView(jTree1);
-
-        javax.swing.GroupLayout painelArvoreLayout = new javax.swing.GroupLayout(painelArvore);
-        painelArvore.setLayout(painelArvoreLayout);
-        painelArvoreLayout.setHorizontalGroup(
-            painelArvoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelArvoreLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        painelArvoreLayout.setVerticalGroup(
-            painelArvoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelArvoreLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        tpVisualizacao.addTab("Árvore", painelArvore);
+        jtDominio.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jtDominio.setLargeModel(true);
+        jtDominio.setScrollsOnExpand(false);
+        jScrollPane1.setViewportView(jtDominio);
 
         javax.swing.GroupLayout jtEstruturaLayout = new javax.swing.GroupLayout(jtEstrutura);
         jtEstrutura.setLayout(jtEstruturaLayout);
@@ -305,35 +194,24 @@ public class jfDominio extends javax.swing.JFrame {
             .addGroup(jtEstruturaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jtEstruturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jtEstruturaLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btArvore)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btLista)
-                        .addContainerGap())
+                    .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jtEstruturaLayout.createSequentialGroup()
-                        .addGroup(jtEstruturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jtEstruturaLayout.createSequentialGroup()
-                                .addComponent(tpVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btVoltar))
-                        .addGap(0, 13, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jtEstruturaLayout.setVerticalGroup(
             jtEstruturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jtEstruturaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jtEstruturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btArvore)
-                    .addComponent(btLista))
+                .addGroup(jtEstruturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jtEstruturaLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jtEstruturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tpVisualizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btVoltar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         tpAbasDominio.addTab("Estrutura", jtEstrutura);
@@ -346,7 +224,7 @@ public class jfDominio extends javax.swing.JFrame {
         );
         jtAtividadesLayout.setVerticalGroup(
             jtAtividadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 441, Short.MAX_VALUE)
         );
 
         tpAbasDominio.addTab("Atividades", jtAtividades);
@@ -356,8 +234,9 @@ public class jfDominio extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tpAbasDominio, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tpAbasDominio)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,39 +255,75 @@ public class jfDominio extends javax.swing.JFrame {
     }//GEN-LAST:event_btVoltarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup bgVisualizacao;
-    private javax.swing.JToggleButton btArvore;
-    private javax.swing.JToggleButton btLista;
     private javax.swing.JButton btVoltar;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTree jTree1;
+    private javax.swing.JLabel jlClasse;
+    private javax.swing.JLabel jlNome;
     private javax.swing.JPanel jtAtividades;
+    private javax.swing.JTree jtDominio;
     private javax.swing.JPanel jtEstrutura;
-    private javax.swing.JPanel painelArvore;
-    private javax.swing.JPanel painelLista;
     private javax.swing.JTabbedPane tpAbasDominio;
-    private javax.swing.JTabbedPane tpVisualizacao;
     // End of variables declaration//GEN-END:variables
+
+    private void atualizaInfo(DefaultMutableTreeNode node) {
+        //System.out.println(node.getLevel());
+        int nivel = node.getLevel();
+        switch(nivel) {
+            case 0:
+                jlClasse.setText("");
+                break;
+            case 1:
+                jlClasse.setText("Matéria");
+                break;
+            case 2:
+                jlClasse.setText("Noção");
+                break;
+            case 3:
+                jlClasse.setText("Conceito");
+        }
+        if(nivel>0)
+            jlNome.setText(node.toString());
+        else
+            jlNome.setText("");
+    }
+    
+    enum Conceito {
+        INTRO_CONJ,
+        ELIM_CONJ,
+        INTRO_DISJ,
+        ELIM_DISJ,
+        INTRO_IMPL,
+        ELIM_IMPL,
+        INTRO_NEG,
+        ELIM_NEG,
+        INTRO_EXIST,
+        ELIM_EXIST,
+        INTRO_UNIV,
+        ELIM_UNIV
+    }
+    
+    enum Nocao {
+        CONJ,
+        DISJ,
+        IMPL,
+        NEG,
+        EXIST,
+        UNIV
+    }
+    
+    enum Materia {
+        LOGI_PROP,
+        LOGI_PRED
+    }
+    
 }
