@@ -586,7 +586,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         jmConfig.setForeground(new java.awt.Color(255, 255, 255));
         jmConfig.setText("Configurações");
 
-        jMenuItem1.setText("Alterar domínio");
+        jMenuItem1.setText("Ver domínio");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
