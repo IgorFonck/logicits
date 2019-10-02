@@ -5,9 +5,17 @@
  */
 package view;
 
+import control.Exercicio;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import model.Atividade;
+import model.AtividadeDAO;
 
 /**
  *
@@ -22,6 +30,7 @@ public class jfDominio extends javax.swing.JFrame {
         initComponents();
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         
+        // ABA DOMÍNIO
         TreeSelectionListener tsl = new TreeSelectionListener() {
             @Override
             public void valueChanged(TreeSelectionEvent e) {
@@ -30,6 +39,22 @@ public class jfDominio extends javax.swing.JFrame {
             }
         };
         jtDominio.addTreeSelectionListener(tsl);
+        
+        // ABA ATIVIDADES
+        //Popular a lista de atividades
+        DefaultListModel model = new DefaultListModel();
+        try {
+            List<Object> atividades = ativ_dao.listar();
+            for(Object item : atividades) {
+                String exercicio = item.toString();
+                exercicio = Exercicio.formatarFormula(exercicio);
+                model.addElement(exercicio);
+              }
+            jlAtividades.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(jfDominio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     /**
@@ -59,7 +84,7 @@ public class jfDominio extends javax.swing.JFrame {
         jtDominio = new javax.swing.JTree();
         jtAtividades = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jlAtividades = new javax.swing.JList<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -206,14 +231,14 @@ public class jfDominio extends javax.swing.JFrame {
 
         tpAbasDominio.addTab("Estrutura", jtEstrutura);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jlAtividades.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList1);
+        jScrollPane2.setViewportView(jlAtividades);
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setText("Premissas:");
 
@@ -326,7 +351,6 @@ public class jfDominio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -334,6 +358,7 @@ public class jfDominio extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JList<String> jlAtividades;
     private javax.swing.JLabel jlClasse;
     private javax.swing.JLabel jlNome;
     private javax.swing.JPanel jtAtividades;
@@ -342,6 +367,9 @@ public class jfDominio extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tpAbasDominio;
     // End of variables declaration//GEN-END:variables
 
+    Atividade ativ = new Atividade();
+    AtividadeDAO ativ_dao = new AtividadeDAO();
+    
     private void atualizaInfo(DefaultMutableTreeNode node) {
         //System.out.println(node.getLevel());
         int nivel = node.getLevel();

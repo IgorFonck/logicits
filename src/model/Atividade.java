@@ -38,6 +38,11 @@ public class Atividade {
     public void setConclusao(String conclusao) {
         this.conclusao = conclusao;
     }
+
+    @Override
+    public String toString() {
+        return premissas + " |- " + conclusao;
+    }
     
     
     
