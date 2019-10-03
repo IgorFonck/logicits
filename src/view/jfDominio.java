@@ -72,7 +72,6 @@ public class jfDominio extends javax.swing.JFrame {
         
         jlAtividades.addListSelectionListener(listSelectionListener);
     
-        
     }
 
     /**
