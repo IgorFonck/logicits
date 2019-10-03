@@ -6,11 +6,14 @@
 package view;
 
 import control.Exercicio;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -71,7 +74,20 @@ public class jfDominio extends javax.swing.JFrame {
         };
         
         jlAtividades.addListSelectionListener(listSelectionListener);
+        
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                framePrincipal.setVisible(true);
+            }
+        });
     
+    }
+
+    jfDominio(jfPrincipal aThis) {
+        this();
+        framePrincipal = aThis;
     }
 
     /**
@@ -115,7 +131,7 @@ public class jfDominio extends javax.swing.JFrame {
 
         jLabel6.setText("jLabel6");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Domínio - LogicITS | Tutor de Lógica");
 
         jPanel1.setBackground(new java.awt.Color(224, 255, 224));
@@ -146,8 +162,7 @@ public class jfDominio extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField2)
                             .addComponent(jTextField3)
-                            .addComponent(jTextField4))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jTextField4)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -377,8 +392,8 @@ public class jfDominio extends javax.swing.JFrame {
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
         
-        new jfPrincipal().setVisible(true);
         dispose();
+        framePrincipal.setVisible(true);
         
     }//GEN-LAST:event_btVoltarActionPerformed
 
@@ -416,6 +431,7 @@ public class jfDominio extends javax.swing.JFrame {
 
     Atividade ativ = new Atividade();
     AtividadeDAO ativ_dao = new AtividadeDAO();
+    JFrame framePrincipal;
     
     private void atualizaInfo(DefaultMutableTreeNode node) {
         //System.out.println(node.getLevel());

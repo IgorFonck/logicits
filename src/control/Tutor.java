@@ -19,7 +19,7 @@ public class Tutor {
         Atividade ativ = new Atividade();
         AtividadeDAO ativ_dao = new AtividadeDAO();
         
-        ativ = ativ_dao.consultar(1);
+        ativ = ativ_dao.consultar(4);
 
         // TODO: sistema de seleção da próxima atividade
         

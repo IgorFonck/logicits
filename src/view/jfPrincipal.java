@@ -244,7 +244,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
         });
         jtResolucao.setFillsViewportHeight(true);
-        jtResolucao.setRowHeight(22);
+        jtResolucao.setRowHeight(28);
         jtResolucao.setRowSelectionAllowed(false);
         jtResolucao.setShowHorizontalLines(false);
         jtResolucao.setShowVerticalLines(false);
@@ -680,8 +680,8 @@ public class jfPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         
-        new jfDominio().setVisible(true);
-        dispose();
+        new jfDominio(this).setVisible(true);
+        hide();
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
