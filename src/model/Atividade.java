@@ -41,7 +41,7 @@ public class Atividade {
 
     @Override
     public String toString() {
-        return premissas + " |- " + conclusao;
+        return "[" + cod + "] " + premissas + " ⊢ " + conclusao;
     }
     
     
