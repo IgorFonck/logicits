@@ -38,12 +38,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         
         // Seleciona a atividade a ser mostrada
-        ativ = Tutor.selecAtividade();
+        ativ = Tutor.selecAtividade(0);
         
         // Formata a fórmula da atividade para ser exibida
         String exercicio = ativ.getPremissas() + " |- " + ativ.getConclusao();
         exercicio = Exercicio.formatarFormula(exercicio);
-        //exercicio = "<html><font face='Roboto'>".concat(exercicio);
         jlAtivAtual.setText("<html><font face='Roboto'>"+exercicio);
         respostaFinal = Exercicio.formatarFormula(ativ.getConclusao());
         
@@ -58,13 +57,10 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         // Configura a tabela
         jtResolucao.getTableHeader().setUI(null);
-        jtResolucao.getColumnModel().getColumn(0).setMaxWidth(40);
-        jtResolucao.getColumnModel().getColumn(2).setMaxWidth(85);
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        jtResolucao.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+        jtResolucao.getColumnModel().getColumn(0).setMaxWidth(45);
+        jtResolucao.getColumnModel().getColumn(2).setMaxWidth(305);
         DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.LEFT );
+        leftRenderer.setHorizontalAlignment( JLabel.LEFT );
         jtResolucao.getColumnModel().getColumn(1).setCellRenderer( leftRenderer );
         
         // Configura o painel de regras
@@ -73,7 +69,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         // TEST: Lista de feedbacks
         jpListaFeedback.setLayout(new BoxLayout(jpListaFeedback, BoxLayout.Y_AXIS));
-        jpListaFeedback.add(new JLabel("Bem-vindo!"));
+        //jpListaFeedback.add(new JLabel("Bem-vindo!"));
         
     }
 

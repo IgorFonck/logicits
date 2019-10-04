@@ -14,17 +14,36 @@ import model.AtividadeDAO;
  */
 public class Tutor {
     
-    public static Atividade selecAtividade(/*int id*/) {
+    public static Atividade selecAtividade(int idConceito) {
         
         Atividade ativ = new Atividade();
         AtividadeDAO ativ_dao = new AtividadeDAO();
         
-        ativ = ativ_dao.consultar(1);
-
+        ativ = ativ_dao.consultar(7);
+        
         // TODO: sistema de seleção da próxima atividade
         
         return ativ;
         
     }
+    
+    /* Avalia a nota do estudante nos conceitos para selecionar qual
+     * deve ser trabalhado a seguir. Para isso, considera a nota no 
+     * exercício, os conceitos e o grau de dificuldade.
+    */
+    private void selecConceito() {
+        
+        
+        
+    }
+    
+    /*
+     * Calcula e armazena a nota do estudante no último exercício
+    */
+    public static void notaExercicio(int idExercicio, int dif) {
+        
+    }
+    
+    
     
 }
