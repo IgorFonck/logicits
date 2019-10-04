@@ -5,14 +5,9 @@
  */
 package view;
 
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import mdlaf.MaterialLookAndFeel;
@@ -39,14 +34,6 @@ public class jfInicial extends javax.swing.JFrame {
 //        String[] dados = {"Igor", "Maria"};
 //        jlPerfis.setListData(dados);
         
-        String path = System.getProperty("user.dir") + "\\img\\splash.png";
-        System.out.println("Path: " + path);
-        ImageIcon ii = new ImageIcon(path);
-        JLabel lable = new JLabel(ii);
-        JScrollPane jsp = new JScrollPane(lable);
-        this.getContentPane().add(jsp);
-        //this. setSize(1000, 700);
-        
     }
 
     /**
@@ -65,6 +52,7 @@ public class jfInicial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LogicITS");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(40, 40, 40));
 

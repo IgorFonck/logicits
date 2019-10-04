@@ -8,10 +8,9 @@ package view;
 import control.Exercicio;
 import control.ExpressionTree;
 import control.Tutor;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.CardLayout;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -74,9 +73,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         // TEST: Lista de feedbacks
         jpListaFeedback.setLayout(new BoxLayout(jpListaFeedback, BoxLayout.Y_AXIS));
-        jpListaFeedback.add(new JLabel("Msg A"));
-        jpListaFeedback.add(new JLabel("Msg B"));
-        jpListaFeedback.add(new JLabel("Msg C"));
+        jpListaFeedback.add(new JLabel("Bem-vindo!"));
         
     }
 
@@ -90,12 +87,8 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         bgSistemaProva = new javax.swing.ButtonGroup();
-        jpFeedback = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jbRevisar = new javax.swing.JButton();
-        jbAjuda = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jpListaFeedback = new javax.swing.JPanel();
+        jpGeral = new javax.swing.JPanel();
+        jpEsquerdo = new javax.swing.JPanel();
         jpResolucao = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -103,7 +96,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         jpAtividade = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jlAtivAtual = new javax.swing.JLabel();
-        tpRegras = new javax.swing.JTabbedPane();
+        cardRegras = new javax.swing.JPanel();
         jpRegras = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btIntroConju = new javax.swing.JButton();
@@ -123,20 +116,25 @@ public class jfPrincipal extends javax.swing.JFrame {
         jlLinhasSelecionadas = new javax.swing.JLabel();
         jbAplicarRegra = new javax.swing.JButton();
         jbLimparLinhas = new javax.swing.JButton();
+        jpFeedback = new javax.swing.JPanel();
+        jpFeedbackContainer = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jbRevisar = new javax.swing.JButton();
+        jbAjuda = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jpListaFeedback = new javax.swing.JPanel();
         jmMenuSuperior = new javax.swing.JMenuBar();
         jmArquivo = new javax.swing.JMenu();
         miNovo = new javax.swing.JMenuItem();
         miAbrir = new javax.swing.JMenuItem();
         miSalvar = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        miUsuario = new javax.swing.JMenuItem();
         miSair = new javax.swing.JMenuItem();
         jmConfig = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jmSistemaProva = new javax.swing.JMenu();
         miProposicional = new javax.swing.JRadioButtonMenuItem();
         miPredicaodos = new javax.swing.JRadioButtonMenuItem();
-        miIdioma = new javax.swing.JMenuItem();
         jmAjuda = new javax.swing.JMenu();
         miGuia = new javax.swing.JMenuItem();
         miSobre = new javax.swing.JMenuItem();
@@ -144,77 +142,16 @@ public class jfPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LogicITS | Tutor de Lógica");
         setBackground(new java.awt.Color(255, 255, 255));
-        setMinimumSize(new java.awt.Dimension(1010, 640));
+        setMinimumSize(new java.awt.Dimension(1020, 640));
 
-        jpFeedback.setBackground(new java.awt.Color(255, 255, 255));
-        jpFeedback.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(222, 226, 230), 1, true));
+        jpGeral.setPreferredSize(new java.awt.Dimension(1010, 615));
+        jpGeral.setLayout(new javax.swing.BoxLayout(jpGeral, javax.swing.BoxLayout.X_AXIS));
 
-        jLabel4.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
-        jLabel4.setText("Feedback");
-
-        jbRevisar.setBackground(new java.awt.Color(6, 158, 79));
-        jbRevisar.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
-        jbRevisar.setForeground(new java.awt.Color(255, 255, 255));
-        jbRevisar.setText("Revisar material");
-
-        jbAjuda.setBackground(new java.awt.Color(6, 158, 79));
-        jbAjuda.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
-        jbAjuda.setForeground(new java.awt.Color(255, 255, 255));
-        jbAjuda.setText("Solicitar ajuda");
-        jbAjuda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAjudaActionPerformed(evt);
-            }
-        });
-
-        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(180, 600));
-
-        jpListaFeedback.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jpListaFeedbackLayout = new javax.swing.GroupLayout(jpListaFeedback);
-        jpListaFeedback.setLayout(jpListaFeedbackLayout);
-        jpListaFeedbackLayout.setHorizontalGroup(
-            jpListaFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 233, Short.MAX_VALUE)
-        );
-        jpListaFeedbackLayout.setVerticalGroup(
-            jpListaFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 593, Short.MAX_VALUE)
-        );
-
-        jScrollPane2.setViewportView(jpListaFeedback);
-
-        javax.swing.GroupLayout jpFeedbackLayout = new javax.swing.GroupLayout(jpFeedback);
-        jpFeedback.setLayout(jpFeedbackLayout);
-        jpFeedbackLayout.setHorizontalGroup(
-            jpFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpFeedbackLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbRevisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jpFeedbackLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jpFeedbackLayout.setVerticalGroup(
-            jpFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpFeedbackLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbAjuda)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbRevisar)
-                .addContainerGap())
-        );
+        jpEsquerdo.setPreferredSize(new java.awt.Dimension(593, 615));
+        jpEsquerdo.setLayout(new javax.swing.BoxLayout(jpEsquerdo, javax.swing.BoxLayout.Y_AXIS));
 
         jpResolucao.setBackground(new java.awt.Color(255, 255, 255));
+        jpResolucao.setPreferredSize(new java.awt.Dimension(450, 1000));
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         jLabel3.setText("Resolução");
@@ -286,15 +223,15 @@ public class jfPrincipal extends javax.swing.JFrame {
         jpResolucao.setLayout(jpResolucaoLayout);
         jpResolucaoLayout.setHorizontalGroup(
             jpResolucaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpResolucaoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpResolucaoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpResolucaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpResolucaoLayout.createSequentialGroup()
+                .addGroup(jpResolucaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+                    .addComponent(jpAtividade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpResolucaoLayout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(jpAtividade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpResolucaoLayout.setVerticalGroup(
             jpResolucaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,16 +241,18 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        tpRegras.setBackground(new java.awt.Color(255, 255, 255));
-        tpRegras.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(222, 226, 230), 1, true));
-        tpRegras.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
-        tpRegras.setEnabled(false);
+        jpEsquerdo.add(jpResolucao);
+
+        cardRegras.setPreferredSize(new java.awt.Dimension(100, 200));
+        cardRegras.setLayout(new java.awt.CardLayout());
 
         jpRegras.setBackground(new java.awt.Color(255, 255, 255));
+        jpRegras.setPreferredSize(new java.awt.Dimension(720, 300));
+        jpRegras.setRequestFocusEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         jLabel1.setText("Regras de inferência");
@@ -450,7 +389,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                         .addComponent(jbHip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
                     .addComponent(jbDesfazer))
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpRegrasLayout.setVerticalGroup(
             jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -460,25 +399,26 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jbHip)
+                    .addComponent(btIntroImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btIntroConju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btIntroDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btIntroImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btIntroConju, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btIntroDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btIntroNeg))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btElimConju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btElimDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btElimImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btElimNeg, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btElimConju, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btElimDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btElimImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btElimNeg, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbDesfazer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jbDesfazer, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        tpRegras.addTab("", jpRegras);
+        cardRegras.add(jpRegras, "cartaoBotoes");
 
         jpConfigRegra.setBackground(new java.awt.Color(255, 255, 255));
+        jpConfigRegra.setPreferredSize(new java.awt.Dimension(720, 300));
 
         jLabel5.setText("Selecione as linhas para aplicar a regra");
 
@@ -495,6 +435,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         jlLinhasSelecionadas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlLinhasSelecionadas.setText("<selecionadas>");
 
+        jbAplicarRegra.setBackground(new java.awt.Color(6, 158, 79));
+        jbAplicarRegra.setForeground(new java.awt.Color(255, 255, 255));
         jbAplicarRegra.setText("Aplicar");
         jbAplicarRegra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -518,43 +460,133 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlLinhasSelecionadas, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpConfigRegraLayout.createSequentialGroup()
-                        .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpConfigRegraLayout.createSequentialGroup()
-                                .addComponent(jbAplicarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbLimparLinhas, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpConfigRegraLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(4, 4, 4)
-                                .addComponent(jlNomeRegra)))
+                        .addComponent(jbAplicarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbCancelarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jbLimparLinhas, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbCancelarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpConfigRegraLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(4, 4, 4)
+                        .addComponent(jlNomeRegra)))
                 .addContainerGap())
         );
         jpConfigRegraLayout.setVerticalGroup(
             jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpConfigRegraLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpConfigRegraLayout.createSequentialGroup()
-                        .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jlNomeRegra))
-                        .addGap(10, 10, 10))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfigRegraLayout.createSequentialGroup()
-                        .addComponent(jbCancelarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jlNomeRegra))
+                .addGap(17, 17, 17)
                 .addComponent(jlLinhasSelecionadas, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpConfigRegraLayout.createSequentialGroup()
-                        .addComponent(jbAplicarRegra, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpConfigRegraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbAplicarRegra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbLimparLinhas, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(jbCancelarRegra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        cardRegras.add(jpConfigRegra, "cartaoLinhas");
+
+        jpEsquerdo.add(cardRegras);
+
+        jpGeral.add(jpEsquerdo);
+
+        jpFeedback.setBackground(new java.awt.Color(255, 255, 255));
+        jpFeedback.setPreferredSize(new java.awt.Dimension(580, 797));
+        jpFeedback.setRequestFocusEnabled(false);
+
+        jpFeedbackContainer.setBackground(new java.awt.Color(255, 255, 255));
+        jpFeedbackContainer.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(222, 226, 230), 1, true));
+
+        jLabel4.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
+        jLabel4.setText("Feedback");
+
+        jbRevisar.setBackground(new java.awt.Color(6, 158, 79));
+        jbRevisar.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        jbRevisar.setForeground(new java.awt.Color(255, 255, 255));
+        jbRevisar.setText("Revisar material");
+
+        jbAjuda.setBackground(new java.awt.Color(6, 158, 79));
+        jbAjuda.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        jbAjuda.setForeground(new java.awt.Color(255, 255, 255));
+        jbAjuda.setText("Solicitar ajuda");
+        jbAjuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAjudaActionPerformed(evt);
+            }
+        });
+
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(180, 600));
+
+        jpListaFeedback.setBackground(new java.awt.Color(255, 255, 255));
+        jpListaFeedback.setMaximumSize(new java.awt.Dimension(277, 32767));
+
+        javax.swing.GroupLayout jpListaFeedbackLayout = new javax.swing.GroupLayout(jpListaFeedback);
+        jpListaFeedback.setLayout(jpListaFeedbackLayout);
+        jpListaFeedbackLayout.setHorizontalGroup(
+            jpListaFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 277, Short.MAX_VALUE)
+        );
+        jpListaFeedbackLayout.setVerticalGroup(
+            jpListaFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 627, Short.MAX_VALUE)
+        );
+
+        jScrollPane2.setViewportView(jpListaFeedback);
+
+        javax.swing.GroupLayout jpFeedbackContainerLayout = new javax.swing.GroupLayout(jpFeedbackContainer);
+        jpFeedbackContainer.setLayout(jpFeedbackContainerLayout);
+        jpFeedbackContainerLayout.setHorizontalGroup(
+            jpFeedbackContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpFeedbackContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpFeedbackContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpFeedbackContainerLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jbLimparLinhas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpFeedbackContainerLayout.createSequentialGroup()
+                        .addGroup(jpFeedbackContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jbRevisar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                            .addComponent(jbAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
+        );
+        jpFeedbackContainerLayout.setVerticalGroup(
+            jpFeedbackContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpFeedbackContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbRevisar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        tpRegras.addTab("", jpConfigRegra);
+        javax.swing.GroupLayout jpFeedbackLayout = new javax.swing.GroupLayout(jpFeedback);
+        jpFeedback.setLayout(jpFeedbackLayout);
+        jpFeedbackLayout.setHorizontalGroup(
+            jpFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpFeedbackLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpFeedbackContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jpFeedbackLayout.setVerticalGroup(
+            jpFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpFeedbackLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpFeedbackContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jpGeral.add(jpFeedback);
 
         jmMenuSuperior.setBackground(new java.awt.Color(6, 158, 79));
         jmMenuSuperior.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(6, 158, 79), 3, true));
@@ -566,22 +598,19 @@ public class jfPrincipal extends javax.swing.JFrame {
         miNovo.setText("Nova prova");
         jmArquivo.add(miNovo);
 
-        miAbrir.setText("Abrir");
+        miAbrir.setText("Exportar perfil");
         jmArquivo.add(miAbrir);
 
-        miSalvar.setText("Salvar");
+        miSalvar.setText("Importar perfil");
         jmArquivo.add(miSalvar);
         jmArquivo.add(jSeparator1);
 
-        miUsuario.setText("Selecionar usuário");
-        miUsuario.addActionListener(new java.awt.event.ActionListener() {
+        miSair.setText("Sair");
+        miSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miUsuarioActionPerformed(evt);
+                miSairActionPerformed(evt);
             }
         });
-        jmArquivo.add(miUsuario);
-
-        miSair.setText("Sair");
         jmArquivo.add(miSair);
 
         jmMenuSuperior.add(jmArquivo);
@@ -610,9 +639,6 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         jmConfig.add(jmSistemaProva);
 
-        miIdioma.setText("Idioma");
-        jmConfig.add(miIdioma);
-
         jmMenuSuperior.add(jmConfig);
 
         jmAjuda.setForeground(new java.awt.Color(255, 255, 255));
@@ -638,25 +664,15 @@ public class jfPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 13, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jpResolucao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tpRegras))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jpGeral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpFeedback, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jpResolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tpRegras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(0, 0, 0)
+                .addComponent(jpGeral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -687,17 +703,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         hide();
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void miUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miUsuarioActionPerformed
-        
-        try {
-            new jfInicial().setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(jfPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        dispose();
-        
-    }//GEN-LAST:event_miUsuarioActionPerformed
 
     private void jbCancelarRegraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarRegraActionPerformed
         
@@ -846,6 +851,12 @@ public class jfPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btElimDisjuActionPerformed
 
+    private void miSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSairActionPerformed
+        
+        System.exit(0);
+        
+    }//GEN-LAST:event_miSairActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
     private javax.swing.JButton btElimConju;
@@ -856,6 +867,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btIntroDisju;
     private javax.swing.JButton btIntroImpl;
     private javax.swing.JButton btIntroNeg;
+    private javax.swing.JPanel cardRegras;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -882,22 +894,22 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jmSistemaProva;
     private javax.swing.JPanel jpAtividade;
     private javax.swing.JPanel jpConfigRegra;
+    private javax.swing.JPanel jpEsquerdo;
     private javax.swing.JPanel jpFeedback;
+    private javax.swing.JPanel jpFeedbackContainer;
+    private javax.swing.JPanel jpGeral;
     private javax.swing.JPanel jpListaFeedback;
     private javax.swing.JPanel jpRegras;
     private javax.swing.JPanel jpResolucao;
     private javax.swing.JTable jtResolucao;
     private javax.swing.JMenuItem miAbrir;
     private javax.swing.JMenuItem miGuia;
-    private javax.swing.JMenuItem miIdioma;
     private javax.swing.JMenuItem miNovo;
     private javax.swing.JRadioButtonMenuItem miPredicaodos;
     private javax.swing.JRadioButtonMenuItem miProposicional;
     private javax.swing.JMenuItem miSair;
     private javax.swing.JMenuItem miSalvar;
     private javax.swing.JMenuItem miSobre;
-    private javax.swing.JMenuItem miUsuario;
-    private javax.swing.JTabbedPane tpRegras;
     // End of variables declaration//GEN-END:variables
 
     private Atividade ativ = new Atividade();
@@ -945,12 +957,16 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void fecharConfig() {
         limparLinhas();
         jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
-        tpRegras.setSelectedIndex(0);    
+        
+        CardLayout cl = (CardLayout) cardRegras.getLayout();
+        cl.show(cardRegras, "cartaoBotoes");
+        
         regraAtual = null;
     }
     
     private void novoFeedback(String mensagem) {
-        JLabel novaMensagem = new JLabel(mensagem);
+        ImageIcon image = new ImageIcon(System.getProperty("user.dir") + "\\src\\img\\icon_info.png");
+        JLabel novaMensagem = new JLabel("<html><div WIDTH='245' style='margin:7'>"+mensagem, image, JLabel.LEFT);
         jpListaFeedback.add(novaMensagem);
         jpListaFeedback.revalidate();
         jpListaFeedback.repaint();
@@ -966,7 +982,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         linhasSelec = new int[numFormulas];
         
         // Muda para a aba de selecionar linhas
-        tpRegras.setSelectedIndex(1);
+       CardLayout cl = (CardLayout) cardRegras.getLayout();
+        cl.show(cardRegras, "cartaoLinhas");
         
         // Verifica a seleção de linhas na tabela
         tableListener = new ListSelectionListener(){
@@ -1365,7 +1382,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                 }
                 else {
                     // As regras não fecham
-                    novoFeedback("Não é possível aplicar a eliminação da disjunção nessa regras.");
+                    novoFeedback("Não é possível aplicar a eliminação da disjunção com as regras selecionadas.");
                 }
             }
             else {
