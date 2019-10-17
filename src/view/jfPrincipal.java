@@ -741,6 +741,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         if(ultimaRegra.compareTo("Hipótese") == 0) {
             hipLevel--;
         }
+        else if(ultimaRegra.contains("→<sub>i") || ultimaRegra.contains("¬<sub>i")) {
+            hipLevel++;
+        }
         else if(ultimaRegra.compareTo("Premissa") == 0) {
             podeDesfazer = false;
             novoFeedback("Não é possível desfazer.");
@@ -1113,7 +1116,7 @@ public class jfPrincipal extends javax.swing.JFrame {
 
             // Seleciona um dos elementos
             JPanel panel = new JPanel();
-            panel.add(new JLabel("Escolha uma das regras para utilizar:"));
+            panel.add(new JLabel("Escolha uma das fórmulas para utilizar:"));
 
             int result = JOptionPane.showOptionDialog(null, panel, "Selecionar resultado",
                     JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
