@@ -333,7 +333,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         btElimNeg.setBackground(new java.awt.Color(6, 158, 79));
         btElimNeg.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         btElimNeg.setForeground(new java.awt.Color(255, 255, 255));
-        btElimNeg.setText("<html>¬¬<sub>e</sub></html>");
+        btElimNeg.setText("<html>¬<sub>e</sub></html>");
         btElimNeg.setToolTipText("Eliminação da negação");
         btElimNeg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1037,7 +1037,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         dtm.addRow(new Object[]{col1, col2, col3});
         
         // Verifica se chegou à conclusão
-        if(formula.compareTo(respostaFinal)==0) {
+        if(hipLevel == 0 && formula.compareTo(respostaFinal)==0) {
             respostaCorreta();
         }
     }
@@ -1230,7 +1230,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             raizDireita = ExpressionTree.getRootString(formulaDireita);
 
             if(raiz.compareTo("~")==0 && raizDireita.compareTo("~")==0) {
-                String col3 = "<html>¬¬<sub>e</sub> " + (linhasSelec[0]+1);
+                String col3 = "<html>¬<sub>e</sub> " + (linhasSelec[0]+1);
                 String resultado = ExpressionTree.getRightNode(formulaDireita);
                 novaLinha(resultado, col3);
             }

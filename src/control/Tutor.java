@@ -14,12 +14,15 @@ import model.AtividadeDAO;
  */
 public class Tutor {
     
+    /*
+     * Seleciona um exercício para o estudante dentro do conceito.
+    */
     public static Atividade selecAtividade(int idConceito) {
         
         Atividade ativ = new Atividade();
         AtividadeDAO ativ_dao = new AtividadeDAO();
         
-        ativ = ativ_dao.consultar(7);
+        ativ = ativ_dao.consultar(2);
         
         // TODO: sistema de seleção da próxima atividade
         
