@@ -214,6 +214,11 @@ class Tree {
         String expression = "";
         if (localRoot != null) {
             boolean printParenthesis;
+            /*if(localRoot.leftChild != null)
+                printParenthesis = localRoot.leftChild.data == '*' || localRoot.leftChild.data == '>' || localRoot.leftChild.data == '+' || localRoot.leftChild.data == '~';
+            else
+                printParenthesis = false;*/
+            
             printParenthesis = localRoot.leftChild != null;
             
             if(printParenthesis) 
@@ -257,21 +262,20 @@ public class ExpressionTree {
     }
 
     // Formatos:
-    //  Exercício - formato armazenado no BD (->, ^, +, ~)
     //  Legivel - formato mostrado em tela ()
-    //  Expression - formato utilizado para gerar a árvore (>, *, +, ~)
+    //  Expressao - formato do BD e utilizado para gerar a árvore (>, *, +, ~)
     
     // Método público para transformar a String em árvore
     // Retorna o símbolo da raiz
     public static String getRootString(String expr) {
         Tree t1 = new Tree();
-        expr = parseLegivelToExpression(expr);
+        expr = parseLegivelParaExpressao(expr);
         t1.insert(expr);
         return t1.getRoot().toString();
     }
     
     // Traduz os caracteres do exercício para o formato lido no parser
-    private static String parseLegivelToExpression(String in) {
+    private static String parseLegivelParaExpressao(String in) {
         String out = in.replace("\u2192", ">");
         out = out.replace("\u2227", "*");
         out = out.replace("\u2228", "+");
@@ -283,7 +287,7 @@ public class ExpressionTree {
     public static String getLeftNode(String in) {
         Tree t1 = new Tree();
         Tree t2 = new Tree();
-        in = parseLegivelToExpression(in);
+        in = parseLegivelParaExpressao(in);
         t1.insert(in);
         String re = t2.getExpressionString(t1.getRoot().leftChild);
         //re = re.substring(1, re.length()-1);
@@ -293,7 +297,7 @@ public class ExpressionTree {
     public static String getRightNode(String in) {
         Tree t1 = new Tree();
         Tree t2 = new Tree();
-        in = parseLegivelToExpression(in);
+        in = parseLegivelParaExpressao(in);
         t1.insert(in);
         String re = t2.getExpressionString(t1.getRoot().rightChild);
         //re = re.substring(1, re.length()-1);
@@ -303,7 +307,7 @@ public class ExpressionTree {
     public static String getFullNode(String in) {
         Tree t1 = new Tree();
         Tree t2 = new Tree();
-        in = parseLegivelToExpression(in);
+        in = parseLegivelParaExpressao(in);
         t1.insert(in);
         String re = t2.getExpressionString(t1.getRoot());
         //re = re.substring(1, re.length()-1);
