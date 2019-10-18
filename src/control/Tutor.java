@@ -20,7 +20,7 @@ public class Tutor {
     */
     public static Atividade selecAtividade() {
         
-        Atividade ativ = new Atividade();
+        Atividade ativ;
         AtividadeDAO ativ_dao = new AtividadeDAO();
         
         Random rand = new Random();

@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.Atividade;
 import model.AtividadeDAO;
+import model.Perfil;
 
 /**
  *
@@ -948,8 +949,10 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem miSobre;
     // End of variables declaration//GEN-END:variables
 
+    // Variáveis da sessão
     private Atividade ativ = new Atividade();
     private AtividadeDAO ativ_dao = new AtividadeDAO();
+    private Perfil perfil = new Perfil();
     
     // Variáveis da aplicação de regras
     private String textoLinhas;     // Imprime as linhas que foram selecionadas
