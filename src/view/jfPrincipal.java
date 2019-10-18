@@ -9,6 +9,9 @@ import control.Exercicio;
 import control.ExpressionTree;
 import control.Tutor;
 import java.awt.CardLayout;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -22,6 +25,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.Atividade;
 import model.AtividadeDAO;
+import model.Avaliacao;
+import model.AvaliacaoDAO;
 import model.Perfil;
 
 /**
@@ -501,6 +506,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         jbProxAtiv.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         jbProxAtiv.setForeground(new java.awt.Color(255, 255, 255));
         jbProxAtiv.setText("Próxima atividade");
+        jbProxAtiv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbProxAtivActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpConcluidoLayout = new javax.swing.GroupLayout(jpConcluido);
         jpConcluido.setLayout(jpConcluidoLayout);
@@ -891,6 +901,16 @@ public class jfPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_miSairActionPerformed
 
+    private void jbProxAtivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProxAtivActionPerformed
+        
+        // Salva nota do exercício atual
+        salvarNota();
+        
+        // Carrega próximo exercício
+        novoExercicio();
+        
+    }//GEN-LAST:event_jbProxAtivActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
     private javax.swing.JButton btElimConju;
@@ -953,6 +973,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private Atividade ativ = new Atividade();
     private AtividadeDAO ativ_dao = new AtividadeDAO();
     private Perfil perfil = new Perfil();
+    private int contAjudas;         // Utilizado para gerar a nota do aluno
     
     // Variáveis da aplicação de regras
     private String textoLinhas;     // Imprime as linhas que foram selecionadas
@@ -1107,6 +1128,35 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         
         return false;
+    }
+    
+    private void salvarNota() {
+        Avaliacao aval = new Avaliacao();
+        aval.setAtividade(ativ);
+        aval.setConcluido(true);
+        
+        perfil.setCod_estudante(1);
+        aval.setPerfil(perfil);
+        
+        // Calcula a nota
+        double nota = 10;
+        if(contAjudas > 3)
+            nota =- ((contAjudas-3)*0.5);
+        
+        aval.setNota(nota);
+        
+        AvaliacaoDAO aval_dao = new AvaliacaoDAO();
+        try {
+            aval_dao.adicionar(aval);
+        } catch (SQLException ex) {
+            Logger.getLogger(jfPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /* Carrega o próximo exercício */
+    private void novoExercicio() {
+        contAjudas = 0;
+        Tutor.selecAtividade();
     }
     
     private void respostaCorreta() {

@@ -14,7 +14,7 @@ public class Avaliacao {
     private Integer cod;
     private Atividade atividade;
     private Perfil perfil;
-    private Integer nota;
+    private Double nota;
     private boolean concluido;
 
     public Atividade getAtividade() {
@@ -33,11 +33,11 @@ public class Avaliacao {
         this.perfil = perfil;
     }
 
-    public Integer getNota() {
+    public Double getNota() {
         return nota;
     }
 
-    public void setNota(Integer nota) {
+    public void setNota(Double nota) {
         this.nota = nota;
     }
 

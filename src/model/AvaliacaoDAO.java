@@ -27,7 +27,7 @@ public class AvaliacaoDAO {
         String sql = "INSERT INTO avaliacao (nota,fg_concluido,fk_estudante_cod_estudante,fk_atividade_cod_atividade) VALUES (?,true,1,?)";
         
         try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
-            stmt.setInt(1, avaliacao.getNota());
+            stmt.setDouble(1, avaliacao.getNota());
             stmt.setInt(2, avaliacao.getAtividade().getCod());
             if (!stmt.execute()) { //executa o INSERT
                 System.out.println("Adicionou o avaliacao ao banco!");
@@ -46,7 +46,7 @@ public class AvaliacaoDAO {
         String sql = "UPDATE avaliacao SET nota=? WHERE cod_avaliacao=?";
 
         try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
-            stmt.setInt(1, avaliacao.getNota());
+            stmt.setDouble(1, avaliacao.getNota());
             stmt.setInt(2, avaliacao.getCod());
             if (!stmt.execute()) { 
                 //executa o UPDATE
@@ -89,7 +89,7 @@ public class AvaliacaoDAO {
             while (rset.next()) {   //move o cursor para a próxima linha do ResultSet
                 Avaliacao avaliacao = new Avaliacao();
                 avaliacao.setCod(rset.getInt("cod_avaliacao"));
-                avaliacao.setNota(rset.getInt("nota"));
+                avaliacao.setNota(rset.getDouble("nota"));
                 avaliacao.setConcluido(rset.getBoolean("fg_concluido"));
                 avaliacao.setAtividade((new AtividadeDAO()).consultar(rset.getInt("fk_atividade_cod_atividade")));
                 avaliacao.setPerfil((new PerfilDAO()).consultar(rset.getInt("fk_estudante_cod_estudante")));
@@ -115,7 +115,7 @@ public class AvaliacaoDAO {
             ResultSet rset = stmt.executeQuery();
             while (rset.next()) {
                 avaliacao.setCod(rset.getInt("cod_avaliacao"));
-                avaliacao.setNota(rset.getInt("nota"));
+                avaliacao.setNota(rset.getDouble("nota"));
                 avaliacao.setConcluido(rset.getBoolean("fg_concluido"));
                 avaliacao.setAtividade((new AtividadeDAO()).consultar(rset.getInt("fk_atividade_cod_atividade")));
                 avaliacao.setPerfil((new PerfilDAO()).consultar(rset.getInt("fk_estudante_cod_estudante")));
