@@ -25,7 +25,8 @@ public class Tutor {
         
         Random rand = new Random();
         int codAtividade = rand.nextInt((7 - 1) + 1) + 1;
-        ativ = ativ_dao.consultar(codAtividade);
+        //ativ = ativ_dao.consultar(codAtividade);
+        ativ = ativ_dao.consultar(7);
         
         // TODO: sistema de seleção da próxima atividade
         // 1. Seleciona o conceito selecConceito()

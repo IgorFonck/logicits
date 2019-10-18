@@ -93,9 +93,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jlAtivAtual = new javax.swing.JLabel();
         cardRegras = new javax.swing.JPanel();
-        jpConcluido = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jbProxAtiv = new javax.swing.JButton();
         jpRegras = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btIntroConju = new javax.swing.JButton();
@@ -115,6 +112,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         jlLinhasSelecionadas = new javax.swing.JLabel();
         jbAplicarRegra = new javax.swing.JButton();
         jbLimparLinhas = new javax.swing.JButton();
+        jpConcluido = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jbProxAtiv = new javax.swing.JButton();
         jpFeedback = new javax.swing.JPanel();
         jpFeedbackContainer = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -248,37 +248,6 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         cardRegras.setPreferredSize(new java.awt.Dimension(100, 200));
         cardRegras.setLayout(new java.awt.CardLayout());
-
-        jLabel6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel6.setText("Você concluiu esta atividade!");
-
-        jbProxAtiv.setBackground(new java.awt.Color(6, 158, 79));
-        jbProxAtiv.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
-        jbProxAtiv.setForeground(new java.awt.Color(255, 255, 255));
-        jbProxAtiv.setText("Próxima atividade");
-
-        javax.swing.GroupLayout jpConcluidoLayout = new javax.swing.GroupLayout(jpConcluido);
-        jpConcluido.setLayout(jpConcluidoLayout);
-        jpConcluidoLayout.setHorizontalGroup(
-            jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpConcluidoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbProxAtiv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(430, Short.MAX_VALUE))
-        );
-        jpConcluidoLayout.setVerticalGroup(
-            jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpConcluidoLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addComponent(jbProxAtiv, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        cardRegras.add(jpConcluido, "cartaoConcluido");
 
         jpRegras.setBackground(new java.awt.Color(255, 255, 255));
         jpRegras.setPreferredSize(new java.awt.Dimension(720, 300));
@@ -523,6 +492,37 @@ public class jfPrincipal extends javax.swing.JFrame {
         );
 
         cardRegras.add(jpConfigRegra, "cartaoLinhas");
+
+        jLabel6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel6.setText("Você concluiu esta atividade!");
+
+        jbProxAtiv.setBackground(new java.awt.Color(6, 158, 79));
+        jbProxAtiv.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        jbProxAtiv.setForeground(new java.awt.Color(255, 255, 255));
+        jbProxAtiv.setText("Próxima atividade");
+
+        javax.swing.GroupLayout jpConcluidoLayout = new javax.swing.GroupLayout(jpConcluido);
+        jpConcluido.setLayout(jpConcluidoLayout);
+        jpConcluidoLayout.setHorizontalGroup(
+            jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpConcluidoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbProxAtiv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(430, Short.MAX_VALUE))
+        );
+        jpConcluidoLayout.setVerticalGroup(
+            jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpConcluidoLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addComponent(jbProxAtiv, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        cardRegras.add(jpConcluido, "cartaoConcluido");
 
         jpEsquerdo.add(cardRegras);
 
@@ -1077,8 +1077,15 @@ public class jfPrincipal extends javax.swing.JFrame {
         dtm.addRow(new Object[]{col1, col2, col3});
         
         // Verifica se chegou à conclusão
-        if(hipLevel == 0 && formula.compareTo(respostaFinal)==0) {
-            respostaCorreta();
+        if(hipLevel == 0) {
+            String formulaComp = ExpressionTree.getFullNode(formula);
+            String respostaComp = ExpressionTree.getFullNode(respostaFinal);
+            if(formulaComp.compareTo(respostaComp)==0) {
+                respostaCorreta();
+            }
+            else {
+                fecharConfig();
+            }
         }
         else {
             fecharConfig();
