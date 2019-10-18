@@ -5,6 +5,7 @@
  */
 package control;
 
+import java.util.Random;
 import model.Atividade;
 import model.AtividadeDAO;
 
@@ -22,7 +23,9 @@ public class Tutor {
         Atividade ativ = new Atividade();
         AtividadeDAO ativ_dao = new AtividadeDAO();
         
-        ativ = ativ_dao.consultar(3);
+        Random rand = new Random();
+        int codAtividade = rand.nextInt((7 - 1) + 1) + 1;
+        ativ = ativ_dao.consultar(codAtividade);
         
         // TODO: sistema de seleção da próxima atividade
         

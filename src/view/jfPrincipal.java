@@ -1076,7 +1076,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void novaLinha(String formula, String col3) {
         String col1 = jtResolucao.getRowCount()+1 + ".";
         
-        String col2 = formula;
+        String col2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getFullNode(formula));
         
         // Adiciona níveis de hipótese
         for(int i = 0; i < hipLevel; i++)
@@ -1201,9 +1201,9 @@ public class jfPrincipal extends javax.swing.JFrame {
                     JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
                     null, options, null);
             if (result == JOptionPane.YES_OPTION)
-                novaLinha(trimParenteses(opt1), col3);
+                novaLinha(opt1, col3);
             else if (result == JOptionPane.NO_OPTION)
-                novaLinha(trimParenteses(opt2), col3);
+                novaLinha(opt2, col3);
         }
         else {
             novoFeedback("Esta regra só pode ser aplicada em uma conjunção.");
