@@ -38,7 +38,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         
         // Seleciona a atividade a ser mostrada
-        ativ = Tutor.selecAtividade(0);
+        ativ = Tutor.selecAtividade();
         
         // Formata a fórmula da atividade para ser exibida
         String exercicio = ativ.getPremissas() + " |- " + ativ.getConclusao();
@@ -93,6 +93,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jlAtivAtual = new javax.swing.JLabel();
         cardRegras = new javax.swing.JPanel();
+        jpConcluido = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jbProxAtiv = new javax.swing.JButton();
         jpRegras = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btIntroConju = new javax.swing.JButton();
@@ -246,6 +249,37 @@ public class jfPrincipal extends javax.swing.JFrame {
         cardRegras.setPreferredSize(new java.awt.Dimension(100, 200));
         cardRegras.setLayout(new java.awt.CardLayout());
 
+        jLabel6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel6.setText("Você concluiu esta atividade!");
+
+        jbProxAtiv.setBackground(new java.awt.Color(6, 158, 79));
+        jbProxAtiv.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        jbProxAtiv.setForeground(new java.awt.Color(255, 255, 255));
+        jbProxAtiv.setText("Próxima atividade");
+
+        javax.swing.GroupLayout jpConcluidoLayout = new javax.swing.GroupLayout(jpConcluido);
+        jpConcluido.setLayout(jpConcluidoLayout);
+        jpConcluidoLayout.setHorizontalGroup(
+            jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpConcluidoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbProxAtiv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(430, Short.MAX_VALUE))
+        );
+        jpConcluidoLayout.setVerticalGroup(
+            jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpConcluidoLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addComponent(jbProxAtiv, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        cardRegras.add(jpConcluido, "cartaoConcluido");
+
         jpRegras.setBackground(new java.awt.Color(255, 255, 255));
         jpRegras.setPreferredSize(new java.awt.Dimension(720, 300));
         jpRegras.setRequestFocusEnabled(false);
@@ -333,7 +367,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         btElimNeg.setBackground(new java.awt.Color(6, 158, 79));
         btElimNeg.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         btElimNeg.setForeground(new java.awt.Color(255, 255, 255));
-        btElimNeg.setText("<html>¬¬<sub>e</sub></html>");
+        btElimNeg.setText("<html>¬<sub>e</sub></html>");
         btElimNeg.setToolTipText("Eliminação da negação");
         btElimNeg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -366,26 +400,30 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpRegrasLayout.createSequentialGroup()
-                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btElimConju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                            .addComponent(btIntroConju))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btIntroDisju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                            .addComponent(btElimDisju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btIntroImpl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                            .addComponent(btElimImpl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btElimNeg)
-                            .addComponent(btIntroNeg))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbHip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1)
-                    .addComponent(jbDesfazer))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jbDesfazer)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jpRegrasLayout.createSequentialGroup()
+                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpRegrasLayout.createSequentialGroup()
+                                .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btElimConju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                                    .addComponent(btIntroConju))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btIntroDisju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                                    .addComponent(btElimDisju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btIntroImpl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                                    .addComponent(btElimImpl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btElimNeg)
+                                    .addComponent(btIntroNeg))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbHip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1))
+                        .addGap(97, 245, Short.MAX_VALUE))))
         );
         jpRegrasLayout.setVerticalGroup(
             jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -682,10 +720,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         selecionarFormulas(2);
         
     }//GEN-LAST:event_btIntroConjuActionPerformed
-
-    // umaFormula()
-    // duasFormulas()
-    // tresFormulas()
     
     private void miSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSobreActionPerformed
         
@@ -740,6 +774,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         String ultimaRegra = jtResolucao.getValueAt(ultimaLinha, 2).toString();
         if(ultimaRegra.compareTo("Hipótese") == 0) {
             hipLevel--;
+        }
+        else if(ultimaRegra.contains("→<sub>i") || ultimaRegra.contains("¬<sub>i")) {
+            hipLevel++;
         }
         else if(ultimaRegra.compareTo("Premissa") == 0) {
             podeDesfazer = false;
@@ -812,7 +849,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void btElimNegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btElimNegActionPerformed
         
         regraAtual = Regra.ELIM_NEG;
-        jlNomeRegra.setText("<html><font face='Roboto'>¬¬<sub>e</sub></font></html>");
+        jlNomeRegra.setText("<html><font face='Roboto'>¬<sub>e</sub></font></html>");
         selecionarFormulas(1);
         
     }//GEN-LAST:event_btElimNegActionPerformed
@@ -869,6 +906,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -879,6 +917,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jbDesfazer;
     private javax.swing.JButton jbHip;
     private javax.swing.JButton jbLimparLinhas;
+    private javax.swing.JButton jbProxAtiv;
     private javax.swing.JButton jbRevisar;
     private javax.swing.JLabel jlAtivAtual;
     private javax.swing.JLabel jlLinhasSelecionadas;
@@ -889,6 +928,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jmMenuSuperior;
     private javax.swing.JMenu jmSistemaProva;
     private javax.swing.JPanel jpAtividade;
+    private javax.swing.JPanel jpConcluido;
     private javax.swing.JPanel jpConfigRegra;
     private javax.swing.JPanel jpEsquerdo;
     private javax.swing.JPanel jpFeedback;
@@ -1037,8 +1077,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         dtm.addRow(new Object[]{col1, col2, col3});
         
         // Verifica se chegou à conclusão
-        if(formula.compareTo(respostaFinal)==0) {
+        if(hipLevel == 0 && formula.compareTo(respostaFinal)==0) {
             respostaCorreta();
+        }
+        else {
+            fecharConfig();
         }
     }
     
@@ -1060,6 +1103,10 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(null, "Você chegou à resposta final!");
         
+        // Muda para a aba de exercício concluído
+        CardLayout cl = (CardLayout) cardRegras.getLayout();
+        cl.show(cardRegras, "cartaoConcluido");
+        
     }
     
     // Funções das regras
@@ -1075,7 +1122,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         // Verifica se são contrários
         if(arg1.compareTo("¬"+arg2) == 0 | arg2.compareTo("¬"+arg1) == 0) {
             novaLinha("⊥", col3);
-            fecharConfig();
             return;
         }
         
@@ -1089,10 +1135,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         else
             col2 = col2.concat(" ∧ (" + arg2 + ")");
         
-
         novaLinha(col2, col3);
-
-        fecharConfig();
     }
     
     private void elimConj() {
@@ -1113,7 +1156,7 @@ public class jfPrincipal extends javax.swing.JFrame {
 
             // Seleciona um dos elementos
             JPanel panel = new JPanel();
-            panel.add(new JLabel("Escolha uma das regras para utilizar:"));
+            panel.add(new JLabel("Escolha uma das fórmulas para utilizar:"));
 
             int result = JOptionPane.showOptionDialog(null, panel, "Selecionar resultado",
                     JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
@@ -1123,11 +1166,10 @@ public class jfPrincipal extends javax.swing.JFrame {
             else if (result == JOptionPane.NO_OPTION)
                 novaLinha(opt2, col3);
         }
-        else
+        else {
             novoFeedback("Esta regra só pode ser aplicada em uma conjunção.");
-        
-        // Encerra
-        fecharConfig();
+            fecharConfig();
+        }
     }
     
     private void elimImpl() {
@@ -1173,13 +1215,14 @@ public class jfPrincipal extends javax.swing.JFrame {
                 col2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula2));
             novaLinha(col2, col3);
         }
-        else if(!regraImplicacao)
+        else if(!regraImplicacao) {
             novoFeedback("Uma das fórmulas precisa ser uma implicação!");
-        else
+            fecharConfig();
+        }
+        else {
             novoFeedback("Para eliminar uma implicação, uma das fórmulas deve ser seu antecedente!");
-        
-        // Encerra
-        fecharConfig();
+            fecharConfig();
+        }
     }
     
     private void introImpl() {
@@ -1196,23 +1239,20 @@ public class jfPrincipal extends javax.swing.JFrame {
         if(contNivelFormula1 != hipLevel || contNivelFormula2 != hipLevel) {
             novoFeedback("As fórmulas selecionadas devem estar na última hipótese.");
             fecharConfig();
-            return;
         }
-        
-        // Verifica se é a primeira da hipótese
-        String tipoRegra1 = jtResolucao.getValueAt(linhasSelec[0], 2).toString();
-        if(tipoRegra1.compareTo("Hipótese") != 0) {
-            novoFeedback("A primeira fórmula precisa ser o início da hipótese.");
-            fecharConfig();
-            return;
+        else {
+            String tipoRegra1 = jtResolucao.getValueAt(linhasSelec[0], 2).toString();
+            // Verifica se é a primeira da hipótese
+            if(tipoRegra1.compareTo("Hipótese") != 0) {
+                novoFeedback("A primeira fórmula precisa ser o início da hipótese.");
+                fecharConfig();
+            }
+            else {
+                //Aplica a regra
+                hipLevel--;
+                novaLinha("("+Exercicio.limpaFormula(formula1)+") → ("+Exercicio.limpaFormula(formula2)+")", col3);
+            }
         }
-        
-        // Aplica regra
-        hipLevel--;
-        novaLinha("("+Exercicio.limpaFormula(formula1)+") → ("+Exercicio.limpaFormula(formula2)+")", col3);
-
-        // Encerra
-        fecharConfig();
     }
     
     private void elimNeg() {
@@ -1230,17 +1270,20 @@ public class jfPrincipal extends javax.swing.JFrame {
             raizDireita = ExpressionTree.getRootString(formulaDireita);
 
             if(raiz.compareTo("~")==0 && raizDireita.compareTo("~")==0) {
-                String col3 = "<html>¬¬<sub>e</sub> " + (linhasSelec[0]+1);
+                String col3 = "<html>¬<sub>e</sub> " + (linhasSelec[0]+1);
                 String resultado = ExpressionTree.getRightNode(formulaDireita);
                 novaLinha(resultado, col3);
             }
-            else 
+            else {
                 novoFeedback("Esta regra deve ser aplicada na dupla negação.");
+                fecharConfig();
+            }
         }
-        else 
+        else {
             novoFeedback("Esta regra deve ser aplicada na dupla negação.");
+            fecharConfig();
+        }
         
-        fecharConfig();
     }
     
     private void introNeg() {
@@ -1255,31 +1298,29 @@ public class jfPrincipal extends javax.swing.JFrame {
         if(contNivelFormula1 != hipLevel || contNivelFormula2 != hipLevel) {
             novoFeedback("As fórmulas selecionadas devem estar na última hipótese.");
             fecharConfig();
-            return;
         }
-        
-        // Verifica se é a primeira da hipótese
-        String tipoRegra1 = jtResolucao.getValueAt(linhasSelec[0], 2).toString();
-        if(tipoRegra1.compareTo("Hipótese") != 0) {
-            novoFeedback("A primeira fórmula precisa ser o início da hipótese.");
-            fecharConfig();
-            return;
+        else {
+            // Verifica se é a primeira da hipótese
+            String tipoRegra1 = jtResolucao.getValueAt(linhasSelec[0], 2).toString();
+            if(tipoRegra1.compareTo("Hipótese") != 0) {
+                novoFeedback("A primeira fórmula precisa ser o início da hipótese.");
+                fecharConfig();
+            }
+            else {
+                formula2 = Exercicio.limpaFormula(formula2);
+                // Verifica se a segunda é a contradição
+                if(formula2.compareTo("⊥") != 0) {
+                    novoFeedback("A segunda fórmula precisa ser uma contradição.");
+                    fecharConfig();
+                }
+                else {
+                    // Aplica regra
+                    hipLevel--;
+                    String col3 = "<html>¬<sub>i</sub> " + (linhasSelec[0]+1) + "-" + (linhasSelec[1]+1);
+                    novaLinha("¬("+Exercicio.limpaFormula(formula1)+")", col3);
+                }
+            }
         }
-        
-        formula2 = Exercicio.limpaFormula(formula2);
-        // Verifica se a segunda é a contradição
-        if(formula2.compareTo("⊥") != 0) {
-            novoFeedback("A segunda fórmula precisa ser uma contradição.");
-            fecharConfig();
-            return;
-        }
-        
-        // Aplica regra
-        hipLevel--;
-        String col3 = "<html>¬<sub>i</sub> " + (linhasSelec[0]+1) + "-" + (linhasSelec[1]+1);
-        novaLinha("¬("+Exercicio.limpaFormula(formula1)+")", col3);
-        
-        fecharConfig();
     }
     
     private void introDisj() {
@@ -1301,11 +1342,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         else
             col2 = col2.concat(" ∨ (" + arg2 + ")");
         
-
         novaLinha(col2, col3);
-        
-        fecharConfig();
-        
     }
     
     private void elimDisj() {
@@ -1379,20 +1416,19 @@ public class jfPrincipal extends javax.swing.JFrame {
                 else {
                     // As regras não fecham
                     novoFeedback("Não é possível aplicar a eliminação da disjunção com as regras selecionadas.");
+                    fecharConfig();
                 }
             }
             else {
                 // Não tem duas implicações
                 novoFeedback("É necessário uma conjunção e duas implicações.");
+                fecharConfig();
             }
         }
         else {
             novoFeedback("Uma das fórmulas precisa ser uma disjunção.");
+            fecharConfig();
         }
-
-        
-        fecharConfig();
-        
     }
     
 }
