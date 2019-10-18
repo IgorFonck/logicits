@@ -1154,7 +1154,15 @@ public class jfPrincipal extends javax.swing.JFrame {
 
     /* Carrega o próximo exercício */
     private void novoExercicio() {
+        
         contAjudas = 0;
+        
+        // Fechar configuração
+        limparLinhas();
+        jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
+        regraAtual = null;
+        CardLayout cl = (CardLayout) cardRegras.getLayout();
+        cl.show(cardRegras, "cartaoBotoes");
         
         // Limpar tabela
         DefaultTableModel model = (DefaultTableModel) jtResolucao.getModel();
