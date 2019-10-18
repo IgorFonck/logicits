@@ -43,23 +43,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         initComponents();
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         
-        // Seleciona a atividade a ser mostrada
-        ativ = Tutor.selecAtividade();
-        
-        // Formata a fórmula da atividade para ser exibida
-        String exercicio = ativ.getPremissas() + " |- " + ativ.getConclusao();
-        exercicio = Exercicio.formatarFormula(exercicio);
-        jlAtivAtual.setText("<html><font face='Roboto'>"+exercicio);
-        respostaFinal = Exercicio.formatarFormula(ativ.getConclusao());
-        
-        // Mostra as premissas da atividade na resolução
-        String premissas[] = Exercicio.getPremissas(exercicio);
-        DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
-        
-        int i = 0;
-        for (String s : premissas) {
-            dtm.addRow(new Object[]{++i + ".", "<html>"+s, "Premissa"});
-        }
+        novoExercicio();
         
         // Configura a tabela
         jtResolucao.getTableHeader().setUI(null);
@@ -553,6 +537,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         jbRevisar.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         jbRevisar.setForeground(new java.awt.Color(255, 255, 255));
         jbRevisar.setText("Revisar material");
+        jbRevisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRevisarActionPerformed(evt);
+            }
+        });
 
         jbAjuda.setBackground(new java.awt.Color(6, 158, 79));
         jbAjuda.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
@@ -773,6 +762,7 @@ public class jfPrincipal extends javax.swing.JFrame {
 
     private void jbAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAjudaActionPerformed
        
+        contAjudas++;
         
     }//GEN-LAST:event_jbAjudaActionPerformed
 
@@ -798,6 +788,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         if(podeDesfazer) {
             DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
             dtm.removeRow(ultimaLinha);
+            contAjudas++;
         }
         
     }//GEN-LAST:event_jbDesfazerActionPerformed
@@ -840,6 +831,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         // Restrição da regra
         if(hipLevel <= 0) {
             novoFeedback("É preciso iniciar uma hipótese para utilizar esta regra!");
+            contAjudas++;
             return;
         }
         
@@ -870,6 +862,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         // Restrição da regra
         if(hipLevel <= 0) {
             novoFeedback("É preciso iniciar uma hipótese para utilizar esta regra!");
+            contAjudas++;
             return;
         }
         
@@ -910,6 +903,12 @@ public class jfPrincipal extends javax.swing.JFrame {
         novoExercicio();
         
     }//GEN-LAST:event_jbProxAtivActionPerformed
+
+    private void jbRevisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRevisarActionPerformed
+        
+        contAjudas++;
+        
+    }//GEN-LAST:event_jbRevisarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
@@ -1141,7 +1140,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         // Calcula a nota
         double nota = 10;
         if(contAjudas > 3)
-            nota =- ((contAjudas-3)*0.5);
+            nota -= ((contAjudas-3)*0.5);
         
         aval.setNota(nota);
         
@@ -1156,7 +1155,30 @@ public class jfPrincipal extends javax.swing.JFrame {
     /* Carrega o próximo exercício */
     private void novoExercicio() {
         contAjudas = 0;
-        Tutor.selecAtividade();
+        
+        // Limpar tabela
+        DefaultTableModel model = (DefaultTableModel) jtResolucao.getModel();
+        model.setRowCount(0);
+
+        // Limpar feedback
+        
+        // Seleciona a atividade a ser mostrada
+        ativ = Tutor.selecAtividade();
+        
+        // Formata a fórmula da atividade para ser exibida
+        String exercicio = ativ.getPremissas() + " |- " + ativ.getConclusao();
+        exercicio = Exercicio.formatarFormula(exercicio);
+        jlAtivAtual.setText("<html><font face='Roboto'>"+exercicio);
+        respostaFinal = Exercicio.formatarFormula(ativ.getConclusao());
+        
+        // Mostra as premissas da atividade na resolução
+        String premissas[] = Exercicio.getPremissas(exercicio);
+        DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
+        
+        int i = 0;
+        for (String s : premissas) {
+            dtm.addRow(new Object[]{++i + ".", "<html>"+s, "Premissa"});
+        }
     }
     
     private void respostaCorreta() {
@@ -1228,6 +1250,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         }
         else {
             novoFeedback("Esta regra só pode ser aplicada em uma conjunção.");
+            contAjudas++;
             fecharConfig();
         }
     }
@@ -1277,10 +1300,12 @@ public class jfPrincipal extends javax.swing.JFrame {
         }
         else if(!regraImplicacao) {
             novoFeedback("Uma das fórmulas precisa ser uma implicação!");
+            contAjudas++;
             fecharConfig();
         }
         else {
             novoFeedback("Para eliminar uma implicação, uma das fórmulas deve ser seu antecedente!");
+            contAjudas++;
             fecharConfig();
         }
     }
@@ -1298,6 +1323,7 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         if(contNivelFormula1 != hipLevel || contNivelFormula2 != hipLevel) {
             novoFeedback("As fórmulas selecionadas devem estar na última hipótese.");
+            contAjudas++;
             fecharConfig();
         }
         else {
@@ -1305,6 +1331,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             // Verifica se é a primeira da hipótese
             if(tipoRegra1.compareTo("Hipótese") != 0) {
                 novoFeedback("A primeira fórmula precisa ser o início da hipótese.");
+                contAjudas++;
                 fecharConfig();
             }
             else {
@@ -1336,11 +1363,13 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
             else {
                 novoFeedback("Esta regra deve ser aplicada na dupla negação.");
+                contAjudas++;
                 fecharConfig();
             }
         }
         else {
             novoFeedback("Esta regra deve ser aplicada na dupla negação.");
+            contAjudas++;
             fecharConfig();
         }
         
@@ -1357,6 +1386,7 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         if(contNivelFormula1 != hipLevel || contNivelFormula2 != hipLevel) {
             novoFeedback("As fórmulas selecionadas devem estar na última hipótese.");
+            contAjudas++;
             fecharConfig();
         }
         else {
@@ -1364,6 +1394,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             String tipoRegra1 = jtResolucao.getValueAt(linhasSelec[0], 2).toString();
             if(tipoRegra1.compareTo("Hipótese") != 0) {
                 novoFeedback("A primeira fórmula precisa ser o início da hipótese.");
+                contAjudas++;
                 fecharConfig();
             }
             else {
@@ -1371,6 +1402,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                 // Verifica se a segunda é a contradição
                 if(formula2.compareTo("⊥") != 0) {
                     novoFeedback("A segunda fórmula precisa ser uma contradição.");
+                    contAjudas++;
                     fecharConfig();
                 }
                 else {
@@ -1476,17 +1508,20 @@ public class jfPrincipal extends javax.swing.JFrame {
                 else {
                     // As regras não fecham
                     novoFeedback("Não é possível aplicar a eliminação da disjunção com as regras selecionadas.");
+                    contAjudas++;
                     fecharConfig();
                 }
             }
             else {
                 // Não tem duas implicações
                 novoFeedback("É necessário uma conjunção e duas implicações.");
+                contAjudas++;
                 fecharConfig();
             }
         }
         else {
             novoFeedback("Uma das fórmulas precisa ser uma disjunção.");
+            contAjudas++;
             fecharConfig();
         }
     }
