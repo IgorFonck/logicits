@@ -5,7 +5,6 @@
  */
 package control;
 
-import java.util.Random;
 import model.Atividade;
 import model.AtividadeDAO;
 
@@ -15,17 +14,12 @@ import model.AtividadeDAO;
  */
 public class Tutor {
     
-    /*
-     * Seleciona um exercício para o estudante dentro do conceito.
-    */
     public static Atividade selecAtividade(int idConceito) {
         
         Atividade ativ = new Atividade();
         AtividadeDAO ativ_dao = new AtividadeDAO();
         
-        Random rand = new Random();
-        int codAtividade = rand.nextInt((7 - 1) + 1) + 1;
-        ativ = ativ_dao.consultar(codAtividade);
+        ativ = ativ_dao.consultar(7);
         
         // TODO: sistema de seleção da próxima atividade
         
