@@ -52,13 +52,14 @@ public class Tutor {
         System.out.println("Conceito selecionado: " + proxConceito);
         
         // 2. Seleciona atividade dentro do conceito
-        ativ = selecAtividade(proxConceito);
+        //ativ = selecAtividade(proxConceito);
         
         // TEST: random
-        Random rand = new Random();
+        /*Random rand = new Random();
         int codAtividade = rand.nextInt((7 - 1) + 1) + 1;
-        ativ = ativ_dao.consultar(codAtividade);
-        //ativ = ativ_dao.consultar(7);
+        ativ = ativ_dao.consultar(codAtividade);*/
+        ativ = ativ_dao.consultar(8);
+        
         return ativ;
         
     }
@@ -254,13 +255,82 @@ public class Tutor {
             // Lista as atividades do conceito selecionado
             List<Atividade> ativDoConceito = ativ_dao.listarPorConceito(codConceito);
             
-            // Lista quais atividades não possuem nota
+            List<Atividade> ativFeitas = new ArrayList<>();
+            List<Atividade> ativNaoFeitas = new ArrayList<>();
             
+            // Lista quais atividades não possuem nota
+            for(int i = 0; i < ativDoConceito.size(); i++) {
+                int esteCodAtiv = ativDoConceito.get(i).getCod();
+                List<Avaliacao> avalAtividade = aval_dao.listarPorAtividade(esteCodAtiv);
+                if(avalAtividade.isEmpty())
+                    ativNaoFeitas.add(ativDoConceito.get(i));
+                else
+                    ativFeitas.add(ativDoConceito.get(i));
+            }
+            
+            // Se houver atividades não feitas, seleciona
+            if(!ativNaoFeitas.isEmpty()) {
+                // Seleciona estaticamente a primeira
+                return ativNaoFeitas.get(0);
+            }
+            else {
+                // Se todas foram feitas, seleciona a de menor nota
+                List<Avaliacao> notasDoConceito = aval_dao.listarPorConceito(codConceito);
+                List<Integer> codigos_ativ = new ArrayList<>();
+                List<Double> notas_ativ = new ArrayList<>();
+                int ultimoCodigo;
+                int maiorNota;
+                for(int i = 0; i < notasDoConceito.size(); i++) {
+                    double estaNota = notasDoConceito.get(i).getNota();
+                    int estaAtividade = notasDoConceito.get(i).getAtividade().getCod();
+                    // Se for o primeiro, só adiciona
+                    if(i==0) {
+                        notas_ativ.add(estaNota);
+                        codigos_ativ.add(estaAtividade);
+                    }
+                    else {
+                        // Se não for o primeiro, compara com o anterior
+
+                        int atividadeAnterior = notasDoConceito.get(i-1).getAtividade().getCod();
+                        int ultimoIndice = notas_ativ.size()-1;
+                        double ultimoValor = notas_ativ.get(ultimoIndice);
+
+                        if(estaAtividade != atividadeAnterior) {
+                            //Se é uma nova atividade, adiciona
+                            notas_ativ.add(estaNota);
+                            codigos_ativ.add(estaAtividade);
+
+                            //Divide nota anterior pelo número de notas
+                            //notas_ativ.set(ultimoIndice,ultimoValor/contNotas);
+                            //contNotas = 1;
+                        }
+                        else {
+                            //Se é a mesma atividade, pega a maior
+                            if(estaNota > ultimoValor)
+                                notas_ativ.set(ultimoIndice,estaNota);
+                            //contNotas++;
+                        }
+                    }
+                }
+                
+                // Seleciona a atividade de menor nota
+                int menorCodigo = 0;
+                double menorNota = 11;
+                for(int i = 0; i < codigos_ativ.size(); i++) {
+                    if(notas_ativ.get(i) < menorNota) {
+                        menorNota = notas_ativ.get(i);
+                        menorCodigo = codigos_ativ.get(i);
+                    }
+                }
+                Atividade menor_nota = ativ_dao.consultar(menorCodigo);
+                return menor_nota;
+            }
             
         } catch (SQLException ex) {
             Logger.getLogger(Tutor.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        // Caso de erro
         return null;
         
     }

@@ -103,6 +103,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         jpConcluido = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jbProxAtiv = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jpFeedback = new javax.swing.JPanel();
         jpFeedbackContainer = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -356,31 +357,27 @@ public class jfPrincipal extends javax.swing.JFrame {
             .addGroup(jpRegrasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbDesfazer)
                     .addGroup(jpRegrasLayout.createSequentialGroup()
-                        .addComponent(jbDesfazer)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jpRegrasLayout.createSequentialGroup()
-                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpRegrasLayout.createSequentialGroup()
-                                .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btElimConju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                                    .addComponent(btIntroConju))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btIntroDisju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                                    .addComponent(btElimDisju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btIntroImpl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                                    .addComponent(btElimImpl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btElimNeg)
-                                    .addComponent(btIntroNeg))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbHip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1))
-                        .addGap(97, 245, Short.MAX_VALUE))))
+                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btElimConju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(btIntroConju))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btIntroDisju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(btElimDisju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btIntroImpl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(btElimImpl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btElimNeg)
+                            .addComponent(btIntroNeg))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbHip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpRegrasLayout.setVerticalGroup(
             jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -494,6 +491,13 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Gravar solução");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpConcluidoLayout = new javax.swing.GroupLayout(jpConcluido);
         jpConcluido.setLayout(jpConcluidoLayout);
         jpConcluidoLayout.setHorizontalGroup(
@@ -503,7 +507,9 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addGroup(jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbProxAtiv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(430, Short.MAX_VALUE))
+                .addGap(133, 133, 133)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         jpConcluidoLayout.setVerticalGroup(
             jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -511,7 +517,9 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addComponent(jbProxAtiv, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbProxAtiv, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -913,6 +921,10 @@ public class jfPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbRevisarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
     private javax.swing.JButton btElimConju;
@@ -924,6 +936,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btIntroImpl;
     private javax.swing.JButton btIntroNeg;
     private javax.swing.JPanel cardRegras;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

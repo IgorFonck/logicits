@@ -103,6 +103,69 @@ public class AvaliacaoDAO {
     }
     
     /**
+     * Retorna todas as avaliacaos cadastradas.
+     * @param codAtividade
+     * @return <code>List\<Avaliacao\></code> a lista de todos os objetos Avaliacao
+     * @throws SQLException 
+     */
+    public List<Avaliacao> listarPorAtividade(int codAtividade) throws SQLException {
+        String sql = "SELECT * FROM avaliacao WHERE fk_atividade_cod_atividade=?";
+        List<Avaliacao> lista = new ArrayList<>();
+
+        try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
+            stmt.setInt(1, codAtividade);
+            ResultSet rset = stmt.executeQuery();
+            while (rset.next()) {   //move o cursor para a próxima linha do ResultSet
+                Avaliacao avaliacao = new Avaliacao();
+                avaliacao.setCod(rset.getInt("cod_avaliacao"));
+                avaliacao.setNota(rset.getDouble("nota"));
+                avaliacao.setConcluido(rset.getBoolean("fg_concluido"));
+                avaliacao.setAtividade((new AtividadeDAO()).consultar(rset.getInt("fk_atividade_cod_atividade")));
+                avaliacao.setPerfil((new PerfilDAO()).consultar(rset.getInt("fk_estudante_cod_estudante")));
+                lista.add(avaliacao);
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException em listar! Erro detectado: " + ex.getMessage());
+        }
+        return lista;
+    }
+    
+    /**
+     * Retorna todas as avaliacaos cadastradas.
+     * @param codConceito
+     * @return <code>List\<Avaliacao\></code> a lista de todos os objetos Avaliacao
+     * @throws SQLException 
+     */
+    public List<Avaliacao> listarPorConceito(int codConceito) throws SQLException {
+        String sql = "SELECT atividade.*, avaliacao.* "
+                + "FROM atividade, complexidade, avaliacao "
+                + "WHERE atividade.cod_atividade = complexidade.fk_atividade_cod_atividade "
+                + "AND complexidade.fk_conceito_cod_conceito = ? "
+                + "AND avaliacao.fk_atividade_cod_atividade = atividade.cod_atividade "
+                + "ORDER BY atividade.cod_atividade";
+        List<Avaliacao> lista = new ArrayList<>();
+
+        try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
+            stmt.setInt(1, codConceito);
+            ResultSet rset = stmt.executeQuery();
+            while (rset.next()) {   //move o cursor para a próxima linha do ResultSet
+                Avaliacao avaliacao = new Avaliacao();
+                avaliacao.setCod(rset.getInt("cod_avaliacao"));
+                avaliacao.setNota(rset.getDouble("nota"));
+                avaliacao.setConcluido(rset.getBoolean("fg_concluido"));
+                avaliacao.setAtividade((new AtividadeDAO()).consultar(rset.getInt("fk_atividade_cod_atividade")));
+                avaliacao.setPerfil((new PerfilDAO()).consultar(rset.getInt("fk_estudante_cod_estudante")));
+                lista.add(avaliacao);
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException em listar! Erro detectado: " + ex.getMessage());
+        }
+        return lista;
+    }
+    
+    
+    
+    /**
      * Retorna uma Avaliacao de acordo com o ID pesquisado.
      * @param id o ID a ser pesquisado
      * @return Avaliacao
