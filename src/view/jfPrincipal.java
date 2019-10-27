@@ -767,6 +767,7 @@ public class jfPrincipal extends javax.swing.JFrame {
        
         contAjudas++;
         
+        /* TESTE */
         Tutor.selecConceito();
         //System.out.println("Antes de entrar.");
         //List<Avaliacao> notas = aval_dao.listar();

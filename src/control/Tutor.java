@@ -15,6 +15,8 @@ import model.Atividade;
 import model.AtividadeDAO;
 import model.Avaliacao;
 import model.AvaliacaoDAO;
+import model.Complexidade;
+import model.ComplexidadeDAO;
 
 /**
  *
@@ -23,6 +25,7 @@ import model.AvaliacaoDAO;
 public class Tutor {
     
     private static AvaliacaoDAO aval_dao = new AvaliacaoDAO();
+    private static ComplexidadeDAO complex_dao = new ComplexidadeDAO();
     
     /*
      * Seleciona um exercício para o estudante dentro do conceito.
@@ -56,12 +59,12 @@ public class Tutor {
             List<Avaliacao> notas = aval_dao.listar();
             
             /*
-                1 - Pegar uma nota por atividade
+                1 - Obter nota de cada atividade
                 2 - Somar a nota da atividade em cada conceito
                 3 - Fazer a média pra cada conceito
             */
             
-            // Soma as notas da mesma atividade
+            // 1 - Obter nota de cada atividade
             List<Double> notas_ativ = new ArrayList<>();
             List<Integer> codigos_ativ = new ArrayList<>();
             //int contNotas = 1;
@@ -69,7 +72,6 @@ public class Tutor {
                 
                 double estaNota = notas.get(i).getNota();
                 int estaAtividade = notas.get(i).getAtividade().getCod();
-                System.out.println("Nota "+i+": "+estaNota);
                 
                 // Se for o primeiro, só adiciona
                 if(i==0) {
@@ -101,38 +103,49 @@ public class Tutor {
                 }
             }
             
-            for (int i = 0; i < notas_ativ.size(); i++) {
+            /*for (int i = 0; i < notas_ativ.size(); i++) {
                 System.out.println("Atividade " + codigos_ativ.get(i) + ": nota " + notas_ativ.get(i));
-            }
+            }*/
             
-            /*
-            // Pegar uma nota por atividade
+            //2 - Somar a nota da atividade em cada conceito
             
             // Arrays com o numero de conceitos
             double medias[] = new double[8]; //notas do estudante no conceito
-            int avaliacoes[] = new int[8]; //contador de avaliações
-            
-            // Inicializar arrays
+            int divisor[] = new int[8]; //contador de avaliações
             for (int i = 0; i < 8; i++) {
+                // Inicializar arrays
                 medias[i] = 0;
-                avaliacoes[i] = 0;
+                divisor[i] = 0;
             }
             
-            // Pegar notas do BD
-            for (int i = 0; i < notas.size(); i++) {
-                medias[i] += notas.get(i).getNota();
-                avaliacoes[i]++;
+            for(int i = 0; i < codigos_ativ.size(); i++) {
+                // Para a atividade i, percorre os conceitos e adiciona aos arrays
+                double estaNotaAtividade = notas_ativ.get(i);
+                int esteCodigoAtividade = codigos_ativ.get(i);
+                
+                // Consulta as complexidades da atividade
+                List<Complexidade> complex_ativ = complex_dao.listarPorAtividade(esteCodigoAtividade);
+                
+                // Para cada complexidade da atividade, adiciona aos arrays
+                for(int j = 0; j < complex_ativ.size(); j++) {
+                    Complexidade estaComplex = complex_ativ.get(j);
+                    int codConceito = estaComplex.getCod_conceito()-1;
+                    int pesoComplexidade = estaComplex.getValor();
+                    medias[codConceito] += estaNotaAtividade*pesoComplexidade;
+                    divisor[codConceito] += pesoComplexidade;
+                }
+                
             }
             
             // Fazer médias
             for (int i = 0; i < 8; i++) {
-                medias[i] = 0;
-                avaliacoes[i] = 0;
+                medias[i] = medias[i]/divisor[i];
+                System.out.println("Média do conceito " +i+": "+medias[i]);
             }
             
             // Considerar ordem de dificuldade dos conceitos
             // Selecionar conceito
-            */
+            
             
         } catch (SQLException ex) {
             Logger.getLogger(Tutor.class.getName()).log(Level.SEVERE, null, ex);
