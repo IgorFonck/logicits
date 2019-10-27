@@ -52,7 +52,7 @@ public class Tutor {
      * deve ser trabalhado a seguir. Para isso, considera a nota no 
      * exercício, os conceitos e o grau de dificuldade.
     */
-    public static void selecConceito() {
+    public static int selecConceito() {
         
         try {
             // Fazer média do estudante por conceito
@@ -62,6 +62,7 @@ public class Tutor {
                 1 - Obter nota de cada atividade
                 2 - Somar a nota da atividade em cada conceito
                 3 - Fazer a média pra cada conceito
+                4 - Selecionar conceito
             */
             
             // 1 - Obter nota de cada atividade
@@ -137,19 +138,62 @@ public class Tutor {
                 
             }
             
-            // Fazer médias
+            // 3 - Fazer a média pra cada conceito
             for (int i = 0; i < 8; i++) {
-                medias[i] = medias[i]/divisor[i];
-                System.out.println("Média do conceito " +i+": "+medias[i]);
+                if(divisor[i]>0)
+                    medias[i] = medias[i]/divisor[i];
+                else
+                    medias[i] = 0;
+                System.out.println("Média do conceito " +(i+1)+": "+medias[i]);
             }
             
-            // Considerar ordem de dificuldade dos conceitos
-            // Selecionar conceito
+            // 4 - Selecionar conceito
+            // Seleção estática simples: considerar notas nos conceitos por ordem de dificuldade
+            // Ordem: {1, 2, 8, 3}, 6, 4, {5, 7}
+            if(medias[1-1] < 6 || medias[2-1] < 6 || medias[8-1] < 6 || medias[3-1] < 6) {
+                if(medias[1-1] <= medias[2-1] && medias[1-1] <= medias[8-1] && medias[1-1] <= medias[3-1])
+                    return 1;
+                else if(medias[2-1] <= medias[8-1] && medias[2-1] <= medias[3-1])
+                    return 2;
+                else if(medias[8-1] <= medias[3-1])
+                    return 8;
+                else
+                    return 3;
+            }
+            else if(medias[6-1] < 6) {
+                return 6;
+            }
+            else if(medias[4-1] < 6) {
+                return 4;
+            }
+            else if(medias[5-1] < 6 || medias[7-1] < 6) {
+                if(medias[5-1] <= medias[7-1])
+                    return 5;
+                else
+                    return 7;
+            }
+            else {
+                // Escolhe a menor média entre todas
+                return getMinIndex(medias)+1;
+            }
             
             
         } catch (SQLException ex) {
             Logger.getLogger(Tutor.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return -1;
+    }
+    
+    private static int getMinIndex(double[] numbers){
+        double minValue = numbers[0];
+        int minIndex = 0;
+        for(int i=1;i<numbers.length;i++){
+          if(numbers[i] < minValue){
+                minValue = numbers[i];
+                minIndex = i;
+              }
+        }
+        return minIndex;
     }
     
     /*
