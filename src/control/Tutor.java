@@ -18,6 +18,8 @@ import model.AvaliacaoDAO;
 import model.Complexidade;
 import model.ComplexidadeDAO;
 import model.Perfil;
+import model.Solucao;
+import model.SolucaoDAO;
 
 /**
  *
@@ -33,6 +35,7 @@ public class Tutor {
     private static AvaliacaoDAO aval_dao = new AvaliacaoDAO();
     private static ComplexidadeDAO complex_dao = new ComplexidadeDAO();
     private static AtividadeDAO ativ_dao = new AtividadeDAO();
+    private static SolucaoDAO solucao_dao = new SolucaoDAO();
     
     /*
      * Seleciona um exercício para o estudante dentro do conceito.
@@ -60,6 +63,46 @@ public class Tutor {
         
     }
     
+    public static void initConcluidos() {
+        
+        // Inicializar arrays
+        for (int i = 0; i < N_CONCEITOS; i++) {
+            numConcluidos[i] = 0;
+            medDifConcluidos[i] = 0;
+        }
+        
+        try {
+            List<Avaliacao> notas = aval_dao.listar();
+            for (int i = 0; i < notas.size(); i++) {
+                int esteCodigoAtividade = notas.get(i).getAtividade().getCod();
+                // Consulta as complexidades da atividade
+                List<Complexidade> complex_ativ = complex_dao.listarPorAtividade(esteCodigoAtividade);
+                List<Solucao> solucao_ativ = solucao_dao.listarPorAtividade(esteCodigoAtividade);
+                
+                // Para cada complexidade da atividade, adiciona aos arrays
+                for(int j = 0; j < complex_ativ.size(); j++) {
+                    Complexidade estaComplex = complex_ativ.get(j);
+                    int codConceito = estaComplex.getCod_conceito()-1;
+                    numConcluidos[codConceito]++;
+                    // Dependendo da dificuldade, adiciona a medDifConcluidos[]
+                    int dificuldadeAtiv = solucao_ativ.get(0).getDificuldade();
+                    /* Dificuldades: até 6 fácil; 7 a 10 médio; 11 ou mais difícil */
+                    if(dificuldadeAtiv > 6)
+                        medDifConcluidos[codConceito]++;
+                }
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Tutor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // Imprimir valores
+        /*for (int i = 0; i < N_CONCEITOS; i++) {
+            System.out.println("Conceito "+(i+1)+": "+numConcluidos[i]+" concluídos, "+medDifConcluidos[i]+" méd/dif.");
+        }*/
+        
+    }
+    
     /* Avalia a nota do estudante nos conceitos para selecionar qual
      * deve ser trabalhado a seguir. Para isso, considera a nota no 
      * exercício, os conceitos e o grau de dificuldade.
@@ -67,7 +110,6 @@ public class Tutor {
     public static int selecConceito() {
         
         try {
-            // Fazer média do estudante por conceito
             List<Avaliacao> notas = aval_dao.listar();
             
             /*
@@ -115,10 +157,6 @@ public class Tutor {
                     }
                 }
             }
-            
-            /*for (int i = 0; i < notas_ativ.size(); i++) {
-                System.out.println("Atividade " + codigos_ativ.get(i) + ": nota " + notas_ativ.get(i));
-            }*/
             
             //2 - Somar a nota da atividade em cada conceito
             
@@ -193,6 +231,8 @@ public class Tutor {
         } catch (SQLException ex) {
             Logger.getLogger(Tutor.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        // Em caso de erro
         return -1;
     }
     
@@ -245,9 +285,22 @@ public class Tutor {
         
         aval.setNota(nota);
         
-        AvaliacaoDAO aval_dao = new AvaliacaoDAO();
         try {
             aval_dao.adicionar(aval);
+            List<Complexidade> complex_ativ = complex_dao.listarPorAtividade(ativ.getCod());
+            List<Solucao> solucao_ativ = solucao_dao.listarPorAtividade(ativ.getCod());
+
+            // Para cada complexidade da atividade, adiciona aos arrays
+            for(int j = 0; j < complex_ativ.size(); j++) {
+                Complexidade estaComplex = complex_ativ.get(j);
+                int codConceito = estaComplex.getCod_conceito()-1;
+                numConcluidos[codConceito]++;
+                // Dependendo da dificuldade, adiciona a medDifConcluidos[]
+                int dificuldadeAtiv = solucao_ativ.get(0).getDificuldade();
+                /* Dificuldades: até 6 fácil; 7 a 10 médio; 11 ou mais difícil */
+                if(dificuldadeAtiv > 6)
+                    medDifConcluidos[codConceito]++;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Tutor.class.getName()).log(Level.SEVERE, null, ex);
         }

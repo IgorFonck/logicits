@@ -9,10 +9,6 @@ import control.Exercicio;
 import control.ExpressionTree;
 import control.Tutor;
 import java.awt.CardLayout;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -26,8 +22,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.Atividade;
 import model.AtividadeDAO;
-import model.Avaliacao;
-import model.AvaliacaoDAO;
 import model.Perfil;
 
 /**
@@ -62,7 +56,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         jpListaFeedback.setLayout(new BoxLayout(jpListaFeedback, BoxLayout.Y_AXIS));
         //jpListaFeedback.add(new JLabel("Bem-vindo!"));
         
-        
+        // Inicializa variáveis de controle da classe Tutor
+        Tutor.initConcluidos();
         
     }
 
