@@ -10,6 +10,7 @@ import control.ExpressionTree;
 import control.Tutor;
 import java.awt.CardLayout;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
@@ -60,6 +61,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         // TEST: Lista de feedbacks
         jpListaFeedback.setLayout(new BoxLayout(jpListaFeedback, BoxLayout.Y_AXIS));
         //jpListaFeedback.add(new JLabel("Bem-vindo!"));
+        
+        
         
     }
 
@@ -763,6 +766,10 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void jbAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAjudaActionPerformed
        
         contAjudas++;
+        
+        Tutor.selecConceito();
+        //System.out.println("Antes de entrar.");
+        //List<Avaliacao> notas = aval_dao.listar();
         
     }//GEN-LAST:event_jbAjudaActionPerformed
 

@@ -77,12 +77,13 @@ public class AvaliacaoDAO {
     
     /**
      * Retorna todas as avaliacaos cadastradas.
-     * @return <code>List<Avaliacao></code> a lista de todos os objetos Avaliacao
+     * @return <code>List\<Avaliacao\></code> a lista de todos os objetos Avaliacao
      * @throws SQLException 
      */
-    public List<Object> listar() throws SQLException {
-        String sql = "SELECT * FROM avaliacao ORDER BY cod_avaliacao";
-        List<Object> lista = new ArrayList<>();
+    public List<Avaliacao> listar() throws SQLException {
+        String sql = "SELECT * FROM avaliacao ORDER BY fk_atividade_cod_atividade";
+        List<Avaliacao> lista = new ArrayList<>();
+        
 
         try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
             ResultSet rset = stmt.executeQuery();
