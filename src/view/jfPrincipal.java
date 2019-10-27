@@ -1179,7 +1179,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         // Limpar feedback
         
         // Seleciona a atividade a ser mostrada
-        ativ = Tutor.selecAtividade();
+        ativ = Tutor.proxAtividade();
         
         // Formata a fórmula da atividade para ser exibida
         String exercicio = ativ.getPremissas() + " |- " + ativ.getConclusao();

@@ -30,7 +30,7 @@ public class Tutor {
     /*
      * Seleciona um exercício para o estudante dentro do conceito.
     */
-    public static Atividade selecAtividade() {
+    public static Atividade proxAtividade() {
         
         Atividade ativ;
         AtividadeDAO ativ_dao = new AtividadeDAO();
@@ -40,9 +40,13 @@ public class Tutor {
         ativ = ativ_dao.consultar(codAtividade);
         //ativ = ativ_dao.consultar(7);
         
-        // TODO: sistema de seleção da próxima atividade
+        // Sistema de seleção da próxima atividade
         // 1. Seleciona o conceito selecConceito()
+        int proxConceito = selecConceito();
+        System.out.println("Conceito selecionado: " + proxConceito);
+        
         // 2. Seleciona atividade dentro do conceito
+        ativ = selecAtividade(proxConceito);
         
         return ativ;
         
@@ -194,6 +198,14 @@ public class Tutor {
               }
         }
         return minIndex;
+    }
+    
+    public static Atividade selecAtividade(int codConceito) {
+        
+        
+        
+        return null;
+        
     }
     
     /*

@@ -81,11 +81,15 @@ public class AtividadeDAO {
      * @return <code>List<Atividade></code> a lista de todos os objetos Atividade
      * @throws SQLException 
      */
-    public List<Object> listar() throws SQLException {
-        String sql = "SELECT * FROM atividade ORDER BY cod_atividade";
+    public List<Object> listarPorConceito(int codConceito) throws SQLException {
+        String sql = "SELECT atividade.* FROM atividade, complexidade "
+                + "WHERE atividade.cod_atividade = complexidade.fk_atividade_cod_atividade "
+                + "AND complexidade.fk_conceito_cod_conceito = ? "
+                + "ORDER BY atividade.cod_atividade";
         List<Object> lista = new ArrayList<>();
 
         try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
+            stmt.setInt(1, codConceito);
             ResultSet rset = stmt.executeQuery();
             while (rset.next()) {   //move o cursor para a próxima linha do ResultSet
                 Atividade atividade = new Atividade();
