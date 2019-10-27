@@ -17,6 +17,7 @@ import model.Avaliacao;
 import model.AvaliacaoDAO;
 import model.Complexidade;
 import model.ComplexidadeDAO;
+import model.Perfil;
 
 /**
  *
@@ -24,8 +25,14 @@ import model.ComplexidadeDAO;
  */
 public class Tutor {
     
+    private static final int N_CONCEITOS = 8; //número de conceitos cadastrados no sistema
+    private static int numConcluidos[] = new int[N_CONCEITOS]; //número de atividades concluídas do conceito
+    private static int medDifConcluidos[] = new int [N_CONCEITOS]; //atividades médias/difíceis concluidas
+    
+    
     private static AvaliacaoDAO aval_dao = new AvaliacaoDAO();
     private static ComplexidadeDAO complex_dao = new ComplexidadeDAO();
+    private static AtividadeDAO ativ_dao = new AtividadeDAO();
     
     /*
      * Seleciona um exercício para o estudante dentro do conceito.
@@ -35,10 +42,6 @@ public class Tutor {
         Atividade ativ;
         AtividadeDAO ativ_dao = new AtividadeDAO();
         
-        Random rand = new Random();
-        int codAtividade = rand.nextInt((7 - 1) + 1) + 1;
-        ativ = ativ_dao.consultar(codAtividade);
-        //ativ = ativ_dao.consultar(7);
         
         // Sistema de seleção da próxima atividade
         // 1. Seleciona o conceito selecConceito()
@@ -48,6 +51,11 @@ public class Tutor {
         // 2. Seleciona atividade dentro do conceito
         ativ = selecAtividade(proxConceito);
         
+        // TEST: random
+        Random rand = new Random();
+        int codAtividade = rand.nextInt((7 - 1) + 1) + 1;
+        ativ = ativ_dao.consultar(codAtividade);
+        //ativ = ativ_dao.consultar(7);
         return ativ;
         
     }
@@ -115,9 +123,9 @@ public class Tutor {
             //2 - Somar a nota da atividade em cada conceito
             
             // Arrays com o numero de conceitos
-            double medias[] = new double[8]; //notas do estudante no conceito
-            int divisor[] = new int[8]; //contador de avaliações
-            for (int i = 0; i < 8; i++) {
+            double medias[] = new double[N_CONCEITOS]; //notas do estudante no conceito
+            int divisor[] = new int[N_CONCEITOS]; //contador de avaliações
+            for (int i = 0; i < N_CONCEITOS; i++) {
                 // Inicializar arrays
                 medias[i] = 0;
                 divisor[i] = 0;
@@ -143,7 +151,7 @@ public class Tutor {
             }
             
             // 3 - Fazer a média pra cada conceito
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < N_CONCEITOS; i++) {
                 if(divisor[i]>0)
                     medias[i] = medias[i]/divisor[i];
                 else
@@ -202,7 +210,16 @@ public class Tutor {
     
     public static Atividade selecAtividade(int codConceito) {
         
-        
+        try {
+            // Lista as atividades do conceito selecionado
+            List<Atividade> ativDoConceito = ativ_dao.listarPorConceito(codConceito);
+            
+            // Lista quais atividades não possuem nota
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Tutor.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         return null;
         
@@ -211,7 +228,29 @@ public class Tutor {
     /*
      * Calcula e armazena a nota do estudante no último exercício
     */
-    public static void notaExercicio(int idExercicio, int dif) {
+    public static void notaExercicio(Atividade ativ, int contAjudas) {
+       
+        Avaliacao aval = new Avaliacao();
+        aval.setAtividade(ativ);
+        aval.setConcluido(true);
+        
+        Perfil perfil = new Perfil();
+        perfil.setCod_estudante(1);
+        aval.setPerfil(perfil);
+        
+        // Calcula a nota
+        double nota = 10;
+        if(contAjudas > 3)
+            nota -= ((contAjudas-3)*0.5);
+        
+        aval.setNota(nota);
+        
+        AvaliacaoDAO aval_dao = new AvaliacaoDAO();
+        try {
+            aval_dao.adicionar(aval);
+        } catch (SQLException ex) {
+            Logger.getLogger(Tutor.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     

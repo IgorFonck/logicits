@@ -1138,26 +1138,9 @@ public class jfPrincipal extends javax.swing.JFrame {
     }
     
     private void salvarNota() {
-        Avaliacao aval = new Avaliacao();
-        aval.setAtividade(ativ);
-        aval.setConcluido(true);
         
-        perfil.setCod_estudante(1);
-        aval.setPerfil(perfil);
+        Tutor.notaExercicio(ativ, contAjudas);
         
-        // Calcula a nota
-        double nota = 10;
-        if(contAjudas > 3)
-            nota -= ((contAjudas-3)*0.5);
-        
-        aval.setNota(nota);
-        
-        AvaliacaoDAO aval_dao = new AvaliacaoDAO();
-        try {
-            aval_dao.adicionar(aval);
-        } catch (SQLException ex) {
-            Logger.getLogger(jfPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /* Carrega o próximo exercício */

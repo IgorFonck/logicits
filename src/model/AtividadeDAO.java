@@ -81,15 +81,39 @@ public class AtividadeDAO {
      * @return <code>List<Atividade></code> a lista de todos os objetos Atividade
      * @throws SQLException 
      */
-    public List<Object> listarPorConceito(int codConceito) throws SQLException {
+    public List<Atividade> listarPorConceito(int codConceito) throws SQLException {
         String sql = "SELECT atividade.* FROM atividade, complexidade "
                 + "WHERE atividade.cod_atividade = complexidade.fk_atividade_cod_atividade "
                 + "AND complexidade.fk_conceito_cod_conceito = ? "
                 + "ORDER BY atividade.cod_atividade";
-        List<Object> lista = new ArrayList<>();
+        List<Atividade> lista = new ArrayList<>();
 
         try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
             stmt.setInt(1, codConceito);
+            ResultSet rset = stmt.executeQuery();
+            while (rset.next()) {   //move o cursor para a próxima linha do ResultSet
+                Atividade atividade = new Atividade();
+                atividade.setCod(rset.getInt("cod_atividade"));
+                atividade.setPremissas(rset.getString("premissas"));
+                atividade.setConclusao(rset.getString("conclusao"));
+                lista.add(atividade);
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException em listar! Erro detectado: " + ex.getMessage());
+        }
+        return lista;
+    }
+    
+    /**
+     * Retorna todas as atividades cadastradas.
+     * @return <code>List<Atividade></code> a lista de todos os objetos Atividade
+     * @throws SQLException 
+     */
+    public List<Atividade> listar() throws SQLException {
+        String sql = "SELECT * FROM atividade ORDER BY cod_atividade";
+        List<Atividade> lista = new ArrayList<>();
+
+        try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
             ResultSet rset = stmt.executeQuery();
             while (rset.next()) {   //move o cursor para a próxima linha do ResultSet
                 Atividade atividade = new Atividade();

@@ -51,9 +51,9 @@ public class jfDominio extends javax.swing.JFrame {
         //Popular a lista de atividades
         DefaultListModel model = new DefaultListModel();
         try {
-            List<Object> atividades = ativ_dao.listar();
-            for(Object item : atividades) {
-                Atividade exercicio = (Atividade)item;
+            List<Atividade> atividades = ativ_dao.listar();
+            for(Atividade item : atividades) {
+                Atividade exercicio = item;
                 exercicio.setPremissas(Exercicio.formatarFormula(exercicio.getPremissas()));
                 exercicio.setConclusao(Exercicio.formatarFormula(exercicio.getConclusao()));
                 model.addElement(exercicio);

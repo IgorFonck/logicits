@@ -4,8 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Igor/Documents/NetBeansProjects/logicits/src/view/jfPrincipal.java</file>
+            <file>file:/C:/Users/Igor/Documents/NetBeansProjects/logicits/src/model/Complexidade.java</file>
+            <file>file:/C:/Users/Igor/Documents/NetBeansProjects/logicits/src/model/AtividadeDAO.java</file>
             <file>file:/C:/Users/Igor/Documents/NetBeansProjects/logicits/src/model/AvaliacaoDAO.java</file>
             <file>file:/C:/Users/Igor/Documents/NetBeansProjects/logicits/src/control/Tutor.java</file>
+            <file>file:/C:/Users/Igor/Documents/NetBeansProjects/logicits/src/model/ComplexidadeDAO.java</file>
+            <file>file:/C:/Users/Igor/Documents/NetBeansProjects/logicits/src/model/Avaliacao.java</file>
         </group>
     </open-files>
 </project-private>
