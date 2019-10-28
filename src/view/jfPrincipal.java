@@ -925,6 +925,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void jbRevisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRevisarActionPerformed
         
         contAjudas++;
+        new jfApoio().setVisible(true);
         
     }//GEN-LAST:event_jbRevisarActionPerformed
 
