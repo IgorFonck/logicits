@@ -47,6 +47,7 @@ public class jfApoio extends javax.swing.JFrame {
                           + "<p><a href=\"http://devdaily.com/blog/\">devdaily blog</a></p>\n"
                           + "</body>\n";
         
+        // Lê arquivo inteiro para uma String
         StringBuilder contentBuilder = new StringBuilder();
         try {
             BufferedReader in = new BufferedReader(new FileReader(System.getProperty("user.dir")+"/src/pages/page.html"));

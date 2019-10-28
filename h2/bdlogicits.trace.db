@@ -1,0 +1,3058 @@
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                           
+   
+
+                                    
+                                 
+
+                                 
+
+SET STATEMENT_TIMEOUT[*] = 0"; expected "@, AUTOCOMMIT, EXCLUSIVE, IGNORECASE, PASSWORD, SALT, MODE, COMPRESS_LOB, DATABASE, COLLATION, BINARY_COLLATION, UUID_COLLATION, CLUSTER, DATABASE_EVENT_LISTENER, ALLOW_LITERALS, DEFAULT_TABLE_TYPE, CREATE, HSQLDB.DEFAULT_TABLE_TYPE, PAGE_STORE, CACHE_TYPE, FILE_LOCK, DB_CLOSE_ON_EXIT, AUTO_SERVER, AUTO_SERVER_PORT, AUTO_RECONNECT, ASSERT, ACCESS_MODE_DATA, OPEN_NEW, JMX, PAGE_SIZE, RECOVER, NAMES, SCOPE_GENERATED_KEYS, SCHEMA, CATALOG, DATESTYLE, SEARCH_PATH, SCHEMA_SEARCH_PATH, JAVA_OBJECT_SERIALIZER, IGNORE_CATALOGS, SESSION, TRANSACTION, LOGSIZE, FOREIGN_KEY_CHECKS"; SQL statement:
+-- 
+-- PostgreSQL database dump
+-- 
+
+-- Dumped from database version 11.4
+-- Dumped by pg_dump version 11.4
+
+-- Started on 2019-10-28 19:30:12
+
+SET statement_timeout = 0 [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SET IDLE_IN_TRANSACTION_SESSION_TIMEOUT[*] = 0"; expected "@, AUTOCOMMIT, EXCLUSIVE, IGNORECASE, PASSWORD, SALT, MODE, COMPRESS_LOB, DATABASE, COLLATION, BINARY_COLLATION, UUID_COLLATION, CLUSTER, DATABASE_EVENT_LISTENER, ALLOW_LITERALS, DEFAULT_TABLE_TYPE, CREATE, HSQLDB.DEFAULT_TABLE_TYPE, PAGE_STORE, CACHE_TYPE, FILE_LOCK, DB_CLOSE_ON_EXIT, AUTO_SERVER, AUTO_SERVER_PORT, AUTO_RECONNECT, ASSERT, ACCESS_MODE_DATA, OPEN_NEW, JMX, PAGE_SIZE, RECOVER, NAMES, SCOPE_GENERATED_KEYS, SCHEMA, CATALOG, DATESTYLE, SEARCH_PATH, SCHEMA_SEARCH_PATH, JAVA_OBJECT_SERIALIZER, IGNORE_CATALOGS, SESSION, TRANSACTION, LOGSIZE, FOREIGN_KEY_CHECKS"; SQL statement:
+SET idle_in_transaction_session_timeout = 0 [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SET CLIENT_ENCODING[*] = 'UTF8'"; expected "@, AUTOCOMMIT, EXCLUSIVE, IGNORECASE, PASSWORD, SALT, MODE, COMPRESS_LOB, DATABASE, COLLATION, BINARY_COLLATION, UUID_COLLATION, CLUSTER, DATABASE_EVENT_LISTENER, ALLOW_LITERALS, DEFAULT_TABLE_TYPE, CREATE, HSQLDB.DEFAULT_TABLE_TYPE, PAGE_STORE, CACHE_TYPE, FILE_LOCK, DB_CLOSE_ON_EXIT, AUTO_SERVER, AUTO_SERVER_PORT, AUTO_RECONNECT, ASSERT, ACCESS_MODE_DATA, OPEN_NEW, JMX, PAGE_SIZE, RECOVER, NAMES, SCOPE_GENERATED_KEYS, SCHEMA, CATALOG, DATESTYLE, SEARCH_PATH, SCHEMA_SEARCH_PATH, JAVA_OBJECT_SERIALIZER, IGNORE_CATALOGS, SESSION, TRANSACTION, LOGSIZE, FOREIGN_KEY_CHECKS"; SQL statement:
+SET client_encoding = 'UTF8' [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SET STANDARD_CONFORMING_STRINGS[*] = ON"; expected "@, AUTOCOMMIT, EXCLUSIVE, IGNORECASE, PASSWORD, SALT, MODE, COMPRESS_LOB, DATABASE, COLLATION, BINARY_COLLATION, UUID_COLLATION, CLUSTER, DATABASE_EVENT_LISTENER, ALLOW_LITERALS, DEFAULT_TABLE_TYPE, CREATE, HSQLDB.DEFAULT_TABLE_TYPE, PAGE_STORE, CACHE_TYPE, FILE_LOCK, DB_CLOSE_ON_EXIT, AUTO_SERVER, AUTO_SERVER_PORT, AUTO_RECONNECT, ASSERT, ACCESS_MODE_DATA, OPEN_NEW, JMX, PAGE_SIZE, RECOVER, NAMES, SCOPE_GENERATED_KEYS, SCHEMA, CATALOG, DATESTYLE, SEARCH_PATH, SCHEMA_SEARCH_PATH, JAVA_OBJECT_SERIALIZER, IGNORE_CATALOGS, SESSION, TRANSACTION, LOGSIZE, FOREIGN_KEY_CHECKS"; SQL statement:
+SET standard_conforming_strings = on [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Schema "PG_CATALOG" not found; SQL statement:
+SELECT pg_catalog.set_config('search_path', '', false) [90079-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.engine.Database.getSchema(Database.java:1936)
+	at org.h2.command.Parser.readTermObjectDot(Parser.java:4189)
+	at org.h2.command.Parser.readTerm(Parser.java:4307)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseSelectExpressions(Parser.java:2931)
+	at org.h2.command.Parser.parseSelect(Parser.java:2952)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SET CHECK_FUNCTION_BODIES[*] = FALSE"; expected "@, AUTOCOMMIT, EXCLUSIVE, IGNORECASE, PASSWORD, SALT, MODE, COMPRESS_LOB, DATABASE, COLLATION, BINARY_COLLATION, UUID_COLLATION, CLUSTER, DATABASE_EVENT_LISTENER, ALLOW_LITERALS, DEFAULT_TABLE_TYPE, CREATE, HSQLDB.DEFAULT_TABLE_TYPE, PAGE_STORE, CACHE_TYPE, FILE_LOCK, DB_CLOSE_ON_EXIT, AUTO_SERVER, AUTO_SERVER_PORT, AUTO_RECONNECT, ASSERT, ACCESS_MODE_DATA, OPEN_NEW, JMX, PAGE_SIZE, RECOVER, NAMES, SCOPE_GENERATED_KEYS, SCHEMA, CATALOG, DATESTYLE, SEARCH_PATH, SCHEMA_SEARCH_PATH, JAVA_OBJECT_SERIALIZER, IGNORE_CATALOGS, SESSION, TRANSACTION, LOGSIZE, FOREIGN_KEY_CHECKS"; SQL statement:
+SET check_function_bodies = false [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SET XMLOPTION[*] = CONTENT"; expected "@, AUTOCOMMIT, EXCLUSIVE, IGNORECASE, PASSWORD, SALT, MODE, COMPRESS_LOB, DATABASE, COLLATION, BINARY_COLLATION, UUID_COLLATION, CLUSTER, DATABASE_EVENT_LISTENER, ALLOW_LITERALS, DEFAULT_TABLE_TYPE, CREATE, HSQLDB.DEFAULT_TABLE_TYPE, PAGE_STORE, CACHE_TYPE, FILE_LOCK, DB_CLOSE_ON_EXIT, AUTO_SERVER, AUTO_SERVER_PORT, AUTO_RECONNECT, ASSERT, ACCESS_MODE_DATA, OPEN_NEW, JMX, PAGE_SIZE, RECOVER, NAMES, SCOPE_GENERATED_KEYS, SCHEMA, CATALOG, DATESTYLE, SEARCH_PATH, SCHEMA_SEARCH_PATH, JAVA_OBJECT_SERIALIZER, IGNORE_CATALOGS, SESSION, TRANSACTION, LOGSIZE, FOREIGN_KEY_CHECKS"; SQL statement:
+SET xmloption = content [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SET CLIENT_MIN_MESSAGES[*] = WARNING"; expected "@, AUTOCOMMIT, EXCLUSIVE, IGNORECASE, PASSWORD, SALT, MODE, COMPRESS_LOB, DATABASE, COLLATION, BINARY_COLLATION, UUID_COLLATION, CLUSTER, DATABASE_EVENT_LISTENER, ALLOW_LITERALS, DEFAULT_TABLE_TYPE, CREATE, HSQLDB.DEFAULT_TABLE_TYPE, PAGE_STORE, CACHE_TYPE, FILE_LOCK, DB_CLOSE_ON_EXIT, AUTO_SERVER, AUTO_SERVER_PORT, AUTO_RECONNECT, ASSERT, ACCESS_MODE_DATA, OPEN_NEW, JMX, PAGE_SIZE, RECOVER, NAMES, SCOPE_GENERATED_KEYS, SCHEMA, CATALOG, DATESTYLE, SEARCH_PATH, SCHEMA_SEARCH_PATH, JAVA_OBJECT_SERIALIZER, IGNORE_CATALOGS, SESSION, TRANSACTION, LOGSIZE, FOREIGN_KEY_CHECKS"; SQL statement:
+SET client_min_messages = warning [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SET ROW_SECURITY[*] = OFF"; expected "@, AUTOCOMMIT, EXCLUSIVE, IGNORECASE, PASSWORD, SALT, MODE, COMPRESS_LOB, DATABASE, COLLATION, BINARY_COLLATION, UUID_COLLATION, CLUSTER, DATABASE_EVENT_LISTENER, ALLOW_LITERALS, DEFAULT_TABLE_TYPE, CREATE, HSQLDB.DEFAULT_TABLE_TYPE, PAGE_STORE, CACHE_TYPE, FILE_LOCK, DB_CLOSE_ON_EXIT, AUTO_SERVER, AUTO_SERVER_PORT, AUTO_RECONNECT, ASSERT, ACCESS_MODE_DATA, OPEN_NEW, JMX, PAGE_SIZE, RECOVER, NAMES, SCOPE_GENERATED_KEYS, SCHEMA, CATALOG, DATESTYLE, SEARCH_PATH, SCHEMA_SEARCH_PATH, JAVA_OBJECT_SERIALIZER, IGNORE_CATALOGS, SESSION, TRANSACTION, LOGSIZE, FOREIGN_KEY_CHECKS"; SQL statement:
+SET row_security = off [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SET DEFAULT_TABLESPACE[*] = ''"; expected "@, AUTOCOMMIT, EXCLUSIVE, IGNORECASE, PASSWORD, SALT, MODE, COMPRESS_LOB, DATABASE, COLLATION, BINARY_COLLATION, UUID_COLLATION, CLUSTER, DATABASE_EVENT_LISTENER, ALLOW_LITERALS, DEFAULT_TABLE_TYPE, CREATE, HSQLDB.DEFAULT_TABLE_TYPE, PAGE_STORE, CACHE_TYPE, FILE_LOCK, DB_CLOSE_ON_EXIT, AUTO_SERVER, AUTO_SERVER_PORT, AUTO_RECONNECT, ASSERT, ACCESS_MODE_DATA, OPEN_NEW, JMX, PAGE_SIZE, RECOVER, NAMES, SCOPE_GENERATED_KEYS, SCHEMA, CATALOG, DATESTYLE, SEARCH_PATH, SCHEMA_SEARCH_PATH, JAVA_OBJECT_SERIALIZER, IGNORE_CATALOGS, SESSION, TRANSACTION, LOGSIZE, FOREIGN_KEY_CHECKS"; SQL statement:
+SET default_tablespace = '' [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SET DEFAULT_WITH_OIDS[*] = FALSE"; expected "@, AUTOCOMMIT, EXCLUSIVE, IGNORECASE, PASSWORD, SALT, MODE, COMPRESS_LOB, DATABASE, COLLATION, BINARY_COLLATION, UUID_COLLATION, CLUSTER, DATABASE_EVENT_LISTENER, ALLOW_LITERALS, DEFAULT_TABLE_TYPE, CREATE, HSQLDB.DEFAULT_TABLE_TYPE, PAGE_STORE, CACHE_TYPE, FILE_LOCK, DB_CLOSE_ON_EXIT, AUTO_SERVER, AUTO_SERVER_PORT, AUTO_RECONNECT, ASSERT, ACCESS_MODE_DATA, OPEN_NEW, JMX, PAGE_SIZE, RECOVER, NAMES, SCOPE_GENERATED_KEYS, SCHEMA, CATALOG, DATESTYLE, SEARCH_PATH, SCHEMA_SEARCH_PATH, JAVA_OBJECT_SERIALIZER, IGNORE_CATALOGS, SESSION, TRANSACTION, LOGSIZE, FOREIGN_KEY_CHECKS"; SQL statement:
+SET default_with_oids = false [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.APOIOCONCEITO OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.apoioconceito OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "CREATESEQUENCE" not found; SQL statement:
+-- 
+-- TOC entry 197 (class 1259 OID 16578)
+-- Name: apoioconceito_cod_apoio_conceito_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- 
+
+CALL CreateSequence('public.apoioconceito_cod_apoio_conceito_seq', 1, 1)
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1 [90022-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:3565)
+	at org.h2.command.Parser.readFunction(Parser.java:3770)
+	at org.h2.command.Parser.readTerm(Parser.java:4305)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseCall(Parser.java:6480)
+	at org.h2.command.Parser.parsePrepared(Parser.java:905)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.APOIOCONCEITO_COD_APOIO_CONCEITO_SEQ OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.apoioconceito_cod_apoio_conceito_seq OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                 
+                    
+                                                                                                       
+   
+
+ALTER SEQUENCE PUBLIC.APOIOCONCEITO_COD_APOIO_CONCEITO_SEQ OWNED[*] BY PUBLIC.APOIOCONCEITO.COD_APOIO_CONCEITO"; SQL statement:
+-- 
+-- TOC entry 2953 (class 0 OID 0)
+-- Dependencies: 197
+-- Name: apoioconceito_cod_apoio_conceito_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- 
+
+ALTER SEQUENCE public.apoioconceito_cod_apoio_conceito_seq OWNED BY public.apoioconceito.cod_apoio_conceito [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.APOIOMATERIA OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.apoiomateria OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "CREATESEQUENCE" not found; SQL statement:
+-- 
+-- TOC entry 199 (class 1259 OID 16583)
+-- Name: apoiomateria_cod_apoio_materia_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- 
+
+CALL CreateSequence('public.apoiomateria_cod_apoio_materia_seq', 1, 1)
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1 [90022-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:3565)
+	at org.h2.command.Parser.readFunction(Parser.java:3770)
+	at org.h2.command.Parser.readTerm(Parser.java:4305)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseCall(Parser.java:6480)
+	at org.h2.command.Parser.parsePrepared(Parser.java:905)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.APOIOMATERIA_COD_APOIO_MATERIA_SEQ OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.apoiomateria_cod_apoio_materia_seq OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                 
+                    
+                                                                                                     
+   
+
+ALTER SEQUENCE PUBLIC.APOIOMATERIA_COD_APOIO_MATERIA_SEQ OWNED[*] BY PUBLIC.APOIOMATERIA.COD_APOIO_MATERIA"; SQL statement:
+-- 
+-- TOC entry 2954 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: apoiomateria_cod_apoio_materia_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- 
+
+ALTER SEQUENCE public.apoiomateria_cod_apoio_materia_seq OWNED BY public.apoiomateria.cod_apoio_materia [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.APOIONOCAO OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.apoionocao OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "CREATESEQUENCE" not found; SQL statement:
+-- 
+-- TOC entry 201 (class 1259 OID 16588)
+-- Name: apoionocao_cod_apoio_nocao_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- 
+
+CALL CreateSequence('public.apoionocao_cod_apoio_nocao_seq', 1, 1)
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1 [90022-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:3565)
+	at org.h2.command.Parser.readFunction(Parser.java:3770)
+	at org.h2.command.Parser.readTerm(Parser.java:4305)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseCall(Parser.java:6480)
+	at org.h2.command.Parser.parsePrepared(Parser.java:905)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.APOIONOCAO_COD_APOIO_NOCAO_SEQ OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.apoionocao_cod_apoio_nocao_seq OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                 
+                    
+                                                                                                 
+   
+
+ALTER SEQUENCE PUBLIC.APOIONOCAO_COD_APOIO_NOCAO_SEQ OWNED[*] BY PUBLIC.APOIONOCAO.COD_APOIO_NOCAO"; SQL statement:
+-- 
+-- TOC entry 2955 (class 0 OID 0)
+-- Dependencies: 201
+-- Name: apoionocao_cod_apoio_nocao_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- 
+
+ALTER SEQUENCE public.apoionocao_cod_apoio_nocao_seq OWNED BY public.apoionocao.cod_apoio_nocao [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.ATIVIDADE OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.atividade OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "CREATESEQUENCE" not found; SQL statement:
+-- 
+-- TOC entry 203 (class 1259 OID 16593)
+-- Name: atividade_cod_atividade_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- 
+
+CALL CreateSequence('public.atividade_cod_atividade_seq', 1, 1)
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1 [90022-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:3565)
+	at org.h2.command.Parser.readFunction(Parser.java:3770)
+	at org.h2.command.Parser.readTerm(Parser.java:4305)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseCall(Parser.java:6480)
+	at org.h2.command.Parser.parsePrepared(Parser.java:905)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.ATIVIDADE_COD_ATIVIDADE_SEQ OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.atividade_cod_atividade_seq OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                 
+                    
+                                                                                              
+   
+
+ALTER SEQUENCE PUBLIC.ATIVIDADE_COD_ATIVIDADE_SEQ OWNED[*] BY PUBLIC.ATIVIDADE.COD_ATIVIDADE"; SQL statement:
+-- 
+-- TOC entry 2956 (class 0 OID 0)
+-- Dependencies: 203
+-- Name: atividade_cod_atividade_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- 
+
+ALTER SEQUENCE public.atividade_cod_atividade_seq OWNED BY public.atividade.cod_atividade [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.AVALIACAO OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.avaliacao OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "CREATESEQUENCE" not found; SQL statement:
+-- 
+-- TOC entry 205 (class 1259 OID 16598)
+-- Name: avaliacao_cod_avaliacao_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- 
+
+CALL CreateSequence('public.avaliacao_cod_avaliacao_seq', 1, 1)
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1 [90022-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:3565)
+	at org.h2.command.Parser.readFunction(Parser.java:3770)
+	at org.h2.command.Parser.readTerm(Parser.java:4305)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseCall(Parser.java:6480)
+	at org.h2.command.Parser.parsePrepared(Parser.java:905)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.AVALIACAO_COD_AVALIACAO_SEQ OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.avaliacao_cod_avaliacao_seq OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                 
+                    
+                                                                                              
+   
+
+ALTER SEQUENCE PUBLIC.AVALIACAO_COD_AVALIACAO_SEQ OWNED[*] BY PUBLIC.AVALIACAO.COD_AVALIACAO"; SQL statement:
+-- 
+-- TOC entry 2957 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: avaliacao_cod_avaliacao_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- 
+
+ALTER SEQUENCE public.avaliacao_cod_avaliacao_seq OWNED BY public.avaliacao.cod_avaliacao [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.COMPLEXIDADE OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.complexidade OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "CREATESEQUENCE" not found; SQL statement:
+-- 
+-- TOC entry 207 (class 1259 OID 16603)
+-- Name: complexidade_cod_complexidade_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- 
+
+CALL CreateSequence('public.complexidade_cod_complexidade_seq', 1, 1)
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1 [90022-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:3565)
+	at org.h2.command.Parser.readFunction(Parser.java:3770)
+	at org.h2.command.Parser.readTerm(Parser.java:4305)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseCall(Parser.java:6480)
+	at org.h2.command.Parser.parsePrepared(Parser.java:905)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.COMPLEXIDADE_COD_COMPLEXIDADE_SEQ OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.complexidade_cod_complexidade_seq OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                 
+                    
+                                                                                                    
+   
+
+ALTER SEQUENCE PUBLIC.COMPLEXIDADE_COD_COMPLEXIDADE_SEQ OWNED[*] BY PUBLIC.COMPLEXIDADE.COD_COMPLEXIDADE"; SQL statement:
+-- 
+-- TOC entry 2958 (class 0 OID 0)
+-- Dependencies: 207
+-- Name: complexidade_cod_complexidade_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- 
+
+ALTER SEQUENCE public.complexidade_cod_complexidade_seq OWNED BY public.complexidade.cod_complexidade [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.CONCEITO OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.conceito OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "CREATESEQUENCE" not found; SQL statement:
+-- 
+-- TOC entry 209 (class 1259 OID 16611)
+-- Name: conceito_cod_conceito_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- 
+
+CALL CreateSequence('public.conceito_cod_conceito_seq', 1, 1)
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1 [90022-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:3565)
+	at org.h2.command.Parser.readFunction(Parser.java:3770)
+	at org.h2.command.Parser.readTerm(Parser.java:4305)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseCall(Parser.java:6480)
+	at org.h2.command.Parser.parsePrepared(Parser.java:905)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.CONCEITO_COD_CONCEITO_SEQ OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.conceito_cod_conceito_seq OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                 
+                    
+                                                                                            
+   
+
+ALTER SEQUENCE PUBLIC.CONCEITO_COD_CONCEITO_SEQ OWNED[*] BY PUBLIC.CONCEITO.COD_CONCEITO"; SQL statement:
+-- 
+-- TOC entry 2959 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: conceito_cod_conceito_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- 
+
+ALTER SEQUENCE public.conceito_cod_conceito_seq OWNED BY public.conceito.cod_conceito [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.ESTUDANTE OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.estudante OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "CREATESEQUENCE" not found; SQL statement:
+-- 
+-- TOC entry 211 (class 1259 OID 16619)
+-- Name: estudante_cod_estudante_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- 
+
+CALL CreateSequence('public.estudante_cod_estudante_seq', 1, 1)
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1 [90022-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:3565)
+	at org.h2.command.Parser.readFunction(Parser.java:3770)
+	at org.h2.command.Parser.readTerm(Parser.java:4305)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseCall(Parser.java:6480)
+	at org.h2.command.Parser.parsePrepared(Parser.java:905)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.ESTUDANTE_COD_ESTUDANTE_SEQ OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.estudante_cod_estudante_seq OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                 
+                    
+                                                                                              
+   
+
+ALTER SEQUENCE PUBLIC.ESTUDANTE_COD_ESTUDANTE_SEQ OWNED[*] BY PUBLIC.ESTUDANTE.COD_ESTUDANTE"; SQL statement:
+-- 
+-- TOC entry 2960 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: estudante_cod_estudante_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- 
+
+ALTER SEQUENCE public.estudante_cod_estudante_seq OWNED BY public.estudante.cod_estudante [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.INTERACAO OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.interacao OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "CREATESEQUENCE" not found; SQL statement:
+-- 
+-- TOC entry 213 (class 1259 OID 16624)
+-- Name: interacao_cod_interacao_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- 
+
+CALL CreateSequence('public.interacao_cod_interacao_seq', 1, 1)
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1 [90022-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:3565)
+	at org.h2.command.Parser.readFunction(Parser.java:3770)
+	at org.h2.command.Parser.readTerm(Parser.java:4305)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseCall(Parser.java:6480)
+	at org.h2.command.Parser.parsePrepared(Parser.java:905)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.INTERACAO_COD_INTERACAO_SEQ OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.interacao_cod_interacao_seq OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                 
+                    
+                                                                                              
+   
+
+ALTER SEQUENCE PUBLIC.INTERACAO_COD_INTERACAO_SEQ OWNED[*] BY PUBLIC.INTERACAO.COD_INTERACAO"; SQL statement:
+-- 
+-- TOC entry 2961 (class 0 OID 0)
+-- Dependencies: 213
+-- Name: interacao_cod_interacao_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- 
+
+ALTER SEQUENCE public.interacao_cod_interacao_seq OWNED BY public.interacao.cod_interacao [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.MATERIA OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.materia OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "CREATESEQUENCE" not found; SQL statement:
+-- 
+-- TOC entry 215 (class 1259 OID 16632)
+-- Name: materia_cod_materia_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- 
+
+CALL CreateSequence('public.materia_cod_materia_seq', 1, 1)
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1 [90022-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:3565)
+	at org.h2.command.Parser.readFunction(Parser.java:3770)
+	at org.h2.command.Parser.readTerm(Parser.java:4305)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseCall(Parser.java:6480)
+	at org.h2.command.Parser.parsePrepared(Parser.java:905)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.MATERIA_COD_MATERIA_SEQ OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.materia_cod_materia_seq OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                 
+                    
+                                                                                          
+   
+
+ALTER SEQUENCE PUBLIC.MATERIA_COD_MATERIA_SEQ OWNED[*] BY PUBLIC.MATERIA.COD_MATERIA"; SQL statement:
+-- 
+-- TOC entry 2962 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: materia_cod_materia_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- 
+
+ALTER SEQUENCE public.materia_cod_materia_seq OWNED BY public.materia.cod_materia [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.NOCAO OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.nocao OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "CREATESEQUENCE" not found; SQL statement:
+-- 
+-- TOC entry 217 (class 1259 OID 16640)
+-- Name: nocao_cod_nocao_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- 
+
+CALL CreateSequence('public.nocao_cod_nocao_seq', 1, 1)
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1 [90022-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:3565)
+	at org.h2.command.Parser.readFunction(Parser.java:3770)
+	at org.h2.command.Parser.readTerm(Parser.java:4305)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseCall(Parser.java:6480)
+	at org.h2.command.Parser.parsePrepared(Parser.java:905)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.NOCAO_COD_NOCAO_SEQ OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.nocao_cod_nocao_seq OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                 
+                    
+                                                                                      
+   
+
+ALTER SEQUENCE PUBLIC.NOCAO_COD_NOCAO_SEQ OWNED[*] BY PUBLIC.NOCAO.COD_NOCAO"; SQL statement:
+-- 
+-- TOC entry 2963 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: nocao_cod_nocao_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- 
+
+ALTER SEQUENCE public.nocao_cod_nocao_seq OWNED BY public.nocao.cod_nocao [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.SOLUCAO OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.solucao OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "CREATESEQUENCE" not found; SQL statement:
+-- 
+-- TOC entry 219 (class 1259 OID 16645)
+-- Name: solucao_cod_solucao_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- 
+
+CALL CreateSequence('public.solucao_cod_solucao_seq', 1, 1)
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1 [90022-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:3565)
+	at org.h2.command.Parser.readFunction(Parser.java:3770)
+	at org.h2.command.Parser.readTerm(Parser.java:4305)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseCall(Parser.java:6480)
+	at org.h2.command.Parser.parsePrepared(Parser.java:905)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE PUBLIC.SOLUCAO_COD_SOLUCAO_SEQ OWNER[*] TO POSTGRES"; expected "ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+ALTER TABLE public.solucao_cod_solucao_seq OWNER TO postgres [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                 
+                    
+                                                                                          
+   
+
+ALTER SEQUENCE PUBLIC.SOLUCAO_COD_SOLUCAO_SEQ OWNED[*] BY PUBLIC.SOLUCAO.COD_SOLUCAO"; SQL statement:
+-- 
+-- TOC entry 2964 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: solucao_cod_solucao_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- 
+
+ALTER SEQUENCE public.solucao_cod_solucao_seq OWNED BY public.solucao.cod_solucao [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                         
+   
+
+ALTER TABLE ONLY PUBLIC[*].APOIOCONCEITO ALTER COLUMN COD_APOIO_CONCEITO SET DEFAULT NEXTVAL('public.apoioconceito_cod_apoio_conceito_seq'::REGCLASS)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2755 (class 2604 OID 16647)
+-- Name: apoioconceito cod_apoio_conceito; Type: DEFAULT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.apoioconceito ALTER COLUMN cod_apoio_conceito SET DEFAULT nextval('public.apoioconceito_cod_apoio_conceito_seq'::regclass) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                       
+   
+
+ALTER TABLE ONLY PUBLIC[*].APOIOMATERIA ALTER COLUMN COD_APOIO_MATERIA SET DEFAULT NEXTVAL('public.apoiomateria_cod_apoio_materia_seq'::REGCLASS)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2756 (class 2604 OID 16648)
+-- Name: apoiomateria cod_apoio_materia; Type: DEFAULT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.apoiomateria ALTER COLUMN cod_apoio_materia SET DEFAULT nextval('public.apoiomateria_cod_apoio_materia_seq'::regclass) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                   
+   
+
+ALTER TABLE ONLY PUBLIC[*].APOIONOCAO ALTER COLUMN COD_APOIO_NOCAO SET DEFAULT NEXTVAL('public.apoionocao_cod_apoio_nocao_seq'::REGCLASS)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2757 (class 2604 OID 16649)
+-- Name: apoionocao cod_apoio_nocao; Type: DEFAULT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.apoionocao ALTER COLUMN cod_apoio_nocao SET DEFAULT nextval('public.apoionocao_cod_apoio_nocao_seq'::regclass) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                
+   
+
+ALTER TABLE ONLY PUBLIC[*].ATIVIDADE ALTER COLUMN COD_ATIVIDADE SET DEFAULT NEXTVAL('public.atividade_cod_atividade_seq'::REGCLASS)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2758 (class 2604 OID 16650)
+-- Name: atividade cod_atividade; Type: DEFAULT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.atividade ALTER COLUMN cod_atividade SET DEFAULT nextval('public.atividade_cod_atividade_seq'::regclass) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                
+   
+
+ALTER TABLE ONLY PUBLIC[*].AVALIACAO ALTER COLUMN COD_AVALIACAO SET DEFAULT NEXTVAL('public.avaliacao_cod_avaliacao_seq'::REGCLASS)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2759 (class 2604 OID 16651)
+-- Name: avaliacao cod_avaliacao; Type: DEFAULT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.avaliacao ALTER COLUMN cod_avaliacao SET DEFAULT nextval('public.avaliacao_cod_avaliacao_seq'::regclass) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                      
+   
+
+ALTER TABLE ONLY PUBLIC[*].COMPLEXIDADE ALTER COLUMN COD_COMPLEXIDADE SET DEFAULT NEXTVAL('public.complexidade_cod_complexidade_seq'::REGCLASS)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2760 (class 2604 OID 16652)
+-- Name: complexidade cod_complexidade; Type: DEFAULT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.complexidade ALTER COLUMN cod_complexidade SET DEFAULT nextval('public.complexidade_cod_complexidade_seq'::regclass) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                              
+   
+
+ALTER TABLE ONLY PUBLIC[*].CONCEITO ALTER COLUMN COD_CONCEITO SET DEFAULT NEXTVAL('public.conceito_cod_conceito_seq'::REGCLASS)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2761 (class 2604 OID 16653)
+-- Name: conceito cod_conceito; Type: DEFAULT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.conceito ALTER COLUMN cod_conceito SET DEFAULT nextval('public.conceito_cod_conceito_seq'::regclass) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                
+   
+
+ALTER TABLE ONLY PUBLIC[*].ESTUDANTE ALTER COLUMN COD_ESTUDANTE SET DEFAULT NEXTVAL('public.estudante_cod_estudante_seq'::REGCLASS)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2762 (class 2604 OID 16654)
+-- Name: estudante cod_estudante; Type: DEFAULT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.estudante ALTER COLUMN cod_estudante SET DEFAULT nextval('public.estudante_cod_estudante_seq'::regclass) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                
+   
+
+ALTER TABLE ONLY PUBLIC[*].INTERACAO ALTER COLUMN COD_INTERACAO SET DEFAULT NEXTVAL('public.interacao_cod_interacao_seq'::REGCLASS)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2763 (class 2604 OID 16655)
+-- Name: interacao cod_interacao; Type: DEFAULT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.interacao ALTER COLUMN cod_interacao SET DEFAULT nextval('public.interacao_cod_interacao_seq'::regclass) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                            
+   
+
+ALTER TABLE ONLY PUBLIC[*].MATERIA ALTER COLUMN COD_MATERIA SET DEFAULT NEXTVAL('public.materia_cod_materia_seq'::REGCLASS)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2764 (class 2604 OID 16656)
+-- Name: materia cod_materia; Type: DEFAULT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.materia ALTER COLUMN cod_materia SET DEFAULT nextval('public.materia_cod_materia_seq'::regclass) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                        
+   
+
+ALTER TABLE ONLY PUBLIC[*].NOCAO ALTER COLUMN COD_NOCAO SET DEFAULT NEXTVAL('public.nocao_cod_nocao_seq'::REGCLASS)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2765 (class 2604 OID 16657)
+-- Name: nocao cod_nocao; Type: DEFAULT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.nocao ALTER COLUMN cod_nocao SET DEFAULT nextval('public.nocao_cod_nocao_seq'::regclass) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                            
+   
+
+ALTER TABLE ONLY PUBLIC[*].SOLUCAO ALTER COLUMN COD_SOLUCAO SET DEFAULT NEXTVAL('public.solucao_cod_solucao_seq'::REGCLASS)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2766 (class 2604 OID 16658)
+-- Name: solucao cod_solucao; Type: DEFAULT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.solucao ALTER COLUMN cod_solucao SET DEFAULT nextval('public.solucao_cod_solucao_seq'::regclass) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                     
+                    
+                                                                                  
+   
+
+COPY[*] PUBLIC.APOIOCONCEITO (COD_APOIO_CONCEITO, CONTEUDO_APOIO_CONCEITO, FK_CONCEITO_COD_CONCEITO) FROM STDIN"; expected "COMMIT, CREATE, CALL, CHECKPOINT, COMMENT"; SQL statement:
+-- 
+-- TOC entry 2924 (class 0 OID 16575)
+-- Dependencies: 196
+-- Data for Name: apoioconceito; Type: TABLE DATA; Schema: public; Owner: postgres
+-- 
+
+COPY public.apoioconceito (cod_apoio_conceito, conteudo_apoio_conceito, fk_conceito_cod_conceito) FROM stdin [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement ".[*]
+
+
+   
+                                     
+                    
+                                                                                 
+   
+
+COPY PUBLIC.APOIOMATERIA (COD_APOIO_MATERIA, CONTEUDO_APOIO_MATERIA, FK_MATERIA_COD_MATERIA) FROM STDIN"; SQL statement:
+.
+
+
+-- 
+-- TOC entry 2926 (class 0 OID 16580)
+-- Dependencies: 198
+-- Data for Name: apoiomateria; Type: TABLE DATA; Schema: public; Owner: postgres
+-- 
+
+COPY public.apoiomateria (cod_apoio_materia, conteudo_apoio_materia, fk_materia_cod_materia) FROM stdin [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement ".[*]
+
+
+   
+                                     
+                    
+                                                                               
+   
+
+COPY PUBLIC.APOIONOCAO (COD_APOIO_NOCAO, CONTEUDO_APOIO_NOCAO, FK_NOCAO_COD_NOCAO) FROM STDIN"; SQL statement:
+.
+
+
+-- 
+-- TOC entry 2928 (class 0 OID 16585)
+-- Dependencies: 200
+-- Data for Name: apoionocao; Type: TABLE DATA; Schema: public; Owner: postgres
+-- 
+
+COPY public.apoionocao (cod_apoio_nocao, conteudo_apoio_nocao, fk_nocao_cod_nocao) FROM stdin [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement ".[*]
+
+
+   
+                                     
+                    
+                                                                              
+   
+
+COPY PUBLIC.ATIVIDADE (COD_ATIVIDADE, PREMISSAS, CONCLUSAO) FROM STDIN"; SQL statement:
+.
+
+
+-- 
+-- TOC entry 2930 (class 0 OID 16590)
+-- Dependencies: 202
+-- Data for Name: atividade; Type: TABLE DATA; Schema: public; Owner: postgres
+-- 
+
+COPY public.atividade (cod_atividade, premissas, conclusao) FROM stdin [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "1[*]	(A > B) * (C > D)	(A * C) > (B * D)
+2	A + B, ~A	B
+4	(A * B) > C, ~C	~(A * B)
+5	A > B, ~B	~A
+6	P * Q, R	P * R
+3	A * B	A
+7	P > Q, Q > S	~S > ~P
+8	A > (~~C), B > (~~C), A + B, D	C + D
+.
+
+
+   
+                                     
+                    
+                                                                              
+   
+
+COPY PUBLIC.AVALIACAO (FK_ESTUDANTE_COD_ESTUDANTE, FK_ATIVIDADE_COD_ATIVIDADE, COD_AVALIACAO, NOTA, FG_CONCLUIDO) FROM STDIN"; SQL statement:
+1	(a > b) * (c > d)	(a * c) > (b * d)
+2	a + b, ~a	b
+4	(a * b) > c, ~c	~(a * b)
+5	a > b, ~b	~a
+6	p * q, r	p * r
+3	a * b	a
+7	p > q, q > s	~s > ~p
+8	a > (~~c), b > (~~c), a + b, d	c + d
+.
+
+
+-- 
+-- TOC entry 2932 (class 0 OID 16595)
+-- Dependencies: 204
+-- Data for Name: avaliacao; Type: TABLE DATA; Schema: public; Owner: postgres
+-- 
+
+COPY public.avaliacao (fk_estudante_cod_estudante, fk_atividade_cod_atividade, cod_avaliacao, nota, fg_concluido) FROM stdin [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "1[*]	3	1	10	T
+1	3	2	10	T
+1	3	3	10	T
+1	2	6	8.5	T
+1	1	11	10	T
+1	5	7	8	T
+1	4	8	9	T
+1	3	9	3	T
+1	4	4	1	T
+1	6	5	5	T
+1	6	10	6	T
+1	7	12	7.5	T
+1	8	13	10	T
+1	8	14	10	T
+1	8	15	10	T
+1	8	16	10	T
+.
+
+
+   
+                                     
+                    
+                                                                                 
+   
+
+COPY PUBLIC.COMPLEXIDADE (FK_CONCEITO_COD_CONCEITO, FK_ATIVIDADE_COD_ATIVIDADE, COD_COMPLEXIDADE, VALOR) FROM STDIN"; SQL statement:
+1	3	1	10	t
+1	3	2	10	t
+1	3	3	10	t
+1	2	6	8.5	t
+1	1	11	10	t
+1	5	7	8	t
+1	4	8	9	t
+1	3	9	3	t
+1	4	4	1	t
+1	6	5	5	t
+1	6	10	6	t
+1	7	12	7.5	t
+1	8	13	10	t
+1	8	14	10	t
+1	8	15	10	t
+1	8	16	10	t
+.
+
+
+-- 
+-- TOC entry 2934 (class 0 OID 16600)
+-- Dependencies: 206
+-- Data for Name: complexidade; Type: TABLE DATA; Schema: public; Owner: postgres
+-- 
+
+COPY public.complexidade (fk_conceito_cod_conceito, fk_atividade_cod_atividade, cod_complexidade, valor) FROM stdin [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "6[*]	5	1	1
+1	5	2	1
+7	5	3	1
+2	6	4	1
+1	6	5	1
+6	4	6	1
+1	4	7	1
+7	4	8	1
+2	3	9	1
+2	1	10	4
+6	1	11	2
+1	1	12	1
+5	1	13	1
+6	7	14	2
+1	7	15	1
+7	7	16	1
+5	7	17	1
+3	8	18	1
+4	8	19	1
+8	8	20	1
+.
+
+
+   
+                                     
+                    
+                                                                             
+   
+
+COPY PUBLIC.CONCEITO (COD_CONCEITO, NOME_CONCEITO, LISTA_ANT_CONCEITO, LISTA_PROX_CONCEITO, FK_NOCAO_COD_NOCAO) FROM STDIN"; SQL statement:
+6	5	1	1
+1	5	2	1
+7	5	3	1
+2	6	4	1
+1	6	5	1
+6	4	6	1
+1	4	7	1
+7	4	8	1
+2	3	9	1
+2	1	10	4
+6	1	11	2
+1	1	12	1
+5	1	13	1
+6	7	14	2
+1	7	15	1
+7	7	16	1
+5	7	17	1
+3	8	18	1
+4	8	19	1
+8	8	20	1
+.
+
+
+-- 
+-- TOC entry 2936 (class 0 OID 16605)
+-- Dependencies: 208
+-- Data for Name: conceito; Type: TABLE DATA; Schema: public; Owner: postgres
+-- 
+
+COPY public.conceito (cod_conceito, nome_conceito, lista_ant_conceito, lista_prox_conceito, fk_nocao_cod_nocao) FROM stdin [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "1[*]	INTRODUÇÃO DA CONJUNÇÃO	2,3,8	2,3,6,8	1
+2	ELIMINAÇÃO DA CONJUNÇÃO	1,3,8	1,3,6,8	1
+3	INTRODUÇÃO DA DISJUNÇÃO	1,2,8	1,2,6,8	2
+8	ELIMINAÇÃO DA NEGAÇÃO	1,2,3	1,2,3,6	4
+6	ELIMINAÇÃO DA IMPLICAÇÃO	1,2,3,8	4	3
+4	ELIMINAÇÃO DA DISJUNÇÃO	6	5,7	2
+5	INTRODUÇÃO DA IMPLICAÇÃO	4,7	7,9,12	3
+7	INTRODUÇÃO DA NEGAÇÃO	4,5	5,9,12	4
+9	INTRODUÇÃO DO QUANTIFICADOR EXISTENCIAL	5,7,12	10,11,12	5
+12	ELIMINAÇÃO DO QUANTIFICADOR UNIVERSAL	5,7,9	9,10,11	6
+10	ELIMINAÇÃO DO QUANTIFICADOR EXISTENCIAL	9,11,12	11	5
+11	INTRODUÇÃO DO QUANTIFICADOR UNIVERSAL	9,10,12	10	6
+.
+
+
+   
+                                     
+                    
+                                                                              
+   
+
+COPY PUBLIC.ESTUDANTE (COD_ESTUDANTE, NOME, IDADE, GENERO, ESTADO_ATUAL, CAMINHO_SEGUIDO, TABELA_CONCEITOS) FROM STDIN"; SQL statement:
+1	Introdução da conjunção	2,3,8	2,3,6,8	1
+2	Eliminação da conjunção	1,3,8	1,3,6,8	1
+3	Introdução da disjunção	1,2,8	1,2,6,8	2
+8	Eliminação da negação	1,2,3	1,2,3,6	4
+6	Eliminação da implicação	1,2,3,8	4	3
+4	Eliminação da disjunção	6	5,7	2
+5	Introdução da implicação	4,7	7,9,12	3
+7	Introdução da negação	4,5	5,9,12	4
+9	Introdução do quantificador existencial	5,7,12	10,11,12	5
+12	Eliminação do quantificador universal	5,7,9	9,10,11	6
+10	Eliminação do quantificador existencial	9,11,12	11	5
+11	Introdução do quantificador universal	9,10,12	10	6
+.
+
+
+-- 
+-- TOC entry 2938 (class 0 OID 16613)
+-- Dependencies: 210
+-- Data for Name: estudante; Type: TABLE DATA; Schema: public; Owner: postgres
+-- 
+
+COPY public.estudante (cod_estudante, nome, idade, genero, estado_atual, caminho_seguido, tabela_conceitos) FROM stdin [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "1[*]	IGOR	24	MASCULINO	N	N	N
+.
+
+
+   
+                                     
+                    
+                                                                              
+   
+
+COPY PUBLIC.INTERACAO (COD_INTERACAO, TIPO, OBS, DATA, FK_ATIVIDADE_COD_ATIVIDADE, FK_ESTUDANTE_COD_ESTUDANTE) FROM STDIN"; SQL statement:
+1	Igor	24	Masculino	N	N	N
+.
+
+
+-- 
+-- TOC entry 2940 (class 0 OID 16621)
+-- Dependencies: 212
+-- Data for Name: interacao; Type: TABLE DATA; Schema: public; Owner: postgres
+-- 
+
+COPY public.interacao (cod_interacao, tipo, obs, data, fk_atividade_cod_atividade, fk_estudante_cod_estudante) FROM stdin [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement ".[*]
+
+
+   
+                                     
+                    
+                                                                            
+   
+
+COPY PUBLIC.MATERIA (COD_MATERIA, NOME_MATERIA, LISTA_ANT_MATERIA, LISTA_PROX_MATERIA) FROM STDIN"; SQL statement:
+.
+
+
+-- 
+-- TOC entry 2942 (class 0 OID 16626)
+-- Dependencies: 214
+-- Data for Name: materia; Type: TABLE DATA; Schema: public; Owner: postgres
+-- 
+
+COPY public.materia (cod_materia, nome_materia, lista_ant_materia, lista_prox_materia) FROM stdin [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "1[*]	LÓGICA PROPOSICIONAL	N	N
+2	LÓGICA DE PREDICADOS	N	N
+.
+
+
+   
+                                     
+                    
+                                                                          
+   
+
+COPY PUBLIC.NOCAO (COD_NOCAO, NOME_NOCAO, LISTA_ANT_NOCAO, LISTA_PROX_NOCAO, FK_MATERIA_COD_MATERIA) FROM STDIN"; SQL statement:
+1	Lógica proposicional	N	N
+2	Lógica de predicados	N	N
+.
+
+
+-- 
+-- TOC entry 2944 (class 0 OID 16634)
+-- Dependencies: 216
+-- Data for Name: nocao; Type: TABLE DATA; Schema: public; Owner: postgres
+-- 
+
+COPY public.nocao (cod_nocao, nome_nocao, lista_ant_nocao, lista_prox_nocao, fk_materia_cod_materia) FROM stdin [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "1[*]	CONJUNÇÃO	N	N	1
+2	DISJUNÇÃO	N	N	1
+3	IMPLICAÇÃO	N	N	1
+4	NEGAÇÃO	N	N	1
+5	QUANTIFICADOR EXISTENCIAL	N	N	2
+6	QUANTIFICADOR UNIVERSAL	N	N	2
+.
+
+
+   
+                                     
+                    
+                                                                            
+   
+
+COPY PUBLIC.SOLUCAO (COD_SOLUCAO, SEQUENCIA, FK_ATIVIDADE_COD_ATIVIDADE, DIFICULDADE) FROM STDIN"; SQL statement:
+1	Conjunção	N	N	1
+2	Disjunção	N	N	1
+3	Implicação	N	N	1
+4	Negação	N	N	1
+5	Quantificador existencial	N	N	2
+6	Quantificador universal	N	N	2
+.
+
+
+-- 
+-- TOC entry 2946 (class 0 OID 16642)
+-- Dependencies: 218
+-- Data for Name: solucao; Type: TABLE DATA; Schema: public; Owner: postgres
+-- 
+
+COPY public.solucao (cod_solucao, sequencia, fk_atividade_cod_atividade, dificuldade) FROM stdin [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "2	H{a}[*]" [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "6[*],1,3"; SQL statement:
+6,1,3 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "1[*],2,4"; SQL statement:
+1,2,4 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "7[*],3,5	5	6
+1	2,1"; SQL statement:
+7,3,5	5	6
+1	2,1 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "1,3,2	6	4
+3	H{a*b}[*]" [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "6[*],1,3"; SQL statement:
+6,1,3 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "1[*],2,4"; SQL statement:
+1,2,4 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "7[*],3,5	4	6
+4	2,1	3	2
+5	2,1"; SQL statement:
+7,3,5	4	6
+4	2,1	3	2
+5	2,1 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "2[*],1"; SQL statement:
+2,1 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "H{a*c}[*]" [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "2[*],4"; SQL statement:
+2,4 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "2[*],4"; SQL statement:
+2,4 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "6[*],5,2"; SQL statement:
+6,5,2 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "6[*],6,3"; SQL statement:
+6,6,3 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "1[*],7,8"; SQL statement:
+1,7,8 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "5,4,9	1	10
+6	H{~s}[*]" [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "H{p}[*]" [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "6[*],1,4"; SQL statement:
+6,1,4 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "6[*],2,5"; SQL statement:
+6,2,5 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "1[*],3,6"; SQL statement:
+1,3,6 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "7[*],4,7"; SQL statement:
+7,4,7 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "5[*],3,8	7	9
+7	4,1,2,3"; SQL statement:
+5,3,8	7	9
+7	4,1,2,3 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "8[*],5"; SQL statement:
+8,5 [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "3[*],6,4	8	7
+.
+
+
+   
+                                 
+                    
+                                                                                                  
+   
+
+SELECT PG_CATALOG.SETVAL('public.apoioconceito_cod_apoio_conceito_seq', 1, FALSE)"; SQL statement:
+3,6,4	8	7
+.
+
+
+-- 
+-- TOC entry 2965 (class 0 OID 0)
+-- Dependencies: 197
+-- Name: apoioconceito_cod_apoio_conceito_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- 
+
+SELECT pg_catalog.setval('public.apoioconceito_cod_apoio_conceito_seq', 1, false) [42000-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Schema "PG_CATALOG" not found; SQL statement:
+-- 
+-- TOC entry 2966 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: apoiomateria_cod_apoio_materia_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- 
+
+SELECT pg_catalog.setval('public.apoiomateria_cod_apoio_materia_seq', 1, false) [90079-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.engine.Database.getSchema(Database.java:1936)
+	at org.h2.command.Parser.readTermObjectDot(Parser.java:4189)
+	at org.h2.command.Parser.readTerm(Parser.java:4307)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseSelectExpressions(Parser.java:2931)
+	at org.h2.command.Parser.parseSelect(Parser.java:2952)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Schema "PG_CATALOG" not found; SQL statement:
+-- 
+-- TOC entry 2967 (class 0 OID 0)
+-- Dependencies: 201
+-- Name: apoionocao_cod_apoio_nocao_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- 
+
+SELECT pg_catalog.setval('public.apoionocao_cod_apoio_nocao_seq', 1, false) [90079-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.engine.Database.getSchema(Database.java:1936)
+	at org.h2.command.Parser.readTermObjectDot(Parser.java:4189)
+	at org.h2.command.Parser.readTerm(Parser.java:4307)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseSelectExpressions(Parser.java:2931)
+	at org.h2.command.Parser.parseSelect(Parser.java:2952)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Schema "PG_CATALOG" not found; SQL statement:
+-- 
+-- TOC entry 2968 (class 0 OID 0)
+-- Dependencies: 203
+-- Name: atividade_cod_atividade_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- 
+
+SELECT pg_catalog.setval('public.atividade_cod_atividade_seq', 8, true) [90079-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.engine.Database.getSchema(Database.java:1936)
+	at org.h2.command.Parser.readTermObjectDot(Parser.java:4189)
+	at org.h2.command.Parser.readTerm(Parser.java:4307)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseSelectExpressions(Parser.java:2931)
+	at org.h2.command.Parser.parseSelect(Parser.java:2952)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Schema "PG_CATALOG" not found; SQL statement:
+-- 
+-- TOC entry 2969 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: avaliacao_cod_avaliacao_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- 
+
+SELECT pg_catalog.setval('public.avaliacao_cod_avaliacao_seq', 16, true) [90079-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.engine.Database.getSchema(Database.java:1936)
+	at org.h2.command.Parser.readTermObjectDot(Parser.java:4189)
+	at org.h2.command.Parser.readTerm(Parser.java:4307)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseSelectExpressions(Parser.java:2931)
+	at org.h2.command.Parser.parseSelect(Parser.java:2952)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Schema "PG_CATALOG" not found; SQL statement:
+-- 
+-- TOC entry 2970 (class 0 OID 0)
+-- Dependencies: 207
+-- Name: complexidade_cod_complexidade_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- 
+
+SELECT pg_catalog.setval('public.complexidade_cod_complexidade_seq', 20, true) [90079-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.engine.Database.getSchema(Database.java:1936)
+	at org.h2.command.Parser.readTermObjectDot(Parser.java:4189)
+	at org.h2.command.Parser.readTerm(Parser.java:4307)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseSelectExpressions(Parser.java:2931)
+	at org.h2.command.Parser.parseSelect(Parser.java:2952)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Schema "PG_CATALOG" not found; SQL statement:
+-- 
+-- TOC entry 2971 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: conceito_cod_conceito_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- 
+
+SELECT pg_catalog.setval('public.conceito_cod_conceito_seq', 12, true) [90079-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.engine.Database.getSchema(Database.java:1936)
+	at org.h2.command.Parser.readTermObjectDot(Parser.java:4189)
+	at org.h2.command.Parser.readTerm(Parser.java:4307)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseSelectExpressions(Parser.java:2931)
+	at org.h2.command.Parser.parseSelect(Parser.java:2952)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Schema "PG_CATALOG" not found; SQL statement:
+-- 
+-- TOC entry 2972 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: estudante_cod_estudante_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- 
+
+SELECT pg_catalog.setval('public.estudante_cod_estudante_seq', 1, true) [90079-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.engine.Database.getSchema(Database.java:1936)
+	at org.h2.command.Parser.readTermObjectDot(Parser.java:4189)
+	at org.h2.command.Parser.readTerm(Parser.java:4307)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseSelectExpressions(Parser.java:2931)
+	at org.h2.command.Parser.parseSelect(Parser.java:2952)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Schema "PG_CATALOG" not found; SQL statement:
+-- 
+-- TOC entry 2973 (class 0 OID 0)
+-- Dependencies: 213
+-- Name: interacao_cod_interacao_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- 
+
+SELECT pg_catalog.setval('public.interacao_cod_interacao_seq', 1, false) [90079-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.engine.Database.getSchema(Database.java:1936)
+	at org.h2.command.Parser.readTermObjectDot(Parser.java:4189)
+	at org.h2.command.Parser.readTerm(Parser.java:4307)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseSelectExpressions(Parser.java:2931)
+	at org.h2.command.Parser.parseSelect(Parser.java:2952)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Schema "PG_CATALOG" not found; SQL statement:
+-- 
+-- TOC entry 2974 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: materia_cod_materia_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- 
+
+SELECT pg_catalog.setval('public.materia_cod_materia_seq', 2, true) [90079-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.engine.Database.getSchema(Database.java:1936)
+	at org.h2.command.Parser.readTermObjectDot(Parser.java:4189)
+	at org.h2.command.Parser.readTerm(Parser.java:4307)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseSelectExpressions(Parser.java:2931)
+	at org.h2.command.Parser.parseSelect(Parser.java:2952)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Schema "PG_CATALOG" not found; SQL statement:
+-- 
+-- TOC entry 2975 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: nocao_cod_nocao_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- 
+
+SELECT pg_catalog.setval('public.nocao_cod_nocao_seq', 6, true) [90079-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.engine.Database.getSchema(Database.java:1936)
+	at org.h2.command.Parser.readTermObjectDot(Parser.java:4189)
+	at org.h2.command.Parser.readTerm(Parser.java:4307)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseSelectExpressions(Parser.java:2931)
+	at org.h2.command.Parser.parseSelect(Parser.java:2952)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Schema "PG_CATALOG" not found; SQL statement:
+-- 
+-- TOC entry 2976 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: solucao_cod_solucao_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- 
+
+SELECT pg_catalog.setval('public.solucao_cod_solucao_seq', 7, true) [90079-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.engine.Database.getSchema(Database.java:1936)
+	at org.h2.command.Parser.readTermObjectDot(Parser.java:4189)
+	at org.h2.command.Parser.readTerm(Parser.java:4307)
+	at org.h2.command.Parser.readFactor(Parser.java:3343)
+	at org.h2.command.Parser.readSum(Parser.java:3330)
+	at org.h2.command.Parser.readConcat(Parser.java:3305)
+	at org.h2.command.Parser.readCondition(Parser.java:3108)
+	at org.h2.command.Parser.readExpression(Parser.java:3059)
+	at org.h2.command.Parser.parseSelectExpressions(Parser.java:2931)
+	at org.h2.command.Parser.parseSelect(Parser.java:2952)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                            
+   
+
+ALTER TABLE ONLY PUBLIC[*].APOIOCONCEITO
+    ADD CONSTRAINT APOIOCONCEITO_PKEY PRIMARY KEY (COD_APOIO_CONCEITO)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2768 (class 2606 OID 16660)
+-- Name: apoioconceito apoioconceito_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.apoioconceito
+    ADD CONSTRAINT apoioconceito_pkey PRIMARY KEY (cod_apoio_conceito) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                          
+   
+
+ALTER TABLE ONLY PUBLIC[*].APOIOMATERIA
+    ADD CONSTRAINT APOIOMATERIA_PKEY PRIMARY KEY (COD_APOIO_MATERIA)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2770 (class 2606 OID 16662)
+-- Name: apoiomateria apoiomateria_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.apoiomateria
+    ADD CONSTRAINT apoiomateria_pkey PRIMARY KEY (cod_apoio_materia) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                      
+   
+
+ALTER TABLE ONLY PUBLIC[*].APOIONOCAO
+    ADD CONSTRAINT APOIONOCAO_PKEY PRIMARY KEY (COD_APOIO_NOCAO)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2772 (class 2606 OID 16664)
+-- Name: apoionocao apoionocao_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.apoionocao
+    ADD CONSTRAINT apoionocao_pkey PRIMARY KEY (cod_apoio_nocao) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                    
+   
+
+ALTER TABLE ONLY PUBLIC[*].ATIVIDADE
+    ADD CONSTRAINT ATIVIDADE_PKEY PRIMARY KEY (COD_ATIVIDADE)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2774 (class 2606 OID 16666)
+-- Name: atividade atividade_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.atividade
+    ADD CONSTRAINT atividade_pkey PRIMARY KEY (cod_atividade) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                    
+   
+
+ALTER TABLE ONLY PUBLIC[*].AVALIACAO
+    ADD CONSTRAINT AVALIACAO_PKEY PRIMARY KEY (COD_AVALIACAO)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2776 (class 2606 OID 16668)
+-- Name: avaliacao avaliacao_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.avaliacao
+    ADD CONSTRAINT avaliacao_pkey PRIMARY KEY (cod_avaliacao) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                          
+   
+
+ALTER TABLE ONLY PUBLIC[*].COMPLEXIDADE
+    ADD CONSTRAINT COMPLEXIDADE_PKEY PRIMARY KEY (COD_COMPLEXIDADE)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2778 (class 2606 OID 16670)
+-- Name: complexidade complexidade_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.complexidade
+    ADD CONSTRAINT complexidade_pkey PRIMARY KEY (cod_complexidade) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                  
+   
+
+ALTER TABLE ONLY PUBLIC[*].CONCEITO
+    ADD CONSTRAINT CONCEITO_PKEY PRIMARY KEY (COD_CONCEITO)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2780 (class 2606 OID 16672)
+-- Name: conceito conceito_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.conceito
+    ADD CONSTRAINT conceito_pkey PRIMARY KEY (cod_conceito) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                    
+   
+
+ALTER TABLE ONLY PUBLIC[*].ESTUDANTE
+    ADD CONSTRAINT ESTUDANTE_PKEY PRIMARY KEY (COD_ESTUDANTE)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2782 (class 2606 OID 16674)
+-- Name: estudante estudante_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.estudante
+    ADD CONSTRAINT estudante_pkey PRIMARY KEY (cod_estudante) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                    
+   
+
+ALTER TABLE ONLY PUBLIC[*].INTERACAO
+    ADD CONSTRAINT INTERACAO_PKEY PRIMARY KEY (COD_INTERACAO)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2784 (class 2606 OID 16676)
+-- Name: interacao interacao_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.interacao
+    ADD CONSTRAINT interacao_pkey PRIMARY KEY (cod_interacao) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                
+   
+
+ALTER TABLE ONLY PUBLIC[*].MATERIA
+    ADD CONSTRAINT MATERIA_PKEY PRIMARY KEY (COD_MATERIA)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2786 (class 2606 OID 16678)
+-- Name: materia materia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.materia
+    ADD CONSTRAINT materia_pkey PRIMARY KEY (cod_materia) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                            
+   
+
+ALTER TABLE ONLY PUBLIC[*].NOCAO
+    ADD CONSTRAINT NOCAO_PKEY PRIMARY KEY (COD_NOCAO)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2788 (class 2606 OID 16680)
+-- Name: nocao nocao_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.nocao
+    ADD CONSTRAINT nocao_pkey PRIMARY KEY (cod_nocao) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                
+   
+
+ALTER TABLE ONLY PUBLIC[*].SOLUCAO
+    ADD CONSTRAINT SOLUCAO_PKEY PRIMARY KEY (COD_SOLUCAO)"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2790 (class 2606 OID 16682)
+-- Name: solucao solucao_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.solucao
+    ADD CONSTRAINT solucao_pkey PRIMARY KEY (cod_solucao) [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                               
+   
+
+ALTER TABLE ONLY PUBLIC[*].APOIOCONCEITO
+    ADD CONSTRAINT FK_APOIOCONCEITO_2 FOREIGN KEY (FK_CONCEITO_COD_CONCEITO) REFERENCES PUBLIC.CONCEITO(COD_CONCEITO) ON DELETE CASCADE"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2791 (class 2606 OID 16683)
+-- Name: apoioconceito fk_apoioconceito_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.apoioconceito
+    ADD CONSTRAINT fk_apoioconceito_2 FOREIGN KEY (fk_conceito_cod_conceito) REFERENCES public.conceito(cod_conceito) ON DELETE CASCADE [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                             
+   
+
+ALTER TABLE ONLY PUBLIC[*].APOIOMATERIA
+    ADD CONSTRAINT FK_APOIOMATERIA_2 FOREIGN KEY (FK_MATERIA_COD_MATERIA) REFERENCES PUBLIC.MATERIA(COD_MATERIA) ON DELETE CASCADE"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2792 (class 2606 OID 16688)
+-- Name: apoiomateria fk_apoiomateria_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.apoiomateria
+    ADD CONSTRAINT fk_apoiomateria_2 FOREIGN KEY (fk_materia_cod_materia) REFERENCES public.materia(cod_materia) ON DELETE CASCADE [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                         
+   
+
+ALTER TABLE ONLY PUBLIC[*].APOIONOCAO
+    ADD CONSTRAINT FK_APOIONOCAO_2 FOREIGN KEY (FK_NOCAO_COD_NOCAO) REFERENCES PUBLIC.NOCAO(COD_NOCAO) ON DELETE CASCADE"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2793 (class 2606 OID 16693)
+-- Name: apoionocao fk_apoionocao_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.apoionocao
+    ADD CONSTRAINT fk_apoionocao_2 FOREIGN KEY (fk_nocao_cod_nocao) REFERENCES public.nocao(cod_nocao) ON DELETE CASCADE [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                       
+   
+
+ALTER TABLE ONLY PUBLIC[*].AVALIACAO
+    ADD CONSTRAINT FK_AVALIACAO_2 FOREIGN KEY (FK_ESTUDANTE_COD_ESTUDANTE) REFERENCES PUBLIC.ESTUDANTE(COD_ESTUDANTE) ON DELETE SET NULL"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2794 (class 2606 OID 16698)
+-- Name: avaliacao fk_avaliacao_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.avaliacao
+    ADD CONSTRAINT fk_avaliacao_2 FOREIGN KEY (fk_estudante_cod_estudante) REFERENCES public.estudante(cod_estudante) ON DELETE SET NULL [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                       
+   
+
+ALTER TABLE ONLY PUBLIC[*].AVALIACAO
+    ADD CONSTRAINT FK_AVALIACAO_3 FOREIGN KEY (FK_ATIVIDADE_COD_ATIVIDADE) REFERENCES PUBLIC.ATIVIDADE(COD_ATIVIDADE) ON DELETE SET NULL"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2795 (class 2606 OID 16703)
+-- Name: avaliacao fk_avaliacao_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.avaliacao
+    ADD CONSTRAINT fk_avaliacao_3 FOREIGN KEY (fk_atividade_cod_atividade) REFERENCES public.atividade(cod_atividade) ON DELETE SET NULL [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                             
+   
+
+ALTER TABLE ONLY PUBLIC[*].COMPLEXIDADE
+    ADD CONSTRAINT FK_COMPLEXIDADE_2 FOREIGN KEY (FK_CONCEITO_COD_CONCEITO) REFERENCES PUBLIC.CONCEITO(COD_CONCEITO) ON DELETE RESTRICT"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2796 (class 2606 OID 16708)
+-- Name: complexidade fk_complexidade_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.complexidade
+    ADD CONSTRAINT fk_complexidade_2 FOREIGN KEY (fk_conceito_cod_conceito) REFERENCES public.conceito(cod_conceito) ON DELETE RESTRICT [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                             
+   
+
+ALTER TABLE ONLY PUBLIC[*].COMPLEXIDADE
+    ADD CONSTRAINT FK_COMPLEXIDADE_3 FOREIGN KEY (FK_ATIVIDADE_COD_ATIVIDADE) REFERENCES PUBLIC.ATIVIDADE(COD_ATIVIDADE) ON DELETE SET NULL"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2797 (class 2606 OID 16713)
+-- Name: complexidade fk_complexidade_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.complexidade
+    ADD CONSTRAINT fk_complexidade_3 FOREIGN KEY (fk_atividade_cod_atividade) REFERENCES public.atividade(cod_atividade) ON DELETE SET NULL [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                     
+   
+
+ALTER TABLE ONLY PUBLIC[*].CONCEITO
+    ADD CONSTRAINT FK_CONCEITO_2 FOREIGN KEY (FK_NOCAO_COD_NOCAO) REFERENCES PUBLIC.NOCAO(COD_NOCAO) ON DELETE CASCADE"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2798 (class 2606 OID 16718)
+-- Name: conceito fk_conceito_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.conceito
+    ADD CONSTRAINT fk_conceito_2 FOREIGN KEY (fk_nocao_cod_nocao) REFERENCES public.nocao(cod_nocao) ON DELETE CASCADE [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                       
+   
+
+ALTER TABLE ONLY PUBLIC[*].INTERACAO
+    ADD CONSTRAINT FK_INTERACAO_2 FOREIGN KEY (FK_ATIVIDADE_COD_ATIVIDADE) REFERENCES PUBLIC.ATIVIDADE(COD_ATIVIDADE) ON DELETE CASCADE"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2799 (class 2606 OID 16723)
+-- Name: interacao fk_interacao_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.interacao
+    ADD CONSTRAINT fk_interacao_2 FOREIGN KEY (fk_atividade_cod_atividade) REFERENCES public.atividade(cod_atividade) ON DELETE CASCADE [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                       
+   
+
+ALTER TABLE ONLY PUBLIC[*].INTERACAO
+    ADD CONSTRAINT FK_INTERACAO_3 FOREIGN KEY (FK_ESTUDANTE_COD_ESTUDANTE) REFERENCES PUBLIC.ESTUDANTE(COD_ESTUDANTE) ON DELETE CASCADE"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2800 (class 2606 OID 16728)
+-- Name: interacao fk_interacao_3; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.interacao
+    ADD CONSTRAINT fk_interacao_3 FOREIGN KEY (fk_estudante_cod_estudante) REFERENCES public.estudante(cod_estudante) ON DELETE CASCADE [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                               
+   
+
+ALTER TABLE ONLY PUBLIC[*].NOCAO
+    ADD CONSTRAINT FK_NOCAO_2 FOREIGN KEY (FK_MATERIA_COD_MATERIA) REFERENCES PUBLIC.MATERIA(COD_MATERIA) ON DELETE CASCADE"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2801 (class 2606 OID 16733)
+-- Name: nocao fk_nocao_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.nocao
+    ADD CONSTRAINT fk_nocao_2 FOREIGN KEY (fk_materia_cod_materia) REFERENCES public.materia(cod_materia) ON DELETE CASCADE [42001-200]
+2019-10-28 19:36:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "   
+                                        
+                                                                                   
+   
+
+ALTER TABLE ONLY PUBLIC[*].SOLUCAO
+    ADD CONSTRAINT FK_SOLUCAO_2 FOREIGN KEY (FK_ATIVIDADE_COD_ATIVIDADE) REFERENCES PUBLIC.ATIVIDADE(COD_ATIVIDADE) ON DELETE CASCADE"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+-- 
+-- TOC entry 2802 (class 2606 OID 16738)
+-- Name: solucao fk_solucao_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- 
+
+ALTER TABLE ONLY public.solucao
+    ADD CONSTRAINT fk_solucao_2 FOREIGN KEY (fk_atividade_cod_atividade) REFERENCES public.atividade(cod_atividade) ON DELETE CASCADE [42001-200]
+2019-10-28 19:38:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Attempt to define a second primary key; SQL statement:
+ALTER TABLE NOCAO ADD PRIMARY KEY (NOME_NOCAO) [90017-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.message.DbException.get(DbException.java:170)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:129)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:78)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:228)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:38:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "COD_COLUCAO" not found; SQL statement:
+ALTER TABLE SOLUCAO ADD PRIMARY KEY (COD_COLUCAO) [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.table.Table.getColumn(Table.java:703)
+	at org.h2.table.IndexColumn.mapColumns(IndexColumn.java:115)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:123)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:78)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:228)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:39:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "COD_VALIACAO" not found; SQL statement:
+ALTER TABLE AVALIACAO ADD PRIMARY KEY (COD_VALIACAO) [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.table.Table.getColumn(Table.java:703)
+	at org.h2.table.IndexColumn.mapColumns(IndexColumn.java:115)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:123)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:78)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:228)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:39:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "COD_APOIONOCAO" not found; SQL statement:
+ALTER TABLE APOIONOCAO ADD PRIMARY KEY (COD_APOIONOCAO) [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.table.Table.getColumn(Table.java:703)
+	at org.h2.table.IndexColumn.mapColumns(IndexColumn.java:115)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:123)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:78)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:228)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:50:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "DB.DEFAULT.URL" not found; SQL statement:
+SELECT * FROM CSVREAD(db.default.url="jdbc:h2:~/data/db") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:190)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:39)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:50:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "DB.DEFAULT.URL" not found; SQL statement:
+SELECT * FROM CSVREAD(db.default.url="jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:190)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:39)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:51:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "db.default.url='jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv'" not found; SQL statement:
+SELECT * FROM CSVREAD("db.default.url='jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv'") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:39)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:52:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM CSVREAD(C:[*]\USERS\IGOR\DOCUMENTS\NETBEANSPROJECTS\LOGICITS\H2)"; expected "(, ., [, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+SELECT * FROM CSVREAD(C:\Users\Igor\Documents\NetBeansProjects\logicits\h2) [42001-200]
+2019-10-28 19:52:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM CSVREAD(C:[*]\USERS\IGOR\DOCUMENTS\NETBEANSPROJECTS\LOGICITS\H2/SOLUCAO.CSV)"; expected "(, ., [, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+SELECT * FROM CSVREAD(C:\Users\Igor\Documents\NetBeansProjects\logicits\h2/solucao.csv) [42001-200]
+2019-10-28 19:52:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "C:\Users\Igor\Documents\NetBeansProjects\logicits\h2/solucao.csv" not found; SQL statement:
+SELECT * FROM CSVREAD("C:\Users\Igor\Documents\NetBeansProjects\logicits\h2/solucao.csv") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:39)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:53:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "C:/Users/Igor/Documents/NetBeansProjects/logicits/h2/solucao.csv" not found; SQL statement:
+SELECT * FROM CSVREAD("C:/Users/Igor/Documents/NetBeansProjects/logicits/h2/solucao.csv") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:39)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:54:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "DB.DEFAULT.URL" not found; SQL statement:
+SELECT * FROM CSVREAD(db.default.url="jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:190)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:39)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:54:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "DB.DEFAULT.URL" not found; SQL statement:
+SELECT * FROM CSVREAD(db.default.url="jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:190)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:39)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:54:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "DB.DEFAULT.URL" not found; SQL statement:
+SELECT * FROM CSVREAD(db.default.url="jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:190)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:39)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:54:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "DB.DEFAULT.URL" not found; SQL statement:
+SELECT * FROM CSVREAD(db.default.url="jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:190)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:39)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:54:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "DB.DEFAULT.URL" not found; SQL statement:
+SELECT * FROM CSVREAD(db.default.url="jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:190)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:39)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:54:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "DB.DEFAULT.URL" not found; SQL statement:
+SELECT * FROM CSVREAD(db.default.url="jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:190)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:39)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:54:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "DB.DEFAULT.URL" not found; SQL statement:
+SELECT * FROM CSVREAD(db.default.url="jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:190)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:39)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 19:55:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "db.default.url='jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv'" not found; SQL statement:
+SELECT * FROM CSVREAD("db.default.url='jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv'") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:39)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 20:06:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "./solucao.csv'" not found; SQL statement:
+SELECT * FROM CSVREAD("./solucao.csv'") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.function.Function.optimize(Function.java:2594)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:39)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+2019-10-28 20:07:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: IO Exception: "IOException reading solucao.csv"; SQL statement:
+SELECT * FROM CSVREAD('solucao.csv') [90028-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.tools.Csv.convertException(Csv.java:572)
+	at org.h2.tools.Csv.read(Csv.java:180)
+	at org.h2.expression.function.Function.getValueForColumnList(Function.java:3096)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:51)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.io.FileNotFoundException: solucao.csv (O sistema não pode encontrar o arquivo especificado)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at org.h2.store.fs.FilePathDisk.newInputStream(FilePathDisk.java:337)
+	at org.h2.store.fs.FileUtils.newInputStream(FileUtils.java:224)
+	at org.h2.tools.Csv.initRead(Csv.java:298)
+	at org.h2.tools.Csv.readResultSet(Csv.java:202)
+	at org.h2.tools.Csv.read(Csv.java:178)
+	... 25 more
+2019-10-28 20:07:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM CSVREAD('db.default.url='jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv[*]');"; SQL statement:
+SELECT * FROM CSVREAD('db.default.url='jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv'); [42000-200]
+2019-10-28 20:07:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: IO Exception: "IOException reading db.default.url=""jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv"""; SQL statement:
+SELECT * FROM CSVREAD('db.default.url="jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv"') [90028-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.tools.Csv.convertException(Csv.java:572)
+	at org.h2.tools.Csv.read(Csv.java:180)
+	at org.h2.expression.function.Function.getValueForColumnList(Function.java:3096)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:51)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.io.FileNotFoundException: db.default.url="jdbc:h2:~\Documents\NetBeansProjects\logicits\h2\solucao.csv" (A sintaxe do nome do arquivo, do nome do diretório ou do rótulo do volume está incorreta)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at org.h2.store.fs.FilePathDisk.newInputStream(FilePathDisk.java:337)
+	at org.h2.store.fs.FileUtils.newInputStream(FileUtils.java:224)
+	at org.h2.tools.Csv.initRead(Csv.java:298)
+	at org.h2.tools.Csv.readResultSet(Csv.java:202)
+	at org.h2.tools.Csv.read(Csv.java:178)
+	... 25 more
+2019-10-28 20:08:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: IO Exception: "IOException reading db.default.url=jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv"; SQL statement:
+SELECT * FROM CSVREAD('db.default.url=jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv') [90028-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.tools.Csv.convertException(Csv.java:572)
+	at org.h2.tools.Csv.read(Csv.java:180)
+	at org.h2.expression.function.Function.getValueForColumnList(Function.java:3096)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:51)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.io.FileNotFoundException: db.default.url=jdbc:h2:~\Documents\NetBeansProjects\logicits\h2\solucao.csv (A sintaxe do nome do arquivo, do nome do diretório ou do rótulo do volume está incorreta)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at org.h2.store.fs.FilePathDisk.newInputStream(FilePathDisk.java:337)
+	at org.h2.store.fs.FileUtils.newInputStream(FileUtils.java:224)
+	at org.h2.tools.Csv.initRead(Csv.java:298)
+	at org.h2.tools.Csv.readResultSet(Csv.java:202)
+	at org.h2.tools.Csv.read(Csv.java:178)
+	... 25 more
+2019-10-28 20:08:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: IO Exception: "IOException reading jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv"; SQL statement:
+SELECT * FROM CSVREAD('jdbc:h2:~/Documents/NetBeansProjects/logicits/h2/solucao.csv') [90028-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.tools.Csv.convertException(Csv.java:572)
+	at org.h2.tools.Csv.read(Csv.java:180)
+	at org.h2.expression.function.Function.getValueForColumnList(Function.java:3096)
+	at org.h2.table.FunctionTable.<init>(FunctionTable.java:51)
+	at org.h2.command.Parser.readTableFunction(Parser.java:2078)
+	at org.h2.command.Parser.readTableFilter(Parser.java:1967)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2827)
+	at org.h2.command.Parser.parseSelect(Parser.java:2959)
+	at org.h2.command.Parser.parseQuerySub(Parser.java:2817)
+	at org.h2.command.Parser.parseSelectUnion(Parser.java:2649)
+	at org.h2.command.Parser.parseQuery(Parser.java:2620)
+	at org.h2.command.Parser.parsePrepared(Parser.java:868)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1078)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1065)
+	at org.h2.server.web.WebThread.process(WebThread.java:178)
+	at org.h2.server.web.WebThread.run(WebThread.java:94)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.MalformedURLException: unknown protocol: jdbc
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at org.h2.store.fs.FilePathDisk.newInputStream(FilePathDisk.java:334)
+	at org.h2.store.fs.FileUtils.newInputStream(FileUtils.java:224)
+	at org.h2.tools.Csv.initRead(Csv.java:298)
+	at org.h2.tools.Csv.readResultSet(Csv.java:202)
+	at org.h2.tools.Csv.read(Csv.java:178)
+	... 25 more
+2019-10-28 20:11:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO SOLUCAO ATIVIDADE[*] SELECT * FROM CSVREAD('~/Documents/NetBeansProjects/logicits/h2/solucao.csv')"; expected "., (, DIRECT, SORTED, DEFAULT, VALUES, SET, (, WITH, SELECT, TABLE, VALUES"; SQL statement:
+INSERT INTO solucao ATIVIDADE SELECT * FROM CSVREAD('~/Documents/NetBeansProjects/logicits/h2/solucao.csv') [42001-200]

@@ -1,0 +1,7 @@
+cod_nocao,nome_nocao,lista_ant_nocao,lista_prox_nocao,fk_materia_cod_materia
+1,Conjunção,,,1
+2,Disjunção,,,1
+3,Implicação,,,1
+4,Negação,,,1
+5,Quantificador existencial,,,2
+6,Quantificador universal,,,2
