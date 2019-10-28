@@ -110,7 +110,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         jpConcluido = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jbProxAtiv = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jbGravarSolucao = new javax.swing.JButton();
         jpFeedback = new javax.swing.JPanel();
         jpFeedbackContainer = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -375,16 +375,16 @@ public class jfPrincipal extends javax.swing.JFrame {
                             .addComponent(btElimDisju, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btIntroImpl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                            .addComponent(btElimImpl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                            .addComponent(btElimImpl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(btIntroImpl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btElimNeg)
+                            .addComponent(btElimNeg, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                             .addComponent(btIntroNeg))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbHip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(234, Short.MAX_VALUE))
         );
         jpRegrasLayout.setVerticalGroup(
             jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -498,10 +498,10 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Gravar solução");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbGravarSolucao.setText("Gravar solução");
+        jbGravarSolucao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbGravarSolucaoActionPerformed(evt);
             }
         });
 
@@ -515,7 +515,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbProxAtiv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(133, 133, 133)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbGravarSolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(111, Short.MAX_VALUE))
         );
         jpConcluidoLayout.setVerticalGroup(
@@ -525,7 +525,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addGroup(jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbGravarSolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbProxAtiv, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -928,7 +928,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbRevisarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbGravarSolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGravarSolucaoActionPerformed
         
         try {
             gravarSolucao();
@@ -936,7 +936,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             Logger.getLogger(jfPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbGravarSolucaoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
@@ -949,7 +949,6 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btIntroImpl;
     private javax.swing.JButton btIntroNeg;
     private javax.swing.JPanel cardRegras;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -964,6 +963,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jbAplicarRegra;
     private javax.swing.JButton jbCancelarRegra;
     private javax.swing.JButton jbDesfazer;
+    private javax.swing.JButton jbGravarSolucao;
     private javax.swing.JButton jbHip;
     private javax.swing.JButton jbLimparLinhas;
     private javax.swing.JButton jbProxAtiv;
@@ -1065,7 +1065,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         textoLinhas = "<html>";
         jlLinhasSelecionadas.setText(textoLinhas);
         contLinhas = 0;
-        lastSelectedRow = -1;
         jtResolucao.clearSelection();
         linhasSelec = new int[numFormulas];
         
@@ -1077,36 +1076,41 @@ public class jfPrincipal extends javax.swing.JFrame {
         tableListener = new ListSelectionListener(){
             @Override
             public void valueChanged(ListSelectionEvent event) {
-                // Adiciona a linha selecionada à lista
-                if(contLinhas < numFormulas && jtResolucao.getSelectedRow() != lastSelectedRow) {
-                    // Adiciona texto aos labels
-                    String col1 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 0).toString();
-                    String col2 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 1).toString();
-                    textoLinhas = textoLinhas + col1 + " " + col2 + "<br>";
-                    jlLinhasSelecionadas.setText(textoLinhas);
-                    // Adiciona índice ao array
-                    linhasSelec[contLinhas] = jtResolucao.getSelectedRow();
-                    contLinhas++;
-                }
-                else if (jtResolucao.getSelectedRow() == lastSelectedRow)
-                    System.out.print("");
-                else
-                    System.out.println("Número máximo de linhas para esta regra excedido.");
-                
-                lastSelectedRow = jtResolucao.getSelectedRow();
-                jbLimparLinhas.setEnabled(true);
-                
-                // Se a regra for de uma fórmula, aplica automaticamente
-                // Se for de duas fórmulas ou mais, ativa o botão aplicar
-                if(contLinhas >= numFormulas) {
-                    if(numFormulas == 1) {
-                        switch(regraAtual) {
-                            case ELIM_CONJ: elimConj(); break;
-                            case ELIM_NEG: elimNeg(); break;
-                        }
+                if (!event.getValueIsAdjusting()) { // evita eventos duplicados
+                    
+                    if(isHipoteseEncerrada(jtResolucao.getSelectedRow())) {
+                        novoFeedback("Não é possível utilizar fórmulas de uma hipótese encerrada.");
+                        contAjudas++;
+                    }
+                    // Adiciona a linha selecionada à lista
+                    else if(contLinhas < numFormulas) {
+                        // Adiciona texto aos labels
+                        String col1 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 0).toString();
+                        String col2 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 1).toString();
+                        textoLinhas = textoLinhas + col1 + " " + col2 + "<br>";
+                        jlLinhasSelecionadas.setText(textoLinhas);
+                        // Adiciona índice ao array
+                        linhasSelec[contLinhas] = jtResolucao.getSelectedRow();
+                        contLinhas++;
                     }
                     else
-                        jbAplicarRegra.setEnabled(true);
+                        System.out.println("Número máximo de linhas para esta regra excedido.");
+
+                    jbLimparLinhas.setEnabled(true);
+
+                    // Se a regra for de uma fórmula, aplica automaticamente
+                    // Se for de duas fórmulas ou mais, ativa o botão aplicar
+                    if(contLinhas >= numFormulas) {
+                        if(numFormulas == 1) {
+                            switch(regraAtual) {
+                                case ELIM_CONJ: elimConj(); break;
+                                case ELIM_NEG: elimNeg(); break;
+                            }
+                        }
+                        else
+                            jbAplicarRegra.setEnabled(true);
+                    }
+                    
                 }
             }
         };
@@ -1144,9 +1148,29 @@ public class jfPrincipal extends javax.swing.JFrame {
         }
     }
     
-    private boolean isHipoteseEncerrada(int linha) {
+    private boolean isHipoteseEncerrada(int linhaSelec) {
         
+        // Verifica o nível da hipótese
+        String formulaSelec = jtResolucao.getValueAt(linhaSelec, 1).toString();
+        int hipLevelAnterior = (formulaSelec.length() - formulaSelec.replace("| ", "").length()) / "| ".length();
         
+        int linhaAtual = jtResolucao.getRowCount()-1;
+        
+        int contQuedas = 0;
+        
+        for(int i = linhaSelec+1; i <= linhaAtual; i++) {
+            String formulaProx = jtResolucao.getValueAt(i, 1).toString();
+            int hipLevelProx = (formulaProx.length() - formulaProx.replace("| ", "").length()) / "| ".length();
+            if(hipLevelProx > hipLevelAnterior)
+                contQuedas++;
+            else if(hipLevelProx < hipLevelAnterior)
+                contQuedas--;
+            
+            if(contQuedas < 0)
+                return true;
+            else
+                hipLevelAnterior = hipLevelProx;
+        }
         
         return false;
     }

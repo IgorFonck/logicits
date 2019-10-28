@@ -8,7 +8,6 @@ package control;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Atividade;
@@ -195,7 +194,7 @@ public class Tutor {
                     medias[i] = medias[i]/divisor[i];
                 else
                     medias[i] = 0;
-                System.out.println("Média do conceito " +(i+1)+": "+medias[i]);
+                //System.out.println("Média do conceito " +(i+1)+": "+medias[i]);
             }
             
             // 4 - Selecionar conceito
