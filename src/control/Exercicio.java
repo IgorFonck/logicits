@@ -50,7 +50,7 @@ public class Exercicio {
     }
     
     public static String limpaFormula(String s) {
-        return s.replace("<html>", "").replace("| ", "");
+        return s.replace("<html>", "").replace("| ", "").replace("$","");
     }
     
     public static String[] getPremissas(String exercicio) {

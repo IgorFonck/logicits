@@ -1076,14 +1076,14 @@ public class jfPrincipal extends javax.swing.JFrame {
         tableListener = new ListSelectionListener(){
             @Override
             public void valueChanged(ListSelectionEvent event) {
-                if (!event.getValueIsAdjusting()) { // evita eventos duplicados
+                if(!event.getValueIsAdjusting() && contLinhas < numFormulas) { // evita eventos duplicados
                     
                     if(isHipoteseEncerrada(jtResolucao.getSelectedRow())) {
                         novoFeedback("Não é possível utilizar fórmulas de uma hipótese encerrada.");
                         contAjudas++;
                     }
                     // Adiciona a linha selecionada à lista
-                    else if(contLinhas < numFormulas) {
+                    else {
                         // Adiciona texto aos labels
                         String col1 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 0).toString();
                         String col2 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 1).toString();
@@ -1092,27 +1092,24 @@ public class jfPrincipal extends javax.swing.JFrame {
                         // Adiciona índice ao array
                         linhasSelec[contLinhas] = jtResolucao.getSelectedRow();
                         contLinhas++;
-                    }
-                    else
-                        System.out.println("Número máximo de linhas para esta regra excedido.");
-
-                    jbLimparLinhas.setEnabled(true);
-
-                    // Se a regra for de uma fórmula, aplica automaticamente
-                    // Se for de duas fórmulas ou mais, ativa o botão aplicar
-                    if(contLinhas >= numFormulas) {
-                        if(numFormulas == 1) {
-                            switch(regraAtual) {
-                                case ELIM_CONJ: elimConj(); break;
-                                case ELIM_NEG: elimNeg(); break;
+                        
+                        jbLimparLinhas.setEnabled(true);
+                        
+                        // Se a regra for de uma fórmula, aplica automaticamente
+                        // Se for de duas fórmulas ou mais, ativa o botão aplicar
+                        if(contLinhas >= numFormulas) {
+                            if(numFormulas == 1) {
+                                switch(regraAtual) {
+                                    case ELIM_CONJ: elimConj(); break;
+                                    case ELIM_NEG: elimNeg(); break;
+                                }
                             }
-                        }
-                        else
-                            jbAplicarRegra.setEnabled(true);
-                    }
-                    
-                }
-            }
+                            else
+                                jbAplicarRegra.setEnabled(true);
+                        } //end if(contLinhas >= numFormulas)
+                    } //end if(isHipoteseEncerrada(jtResolucao.getSelectedRow())) else
+                } //end if(!event.getValueIsAdjusting() && contLinhas < numFormulas)
+            } //end valueChanged(ListSelectionEvent event)
         };
         
         jtResolucao.getSelectionModel().addListSelectionListener(tableListener);
@@ -1421,8 +1418,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         if(regraValida) {
             // Separa os elementos da conjunção
-            String opt1 = Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(formula));
-            String opt2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula));
+            String opt1 = Exercicio.limpaFormula(Exercicio.formatarParserParaLegivel(ExpressionTree.getLeftNode(formula)));
+            String opt2 = Exercicio.limpaFormula(Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula)));
             
             Object[] options = { opt1 , opt2 };
 
@@ -1693,7 +1690,7 @@ public class jfPrincipal extends javax.swing.JFrame {
 
                 // Aplica, se for o caso
                 if(esqIgual && dirIgual && conseqIgual) {
-                    novaLinha(consequente1, col3);
+                    novaLinha(Exercicio.limpaFormula(consequente1), col3);
                 }
                 else {
                     // As regras não fecham
