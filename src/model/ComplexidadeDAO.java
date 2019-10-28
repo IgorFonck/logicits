@@ -18,6 +18,26 @@ import java.util.List;
 public class ComplexidadeDAO {
     
     /**
+      * Adiciona uma complexidade ao BD.
+      * @param complexidade a complexidade a ser gravada no BD
+      * @throws SQLException 
+      */
+     public void adicionar(Complexidade complexidade) throws SQLException {
+        String sql = "INSERT INTO complexidade (fk_conceito_cod_conceito,fk_atividade_cod_atividade,valor) VALUES (?,?,?)";
+        
+        try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
+            stmt.setInt(1, complexidade.getCod_conceito());
+            stmt.setInt(2, complexidade.getAtividade().getCod());
+            stmt.setInt(3, complexidade.getValor());
+            if (!stmt.execute()) { //executa o INSERT
+                System.out.println("Adicionou o complexidade ao banco!");
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException em adicionar! Erro detectado: " + ex.getMessage());
+        }
+    }
+    
+    /**
      * Retorna todas as complexidades cadastradas.
      * @param codAtividade
      * @return <code>List\<Complexidade\></code> a lista de todos os objetos Complexidade

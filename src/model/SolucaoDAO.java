@@ -18,6 +18,26 @@ import java.util.List;
 public class SolucaoDAO {
     
     /**
+      * Adiciona uma solucao ao BD.
+      * @param solucao a solucao a ser gravada no BD
+      * @throws SQLException 
+      */
+     public void adicionar(Solucao solucao) throws SQLException {
+        String sql = "INSERT INTO solucao (sequencia,fk_atividade_cod_atividade,dificuldade) VALUES (?,?,?)";
+        
+        try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
+            stmt.setString(1, solucao.getSequencia());
+            stmt.setInt(2, solucao.getAtividade().getCod());
+            stmt.setInt(3, solucao.getDificuldade());
+            if (!stmt.execute()) { //executa o INSERT
+                System.out.println("Adicionou o solucao ao banco!");
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException em adicionar! Erro detectado: " + ex.getMessage());
+        }
+    }
+    
+    /**
      * Retorna todas as solucaos cadastradas.
      * @param codAtividade
      * @return <code>List\<Solucao\></code> a lista de todos os objetos Solucao

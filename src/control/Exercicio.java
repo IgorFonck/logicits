@@ -33,6 +33,14 @@ public class Exercicio {
         return formatado;
     }
     
+    public static String formatarLegivelParaParser(String texto) {
+        String formatado = texto.replace("\u2192",">");
+        formatado = formatado.replace("\u2227","*");
+        formatado = formatado.replace("\u00AC","~");
+        formatado = formatado.replace("\u2228","+");
+        return formatado;
+    }
+    
     public static String removeTagHtml(String s) {
         return s.replace("<html>", "");
     }

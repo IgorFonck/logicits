@@ -9,6 +9,9 @@ import control.Exercicio;
 import control.ExpressionTree;
 import control.Tutor;
 import java.awt.CardLayout;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -22,7 +25,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.Atividade;
 import model.AtividadeDAO;
+import model.Complexidade;
+import model.ComplexidadeDAO;
 import model.Perfil;
+import model.Solucao;
+import model.SolucaoDAO;
 
 /**
  *
@@ -922,7 +929,13 @@ public class jfPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbRevisarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        try {
+            gravarSolucao();
+        } catch (SQLException ex) {
+            Logger.getLogger(jfPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1148,6 +1161,152 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void salvarNota() {
         
         Tutor.notaExercicio(ativ, contAjudas);
+        
+    }
+    
+    private void gravarSolucao() throws SQLException {
+        
+        String solucao = ""; // armazena a solução no formato do BD
+        int numLinhas = jtResolucao.getRowCount(); // equivale a dificuldade
+        int complex1=0, complex2=0, complex3=0, complex4=0;
+        int complex5=0, complex6=0, complex7=0, complex8=0;
+        
+        // Lê as linhas da tabela e monta a solução
+        for(int i = 0; i < numLinhas; i++) {
+            String formula = (String)jtResolucao.getValueAt(i, 2);
+            String part = "";
+            
+            // Se for dentro da hipótese, não adiciona na solução
+            if(jtResolucao.getValueAt(i, 1).toString().contains("|") && !formula.contains("Hipótese")) {
+                //nada
+            }
+            else {
+                if(!formula.contains("Premissa") && solucao.compareTo("")!=0) {
+                    part=";";
+                }
+                
+                if(formula.contains("<html>∧<sub>i</sub>")) {
+                    part = part.concat("1,");
+                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                    part = part.replaceAll("\\s+",""); //remove espaços
+                    complex1++;
+                }
+                else if(formula.contains("<html>∧<sub>e</sub>")) {
+                    part = part.concat("2,");
+                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                    part = part.replaceAll("\\s+",""); //remove espaços
+                    complex2++;
+                }
+                else if(formula.contains("<html>∨<sub>i</sub>")) {
+                    part = part.concat("3,");
+                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                    part = part.replaceAll("\\s+",""); //remove espaços
+                    complex3++;
+                }
+                else if(formula.contains("<html>∨<sub>e</sub>")) {
+                    part = part.concat("4,");
+                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                    part = part.replaceAll("\\s+",""); //remove espaços
+                    complex4++;
+                }
+                else if(formula.contains("<html>→<sub>i</sub>")) {
+                    part = part.concat("5,");
+                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                    part = part.replaceAll("\\s+",""); //remove espaços
+                    part = part.replaceAll("-",",");
+                    complex5++;
+                }
+                else if(formula.contains("<html>→<sub>e</sub>")) {
+                    part = part.concat("6,");
+                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                    part = part.replaceAll("\\s+",""); //remove espaços
+                    complex6++;
+                }
+                else if(formula.contains("<html>¬<sub>i</sub>")) {
+                    part = part.concat("7,");
+                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                    part = part.replaceAll("\\s+",""); //remove espaços
+                    part = part.replaceAll("-",",");
+                    complex7++;
+                }
+                else if(formula.contains("<html>¬<sub>e</sub>")) {
+                    part = part.concat("8,");
+                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                    part = part.replaceAll("\\s+",""); //remove espaços
+                    complex8++;
+                }
+                else if(formula.contains("Hipótese")) {
+                    part = part.concat("H{");
+
+                    String hipPart = (String)jtResolucao.getValueAt(i, 1);
+                    hipPart = Exercicio.limpaFormula(hipPart);
+                    hipPart = Exercicio.formatarLegivelParaParser(hipPart);
+
+                    part = part.concat(hipPart);
+                    part = part.replaceAll("\\s+",""); //remove espaços
+                    part = part.concat("}");
+                }
+                
+                solucao = solucao.concat(part);
+            }
+        }
+        
+        //System.out.println("Solução: " + solucao);
+        
+        // Grava solução no BD
+        Solucao sol = new Solucao();
+        sol.setSequencia(solucao);
+        sol.setAtividade(ativ);
+        sol.setDificuldade(numLinhas);
+        
+        SolucaoDAO sol_dao = new SolucaoDAO();
+        sol_dao.adicionar(sol);
+        
+        // Adiciona complexidade ao BD
+        Complexidade complex = new Complexidade();
+        ComplexidadeDAO complex_dao = new ComplexidadeDAO();
+        complex.setAtividade(ativ);
+        if(complex1 > 0) {
+            complex.setCod_conceito(1);
+            complex.setValor(complex1);
+            complex_dao.adicionar(complex);
+        }
+        if(complex2 > 0) {
+            complex.setCod_conceito(2);
+            complex.setValor(complex2);
+            complex_dao.adicionar(complex);
+        }
+        if(complex3 > 0) {
+            complex.setCod_conceito(3);
+            complex.setValor(complex3);
+            complex_dao.adicionar(complex);
+        }
+        if(complex4 > 0) {
+            complex.setCod_conceito(4);
+            complex.setValor(complex4);
+            complex_dao.adicionar(complex);
+        }
+        if(complex5 > 0) {
+            complex.setCod_conceito(5);
+            complex.setValor(complex5);
+            complex_dao.adicionar(complex);
+        }
+        if(complex6 > 0) {
+            complex.setCod_conceito(6);
+            complex.setValor(complex6);
+            complex_dao.adicionar(complex);
+        }
+        if(complex7 > 0) {
+            complex.setCod_conceito(7);
+            complex.setValor(complex7);
+            complex_dao.adicionar(complex);
+        }
+        if(complex8 > 0) {
+            complex.setCod_conceito(8);
+            complex.setValor(complex8);
+            complex_dao.adicionar(complex);
+        }
+        
         
     }
 
