@@ -57,7 +57,7 @@ public class Tutor {
         /*Random rand = new Random();
         int codAtividade = rand.nextInt((7 - 1) + 1) + 1;
         ativ = ativ_dao.consultar(codAtividade);*/
-        ativ = ativ_dao.consultar(21);
+        ativ = ativ_dao.consultar(22);
         
         return ativ;
         
@@ -97,9 +97,9 @@ public class Tutor {
         }
         
         // Imprimir valores
-        /*for (int i = 0; i < N_CONCEITOS; i++) {
+        for (int i = 0; i < N_CONCEITOS; i++) {
             System.out.println("Conceito "+(i+1)+": "+numConcluidos[i]+" concluídos, "+medDifConcluidos[i]+" méd/dif.");
-        }*/
+        }
         
     }
     

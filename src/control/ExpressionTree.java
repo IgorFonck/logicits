@@ -174,7 +174,7 @@ class Tree {
         Node newNode, nullNode;
         while (symbol != '#') {
             if (symbol >= '0' && symbol <= '9' || symbol >= 'A'
-                    && symbol <= 'Z' || symbol >= 'a' && symbol <= 'z') {
+                    && symbol <= 'Z' || symbol >= 'a' && symbol <= 'z' || symbol == '⊥') {
                 newNode = new Node(symbol);
                 stk.push(newNode);
 //                System.out.println("Pushed: " + newNode);

@@ -840,10 +840,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         if (result == JOptionPane.OK_OPTION) {
             String hip = tfHipotese.getText();
-            hipLevel++;
             hip = Exercicio.formatarParserParaLegivel(hip);
-            if(isHipoteseValida(hip))
+            if(isHipoteseValida(hip)) {
+                hipLevel++;
                 novaLinha(hip, "Hipótese");
+            }
             else
                 novoFeedback("O valor informado para a hipótese não é válido.");
         }
@@ -1409,12 +1410,6 @@ public class jfPrincipal extends javax.swing.JFrame {
             novaLinha("⊥", col3);
             return;
         }
-        
-        // Verifica se são contrários
-//        if(arg1.compareTo("¬"+arg2) == 0 | arg2.compareTo("¬"+arg1) == 0) {
-//            novaLinha("⊥", col3);
-//            return;
-//        }
         
         if(arg1.length() == 1)
             col2 = arg1;
