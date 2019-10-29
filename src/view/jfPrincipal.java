@@ -1199,78 +1199,75 @@ public class jfPrincipal extends javax.swing.JFrame {
             String part = "";
             
             // Se for dentro da hipótese, não adiciona na solução
-            if(jtResolucao.getValueAt(i, 1).toString().contains("|") && !formula.contains("Hipótese")) {
-                //nada
-            }
-            else {
-                if(!formula.contains("Premissa") && solucao.compareTo("")!=0) {
-                    part=";";
-                }
-                
-                if(formula.contains("<html>∧<sub>i</sub>")) {
-                    part = part.concat("1,");
-                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
-                    part = part.replaceAll("\\s+",""); //remove espaços
-                    complex1++;
-                }
-                else if(formula.contains("<html>∧<sub>e</sub>")) {
-                    part = part.concat("2,");
-                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
-                    part = part.replaceAll("\\s+",""); //remove espaços
-                    complex2++;
-                }
-                else if(formula.contains("<html>∨<sub>i</sub>")) {
-                    part = part.concat("3,");
-                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
-                    part = part.replaceAll("\\s+",""); //remove espaços
-                    complex3++;
-                }
-                else if(formula.contains("<html>∨<sub>e</sub>")) {
-                    part = part.concat("4,");
-                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
-                    part = part.replaceAll("\\s+",""); //remove espaços
-                    complex4++;
-                }
-                else if(formula.contains("<html>→<sub>i</sub>")) {
-                    part = part.concat("5,");
-                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
-                    part = part.replaceAll("\\s+",""); //remove espaços
-                    part = part.replaceAll("-",",");
-                    complex5++;
-                }
-                else if(formula.contains("<html>→<sub>e</sub>")) {
-                    part = part.concat("6,");
-                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
-                    part = part.replaceAll("\\s+",""); //remove espaços
-                    complex6++;
-                }
-                else if(formula.contains("<html>¬<sub>i</sub>")) {
-                    part = part.concat("7,");
-                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
-                    part = part.replaceAll("\\s+",""); //remove espaços
-                    part = part.replaceAll("-",",");
-                    complex7++;
-                }
-                else if(formula.contains("<html>¬<sub>e</sub>")) {
-                    part = part.concat("8,");
-                    part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
-                    part = part.replaceAll("\\s+",""); //remove espaços
-                    complex8++;
-                }
-                else if(formula.contains("Hipótese")) {
-                    part = part.concat("H{");
 
-                    String hipPart = (String)jtResolucao.getValueAt(i, 1);
-                    hipPart = Exercicio.limpaFormula(hipPart);
-                    hipPart = Exercicio.formatarLegivelParaParser(hipPart);
-
-                    part = part.concat(hipPart);
-                    part = part.replaceAll("\\s+",""); //remove espaços
-                    part = part.concat("}");
-                }
-                
-                solucao = solucao.concat(part);
+            if(!formula.contains("Premissa") && solucao.compareTo("")!=0) {
+                part=";";
             }
+
+            if(formula.contains("<html>∧<sub>i</sub>")) {
+                part = part.concat("1,");
+                part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                part = part.replaceAll("\\s+",""); //remove espaços
+                complex1++;
+            }
+            else if(formula.contains("<html>∧<sub>e</sub>")) {
+                part = part.concat("2,");
+                part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                part = part.replaceAll("\\s+",""); //remove espaços
+                complex2++;
+            }
+            else if(formula.contains("<html>∨<sub>i</sub>")) {
+                part = part.concat("3,");
+                part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                part = part.replaceAll("\\s+",""); //remove espaços
+                complex3++;
+            }
+            else if(formula.contains("<html>∨<sub>e</sub>")) {
+                part = part.concat("4,");
+                part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                part = part.replaceAll("\\s+",""); //remove espaços
+                complex4++;
+            }
+            else if(formula.contains("<html>→<sub>i</sub>")) {
+                part = part.concat("5,");
+                part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                part = part.replaceAll("\\s+",""); //remove espaços
+                part = part.replaceAll("-",",");
+                complex5++;
+            }
+            else if(formula.contains("<html>→<sub>e</sub>")) {
+                part = part.concat("6,");
+                part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                part = part.replaceAll("\\s+",""); //remove espaços
+                complex6++;
+            }
+            else if(formula.contains("<html>¬<sub>i</sub>")) {
+                part = part.concat("7,");
+                part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                part = part.replaceAll("\\s+",""); //remove espaços
+                part = part.replaceAll("-",",");
+                complex7++;
+            }
+            else if(formula.contains("<html>¬<sub>e</sub>")) {
+                part = part.concat("8,");
+                part = part.concat(formula.substring(formula.lastIndexOf("</sub>")+6));
+                part = part.replaceAll("\\s+",""); //remove espaços
+                complex8++;
+            }
+            else if(formula.contains("Hipótese")) {
+                part = part.concat("H{");
+
+                String hipPart = (String)jtResolucao.getValueAt(i, 1);
+                hipPart = Exercicio.limpaFormula(hipPart);
+                hipPart = Exercicio.formatarLegivelParaParser(hipPart);
+
+                part = part.concat(hipPart);
+                part = part.replaceAll("\\s+",""); //remove espaços
+                part = part.concat("}");
+            }
+
+            solucao = solucao.concat(part);
+
         }
         
         //System.out.println("Solução: " + solucao);
