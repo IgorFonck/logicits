@@ -51,13 +51,13 @@ public class Tutor {
         System.out.println("Conceito selecionado: " + proxConceito);
         
         // 2. Seleciona atividade dentro do conceito
-        //ativ = selecAtividade(proxConceito);
+        ativ = selecAtividade(proxConceito);
         
         // TEST: random
         /*Random rand = new Random();
         int codAtividade = rand.nextInt((7 - 1) + 1) + 1;
         ativ = ativ_dao.consultar(codAtividade);*/
-        ativ = ativ_dao.consultar(9);
+        //ativ = ativ_dao.consultar(9);
         
         return ativ;
         

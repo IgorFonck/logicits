@@ -80,7 +80,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&lt;o perfil foi carregado&gt; Bem-vindo!"/>
+            <Property name="text" type="java.lang.String" value="O perfil foi carregado com sucesso. Bem-vindo!"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btSelecionar">

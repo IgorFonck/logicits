@@ -58,7 +58,7 @@ public class jfInicial extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(40, 40, 40));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("<o perfil foi carregado> Bem-vindo!");
+        jLabel1.setText("O perfil foi carregado com sucesso. Bem-vindo!");
 
         btSelecionar.setText("Avançar");
         btSelecionar.addActionListener(new java.awt.event.ActionListener() {

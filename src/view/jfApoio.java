@@ -8,6 +8,7 @@ package view;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
@@ -20,20 +21,18 @@ public class jfApoio extends javax.swing.JFrame {
 
     /**
      * Creates new form jfApoio
+     * @param conteudo
      */
-    public jfApoio() {
+    public jfApoio(String conteudo) {
         
         initComponents();
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         
-        // make it read-only
         jepApoio.setEditable(false);
-        
-        // add an html editor kit
         HTMLEditorKit kit = new HTMLEditorKit();
         jepApoio.setEditorKit(kit);
         
-        // add some styles to the html
+        // Estilos para o HTML
         StyleSheet styleSheet = kit.getStyleSheet();
         styleSheet.addRule("body {color:#000; font-family:Arial; margin: 10px; }");
         styleSheet.addRule("span {font-size: 1.2em; }");
@@ -41,21 +40,12 @@ public class jfApoio extends javax.swing.JFrame {
         styleSheet.addRule("h1 {color: #009045; font-size: 1.4em;}");
         styleSheet.addRule("h2 {font-size: 1.22em;}");
         styleSheet.addRule("h3 {margin-top: 20px; font-size: 1.2em;}");
-        //styleSheet.addRule("pre {font : 10px monaco; color : black; background-color : #fafafa; }");
-
-        // create some simple html as a string
-        String htmlString = "<html>\n"
-                          + "<body>\n"
-                          + "<h1>Welcome!</h1>\n"
-                          + "<h2>This is an H2 header</h2>\n"
-                          + "<p>This is some sample text</p>\n"
-                          + "<p><a href=\"http://devdaily.com/blog/\">devdaily blog</a></p>\n"
-                          + "</body>\n";
         
         // Lê arquivo inteiro para uma String
         StringBuilder contentBuilder = new StringBuilder();
         try {
-            BufferedReader in = new BufferedReader(new FileReader(System.getProperty("user.dir")+"/src/pages/page.html"));
+            Reader fileReader = new FileReader(System.getProperty("user.dir")+"/src/pages/"+conteudo+".html");
+            BufferedReader in = new BufferedReader(fileReader);
             String str;
             while ((str = in.readLine()) != null) {
                 contentBuilder.append(str);
@@ -66,23 +56,12 @@ public class jfApoio extends javax.swing.JFrame {
         }
         String content = contentBuilder.toString();
         
-        // create a document, set it on the jeditorpane, then add the html
+        // Cria um documento, adiciona ao jEditorPane, adiciona o HTML
         Document doc = kit.createDefaultDocument();
         jepApoio.setDocument(doc);
         jepApoio.setText(content);
+        jepApoio.setCaretPosition(0);
 
-        // now add it all to a frame
-        //JFrame j = new JFrame("HtmlEditorKit Test");
-//        j.getContentPane().add(jspApoio, BorderLayout.CENTER);
-//        // make it easy to close the application
-//        j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        // display the frame
-//        j.setSize(new Dimension(300,200));
-//        // pack it, if you prefer
-//        //j.pack();
-//        // center the jframe, then make it visible
-//        j.setLocationRelativeTo(null);
-//        j.setVisible(true);
     }
 
     /**
@@ -156,41 +135,6 @@ public class jfApoio extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_jbFecharActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jfApoio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jfApoio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jfApoio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jfApoio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new jfApoio().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

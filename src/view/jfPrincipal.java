@@ -45,6 +45,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         initComponents();
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         
+        // Oculta menus com funcionalidades não implementadas
+        jmConfig.setVisible(false);
+        miGuia.setVisible(false);
+        miNovo.setVisible(false);
+        
         novoExercicio();
         
         // Configura a tabela
@@ -200,9 +205,9 @@ public class jfPrincipal extends javax.swing.JFrame {
             .addGroup(jpAtividadeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpAtividadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jlAtivAtual))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlAtivAtual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jpAtividadeLayout.setVerticalGroup(
             jpAtividadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -776,11 +781,8 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void jbAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAjudaActionPerformed
        
         contAjudas++;
-        
-        /* TESTE */
-        System.out.println("Conceito selecionado: " + Tutor.selecConceito());
-        //System.out.println("Antes de entrar.");
-        //List<Avaliacao> notas = aval_dao.listar();
+
+        new jfApoio("ajuda").setVisible(true);
         
     }//GEN-LAST:event_jbAjudaActionPerformed
 
@@ -837,9 +839,10 @@ public class jfPrincipal extends javax.swing.JFrame {
             String hip = tfHipotese.getText();
             hipLevel++;
             hip = Exercicio.formatarParserParaLegivel(hip);
-            novaLinha(hip, "Hipótese");
-        } else {
-            System.out.println("User canceled / closed the dialog, result = " + result);
+            if(isHipoteseValida(hip))
+                novaLinha(hip, "Hipótese");
+            else
+                System.out.println("Hipótese inválida.");
         }
         
     }//GEN-LAST:event_jbHipActionPerformed
@@ -925,7 +928,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void jbRevisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRevisarActionPerformed
         
         contAjudas++;
-        new jfApoio().setVisible(true);
+        new jfApoio("apoio").setVisible(true);
         
     }//GEN-LAST:event_jbRevisarActionPerformed
 
@@ -1007,7 +1010,6 @@ public class jfPrincipal extends javax.swing.JFrame {
     // Variáveis da aplicação de regras
     private String textoLinhas;     // Imprime as linhas que foram selecionadas
     private int contLinhas;         // Quantidades de linhas já selecionadas
-    private int lastSelectedRow;    // Última linha selecionada (evida leitura duplicada do listener)
     private int[] linhasSelec;      // Índices das linhas selecionadas
     private int hipLevel = 0;       // Contador de níveis de hipóteses
     private Regra regraAtual;       // Registra qual regra foi selecionada
@@ -1034,7 +1036,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         textoLinhas = "<html>";
         jlLinhasSelecionadas.setText(textoLinhas);
         contLinhas = 0;
-        lastSelectedRow = -1;
         jtResolucao.clearSelection();
         
         jbAplicarRegra.setEnabled(false);
@@ -1173,11 +1174,19 @@ public class jfPrincipal extends javax.swing.JFrame {
         return false;
     }
     
-    private boolean validarHipotese(String hip) {
+    private boolean isHipoteseValida(String hip) {
         
+        // Validar String vazia
+        if ("".equals(hip))
+            return false;
+        // Validar mais de um caracter por variável
         
+        // Validar símbolo $
+        else if(hip.contains("$"))
+            return false;
+        else
+            return true;
         
-        return false;
     }
     
     private void salvarNota() {
