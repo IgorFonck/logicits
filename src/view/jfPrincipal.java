@@ -10,6 +10,8 @@ import control.ExpressionTree;
 import control.Tutor;
 import java.awt.CardLayout;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
@@ -41,6 +43,7 @@ public class jfPrincipal extends javax.swing.JFrame {
      * Creates new form jfPrincipal
      */
     public jfPrincipal() {
+        //this.pilhaFeedback;
 
         initComponents();
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
@@ -842,7 +845,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             if(isHipoteseValida(hip))
                 novaLinha(hip, "Hipótese");
             else
-                System.out.println("Hipótese inválida.");
+                novoFeedback("O valor informado para a hipótese não é válido.");
         }
         
     }//GEN-LAST:event_jbHipActionPerformed
@@ -1014,6 +1017,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private int hipLevel = 0;       // Contador de níveis de hipóteses
     private Regra regraAtual;       // Registra qual regra foi selecionada
     private String respostaFinal;   // Armazena a conclusão
+    Queue<JLabel> filaFeedback = new LinkedList<>();
     
     enum Regra {
         INTRO_CONJ,
@@ -1060,7 +1064,12 @@ public class jfPrincipal extends javax.swing.JFrame {
         jpListaFeedback.add(novaMensagem);
         jpListaFeedback.revalidate();
         jpListaFeedback.repaint();
+        filaFeedback.add(novaMensagem);
+        if(filaFeedback.size() > 10)
+            jpListaFeedback.remove(filaFeedback.poll());
     }
+    
+    
     
     private void selecionarFormulas(final int numFormulas) {
         // Configura texto das linhas selecionadas

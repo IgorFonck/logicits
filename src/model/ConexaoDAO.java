@@ -28,15 +28,12 @@ public class ConexaoDAO {
      * Retorna a conexão.
      * Cria a conexão, caso ela ainda não exista. Então, retorna a conexão.
      * @return a conexão
+     * @throws java.sql.SQLException
      */
-    public static Connection getConexao() {
+    public static Connection getConexao() throws SQLException {
         if (conn == null) {
-            try {
-                conn = DriverManager.getConnection(banco, usuario, senha);
-                System.out.println("Conexão com o BD realizada com sucesso!");
-            } catch (SQLException ex) {
-                System.out.println("Erro na conexão: " + ex.getMessage());
-            }
+            conn = DriverManager.getConnection(banco, usuario, senha);
+            System.out.println("Conexão com o BD realizada com sucesso!");
         }
         return conn;
     }
@@ -45,17 +42,13 @@ public class ConexaoDAO {
      * Cria um PreparedStatement a partir do SQL informado.
      * @param sql a query
      * @return PreparedStatement
+     * @throws java.sql.SQLException
      */
-    public static PreparedStatement getPreparedStatement(String sql) {
+    public static PreparedStatement getPreparedStatement(String sql) throws SQLException {
         if (conn == null) {
             conn = getConexao();
         }
-        try {
-            return conn.prepareStatement(sql);
-        } catch (SQLException ex) {
-            System.out.println("Erro de SQL: " + ex.getMessage());
-        }
-        return null;
+        return conn.prepareStatement(sql);
     }
     
 }
