@@ -1404,11 +1404,17 @@ public class jfPrincipal extends javax.swing.JFrame {
         String arg1 = Exercicio.limpaFormula(jtResolucao.getValueAt(linhasSelec[0], 1).toString());
         String arg2 = Exercicio.limpaFormula(jtResolucao.getValueAt(linhasSelec[1], 1).toString());
 
-        // Verifica se são contrários
-        if(arg1.compareTo("¬"+arg2) == 0 | arg2.compareTo("¬"+arg1) == 0) {
+        if(("~".equals(ExpressionTree.getRootString(arg2)) && ExpressionTree.getRightNode(arg2).compareTo(ExpressionTree.getFullNode(arg1)) == 0)
+                || ("~".equals(ExpressionTree.getRootString(arg1)) && ExpressionTree.getRightNode(arg1).compareTo(ExpressionTree.getFullNode(arg2)) == 0)) {
             novaLinha("⊥", col3);
             return;
         }
+        
+        // Verifica se são contrários
+//        if(arg1.compareTo("¬"+arg2) == 0 | arg2.compareTo("¬"+arg1) == 0) {
+//            novaLinha("⊥", col3);
+//            return;
+//        }
         
         if(arg1.length() == 1)
             col2 = arg1;
