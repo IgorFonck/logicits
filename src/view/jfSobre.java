@@ -34,8 +34,7 @@ public class jfSobre extends javax.swing.JFrame {
         btFechar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(128, 128, 128));
         setBounds(new java.awt.Rectangle(1, 1, 1, 1));
         setUndecorated(true);
