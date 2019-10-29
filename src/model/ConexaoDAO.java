@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,11 +15,10 @@ import java.sql.SQLException;
  */
 public class ConexaoDAO {
     
-    private static final String banco = "jdbc:postgresql://localhost:5432/bdlogicits";
-    private static final String driver = "org.postgresql.Driver";
-    private static final String usuario = "postgres";
-    private static final String senha = "admin";
-    private static Connection con = null;
+    private static final String banco = "jdbc:h2:./h2/bdlogicits";
+    private static final String usuario = "sa";
+    private static final String senha = "";
+    private static Connection conn = null;
 
     public ConexaoDAO() {
 
@@ -29,18 +30,15 @@ public class ConexaoDAO {
      * @return a conexão
      */
     public static Connection getConexao() {
-        if (con == null) {
+        if (conn == null) {
             try {
-                Class.forName(driver);
-                con = DriverManager.getConnection(banco, usuario, senha);
+                conn = DriverManager.getConnection(banco, usuario, senha);
                 System.out.println("Conexão com o BD realizada com sucesso!");
-            } catch (ClassNotFoundException ex) {
-                System.out.println("Não encontrou o driver: " + ex.getMessage());
             } catch (SQLException ex) {
                 System.out.println("Erro na conexão: " + ex.getMessage());
             }
         }
-        return con;
+        return conn;
     }
 
     /**
@@ -49,11 +47,11 @@ public class ConexaoDAO {
      * @return PreparedStatement
      */
     public static PreparedStatement getPreparedStatement(String sql) {
-        if (con == null) {
-            con = getConexao();
+        if (conn == null) {
+            conn = getConexao();
         }
         try {
-            return con.prepareStatement(sql);
+            return conn.prepareStatement(sql);
         } catch (SQLException ex) {
             System.out.println("Erro de SQL: " + ex.getMessage());
         }
