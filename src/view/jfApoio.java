@@ -83,7 +83,6 @@ public class jfApoio extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(128, 128, 128));
         setBounds(new java.awt.Rectangle(10, 10, 10, 10));
-        setResizable(false);
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
 

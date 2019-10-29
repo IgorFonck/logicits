@@ -15,9 +15,9 @@ import java.util.logging.Logger;
  */
 public class ConexaoDAO {
     
-    private static final String banco = "jdbc:h2:./h2/bdlogicits";
-    private static final String usuario = "sa";
-    private static final String senha = "";
+    private static final String BANCO = "jdbc:h2:./h2/bdlogicits";
+    private static final String USUARIO = "sa";
+    private static final String SENHA = "";
     private static Connection conn = null;
 
     public ConexaoDAO() {
@@ -32,7 +32,7 @@ public class ConexaoDAO {
      */
     public static Connection getConexao() throws SQLException {
         if (conn == null) {
-            conn = DriverManager.getConnection(banco, usuario, senha);
+            conn = DriverManager.getConnection(BANCO, USUARIO, SENHA);
             System.out.println("Conexão com o BD realizada com sucesso!");
         }
         return conn;

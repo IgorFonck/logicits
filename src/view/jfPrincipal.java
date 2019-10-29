@@ -49,7 +49,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         
         // Oculta menus com funcionalidades não implementadas
-        jmConfig.setVisible(false);
+        //jmConfig.setVisible(false);
         miGuia.setVisible(false);
         miNovo.setVisible(false);
         

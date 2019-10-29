@@ -1,140 +1,28 @@
 <h1>Ajuda</h1>
 
-<h2>Regras de inferência da Dedução Natural</h2>
+<h2>Utilização da aplicação</h2>
 
-<span><i>Este texto é um EXEMPLO de material de apoio para a versão de desenvolvimento do sistema LogicITS.</i></span>
-
-<h3>Introdução da conjunção</h3>
-<span>Permite concluir A ∧ B dado que A e B já foram concluídas.</span>
-
-<!--div style="text-align:center;width:50px;margin:auto;display:block;border:1px solid #000;border-width: 0 0 1px 0;">A B</div>
-<div style="text-align:center">A ∧ B</div-->
-
-<table class="tg">
-  <tr>
-    <td class="tg-ljam" style="text-align:center;border:1px solid #000;border-width: 0 0 1px 0;">A, B</th>
-    <td class="tg-v0mg" rowspan="2">∧<sub>i</sub></th>
-  </tr>
-  <tr>
-    <td class="tg-wp8o" style="text-align:center">A ∧ B</td>
-  </tr>
-</table>
-
-<span>Acima da linha são fornecidas as duas premissas da regra e abaixo da linha a conclusão. A regra afirma que se A e B são fórmulas com interpretação verdadeira, então podemos concluir a fórmula A ∧ B. A justificativa é óbvia pela definição do conectivo. À direita está o nome da regra, “∧<sub>i</sub>”, significando “introdução da conjunção”, pois uma fórmula que contém a conjunção foi concluída.</span>
-
-<h3>Eliminação da conjunção</h3>
-<span>Temos duas regras para eliminar a conjunção:</span>
-
-<table class="tg">
-  <tr>
-    <td class="tg-ljam" style="text-align:center;border:1px solid #000;border-width: 0 0 1px 0;">A ∧ B</th>
-    <td class="tg-v0mg" rowspan="2">∧<sub>e</sub></th>
-  </tr>
-  <tr>
-    <td class="tg-wp8o" style="text-align:center">A</td>
-  </tr>
-</table>
-
-<table class="tg">
-  <tr>
-    <td class="tg-ljam" style="text-align:center;border:1px solid #000;border-width: 0 0 1px 0;">A ∧ B</th>
-    <td class="tg-v0mg" rowspan="2">∧<sub>e</sub></th>
-  </tr>
-  <tr>
-    <td class="tg-wp8o" style="text-align:center">B</td>
-  </tr>
-</table>
-
-<span>Uma regra diz que se temos uma prova de A ∧ B então podemos concluir A, a outra, nas mesmas condições, diz que podemos concluir B.</span>
-
-<h3>Introdução da disjunção</h3>
-<span>Dada uma premissa A, nós podemos concluir A ∨ B para qualquer fórmula B. A justificativa segue diretamente da definição da semântica do conectivo ∨. A interpretação I(A ∨ B) = 1 se I(A) = 1 ou I(B) = 1. Já temos I(A) = 1, não dependendo de I(B). Da mesma forma, dada uma premissa B, podemos concluir A ∨ B. Temos as regras abaixo.</span>
-
-<table class="tg">
-  <tr>
-    <td class="tg-ljam" style="text-align:center;border:1px solid #000;border-width: 0 0 1px 0;">A</th>
-    <td class="tg-v0mg" rowspan="2">∨<sub>i</sub></th>
-  </tr>
-  <tr>
-    <td class="tg-wp8o" style="text-align:center">A ∨ B</td>
-  </tr>
-</table>
-
-<table class="tg">
-  <tr>
-    <td class="tg-ljam" style="text-align:center;border:1px solid #000;border-width: 0 0 1px 0;">B</th>
-    <td class="tg-v0mg" rowspan="2">∨<sub>i</sub></th>
-  </tr>
-  <tr>
-    <td class="tg-wp8o" style="text-align:center">A ∨ B</td>
-  </tr>
-</table>
-
-<h3>Eliminação da disjunção</h3>
-<span>A exclusão da disjunção é uma regra mais complicada. Como usar uma fórmula A ∨ B em uma prova? Sabemos que pelo menos umas das duas subfórmulas é verdadeira, A ou B. No entanto, não sabemos qual. A solução é fornecer duas provas separadas para um mesmo argumento. Fazemos a hipótese de que A é verdadeira e obtemos C. Fazemos a hipótese de que B é verdadeira e obtemos C. Neste caso temos A → C e B → C e podemos assumir C verdadeira já que chegamos neste resultado tanto por A quanto por B. Podemos enunciar a regra como abaixo.</span>
-
-<table class="tg">
-  <tr>
-    <td class="tg-ljam" style="text-align:center;border:1px solid #000;border-width: 0 0 1px 0;">A ∨ B, A → C, B → C</th>
-    <td class="tg-v0mg" rowspan="2">∨<sub>e</sub></th>
-  </tr>
-  <tr>
-    <td class="tg-wp8o" style="text-align:center">C</td>
-  </tr>
-</table>
-
-<h3>Introdução da implicação</h3>
-<span>Incluir a implicação é uma tarefa um pouco mais complicada do que vimos, até agora, para os outros conectivos. A regra de introdução da implicação é mostrada a seguir.</span>
-
-<table class="tg">
-  <tr>
-    <td class="tg-ljam" style="text-align:center;border:1px solid #000;border-width: 0 0 1px 0;">[A]<br>.<br>.<br>.<br>B</th>
-    <td class="tg-v0mg" rowspan="2">→<sub>i</sub></th>
-  </tr>
-  <tr>
-    <td class="tg-wp8o" style="text-align:center">A → B</td>
-  </tr>
-</table>
-
-<span>A primeira linha da regra, [A], é uma hipótese. Uma suposição temporária de que uma fórmula A é verdadeira. A premissa da regra informa que a partir da hipótese A, usando quaisquer regras de dedução natural, foi produzido um conjunto de deduções A, A<sub>1</sub>, A<sub>2</sub>, . . . , A<sub>n</sub>, com A<sub>n</sub> = B. Em outras palavras, foi possível deduzir B a partir de A. A conclusão da regra significa que, se tal dedução foi possível, então podemos concluir que A → B é verdadeira.</span>
+<span><i>Este texto é um EXEMPLO de material de ajuda para a versão de 
+        desenvolvimento do sistema LogicITS.</i></span>
 <br>
-<span>Além disso, a regra diz que a hipótese A e todas as regras derivadas dela até B podem ser usadas até o momento em que B é encontrada. A partir do momento que concluímos A → B, nenhuma das fórmulas entre A e B, incluindo estas, pode ser mais usada. Existe um escopo definido para a hipótese, um determinado local em que é possível usá-la. Em nosso sistema, mostramos esse escopo com um sinal de | que antecede as fórmula.</span>
-
-<h3>Eliminação da implicação</h3>
-<span>Dado que A → B e A já foram concluídas, podemos concluir B. Esta regra é conhecida como Modus Ponens (MP).</span>
-
-<table class="tg">
-  <tr>
-    <td class="tg-ljam" style="text-align:center;border:1px solid #000;border-width: 0 0 1px 0;">A, A → B</th>
-    <td class="tg-v0mg" rowspan="2">→<sub>e</sub></th>
-  </tr>
-  <tr>
-    <td class="tg-wp8o" style="text-align:center">B</td>
-  </tr>
-</table>
-
-<h3>Introdução da negação</h3>
-<span>Introduzimos a hipótese A. Se chegarmos a uma contradição ⊥, significa que não há situação onde A possa ser verdadeira. Logo, chegamos à conclusão que ¬A. Pra introduzir ⊥, utiliza-se a regra ∧<sub>i</sub> em duas fórmulas opostas, como B e ¬B, dada que a conjunção de ambas nunca pode ser verdadeira.</span>
-
-<table class="tg">
-  <tr>
-    <td class="tg-ljam" style="text-align:center;border:1px solid #000;border-width: 0 0 1px 0;">[A]<br>.<br>.<br>.<br>⊥</th>
-    <td class="tg-v0mg" rowspan="2">¬<sub>i</sub></th>
-  </tr>
-  <tr>
-    <td class="tg-wp8o" style="text-align:center">¬A</td>
-  </tr>
-</table>
-
-<h3>Eliminação da negação</h3>
-<span>Sabemos que A ≡ ¬¬A. Logo, se temos ¬¬A, podemos concluir A.</span>
-
-<table class="tg">
-  <tr>
-    <td class="tg-ljam" style="text-align:center;border:1px solid #000;border-width: 0 0 1px 0;">¬¬A</th>
-    <td class="tg-v0mg" rowspan="2">¬<sub>e</sub></th>
-  </tr>
-  <tr>
-    <td class="tg-wp8o" style="text-align:center">A</td>
-  </tr>
-</table>
+<br>
+<span>Esta aplicação apresenta exercícios de Dedução Natural na Lógica 
+    Proposicional. Para utilizá-la, o estudante tem a disposição um conjunto de 
+    botões referentes às Regras de Inferência.</span>
+<br>
+<br>
+<span>Uma resolução é chamada de prova. Ao selecionar uma das regras de 
+    inferência, é necessário especificar em qual(is) linha(s) da prova deseja 
+    aplicar a regra. Para isso, basta selecionar uma ou mais - a quantidade 
+    depende da regra selecionada - das linhas da lista mostrada em tela.</span>
+<br>
+<br>
+<span>Além das regras de inferência, é possível iniciar uma hipótese. Para isso, 
+    deve-se selecionar o botão "Adicionar hipótese" e inserir na caixa de texto 
+    a fórmula desejada.</span>
+<br>
+<br>
+<span>Caso o estudante viole alguma das restrições de utilização das regras de 
+    inferência, será notificado através do painel de Feedback. A sequência de 
+    atividades é gerada automaticamente de acordo com o desempenho do 
+    estudante.</span>
