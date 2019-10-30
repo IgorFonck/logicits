@@ -57,7 +57,7 @@ public class Tutor {
         /*Random rand = new Random();
         int codAtividade = rand.nextInt((7 - 1) + 1) + 1;
         ativ = ativ_dao.consultar(codAtividade);*/
-        ativ = ativ_dao.consultar(22);
+        ativ = ativ_dao.consultar(24);
         
         return ativ;
         

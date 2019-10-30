@@ -56,20 +56,28 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jmConfig">
+        <Menu class="javax.swing.JMenu" name="jmOpcoes">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Configura&#xe7;&#xf5;es"/>
+            <Property name="text" type="java.lang.String" value="Op&#xe7;&#xf5;es"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="miDominio">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ver dom&#xed;nio"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miDominioActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miModoLivre">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modo Livre"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miModoLivreActionPerformed"/>
               </Events>
             </MenuItem>
             <Menu class="javax.swing.JMenu" name="jmSistemaProva">
@@ -93,6 +101,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="L&#xf3;gica de predicados"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miPredicaodosActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -407,13 +418,15 @@
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jbHip" max="32767" attributes="0"/>
-                                  <Component id="btIntroImpl" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="btIntroConju" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                                      <Component id="btIntroDisju" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="jbHip" pref="40" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="btIntroImpl" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="btIntroConju" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Component id="btIntroDisju" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="btIntroNeg" alignment="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="btIntroNeg" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -424,7 +437,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jbDesfazer" min="-2" pref="38" max="-2" attributes="0"/>
-                              <EmptySpace pref="17" max="32767" attributes="0"/>
+                              <EmptySpace pref="15" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

@@ -49,7 +49,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         
         // Oculta menus com funcionalidades não implementadas
-        //jmConfig.setVisible(false);
+        //jmOpcoes.setVisible(false);
+        miDominio.setVisible(false);
         miGuia.setVisible(false);
         miNovo.setVisible(false);
         
@@ -133,8 +134,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         miSalvar = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         miSair = new javax.swing.JMenuItem();
-        jmConfig = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmOpcoes = new javax.swing.JMenu();
+        miDominio = new javax.swing.JMenuItem();
+        miModoLivre = new javax.swing.JMenuItem();
         jmSistemaProva = new javax.swing.JMenu();
         miProposicional = new javax.swing.JRadioButtonMenuItem();
         miPredicaodos = new javax.swing.JRadioButtonMenuItem();
@@ -401,12 +403,13 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jbHip)
-                    .addComponent(btIntroImpl, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btIntroConju, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btIntroDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btIntroNeg))
+                    .addComponent(jbHip, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btIntroImpl)
+                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btIntroConju, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btIntroDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btIntroNeg)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btElimConju, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,7 +418,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                     .addComponent(btElimNeg, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbDesfazer, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         cardRegras.add(jpRegras, "cartaoBotoes");
@@ -670,16 +673,24 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         jmMenuSuperior.add(jmArquivo);
 
-        jmConfig.setForeground(new java.awt.Color(255, 255, 255));
-        jmConfig.setText("Configurações");
+        jmOpcoes.setForeground(new java.awt.Color(255, 255, 255));
+        jmOpcoes.setText("Opções");
 
-        jMenuItem1.setText("Ver domínio");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        miDominio.setText("Ver domínio");
+        miDominio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                miDominioActionPerformed(evt);
             }
         });
-        jmConfig.add(jMenuItem1);
+        jmOpcoes.add(miDominio);
+
+        miModoLivre.setText("Modo Livre");
+        miModoLivre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miModoLivreActionPerformed(evt);
+            }
+        });
+        jmOpcoes.add(miModoLivre);
 
         jmSistemaProva.setText("Sistema de prova");
 
@@ -690,11 +701,16 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         bgSistemaProva.add(miPredicaodos);
         miPredicaodos.setText("Lógica de predicados");
+        miPredicaodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miPredicaodosActionPerformed(evt);
+            }
+        });
         jmSistemaProva.add(miPredicaodos);
 
-        jmConfig.add(jmSistemaProva);
+        jmOpcoes.add(jmSistemaProva);
 
-        jmMenuSuperior.add(jmConfig);
+        jmMenuSuperior.add(jmOpcoes);
 
         jmAjuda.setForeground(new java.awt.Color(255, 255, 255));
         jmAjuda.setText("Ajuda");
@@ -748,12 +764,12 @@ public class jfPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_miSobreActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void miDominioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miDominioActionPerformed
         
         new jfDominio(this).setVisible(true);
         hide();
         
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_miDominioActionPerformed
 
     private void jbCancelarRegraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarRegraActionPerformed
         
@@ -946,6 +962,43 @@ public class jfPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbGravarSolucaoActionPerformed
 
+    private void miModoLivreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miModoLivreActionPerformed
+        
+        JTextField tfPremissas = new JTextField();
+        JTextField tfConclusao = new JTextField();
+        final JComponent[] inputs = new JComponent[] {
+            new JLabel("<html>Utilize o Modo Livre para inserir sua própria atividade. O exercício realizado no <br>"
+                    + "Modo Livre não é computado para fins de avaliação do desempenho do aluno."
+                    + "<br><br><i>Aviso: A atividade atual será interrompida!</i></html>"), 
+            new JLabel("<html><br>Premissas: <i>(separadas por vírgula)</i>"),
+            tfPremissas,
+            new JLabel("<html>Conclusão:"),
+            tfConclusao,
+            new JLabel("<html><small><br>Legenda:<br>"
+                    + ">: implicação<br>"
+                    + "+: disjunção<br>"
+                    + "*: conjunção<br>"
+                    + "~: negação")
+        };
+        int result = JOptionPane.showConfirmDialog(null, inputs, "Modo Livre", JOptionPane.PLAIN_MESSAGE);
+        
+        if (result == JOptionPane.OK_OPTION) {
+            String prem = tfPremissas.getText();
+            String conc = tfConclusao.getText();
+            System.out.println("Premissas: " + Exercicio.formatarParserParaLegivel(prem));
+            System.out.println("Conclusão: " + Exercicio.formatarParserParaLegivel(conc));
+            //
+        }
+        
+    }//GEN-LAST:event_miModoLivreActionPerformed
+
+    private void miPredicaodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPredicaodosActionPerformed
+        
+        JOptionPane.showMessageDialog(this, "Esta funcionalidade ainda não foi implementada.");
+        miProposicional.setSelected(true);
+        
+    }//GEN-LAST:event_miPredicaodosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
     private javax.swing.JButton btElimConju;
@@ -963,7 +1016,6 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
@@ -981,8 +1033,8 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jlNomeRegra;
     private javax.swing.JMenu jmAjuda;
     private javax.swing.JMenu jmArquivo;
-    private javax.swing.JMenu jmConfig;
     private javax.swing.JMenuBar jmMenuSuperior;
+    private javax.swing.JMenu jmOpcoes;
     private javax.swing.JMenu jmSistemaProva;
     private javax.swing.JPanel jpAtividade;
     private javax.swing.JPanel jpConcluido;
@@ -996,7 +1048,9 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jpResolucao;
     private javax.swing.JTable jtResolucao;
     private javax.swing.JMenuItem miAbrir;
+    private javax.swing.JMenuItem miDominio;
     private javax.swing.JMenuItem miGuia;
+    private javax.swing.JMenuItem miModoLivre;
     private javax.swing.JMenuItem miNovo;
     private javax.swing.JRadioButtonMenuItem miPredicaodos;
     private javax.swing.JRadioButtonMenuItem miProposicional;
@@ -1010,6 +1064,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private AtividadeDAO ativ_dao = new AtividadeDAO();
     private Perfil perfil = new Perfil();
     private int contAjudas;         // Utilizado para gerar a nota do aluno
+    private boolean modoLivre = false;
     
     // Variáveis da aplicação de regras
     private String textoLinhas;     // Imprime as linhas que foram selecionadas
@@ -1378,10 +1433,12 @@ public class jfPrincipal extends javax.swing.JFrame {
         // Mostra as premissas da atividade na resolução
         String premissas[] = Exercicio.getPremissas(exercicio);
         DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
-        
-        int i = 0;
-        for (String s : premissas) {
-            dtm.addRow(new Object[]{++i + ".", "<html>"+s, "Premissa"});
+
+        if(!"".equals(premissas[0])) {
+            int i = 0;
+            for (String s : premissas) {
+                dtm.addRow(new Object[]{++i + ".", "<html>"+s, "Premissa"});
+            }
         }
     }
     
