@@ -154,4 +154,29 @@ public class AtividadeDAO {
         return null;
     }
     
+    /**
+     * Retorna uma Atividade de acordo com o ID pesquisado.
+     * @param idAtiv
+     * @return Atividade
+     */
+    public Object[] getConceitos(Integer idAtiv) {
+        String sql = "SELECT * FROM complexidade WHERE fk_atividade_cod_atividade = ?";
+        List<Object> conceitos = new ArrayList<>();
+        
+        try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
+            stmt.setInt(1, idAtiv);
+            ResultSet rset = stmt.executeQuery();
+            
+            while (rset.next()) {
+                Object obj = rset.getInt("fk_conceito_cod_conceito");
+                conceitos.add(obj);
+            }
+            return conceitos.toArray();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro de SQL: " + ex.getMessage());
+            System.out.println("SQLException em consultar! Erro detectado: " + ex.getMessage());
+        }
+        return null;
+    }
+    
 }

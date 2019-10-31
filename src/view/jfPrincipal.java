@@ -1123,10 +1123,8 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
             String sql = contentBuilder.toString();
 
-            // Limpa tabela de avaliação e executa arquivo
             // TODO: decrypt
-            sql = "DELETE FROM avaliacao;".concat(sql);
-            // Remove as sequências geradas no dump
+            // Remove as sequências e comentários geradas no dump e executa
             String start = Pattern.quote("CREATE SEQUENCE ");
             sql = sql.replaceAll(start, "CREATE SEQUENCE IF NOT EXISTS ");
             String start2 = Pattern.quote("--");

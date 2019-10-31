@@ -217,6 +217,7 @@ public class AvaliacaoDAO {
             }
         } catch (SQLException ex) {
             System.out.println("SQLException em exportar! Erro detectado: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Ocorreu um problema ao importar o perfil.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
         
     }
@@ -232,6 +233,7 @@ public class AvaliacaoDAO {
             }
         } catch (SQLException ex) {
             System.out.println("SQLException em exportar! Erro detectado: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Ocorreu um problema ao redefinir o perfil.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
         
     }

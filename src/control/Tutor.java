@@ -5,11 +5,13 @@
  */
 package control;
 
+import java.util.Random;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.Atividade;
 import model.AtividadeDAO;
 import model.Avaliacao;
@@ -46,17 +48,17 @@ public class Tutor {
         
         // Sistema de seleção da próxima atividade
         // 1. Seleciona o conceito selecConceito()
-        int proxConceito = selecConceito();
-        System.out.println("Conceito selecionado: " + proxConceito);
-        
         // 2. Seleciona atividade dentro do conceito
+        int proxConceito = selecConceito();
         ativ = selecAtividade(proxConceito);
+        //System.out.println("Conceito selecionado: " + proxConceito);
+        
         
         // TEST: random
         /*Random rand = new Random();
         int codAtividade = rand.nextInt((7 - 1) + 1) + 1;
         ativ = ativ_dao.consultar(codAtividade);*/
-        //ativ = ativ_dao.consultar(24);
+        //ativ = ativ_dao.consultar(31);
         
         return ativ;
         
@@ -198,6 +200,7 @@ public class Tutor {
             
             // 4 - Selecionar conceito
             // Seleção estática simples: considerar notas nos conceitos por ordem de dificuldade
+            // Também considerar se já fez todas as atividades do conceito
             // Ordem: {1, 2, 8, 3}, 6, 4, {5, 7}
             if(medias[1-1] < 6 || medias[2-1] < 6 || medias[8-1] < 6 || medias[3-1] < 6) {
                 if(medias[1-1] <= medias[2-1] && medias[1-1] <= medias[8-1] && medias[1-1] <= medias[3-1])
@@ -223,7 +226,51 @@ public class Tutor {
             }
             else {
                 // Escolhe a menor média entre todas
-                return getMinIndex(medias)+1;
+                int minIndex = getMinIndex(medias)+1;
+                double minMedia = medias[minIndex];
+                if(minMedia < 10)
+                    return minIndex; // caso comum
+                else {
+                    /*Se a menor média é 10, todas são 10. Nesse caso, pega um 
+                    exercício aleatório que ainda não foi resolvido. Se todos foram 
+                    resolvidos, pega um aleatório qualquer */
+                    // Lista as atividades do conceito selecionado
+                    List<Atividade> todasAtiv = ativ_dao.listar();
+
+                    List<Atividade> ativFeitas = new ArrayList<>();
+                    List<Atividade> ativNaoFeitas = new ArrayList<>();
+
+                    // Lista quais atividades não possuem nota
+                    for(int i = 0; i < todasAtiv.size(); i++) {
+                        int esteCodAtiv = todasAtiv.get(i).getCod();
+                        List<Avaliacao> avalAtividade = aval_dao.listarPorAtividade(esteCodAtiv);
+                        if(avalAtividade.isEmpty())
+                            ativNaoFeitas.add(todasAtiv.get(i));
+                        else
+                            ativFeitas.add(todasAtiv.get(i));
+                    }
+                    
+                    //Pega o conceito da primeira atividade não feita, se houver
+                    if(!ativNaoFeitas.isEmpty()) {
+                        Object[] conceitos = ativ_dao.getConceitos(ativNaoFeitas.get(0).getCod());
+                        System.out.println("TAMANHO: " +conceitos.length);
+                        int conceito = (int)conceitos[0];
+                        return conceito;
+                    }
+                    //Se todas foram feitas, pega uma aleatória
+                    else {
+                        JOptionPane.showMessageDialog(null, "Você concluiu com nota máxima todas as atividades. Parabéns!");
+                        int numAtivs = ativFeitas.size();
+                        Random random = new Random();
+                        int codAtiv = ativFeitas.get(random.nextInt(numAtivs)).getCod();
+                        Object[] conceitos = ativ_dao.getConceitos(codAtiv);
+                        int conceito = (int)conceitos[0];
+                        return conceito;
+                    }
+                    
+                }
+                
+                
             }
             
             
