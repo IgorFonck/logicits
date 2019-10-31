@@ -10,25 +10,33 @@ import control.ExpressionTree;
 import control.Tutor;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Graphics;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.Atividade;
 import model.AtividadeDAO;
+import model.AvaliacaoDAO;
 import model.Complexidade;
 import model.ComplexidadeDAO;
 import model.Perfil;
@@ -136,8 +144,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         jmMenuSuperior = new javax.swing.JMenuBar();
         jmArquivo = new javax.swing.JMenu();
         miNovo = new javax.swing.JMenuItem();
-        miAbrir = new javax.swing.JMenuItem();
-        miSalvar = new javax.swing.JMenuItem();
+        miExportar = new javax.swing.JMenuItem();
+        miImportar = new javax.swing.JMenuItem();
+        miRedefinir = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         miSair = new javax.swing.JMenuItem();
         jmOpcoes = new javax.swing.JMenu();
@@ -410,12 +419,11 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jbHip, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btIntroImpl)
-                        .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btIntroConju, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btIntroDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(btIntroNeg)))
+                    .addComponent(btIntroImpl)
+                    .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btIntroConju, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btIntroDisju, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btIntroNeg))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btElimConju, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -714,11 +722,24 @@ public class jfPrincipal extends javax.swing.JFrame {
         miNovo.setText("Nova prova");
         jmArquivo.add(miNovo);
 
-        miAbrir.setText("Exportar perfil");
-        jmArquivo.add(miAbrir);
+        miExportar.setText("Exportar perfil");
+        miExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miExportarActionPerformed(evt);
+            }
+        });
+        jmArquivo.add(miExportar);
 
-        miSalvar.setText("Importar perfil");
-        jmArquivo.add(miSalvar);
+        miImportar.setText("Importar perfil");
+        miImportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miImportarActionPerformed(evt);
+            }
+        });
+        jmArquivo.add(miImportar);
+
+        miRedefinir.setText("Redefinir perfil");
+        jmArquivo.add(miRedefinir);
         jmArquivo.add(jSeparator1);
 
         miSair.setText("Sair");
@@ -1048,6 +1069,63 @@ public class jfPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbInserirOutraActionPerformed
 
+    private void miExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExportarActionPerformed
+        
+        // Salvar avaliações
+        // Configura o File Chooser e obtém endereço do arquivo
+        JFileChooser fc = new JFileChooser();
+        File defaultFile = new File("perfil-logicits.lits");
+        fc.setSelectedFile(defaultFile);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Perfil do LogicITS", "lits");
+        fc.setFileFilter(filter);
+        fc.showSaveDialog(this);
+        File arquivo = fc.getSelectedFile();
+        
+        if(arquivo != defaultFile) {
+            AvaliacaoDAO aval_dao = new AvaliacaoDAO();
+            aval_dao.gerarBackupPerfil(arquivo.toString());
+        }
+        
+    }//GEN-LAST:event_miExportarActionPerformed
+
+    private void miImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miImportarActionPerformed
+        
+        JFileChooser fc = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Perfil do LogicITS", "lits");
+        fc.setFileFilter(filter);
+        fc.showOpenDialog(this);
+        File arquivo = fc.getSelectedFile();
+        
+        // Lê arquivo inteiro para uma String
+        StringBuilder contentBuilder = new StringBuilder();
+        try {
+            Reader fileReader = new FileReader(arquivo);
+            BufferedReader in = new BufferedReader(fileReader);
+            String str;
+            while ((str = in.readLine()) != null) {
+                contentBuilder.append(str);
+            }
+            in.close();
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+        String sql = contentBuilder.toString();
+        
+        // Limpa tabela de avaliação e executa arquivo
+        // TODO: decrypt
+        sql = "DELETE FROM avaliacao;".concat(sql);
+        // Remove as sequências geradas no dump
+        String start = Pattern.quote("CREATE SEQUENCE ");
+        sql = sql.replaceAll(start, "CREATE SEQUENCE IF NOT EXISTS ");
+        String start2 = Pattern.quote("--");
+        String end2 = Pattern.quote("INSERT");
+        sql = sql.replaceAll(start2+".*"+end2, "INSERT");
+        System.out.println(sql);
+        AvaliacaoDAO aval_dao = new AvaliacaoDAO();
+        aval_dao.importarBackupPerfil(sql);
+        
+    }//GEN-LAST:event_miImportarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
     private javax.swing.JButton btElimConju;
@@ -1100,15 +1178,16 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jpRegras;
     private javax.swing.JPanel jpResolucao;
     private javax.swing.JTable jtResolucao;
-    private javax.swing.JMenuItem miAbrir;
     private javax.swing.JMenuItem miDominio;
+    private javax.swing.JMenuItem miExportar;
     private javax.swing.JMenuItem miGuia;
+    private javax.swing.JMenuItem miImportar;
     private javax.swing.JMenuItem miModoLivre;
     private javax.swing.JMenuItem miNovo;
     private javax.swing.JRadioButtonMenuItem miPredicaodos;
     private javax.swing.JRadioButtonMenuItem miProposicional;
+    private javax.swing.JMenuItem miRedefinir;
     private javax.swing.JMenuItem miSair;
-    private javax.swing.JMenuItem miSalvar;
     private javax.swing.JMenuItem miSobre;
     // End of variables declaration//GEN-END:variables
 
@@ -1476,6 +1555,10 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         // Seleciona a atividade a ser mostrada
         ativ = Tutor.proxAtividade();
+        
+        if(ativ == null) {
+            JOptionPane.showMessageDialog(null, "Erro ao carregar atividade do Banco de Dados!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
         
         // Formata a fórmula da atividade para ser exibida
         String exercicio = ativ.getPremissas() + " |- " + ativ.getConclusao();

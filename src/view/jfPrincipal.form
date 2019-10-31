@@ -34,14 +34,25 @@
                 <Property name="text" type="java.lang.String" value="Nova prova"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="miAbrir">
+            <MenuItem class="javax.swing.JMenuItem" name="miExportar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Exportar perfil"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miExportarActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="miSalvar">
+            <MenuItem class="javax.swing.JMenuItem" name="miImportar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Importar perfil"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miImportarActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miRedefinir">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Redefinir perfil"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
@@ -419,14 +430,12 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jbHip" pref="40" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="btIntroImpl" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="btIntroConju" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                                          <Component id="btIntroDisju" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="btIntroNeg" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btIntroImpl" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="btIntroConju" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                      <Component id="btIntroDisju" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="btIntroNeg" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">

@@ -44,20 +44,19 @@ public class Tutor {
         Atividade ativ;
         AtividadeDAO ativ_dao = new AtividadeDAO();
         
-        
         // Sistema de seleção da próxima atividade
         // 1. Seleciona o conceito selecConceito()
         int proxConceito = selecConceito();
         System.out.println("Conceito selecionado: " + proxConceito);
         
         // 2. Seleciona atividade dentro do conceito
-        //ativ = selecAtividade(proxConceito);
+        ativ = selecAtividade(proxConceito);
         
         // TEST: random
         /*Random rand = new Random();
         int codAtividade = rand.nextInt((7 - 1) + 1) + 1;
         ativ = ativ_dao.consultar(codAtividade);*/
-        ativ = ativ_dao.consultar(24);
+        //ativ = ativ_dao.consultar(24);
         
         return ativ;
         

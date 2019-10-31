@@ -34,6 +34,7 @@ public class AtividadeDAO {
             }
         } catch (SQLException ex) {
             System.out.println("SQLException em adicionar! Erro detectado: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar atividade ao Banco de Dados!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
      

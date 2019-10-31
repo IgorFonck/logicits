@@ -192,4 +192,34 @@ public class AvaliacaoDAO {
         return null;
     }
     
+    public void gerarBackupPerfil(String arquivo) {
+        
+        String sql = "SCRIPT DROP TO '"+arquivo+"' TABLE avaliacao";
+        
+        try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
+            if (stmt.execute()) { 
+                //executa o UPDATE
+                System.out.println("Backup realizado.");
+                JOptionPane.showMessageDialog(null, "Perfil exportado com sucesso!");
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException em exportar! Erro detectado: " + ex.getMessage());
+        }
+        
+    }
+    
+    public void importarBackupPerfil(String sql) {
+        
+        try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
+            if (stmt.execute()) { 
+                //executa o UPDATE
+                System.out.println("Restore realizado.");
+                JOptionPane.showMessageDialog(null, "Perfil importado com sucesso!");
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException em exportar! Erro detectado: " + ex.getMessage());
+        }
+        
+    }
+    
 }
