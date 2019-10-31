@@ -211,10 +211,24 @@ public class AvaliacaoDAO {
     public void importarBackupPerfil(String sql) {
         
         try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
-            if (stmt.execute()) { 
+            if (!stmt.execute()) { 
                 //executa o UPDATE
-                System.out.println("Restore realizado.");
-                JOptionPane.showMessageDialog(null, "Perfil importado com sucesso!");
+                JOptionPane.showMessageDialog(null, "O perfil foi importado.\nA atividade atual será recarregada.");
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException em exportar! Erro detectado: " + ex.getMessage());
+        }
+        
+    }
+    
+    public void redefinirPerfil() {
+        
+        String sql = "DELETE FROM avaliacao";
+        
+        try (PreparedStatement stmt = ConexaoDAO.getPreparedStatement(sql)) {
+            if (!stmt.execute()) { 
+                //executa o UPDATE
+                JOptionPane.showMessageDialog(null, "O perfil foi redefinido.\nA atividade atual será recarregada.");
             }
         } catch (SQLException ex) {
             System.out.println("SQLException em exportar! Erro detectado: " + ex.getMessage());

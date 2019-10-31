@@ -739,6 +739,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         jmArquivo.add(miImportar);
 
         miRedefinir.setText("Redefinir perfil");
+        miRedefinir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miRedefinirActionPerformed(evt);
+            }
+        });
         jmArquivo.add(miRedefinir);
         jmArquivo.add(jSeparator1);
 
@@ -1090,41 +1095,66 @@ public class jfPrincipal extends javax.swing.JFrame {
 
     private void miImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miImportarActionPerformed
         
-        JFileChooser fc = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Perfil do LogicITS", "lits");
-        fc.setFileFilter(filter);
-        fc.showOpenDialog(this);
-        File arquivo = fc.getSelectedFile();
+        String mensagem = "Esta ação apagará o histórido atual de atividades realizadas. Para"
+                + "\nsalvar uma cópia, utilize a opção \"Exportar perfil\" no menu."
+                + "\n\nDeseja realmente importar outro perfil de usuário?";
+        String titulo = "Selecione uma opção";
+        int confirm = JOptionPane.showConfirmDialog(this, mensagem, titulo, JOptionPane.YES_NO_OPTION);
         
-        // Lê arquivo inteiro para uma String
-        StringBuilder contentBuilder = new StringBuilder();
-        try {
-            Reader fileReader = new FileReader(arquivo);
-            BufferedReader in = new BufferedReader(fileReader);
-            String str;
-            while ((str = in.readLine()) != null) {
-                contentBuilder.append(str);
+        if(confirm == JOptionPane.YES_OPTION) {
+            JFileChooser fc = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Perfil do LogicITS", "lits");
+            fc.setFileFilter(filter);
+            fc.showOpenDialog(this);
+            File arquivo = fc.getSelectedFile();
+
+            // Lê arquivo inteiro para uma String
+            StringBuilder contentBuilder = new StringBuilder();
+            try {
+                Reader fileReader = new FileReader(arquivo);
+                BufferedReader in = new BufferedReader(fileReader);
+                String str;
+                while ((str = in.readLine()) != null) {
+                    contentBuilder.append(str);
+                }
+                in.close();
+            } catch (IOException e) {
+                System.err.println(e);
             }
-            in.close();
-        } catch (IOException e) {
-            System.err.println(e);
+            String sql = contentBuilder.toString();
+
+            // Limpa tabela de avaliação e executa arquivo
+            // TODO: decrypt
+            sql = "DELETE FROM avaliacao;".concat(sql);
+            // Remove as sequências geradas no dump
+            String start = Pattern.quote("CREATE SEQUENCE ");
+            sql = sql.replaceAll(start, "CREATE SEQUENCE IF NOT EXISTS ");
+            String start2 = Pattern.quote("--");
+            String end2 = Pattern.quote("INSERT");
+            sql = sql.replaceAll(start2+".*"+end2, "INSERT");
+            AvaliacaoDAO aval_dao = new AvaliacaoDAO();
+            aval_dao.importarBackupPerfil(sql);
+            
+            novoExercicio();
         }
-        String sql = contentBuilder.toString();
-        
-        // Limpa tabela de avaliação e executa arquivo
-        // TODO: decrypt
-        sql = "DELETE FROM avaliacao;".concat(sql);
-        // Remove as sequências geradas no dump
-        String start = Pattern.quote("CREATE SEQUENCE ");
-        sql = sql.replaceAll(start, "CREATE SEQUENCE IF NOT EXISTS ");
-        String start2 = Pattern.quote("--");
-        String end2 = Pattern.quote("INSERT");
-        sql = sql.replaceAll(start2+".*"+end2, "INSERT");
-        System.out.println(sql);
-        AvaliacaoDAO aval_dao = new AvaliacaoDAO();
-        aval_dao.importarBackupPerfil(sql);
         
     }//GEN-LAST:event_miImportarActionPerformed
+
+    private void miRedefinirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miRedefinirActionPerformed
+        
+        String mensagem = "Esta ação apagará todo o histórido de atividades realizadas. Para"
+                + "\nsalvar uma cópia, utilize a opção \"Exportar perfil\" no menu."
+                + "\n\nDeseja realmente redefinir o perfil de usuário?";
+        String titulo = "Selecione uma opção";
+        int confirm = JOptionPane.showConfirmDialog(this, mensagem, titulo, JOptionPane.YES_NO_OPTION);
+        
+        if(confirm == JOptionPane.YES_OPTION) {
+            AvaliacaoDAO aval_dao = new AvaliacaoDAO();
+            aval_dao.redefinirPerfil();
+            novoExercicio();
+        }
+        
+    }//GEN-LAST:event_miRedefinirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
