@@ -9,6 +9,8 @@ import control.Exercicio;
 import control.ExpressionTree;
 import control.Tutor;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -120,6 +122,10 @@ public class jfPrincipal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jbProxAtiv = new javax.swing.JButton();
         jbGravarSolucao = new javax.swing.JButton();
+        jpConcluidoLivre = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jbEncerrarModoLivre = new javax.swing.JButton();
+        jbInserirOutra = new javax.swing.JButton();
         jpFeedback = new javax.swing.JPanel();
         jpFeedbackContainer = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -525,23 +531,75 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addGroup(jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbProxAtiv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(133, 133, 133)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                 .addComponent(jbGravarSolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addGap(109, 109, 109))
         );
         jpConcluidoLayout.setVerticalGroup(
             jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpConcluidoLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addGroup(jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jbGravarSolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbProxAtiv, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConcluidoLayout.createSequentialGroup()
+                .addGroup(jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jpConcluidoLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbGravarSolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpConcluidoLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                        .addComponent(jbProxAtiv, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19))
         );
 
         cardRegras.add(jpConcluido, "cartaoConcluido");
+
+        jLabel7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel7.setText("Você concluiu esta atividade!");
+
+        jbEncerrarModoLivre.setBackground(new java.awt.Color(224, 177, 7));
+        jbEncerrarModoLivre.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        jbEncerrarModoLivre.setForeground(new java.awt.Color(255, 255, 255));
+        jbEncerrarModoLivre.setText("Encerrar Modo Livre");
+        jbEncerrarModoLivre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEncerrarModoLivreActionPerformed(evt);
+            }
+        });
+
+        jbInserirOutra.setBackground(new java.awt.Color(224, 177, 7));
+        jbInserirOutra.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        jbInserirOutra.setForeground(new java.awt.Color(255, 255, 255));
+        jbInserirOutra.setText("Inserir outra atividade");
+        jbInserirOutra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbInserirOutraActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpConcluidoLivreLayout = new javax.swing.GroupLayout(jpConcluidoLivre);
+        jpConcluidoLivre.setLayout(jpConcluidoLivreLayout);
+        jpConcluidoLivreLayout.setHorizontalGroup(
+            jpConcluidoLivreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpConcluidoLivreLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpConcluidoLivreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(jbEncerrarModoLivre, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbInserirOutra, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(430, Short.MAX_VALUE))
+        );
+        jpConcluidoLivreLayout.setVerticalGroup(
+            jpConcluidoLivreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpConcluidoLivreLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jbInserirOutra, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbEncerrarModoLivre, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+        );
+
+        cardRegras.add(jpConcluidoLivre, "cartaoConcluidoLivre");
 
         jpEsquerdo.add(cardRegras);
 
@@ -963,33 +1021,12 @@ public class jfPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbGravarSolucaoActionPerformed
 
     private void miModoLivreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miModoLivreActionPerformed
-        
-        JTextField tfPremissas = new JTextField();
-        JTextField tfConclusao = new JTextField();
-        final JComponent[] inputs = new JComponent[] {
-            new JLabel("<html>Utilize o Modo Livre para inserir sua própria atividade. O exercício realizado no <br>"
-                    + "Modo Livre não é computado para fins de avaliação do desempenho do aluno."
-                    + "<br><br><i>Aviso: A atividade atual será interrompida!</i></html>"), 
-            new JLabel("<html><br>Premissas: <i>(separadas por vírgula)</i>"),
-            tfPremissas,
-            new JLabel("<html>Conclusão:"),
-            tfConclusao,
-            new JLabel("<html><small><br>Legenda:<br>"
-                    + ">: implicação<br>"
-                    + "+: disjunção<br>"
-                    + "*: conjunção<br>"
-                    + "~: negação")
-        };
-        int result = JOptionPane.showConfirmDialog(null, inputs, "Modo Livre", JOptionPane.PLAIN_MESSAGE);
-        
-        if (result == JOptionPane.OK_OPTION) {
-            String prem = tfPremissas.getText();
-            String conc = tfConclusao.getText();
-            System.out.println("Premissas: " + Exercicio.formatarParserParaLegivel(prem));
-            System.out.println("Conclusão: " + Exercicio.formatarParserParaLegivel(conc));
-            //
-        }
-        
+
+        if(modoLivre)
+            encerrarModoLivre();
+        else
+            modalModoLivre();
+
     }//GEN-LAST:event_miModoLivreActionPerformed
 
     private void miPredicaodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPredicaodosActionPerformed
@@ -998,6 +1035,18 @@ public class jfPrincipal extends javax.swing.JFrame {
         miProposicional.setSelected(true);
         
     }//GEN-LAST:event_miPredicaodosActionPerformed
+
+    private void jbEncerrarModoLivreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEncerrarModoLivreActionPerformed
+        
+        encerrarModoLivre();
+        
+    }//GEN-LAST:event_jbEncerrarModoLivreActionPerformed
+
+    private void jbInserirOutraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInserirOutraActionPerformed
+        
+        modalModoLivre();
+        
+    }//GEN-LAST:event_jbInserirOutraActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
@@ -1016,6 +1065,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
@@ -1023,8 +1073,10 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jbAplicarRegra;
     private javax.swing.JButton jbCancelarRegra;
     private javax.swing.JButton jbDesfazer;
+    private javax.swing.JButton jbEncerrarModoLivre;
     private javax.swing.JButton jbGravarSolucao;
     private javax.swing.JButton jbHip;
+    private javax.swing.JButton jbInserirOutra;
     private javax.swing.JButton jbLimparLinhas;
     private javax.swing.JButton jbProxAtiv;
     private javax.swing.JButton jbRevisar;
@@ -1038,6 +1090,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jmSistemaProva;
     private javax.swing.JPanel jpAtividade;
     private javax.swing.JPanel jpConcluido;
+    private javax.swing.JPanel jpConcluidoLivre;
     private javax.swing.JPanel jpConfigRegra;
     private javax.swing.JPanel jpEsquerdo;
     private javax.swing.JPanel jpFeedback;
@@ -1448,8 +1501,118 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         // Muda para a aba de exercício concluído
         CardLayout cl = (CardLayout) cardRegras.getLayout();
-        cl.show(cardRegras, "cartaoConcluido");
+        if(modoLivre)
+            cl.show(cardRegras, "cartaoConcluidoLivre");
+        else
+            cl.show(cardRegras, "cartaoConcluido");
         
+    }
+    
+    private void modalModoLivre() {
+        
+        JTextField tfPremissas = new JTextField();
+        JTextField tfConclusao = new JTextField();
+        final JComponent[] inputs = new JComponent[] {
+            new JLabel("<html>Utilize o Modo Livre para inserir sua própria atividade. O exercício realizado no <br>"
+                    + "Modo Livre não é computado para fins de avaliação do desempenho do aluno."
+                    + "<br><br><i>Aviso: A atividade atual será interrompida!</i></html>"), 
+            new JLabel("<html><br>Premissas: <i>(separadas por vírgula)</i>"),
+            tfPremissas,
+            new JLabel("<html>Conclusão:"),
+            tfConclusao,
+            new JLabel("<html><small><br>Legenda:<br>"
+                    + ">: implicação<br>"
+                    + "+: disjunção<br>"
+                    + "*: conjunção<br>"
+                    + "~: negação")
+        };
+        int result = JOptionPane.showConfirmDialog(null, inputs, "Modo Livre", JOptionPane.PLAIN_MESSAGE);
+
+        if (result == JOptionPane.OK_OPTION) {
+            String prem = tfPremissas.getText();
+            String conc = tfConclusao.getText();
+            iniciarModoLivre(prem, conc);
+        }
+        
+    }
+    
+    private void iniciarModoLivre(String prem, String concl) {
+        
+        // 1 - Altera as configurações
+        modoLivre = true;
+        miModoLivre.setText("Encerrar Modo Livre");
+        
+        Color mostarda = new Color(224, 177, 7);
+        jmMenuSuperior.setBackground(mostarda);
+        jmMenuSuperior.setBorder(new javax.swing.border.LineBorder(mostarda, 3, true));
+        jbAjuda.setBackground(mostarda);
+        jbRevisar.setBackground(mostarda);
+        btElimConju.setBackground(mostarda);
+        btElimDisju.setBackground(mostarda);
+        btElimImpl.setBackground(mostarda);
+        btElimNeg.setBackground(mostarda);
+        btIntroConju.setBackground(mostarda);
+        btIntroDisju.setBackground(mostarda);
+        btIntroImpl.setBackground(mostarda);
+        btIntroNeg.setBackground(mostarda);
+        jbAplicarRegra.setBackground(mostarda);
+        jbHip.setBackground(mostarda);
+        
+        // 2 - Abre o exercício
+        
+        // Fechar configuração
+        limparLinhas();
+        jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
+        regraAtual = null;
+        CardLayout cl = (CardLayout) cardRegras.getLayout();
+        cl.show(cardRegras, "cartaoBotoes");
+        
+        // Limpar tabela
+        DefaultTableModel model = (DefaultTableModel) jtResolucao.getModel();
+        model.setRowCount(0);
+        
+        // Formata a fórmula da atividade para ser exibida
+        String exercicio = prem + " |- " + concl;
+        exercicio = Exercicio.formatarFormula(exercicio);
+        jlAtivAtual.setText("<html><font face='Roboto'>"+exercicio);
+        respostaFinal = Exercicio.formatarFormula(concl);
+        
+        // Mostra as premissas da atividade na resolução
+        String premissas[] = Exercicio.getPremissas(exercicio);
+        DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
+
+        if(!"".equals(premissas[0])) {
+            int i = 0;
+            for (String s : premissas) {
+                dtm.addRow(new Object[]{++i + ".", "<html>"+s, "Premissa"});
+            }
+        }
+    }
+    
+    private void encerrarModoLivre() {
+        
+        // 1 - Altera as configurações
+        modoLivre = false;
+        miModoLivre.setText("Modo Livre");
+        
+        Color verde = new Color(6, 158, 79);
+        jmMenuSuperior.setBackground(verde);
+        jmMenuSuperior.setBorder(new javax.swing.border.LineBorder(verde, 3, true));
+        jbAjuda.setBackground(verde);
+        jbRevisar.setBackground(verde);
+        btElimConju.setBackground(verde);
+        btElimDisju.setBackground(verde);
+        btElimImpl.setBackground(verde);
+        btElimNeg.setBackground(verde);
+        btIntroConju.setBackground(verde);
+        btIntroDisju.setBackground(verde);
+        btIntroImpl.setBackground(verde);
+        btIntroNeg.setBackground(verde);
+        jbAplicarRegra.setBackground(verde);
+        jbHip.setBackground(verde);
+        
+        // 2 - Inicia novo exercício do Tutor
+        novoExercicio();
     }
     
     // Funções das regras
