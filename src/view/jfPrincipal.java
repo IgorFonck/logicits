@@ -1001,7 +1001,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         regraAtual = Regra.INTRO_DISJ;
         jlNomeRegra.setText("<html><font face='Roboto'>∨<sub>i</sub></font></html>");
-        selecionarFormulas(2);
+        selecionarFormulas(1);
         
     }//GEN-LAST:event_btIntroDisjuActionPerformed
 
@@ -1329,6 +1329,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                                 switch(regraAtual) {
                                     case ELIM_CONJ: elimConj(); break;
                                     case ELIM_NEG: elimNeg(); break;
+                                    case INTRO_DISJ: introDisj(); break;
                                 }
                             }
                             else
@@ -1954,22 +1955,47 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         // Introdução da conjunção
         String col2;
-        String col3 = "<html>∨<sub>i</sub> " + (linhasSelec[0]+1) + ", " + (linhasSelec[1]+1) + "";
+        String col3 = "<html>∨<sub>i</sub> " + (linhasSelec[0]+1) + "";
         
         String arg1 = Exercicio.limpaFormula(jtResolucao.getValueAt(linhasSelec[0], 1).toString());
-        String arg2 = Exercicio.limpaFormula(jtResolucao.getValueAt(linhasSelec[1], 1).toString());
+        String arg2 = "";
+        
+        // Arg2 é inserido pelo usuário
+        JTextField tfDisj = new JTextField();
+        final JComponent[] inputs = new JComponent[] {
+            new JLabel("Insira a segunda fórmula da disjunção: "), 
+            tfDisj, 
+            new JLabel("<html><small><br>Legenda:<br>"
+                    + ">: implicação<br>"
+                    + "+: disjunção<br>"
+                    + "*: conjunção<br>"
+                    + "~: negação")
+        };
+        int result = JOptionPane.showConfirmDialog(null, inputs, "Introdução da disjunção", JOptionPane.PLAIN_MESSAGE);
+        
+        if (result == JOptionPane.OK_OPTION) {
+            arg2 = tfDisj.getText();
+            arg2 = Exercicio.formatarParserParaLegivel(arg2);
+            if(isHipoteseValida(arg2)) {
+                if(arg1.length() == 1)
+                    col2 = arg1;
+                else
+                    col2 = "(" + arg1 + ")";
 
-        if(arg1.length() == 1)
-            col2 = arg1;
+                if(arg2.length() <= 1)
+                    col2 = col2.concat(" ∨ " + arg2);
+                else
+                    col2 = col2.concat(" ∨ (" + arg2 + ")");
+
+                novaLinha(col2, col3);
+            }
+            else {
+                novoFeedback("O valor informado para a disjunção não é válido.");
+                fecharConfig();
+            }
+        }
         else
-            col2 = "(" + arg1 + ")";
-        
-        if(arg2.length() == 1)
-            col2 = col2.concat(" ∨ " + arg2);
-        else
-            col2 = col2.concat(" ∨ (" + arg2 + ")");
-        
-        novaLinha(col2, col3);
+            fecharConfig();
     }
     
     private void elimDisj() {

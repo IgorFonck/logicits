@@ -315,7 +315,7 @@ public class Tutor {
             
             // Se houver atividades não feitas, seleciona
             if(!ativNaoFeitas.isEmpty()) {
-                // Seleciona estaticamente a primeira
+                // Seleciona estaticamente a primeira (menor dificuldade)
                 return ativNaoFeitas.get(0);
             }
             else {
