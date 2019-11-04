@@ -176,7 +176,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         jLabel3.setText("Resolução");
 
-        jtResolucao.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        jtResolucao.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jtResolucao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -215,7 +215,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         jLabel2.setText("Atividade");
 
         jlAtivAtual.setBackground(new java.awt.Color(238, 238, 238));
-        jlAtivAtual.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        jlAtivAtual.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
         jlAtivAtual.setText("a -> b");
 
         javax.swing.GroupLayout jpAtividadeLayout = new javax.swing.GroupLayout(jpAtividade);
@@ -261,7 +261,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -278,9 +278,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         jLabel1.setText("Regras de inferência");
 
         btIntroConju.setBackground(new java.awt.Color(6, 158, 79));
-        btIntroConju.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btIntroConju.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         btIntroConju.setForeground(new java.awt.Color(255, 255, 255));
-        btIntroConju.setText("<html><font face='Roboto'>∧<sub>i</sub></font></html>");
+        btIntroConju.setText("<html>∧<sub>i</sub></font></html>");
         btIntroConju.setToolTipText("Introdução da conjunção");
         btIntroConju.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,9 +289,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         });
 
         btElimConju.setBackground(new java.awt.Color(6, 158, 79));
-        btElimConju.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btElimConju.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         btElimConju.setForeground(new java.awt.Color(255, 255, 255));
-        btElimConju.setText("<html><font face='Roboto'>∧<sub>e</sub></font></html>");
+        btElimConju.setText("<html>∧<sub>e</sub></font></html>");
         btElimConju.setToolTipText("Eliminação da conjunção");
         btElimConju.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -300,7 +300,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         });
 
         btIntroDisju.setBackground(new java.awt.Color(6, 158, 79));
-        btIntroDisju.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btIntroDisju.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         btIntroDisju.setForeground(new java.awt.Color(255, 255, 255));
         btIntroDisju.setText("<html>∨<sub>i</sub></html>");
         btIntroDisju.setToolTipText("Introdução da disjunção");
@@ -311,7 +311,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         });
 
         btElimDisju.setBackground(new java.awt.Color(6, 158, 79));
-        btElimDisju.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btElimDisju.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         btElimDisju.setForeground(new java.awt.Color(255, 255, 255));
         btElimDisju.setText("<html>∨<sub>e</sub></html>");
         btElimDisju.setToolTipText("Eliminação da disjunção");
@@ -322,7 +322,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         });
 
         btIntroImpl.setBackground(new java.awt.Color(6, 158, 79));
-        btIntroImpl.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btIntroImpl.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         btIntroImpl.setForeground(new java.awt.Color(255, 255, 255));
         btIntroImpl.setText("<html>→<sub>i</sub></html>");
         btIntroImpl.setToolTipText("Introdução da implicação");
@@ -333,7 +333,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         });
 
         btElimImpl.setBackground(new java.awt.Color(6, 158, 79));
-        btElimImpl.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btElimImpl.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         btElimImpl.setForeground(new java.awt.Color(255, 255, 255));
         btElimImpl.setText("<html>→<sub>e</sub></html>");
         btElimImpl.setToolTipText("Eliminação da implicação");
@@ -344,7 +344,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         });
 
         btIntroNeg.setBackground(new java.awt.Color(6, 158, 79));
-        btIntroNeg.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btIntroNeg.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         btIntroNeg.setForeground(new java.awt.Color(255, 255, 255));
         btIntroNeg.setText("<html>¬<sub>i</sub></html>");
         btIntroNeg.setToolTipText("Introdução da negação");
@@ -355,7 +355,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         });
 
         btElimNeg.setBackground(new java.awt.Color(6, 158, 79));
-        btElimNeg.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        btElimNeg.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         btElimNeg.setForeground(new java.awt.Color(255, 255, 255));
         btElimNeg.setText("<html>¬<sub>e</sub></html>");
         btElimNeg.setToolTipText("Eliminação da negação");
@@ -1592,7 +1592,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         // Formata a fórmula da atividade para ser exibida
         String exercicio = ativ.getPremissas() + " |- " + ativ.getConclusao();
         exercicio = Exercicio.formatarFormula(exercicio);
-        jlAtivAtual.setText("<html><font face='Roboto'>"+exercicio);
+        jlAtivAtual.setText("<html><font face='Tahoma'>"+exercicio);
         respostaFinal = Exercicio.formatarFormula(ativ.getConclusao());
         
         // Mostra as premissas da atividade na resolução
