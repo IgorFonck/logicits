@@ -10,6 +10,7 @@ import control.ExpressionTree;
 import control.Tutor;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -23,6 +24,7 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -57,6 +59,9 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         initComponents();
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+        customInitComponents();
+        
+        
         
         // Oculta menus com funcionalidades não implementadas
         //jmOpcoes.setVisible(false);
@@ -130,6 +135,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jbProxAtiv = new javax.swing.JButton();
         jbGravarSolucao = new javax.swing.JButton();
+        jbSalvarImagem = new javax.swing.JButton();
         jpConcluidoLivre = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jbEncerrarModoLivre = new javax.swing.JButton();
@@ -530,6 +536,13 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jbSalvarImagem.setText("Salvar imagem");
+        jbSalvarImagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalvarImagemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpConcluidoLayout = new javax.swing.GroupLayout(jpConcluido);
         jpConcluido.setLayout(jpConcluidoLayout);
         jpConcluidoLayout.setHorizontalGroup(
@@ -539,22 +552,27 @@ public class jfPrincipal extends javax.swing.JFrame {
                 .addGroup(jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbProxAtiv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                .addComponent(jbGravarSolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109))
+                .addGroup(jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpConcluidoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbGravarSolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jpConcluidoLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jbSalvarImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(229, Short.MAX_VALUE))))
         );
         jpConcluidoLayout.setVerticalGroup(
             jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConcluidoLayout.createSequentialGroup()
-                .addGroup(jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jpConcluidoLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbGravarSolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpConcluidoLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                        .addComponent(jbProxAtiv, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
+                .addGroup(jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jbGravarSolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addGroup(jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbSalvarImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbProxAtiv, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
                 .addGap(19, 19, 19))
         );
 
@@ -1021,9 +1039,6 @@ public class jfPrincipal extends javax.swing.JFrame {
 
     private void jbProxAtivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProxAtivActionPerformed
         
-        // Salva nota do exercício atual
-        salvarNota();
-        
         // Carrega próximo exercício
         novoExercicio();
         
@@ -1156,6 +1171,12 @@ public class jfPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_miRedefinirActionPerformed
 
+    private void jbSalvarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarImagemActionPerformed
+        
+        //SaveScreenShot();
+        
+    }//GEN-LAST:event_jbSalvarImagemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
     private javax.swing.JButton btElimConju;
@@ -1188,6 +1209,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jbLimparLinhas;
     private javax.swing.JButton jbProxAtiv;
     private javax.swing.JButton jbRevisar;
+    private javax.swing.JButton jbSalvarImagem;
     private javax.swing.JLabel jlAtivAtual;
     private javax.swing.JLabel jlLinhasSelecionadas;
     private javax.swing.JLabel jlNomeRegra;
@@ -1228,6 +1250,12 @@ public class jfPrincipal extends javax.swing.JFrame {
     private int contAjudas;         // Utilizado para gerar a nota do aluno
     private boolean modoLivre = false;
     
+    // Cores do tema
+    private final Color HOVER_GREEN = new Color(6, 118, 56);
+    private final Color GREEN = new Color(6, 158, 79);
+    private final Color MOSTARDA = new Color(224, 177, 7);
+    private final Color HOVER_MOSTARDA = new Color(171, 135, 5);
+    
     // Variáveis da aplicação de regras
     private String textoLinhas;     // Imprime as linhas que foram selecionadas
     private int contLinhas;         // Quantidades de linhas já selecionadas
@@ -1236,7 +1264,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private Regra regraAtual;       // Registra qual regra foi selecionada
     private String respostaFinal;   // Armazena a conclusão
     Queue<JLabel> filaFeedback = new LinkedList<>();
-    
+
     enum Regra {
         INTRO_CONJ,
         ELIM_CONJ,
@@ -1617,8 +1645,10 @@ public class jfPrincipal extends javax.swing.JFrame {
         CardLayout cl = (CardLayout) cardRegras.getLayout();
         if(modoLivre)
             cl.show(cardRegras, "cartaoConcluidoLivre");
-        else
+        else {
+            salvarNota();
             cl.show(cardRegras, "cartaoConcluido");
+        }
         
     }
     
@@ -1656,21 +1686,43 @@ public class jfPrincipal extends javax.swing.JFrame {
         modoLivre = true;
         miModoLivre.setText("Encerrar Modo Livre");
         
-        Color mostarda = new Color(224, 177, 7);
-        jmMenuSuperior.setBackground(mostarda);
-        jmMenuSuperior.setBorder(new javax.swing.border.LineBorder(mostarda, 3, true));
-        jbAjuda.setBackground(mostarda);
-        jbRevisar.setBackground(mostarda);
-        btElimConju.setBackground(mostarda);
-        btElimDisju.setBackground(mostarda);
-        btElimImpl.setBackground(mostarda);
-        btElimNeg.setBackground(mostarda);
-        btIntroConju.setBackground(mostarda);
-        btIntroDisju.setBackground(mostarda);
-        btIntroImpl.setBackground(mostarda);
-        btIntroNeg.setBackground(mostarda);
-        jbAplicarRegra.setBackground(mostarda);
-        jbHip.setBackground(mostarda);
+        jmMenuSuperior.setBackground(MOSTARDA);
+        jmMenuSuperior.setBorder(new javax.swing.border.LineBorder(MOSTARDA, 3, true));
+        jbAjuda.setBackground(MOSTARDA);
+        jbRevisar.setBackground(MOSTARDA);
+        btElimConju.setBackground(MOSTARDA);
+        btElimDisju.setBackground(MOSTARDA);
+        btElimImpl.setBackground(MOSTARDA);
+        btElimNeg.setBackground(MOSTARDA);
+        btIntroConju.setBackground(MOSTARDA);
+        btIntroDisju.setBackground(MOSTARDA);
+        btIntroImpl.setBackground(MOSTARDA);
+        btIntroNeg.setBackground(MOSTARDA);
+        jbAplicarRegra.setBackground(MOSTARDA);
+        jbHip.setBackground(MOSTARDA);
+        
+        MouseAdapter maLivre = new MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(HOVER_MOSTARDA);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(MOSTARDA);
+            }
+        };
+        
+        jbAjuda.addMouseListener(maLivre);
+        jbRevisar.addMouseListener(maLivre);
+        btElimConju.addMouseListener(maLivre);
+        btElimDisju.addMouseListener(maLivre);
+        btElimImpl.addMouseListener(maLivre);
+        btElimNeg.addMouseListener(maLivre);
+        btIntroConju.addMouseListener(maLivre);
+        btIntroDisju.addMouseListener(maLivre);
+        btIntroImpl.addMouseListener(maLivre);
+        btIntroNeg.addMouseListener(maLivre);
+        jbAplicarRegra.addMouseListener(maLivre);
+        jbHip.addMouseListener(maLivre);
         
         // 2 - Abre o exercício
         
@@ -1709,25 +1761,74 @@ public class jfPrincipal extends javax.swing.JFrame {
         modoLivre = false;
         miModoLivre.setText("Modo Livre");
         
-        Color verde = new Color(6, 158, 79);
-        jmMenuSuperior.setBackground(verde);
-        jmMenuSuperior.setBorder(new javax.swing.border.LineBorder(verde, 3, true));
-        jbAjuda.setBackground(verde);
-        jbRevisar.setBackground(verde);
-        btElimConju.setBackground(verde);
-        btElimDisju.setBackground(verde);
-        btElimImpl.setBackground(verde);
-        btElimNeg.setBackground(verde);
-        btIntroConju.setBackground(verde);
-        btIntroDisju.setBackground(verde);
-        btIntroImpl.setBackground(verde);
-        btIntroNeg.setBackground(verde);
-        jbAplicarRegra.setBackground(verde);
-        jbHip.setBackground(verde);
+        jmMenuSuperior.setBackground(GREEN);
+        jmMenuSuperior.setBorder(new javax.swing.border.LineBorder(GREEN, 3, true));
+        jbAjuda.setBackground(GREEN);
+        jbRevisar.setBackground(GREEN);
+        btElimConju.setBackground(GREEN);
+        btElimDisju.setBackground(GREEN);
+        btElimImpl.setBackground(GREEN);
+        btElimNeg.setBackground(GREEN);
+        btIntroConju.setBackground(GREEN);
+        btIntroDisju.setBackground(GREEN);
+        btIntroImpl.setBackground(GREEN);
+        btIntroNeg.setBackground(GREEN);
+        jbAplicarRegra.setBackground(GREEN);
+        jbHip.setBackground(GREEN);
+        
+        MouseAdapter ma = new MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(HOVER_GREEN);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(GREEN);
+            }
+        };
+        
+        jbAjuda.addMouseListener(ma);
+        jbRevisar.addMouseListener(ma);
+        btElimConju.addMouseListener(ma);
+        btElimDisju.addMouseListener(ma);
+        btElimImpl.addMouseListener(ma);
+        btElimNeg.addMouseListener(ma);
+        btIntroConju.addMouseListener(ma);
+        btIntroDisju.addMouseListener(ma);
+        btIntroImpl.addMouseListener(ma);
+        btIntroNeg.addMouseListener(ma);
+        jbAplicarRegra.addMouseListener(ma);
+        jbHip.addMouseListener(ma);
         
         // 2 - Inicia novo exercício do Tutor
         novoExercicio();
     }
+    
+    private void customInitComponents() {
+        
+        MouseAdapter ma = new MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(HOVER_GREEN);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(GREEN);
+            }
+        };
+        
+        jbAjuda.addMouseListener(ma);
+        jbRevisar.addMouseListener(ma);
+        btElimConju.addMouseListener(ma);
+        btElimDisju.addMouseListener(ma);
+        btElimImpl.addMouseListener(ma);
+        btElimNeg.addMouseListener(ma);
+        btIntroConju.addMouseListener(ma);
+        btIntroDisju.addMouseListener(ma);
+        btIntroImpl.addMouseListener(ma);
+        btIntroNeg.addMouseListener(ma);
+        jbAplicarRegra.addMouseListener(ma);
+        jbHip.addMouseListener(ma);
+        
+    }    
     
     // Funções das regras
     private void introConj() {
