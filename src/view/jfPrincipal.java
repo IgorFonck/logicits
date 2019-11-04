@@ -1149,7 +1149,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         if(confirm == JOptionPane.YES_OPTION) {
             AvaliacaoDAO aval_dao = new AvaliacaoDAO();
             aval_dao.redefinirPerfil();
-            novoExercicio();
+            //novoExercicio();
+            new jfBoasVindas().setVisible(true);
+            dispose();
         }
         
     }//GEN-LAST:event_miRedefinirActionPerformed
