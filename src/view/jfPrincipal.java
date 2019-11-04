@@ -1723,6 +1723,8 @@ public class jfPrincipal extends javax.swing.JFrame {
         btIntroNeg.addMouseListener(maLivre);
         jbAplicarRegra.addMouseListener(maLivre);
         jbHip.addMouseListener(maLivre);
+        jbInserirOutra.addMouseListener(maLivre);
+        jbEncerrarModoLivre.addMouseListener(maLivre);
         
         // 2 - Abre o exercício
         
@@ -1740,7 +1742,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         // Formata a fórmula da atividade para ser exibida
         String exercicio = prem + " |- " + concl;
         exercicio = Exercicio.formatarFormula(exercicio);
-        jlAtivAtual.setText("<html><font face='Roboto'>"+exercicio);
+        jlAtivAtual.setText("<html><font face='Tahoma'>"+exercicio);
         respostaFinal = Exercicio.formatarFormula(concl);
         
         // Mostra as premissas da atividade na resolução
@@ -1827,6 +1829,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         btIntroNeg.addMouseListener(ma);
         jbAplicarRegra.addMouseListener(ma);
         jbHip.addMouseListener(ma);
+        jbProxAtiv.addMouseListener(ma);
         
     }    
     

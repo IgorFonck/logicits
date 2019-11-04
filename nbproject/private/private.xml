@@ -3,14 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Igor/Documents/NetBeansProjects/logicits/src/view/jfApoio.java</file>
-            <file>file:/C:/Users/Igor/Documents/NetBeansProjects/logicits/src/view/jfSobre.java</file>
-            <file>file:/C:/Users/Igor/Documents/NetBeansProjects/logicits/src/model/ConexaoDAO.java</file>
-            <file>file:/C:/Users/Igor/Documents/NetBeansProjects/logicits/src/view/jfPrincipal.java</file>
-            <file>file:/C:/Users/Igor/Documents/NetBeansProjects/logicits/src/control/Exercicio.java</file>
-            <file>file:/C:/Users/Igor/Documents/NetBeansProjects/logicits/src/model/SolucaoDAO.java</file>
-            <file>file:/C:/Users/Igor/Documents/NetBeansProjects/logicits/src/control/Tutor.java</file>
-            <file>file:/C:/Users/Igor/Documents/NetBeansProjects/logicits/src/control/ExpressionTree.java</file>
+            <file>file:/C:/Users/igorfonseca/Documents/NetBeansProjects/logicits/src/view/jfPrincipal.java</file>
+            <file>file:/C:/Users/igorfonseca/Documents/NetBeansProjects/logicits/src/model/AvaliacaoDAO.java</file>
+            <file>file:/C:/Users/igorfonseca/Documents/NetBeansProjects/logicits/src/control/Exercicio.java</file>
+            <file>file:/C:/Users/igorfonseca/Documents/NetBeansProjects/logicits/src/view/jfBoasVindas.java</file>
+            <file>file:/C:/Users/igorfonseca/Documents/NetBeansProjects/logicits/src/view/jfInicial.java</file>
         </group>
     </open-files>
 </project-private>
