@@ -96,10 +96,12 @@ public class AvaliacaoDAO {
                 avaliacao.setPerfil((new PerfilDAO()).consultar(rset.getInt("fk_estudante_cod_estudante")));
                 lista.add(avaliacao);
             }
+            return lista;
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro de SQL: " + ex.getMessage());
             System.out.println("SQLException em listar! Erro detectado: " + ex.getMessage());
+            return null;
         }
-        return lista;
     }
     
     /**

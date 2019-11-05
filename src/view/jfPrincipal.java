@@ -1327,7 +1327,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     
     private void novoFeedback(String mensagem) {
         ImageIcon image = new ImageIcon(System.getProperty("user.dir") + "\\src\\img\\icon_info.png");
-        JLabel novaMensagem = new JLabel("<html><div WIDTH='242' style='margin:0'>"+mensagem, image, JLabel.LEFT);
+        JLabel novaMensagem = new JLabel("<html><div WIDTH='242' style='margin:7'>"+mensagem, image, JLabel.LEFT);
         
         novaMensagem.setBorder(javax.swing.BorderFactory.createCompoundBorder(
             new javax.swing.border.LineBorder(GREEN, 2, true), 

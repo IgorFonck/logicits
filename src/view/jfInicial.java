@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import mdlaf.MaterialLookAndFeel;
@@ -119,27 +120,30 @@ public class jfInicial extends javax.swing.JFrame {
 
     private void btSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarActionPerformed
         
-        boolean isNewUser = true;
+        boolean isNewUser = false;
         
         try {
             AvaliacaoDAO aval_dao = new AvaliacaoDAO();
             List<Avaliacao> notas = aval_dao.listar();
-            if(notas.size() >= 1)
-                isNewUser = false;
+            if(notas != null)
+                if(notas.isEmpty())
+                    isNewUser = true;
+            
+            if(isNewUser) {
+                // Novo usuário, mostra a tela de boas vindas
+                new jfBoasVindas().setVisible(true);
+            }
+            else {
+                // Não é novo usuário, pula tela de boas vindas
+                new jfPrincipal().setVisible(true);
+            }
+
+            dispose();
+            
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro de SQL: " + ex.getMessage());
             Logger.getLogger(jfInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if(isNewUser) {
-            // Novo usuário, mostra a tela de boas vindas
-            new jfBoasVindas().setVisible(true);
-        }
-        else {
-            // Não é novo usuário, pula tela de boas vindas
-            new jfPrincipal().setVisible(true);
-        }
-        
-        dispose();
         
     }//GEN-LAST:event_btSelecionarActionPerformed
 

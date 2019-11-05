@@ -7,6 +7,8 @@ package view;
 
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 
 /**
@@ -20,6 +22,15 @@ public class jfBoasVindas extends javax.swing.JFrame {
      */
     public jfBoasVindas() {
         initComponents();
+        
+        addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                new jfPrincipal().setVisible(true);
+            }
+        });
         
         // Efeito hover nos botões
         //0, 121, 201
@@ -70,7 +81,7 @@ public class jfBoasVindas extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jbFechar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("LogicITS");
         setAlwaysOnTop(true);
         setResizable(false);
