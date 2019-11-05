@@ -1370,40 +1370,45 @@ public class jfPrincipal extends javax.swing.JFrame {
         tableListener = new ListSelectionListener(){
             @Override
             public void valueChanged(ListSelectionEvent event) {
-                if(!event.getValueIsAdjusting() && contLinhas < numFormulas) { // evita eventos duplicados
-                    
-                    if(isHipoteseEncerrada(jtResolucao.getSelectedRow())) {
-                        novoFeedback("Não é possível utilizar fórmulas de uma hipótese encerrada.");
-                        contAjudas++;
-                    }
-                    // Adiciona a linha selecionada à lista
-                    else {
-                        // Adiciona texto aos labels
-                        String col1 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 0).toString();
-                        String col2 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 1).toString();
-                        textoLinhas = textoLinhas + col1 + " " + col2 + "<br>";
-                        jlLinhasSelecionadas.setText(textoLinhas);
-                        // Adiciona índice ao array
-                        linhasSelec[contLinhas] = jtResolucao.getSelectedRow();
-                        contLinhas++;
-                        
-                        jbLimparLinhas.setEnabled(true);
-                        
-                        // Se a regra for de uma fórmula, aplica automaticamente
-                        // Se for de duas fórmulas ou mais, ativa o botão aplicar
-                        if(contLinhas >= numFormulas) {
-                            if(numFormulas == 1) {
-                                switch(regraAtual) {
-                                    case ELIM_CONJ: elimConj(); break;
-                                    case ELIM_NEG: elimNeg(); break;
-                                    case INTRO_DISJ: introDisj(); break;
+                try {
+                    if(!event.getValueIsAdjusting() && contLinhas < numFormulas) { // evita eventos duplicados
+
+                        if(isHipoteseEncerrada(jtResolucao.getSelectedRow())) {
+                            novoFeedback("Não é possível utilizar fórmulas de uma hipótese encerrada.");
+                            contAjudas++;
+                        }
+                        // Adiciona a linha selecionada à lista
+                        else {
+                            // Adiciona texto aos labels
+                            String col1 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 0).toString();
+                            String col2 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 1).toString();
+                            textoLinhas = textoLinhas + col1 + " " + col2 + "<br>";
+                            jlLinhasSelecionadas.setText(textoLinhas);
+                            // Adiciona índice ao array
+                            linhasSelec[contLinhas] = jtResolucao.getSelectedRow();
+                            contLinhas++;
+
+                            jbLimparLinhas.setEnabled(true);
+
+                            // Se a regra for de uma fórmula, aplica automaticamente
+                            // Se for de duas fórmulas ou mais, ativa o botão aplicar
+                            if(contLinhas >= numFormulas) {
+                                if(numFormulas == 1) {
+                                    switch(regraAtual) {
+                                        case ELIM_CONJ: elimConj(); break;
+                                        case ELIM_NEG: elimNeg(); break;
+                                        case INTRO_DISJ: introDisj(); break;
+                                    }
                                 }
-                            }
-                            else
-                                jbAplicarRegra.setEnabled(true);
-                        } //end if(contLinhas >= numFormulas)
-                    } //end if(isHipoteseEncerrada(jtResolucao.getSelectedRow())) else
-                } //end if(!event.getValueIsAdjusting() && contLinhas < numFormulas)
+                                else
+                                    jbAplicarRegra.setEnabled(true);
+                            } //end if(contLinhas >= numFormulas)
+                        } //end if(isHipoteseEncerrada(jtResolucao.getSelectedRow())) else
+                        event = null;
+                        jtResolucao.clearSelection();
+                    } //end if(!event.getValueIsAdjusting() && contLinhas < numFormulas)
+                }
+                catch(Exception e) { /* esconde exceção de limpar seleção durante o evento */ }
             } //end valueChanged(ListSelectionEvent event)
         };
         
