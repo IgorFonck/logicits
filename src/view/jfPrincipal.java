@@ -10,9 +10,11 @@ import control.ExpressionTree;
 import control.Tutor;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -24,6 +26,7 @@ import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -973,7 +976,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         if (result == JOptionPane.OK_OPTION) {
             String hip = tfHipotese.getText();
             hip = Exercicio.formatarParserParaLegivel(hip);
-            if(isHipoteseValida(hip)) {
+            if(isEntradaValida(hip)) {
                 hipLevel++;
                 novaLinha(hip, "Hipótese");
             }
@@ -1187,7 +1190,11 @@ public class jfPrincipal extends javax.swing.JFrame {
 
     private void jbSalvarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarImagemActionPerformed
         
-        //SaveScreenShot();
+        try {
+            salvarImagem();
+        } catch (IOException ex) {
+            Logger.getLogger(jfPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jbSalvarImagemActionPerformed
 
@@ -1460,15 +1467,15 @@ public class jfPrincipal extends javax.swing.JFrame {
         return false;
     }
     
-    private boolean isHipoteseValida(String hip) {
+    private boolean isEntradaValida(String entrada) {
         
         // Validar String vazia
-        if ("".equals(hip))
+        if ("".equals(entrada))
             return false;
         // Validar mais de um caracter por variável
         
         // Validar símbolo $
-        else if(hip.contains("$"))
+        else if(entrada.contains("$"))
             return false;
         else
             return true;
@@ -1705,7 +1712,10 @@ public class jfPrincipal extends javax.swing.JFrame {
         if (result == JOptionPane.OK_OPTION) {
             String prem = tfPremissas.getText();
             String conc = tfConclusao.getText();
-            iniciarModoLivre(prem, conc);
+            if(isEntradaValida(conc))
+                iniciarModoLivre(prem, conc);
+            else
+                novoFeedback("Entrada inválida para iniciar o Modo Livre.");
         }
         
     }
@@ -1879,6 +1889,33 @@ public class jfPrincipal extends javax.swing.JFrame {
         jbSalvarImagem.addMouseListener(maGrey);
         
     }    
+    
+    private void salvarImagem() throws IOException {
+        Component com = jtResolucao;
+        BufferedImage img = new BufferedImage(com.getWidth(), com.getHeight(), BufferedImage.TYPE_INT_RGB);
+        com.paint(img.getGraphics());
+        //return image;
+        
+        // Escolhe arquivo
+        JFileChooser fc = new JFileChooser();
+        File defaultFile = new File("logicits.png");
+        fc.setSelectedFile(defaultFile);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem", "png");
+        fc.setFileFilter(filter);
+        fc.showSaveDialog(this);
+        File arquivo = fc.getSelectedFile();
+        
+        if(arquivo != defaultFile) {
+            ImageIO.write(img, "png", arquivo);
+        }
+        
+    }
+    
+    private static BufferedImage getScreenShot(Component com) {
+        BufferedImage image = new BufferedImage(com.getWidth(), com.getHeight(), BufferedImage.TYPE_INT_RGB);
+        com.paint(image.getGraphics());
+        return image;
+    }
     
     // Funções das regras
     private void introConj() {
@@ -2129,7 +2166,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         if (result == JOptionPane.OK_OPTION) {
             arg2 = tfDisj.getText();
             arg2 = Exercicio.formatarParserParaLegivel(arg2);
-            if(isHipoteseValida(arg2)) {
+            if(isEntradaValida(arg2)) {
                 if(arg1.length() == 1)
                     col2 = arg1;
                 else
