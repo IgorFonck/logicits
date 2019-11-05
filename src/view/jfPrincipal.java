@@ -453,7 +453,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         jpConfigRegra.setBackground(new java.awt.Color(255, 255, 255));
         jpConfigRegra.setPreferredSize(new java.awt.Dimension(720, 300));
 
-        jLabel5.setText("Selecione as linhas para aplicar a regra");
+        jLabel5.setText("Selecione a(s) linha(s) para aplicar a regra");
 
         jbCancelarRegra.setText("Cancelar");
         jbCancelarRegra.addActionListener(new java.awt.event.ActionListener() {
@@ -462,7 +462,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jlNomeRegra.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jlNomeRegra.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jlNomeRegra.setText("<nome>");
 
         jlLinhasSelecionadas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -518,7 +518,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                     .addComponent(jbAplicarRegra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbLimparLinhas, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addComponent(jbCancelarRegra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         cardRegras.add(jpConfigRegra, "cartaoLinhas");
@@ -867,7 +867,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void btIntroConjuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIntroConjuActionPerformed
         
         regraAtual = Regra.INTRO_CONJ;
-        jlNomeRegra.setText("<html><font face='Roboto'>∧<sub>i</sub></font></html>");
+        jlNomeRegra.setText("<html><font face='Tahoma'>∧<sub>i</sub></font></html>");
         selecionarFormulas(2);
         
     }//GEN-LAST:event_btIntroConjuActionPerformed
@@ -954,7 +954,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void btElimConjuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btElimConjuActionPerformed
         
         regraAtual = Regra.ELIM_CONJ;
-        jlNomeRegra.setText("<html><font face='Roboto'>∧<sub>e</sub></font></html>");
+        jlNomeRegra.setText("<html>∧<sub>e</sub></font></html>");
         selecionarFormulas(1);
         
     }//GEN-LAST:event_btElimConjuActionPerformed
@@ -996,7 +996,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         }
         
         regraAtual = Regra.INTRO_IMPL;
-        jlNomeRegra.setText("<html><font face='Roboto'>→<sub>i</sub></font></html>");
+        jlNomeRegra.setText("<html>→<sub>i</sub></font></html>");
         selecionarFormulas(2);
         
     }//GEN-LAST:event_btIntroImplActionPerformed
@@ -1004,7 +1004,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void btElimImplActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btElimImplActionPerformed
         
         regraAtual = Regra.ELIM_IMPL;
-        jlNomeRegra.setText("<html><font face='Roboto'>→<sub>e</sub></font></html>");
+        jlNomeRegra.setText("<html>→<sub>e</sub></font></html>");
         selecionarFormulas(2);
         
     }//GEN-LAST:event_btElimImplActionPerformed
@@ -1012,7 +1012,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void btElimNegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btElimNegActionPerformed
         
         regraAtual = Regra.ELIM_NEG;
-        jlNomeRegra.setText("<html><font face='Roboto'>¬<sub>e</sub></font></html>");
+        jlNomeRegra.setText("<html>¬<sub>e</sub></font></html>");
         selecionarFormulas(1);
         
     }//GEN-LAST:event_btElimNegActionPerformed
@@ -1027,7 +1027,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         }
         
         regraAtual = Regra.INTRO_NEG;
-        jlNomeRegra.setText("<html><font face='Roboto'>¬<sub>i</sub></font></html>");
+        jlNomeRegra.setText("<html>¬<sub>i</sub></font></html>");
         selecionarFormulas(2);
         
     }//GEN-LAST:event_btIntroNegActionPerformed
@@ -1035,7 +1035,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void btIntroDisjuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIntroDisjuActionPerformed
         
         regraAtual = Regra.INTRO_DISJ;
-        jlNomeRegra.setText("<html><font face='Roboto'>∨<sub>i</sub></font></html>");
+        jlNomeRegra.setText("<html>∨<sub>i</sub></font></html>");
         selecionarFormulas(1);
         
     }//GEN-LAST:event_btIntroDisjuActionPerformed
@@ -1043,7 +1043,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void btElimDisjuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btElimDisjuActionPerformed
         
         regraAtual = Regra.ELIM_DISJ;
-        jlNomeRegra.setText("<html><font face='Roboto>∨<sub>e</sub></font></html>");
+        jlNomeRegra.setText("<html>∨<sub>e</sub></font></html>");
         selecionarFormulas(3);
         
     }//GEN-LAST:event_btElimDisjuActionPerformed
