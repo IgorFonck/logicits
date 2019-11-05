@@ -89,6 +89,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         // Configura o painel de regras
         jbAplicarRegra.setEnabled(false);
         jbLimparLinhas.setEnabled(false);
+        jbDesfazer.setEnabled(false);
         
         // TEST: Lista de feedbacks
         jpListaFeedback.setLayout(new BoxLayout(jpListaFeedback, BoxLayout.Y_AXIS));
@@ -930,16 +931,22 @@ public class jfPrincipal extends javax.swing.JFrame {
         int ultimaLinha = jtResolucao.getRowCount()-1;
         
         // Verifica se a última regra não é premissa
-        String ultimaRegra = jtResolucao.getValueAt(ultimaLinha, 2).toString();
-        if(ultimaRegra.compareTo("Hipótese") == 0) {
-            hipLevel--;
-        }
-        else if(ultimaRegra.contains("→<sub>i") || ultimaRegra.contains("¬<sub>i")) {
-            hipLevel++;
-        }
-        else if(ultimaRegra.compareTo("Premissa") == 0) {
+        if(ultimaLinha == -1) {
             podeDesfazer = false;
             novoFeedback("Não é possível desfazer.");
+        }
+        else {
+            String ultimaRegra = jtResolucao.getValueAt(ultimaLinha, 2).toString();
+            if(ultimaRegra.compareTo("Premissa") == 0) {
+                podeDesfazer = false;
+                novoFeedback("Não é possível desfazer.");
+            }
+            else if(ultimaRegra.compareTo("Hipótese") == 0) {
+                hipLevel--;
+            }
+            else if(ultimaRegra.contains("→<sub>i") || ultimaRegra.contains("¬<sub>i")) {
+                hipLevel++;
+            }
         }
         
         // Desfaz a última regra, se permitido
@@ -947,6 +954,9 @@ public class jfPrincipal extends javax.swing.JFrame {
             DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
             dtm.removeRow(ultimaLinha);
             contAjudas++;
+            
+            if(ultimaLinha == numPremissas)
+                jbDesfazer.setEnabled(false);
         }
         
     }//GEN-LAST:event_jbDesfazerActionPerformed
@@ -1277,6 +1287,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private Perfil perfil = new Perfil();
     private int contAjudas;         // Utilizado para gerar a nota do aluno
     private boolean modoLivre = false;
+    private int numPremissas;
     
     // Cores do tema
     private final Color HOVER_GREEN = new Color(6, 118, 56);
@@ -1308,20 +1319,100 @@ public class jfPrincipal extends javax.swing.JFrame {
     
     // Funções internas
     
-    private void limparLinhas() {
-        jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
-        
-        textoLinhas = "<html>";
-        jlLinhasSelecionadas.setText(textoLinhas);
-        contLinhas = 0;
-        jtResolucao.clearSelection();
-        
-        jbAplicarRegra.setEnabled(false);
-        jbLimparLinhas.setEnabled(false);
-        
-        jtResolucao.getSelectionModel().addListSelectionListener(tableListener);
-    }
     
+    private void customInitComponents() {
+        
+        // Eventos hover dos botões
+        MouseAdapter ma = new MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(HOVER_GREEN);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(GREEN);
+            }
+        };
+        MouseAdapter maGrey = new MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(new Color(207, 207, 207));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(new Color(240, 240, 240));
+            }
+        };
+        
+        // Eventos hover nos botões verdes
+        jbAjuda.addMouseListener(ma);
+        jbRevisar.addMouseListener(ma);
+        btElimConju.addMouseListener(ma);
+        btElimDisju.addMouseListener(ma);
+        btElimImpl.addMouseListener(ma);
+        btElimNeg.addMouseListener(ma);
+        btIntroConju.addMouseListener(ma);
+        btIntroDisju.addMouseListener(ma);
+        btIntroImpl.addMouseListener(ma);
+        btIntroNeg.addMouseListener(ma);
+        jbAplicarRegra.addMouseListener(ma);
+        jbHip.addMouseListener(ma);
+        jbProxAtiv.addMouseListener(ma);
+        
+        // Eventos hover nos botões cinza
+        jbDesfazer.addMouseListener(maGrey);
+        jbLimparLinhas.addMouseListener(maGrey);
+        jbCancelarRegra.addMouseListener(maGrey);
+        jbSalvarImagem.addMouseListener(maGrey);
+        
+    }    
+    
+    private void encerrarModoLivre() {
+        
+        // 1 - Altera as configurações
+        modoLivre = false;
+        miModoLivre.setText("Modo Livre");
+        
+        jmMenuSuperior.setBackground(GREEN);
+        jmMenuSuperior.setBorder(new javax.swing.border.LineBorder(GREEN, 3, true));
+        jbAjuda.setBackground(GREEN);
+        jbRevisar.setBackground(GREEN);
+        btElimConju.setBackground(GREEN);
+        btElimDisju.setBackground(GREEN);
+        btElimImpl.setBackground(GREEN);
+        btElimNeg.setBackground(GREEN);
+        btIntroConju.setBackground(GREEN);
+        btIntroDisju.setBackground(GREEN);
+        btIntroImpl.setBackground(GREEN);
+        btIntroNeg.setBackground(GREEN);
+        jbAplicarRegra.setBackground(GREEN);
+        jbHip.setBackground(GREEN);
+        
+        MouseAdapter ma = new MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(HOVER_GREEN);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(GREEN);
+            }
+        };
+        
+        jbAjuda.addMouseListener(ma);
+        jbRevisar.addMouseListener(ma);
+        btElimConju.addMouseListener(ma);
+        btElimDisju.addMouseListener(ma);
+        btElimImpl.addMouseListener(ma);
+        btElimNeg.addMouseListener(ma);
+        btIntroConju.addMouseListener(ma);
+        btIntroDisju.addMouseListener(ma);
+        btIntroImpl.addMouseListener(ma);
+        btIntroNeg.addMouseListener(ma);
+        jbAplicarRegra.addMouseListener(ma);
+        jbHip.addMouseListener(ma);
+        
+        // 2 - Inicia novo exercício do Tutor
+        novoExercicio();
+    }
+        
     private void fecharConfig() {
         limparLinhas();
         jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
@@ -1330,167 +1421,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         cl.show(cardRegras, "cartaoBotoes");
         
         regraAtual = null;
-    }
-    
-    private void novoFeedback(String mensagem) {
-        ImageIcon image = new ImageIcon(System.getProperty("user.dir") + "\\src\\img\\icon_info.png");
-        JLabel novaMensagem = new JLabel("<html><div WIDTH='242' style='margin:7'>"+mensagem, image, JLabel.LEFT);
-        
-        novaMensagem.setBorder(javax.swing.BorderFactory.createCompoundBorder(
-            new javax.swing.border.LineBorder(GREEN, 2, true), 
-            new javax.swing.border.LineBorder(Color.WHITE, 3, true)
-        ));
-        
-        jpListaFeedback.add(novaMensagem, 0);
-        
-        // Remove borda dos demais elementos
-        if(filaFeedback.size() >= 1)
-            ((JLabel)jpListaFeedback.getComponent(1)).setBorder(null);
-        
-        jpListaFeedback.revalidate();
-        jpListaFeedback.repaint();
-        filaFeedback.add(novaMensagem);
-        if(filaFeedback.size() > 10)
-            jpListaFeedback.remove(filaFeedback.poll());
-    }
-    
-    private void selecionarFormulas(final int numFormulas) {
-        // Configura texto das linhas selecionadas
-        textoLinhas = "<html>";
-        jlLinhasSelecionadas.setText(textoLinhas);
-        contLinhas = 0;
-        jtResolucao.clearSelection();
-        linhasSelec = new int[numFormulas];
-        
-        // Muda para a aba de selecionar linhas
-       CardLayout cl = (CardLayout) cardRegras.getLayout();
-        cl.show(cardRegras, "cartaoLinhas");
-        
-        // Verifica a seleção de linhas na tabela
-        tableListener = new ListSelectionListener(){
-            @Override
-            public void valueChanged(ListSelectionEvent event) {
-                try {
-                    if(!event.getValueIsAdjusting() && contLinhas < numFormulas) { // evita eventos duplicados
-
-                        if(isHipoteseEncerrada(jtResolucao.getSelectedRow())) {
-                            novoFeedback("Não é possível utilizar fórmulas de uma hipótese encerrada.");
-                            contAjudas++;
-                        }
-                        // Adiciona a linha selecionada à lista
-                        else {
-                            // Adiciona texto aos labels
-                            String col1 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 0).toString();
-                            String col2 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 1).toString();
-                            textoLinhas = textoLinhas + col1 + " " + col2 + "<br>";
-                            jlLinhasSelecionadas.setText(textoLinhas);
-                            // Adiciona índice ao array
-                            linhasSelec[contLinhas] = jtResolucao.getSelectedRow();
-                            contLinhas++;
-
-                            jbLimparLinhas.setEnabled(true);
-
-                            // Se a regra for de uma fórmula, aplica automaticamente
-                            // Se for de duas fórmulas ou mais, ativa o botão aplicar
-                            if(contLinhas >= numFormulas) {
-                                if(numFormulas == 1) {
-                                    switch(regraAtual) {
-                                        case ELIM_CONJ: elimConj(); break;
-                                        case ELIM_NEG: elimNeg(); break;
-                                        case INTRO_DISJ: introDisj(); break;
-                                    }
-                                }
-                                else
-                                    jbAplicarRegra.setEnabled(true);
-                            } //end if(contLinhas >= numFormulas)
-                        } //end if(isHipoteseEncerrada(jtResolucao.getSelectedRow())) else
-                        event = null;
-                        jtResolucao.clearSelection();
-                    } //end if(!event.getValueIsAdjusting() && contLinhas < numFormulas)
-                }
-                catch(Exception e) { /* esconde exceção de limpar seleção durante o evento */ }
-            } //end valueChanged(ListSelectionEvent event)
-        };
-        
-        jtResolucao.getSelectionModel().addListSelectionListener(tableListener);
-    }
-    
-    private void novaLinha(String formula, String col3) {
-        String col1 = jtResolucao.getRowCount()+1 + ".";
-        
-        String col2 = formula;
-        
-        // Adiciona níveis de hipótese
-        for(int i = 0; i < hipLevel; i++)
-            col2 = "| ".concat(col2);
-        
-        col2 = "<html>".concat(col2);
-        
-        DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
-        dtm.addRow(new Object[]{col1, col2, col3});
-        
-        // Verifica se chegou à conclusão
-        if(hipLevel == 0) {
-            String formulaComp = ExpressionTree.getFullNode(formula);
-            String respostaComp = ExpressionTree.getFullNode(respostaFinal);
-            if(formulaComp.compareTo(respostaComp)==0) {
-                respostaCorreta();
-            }
-            else {
-                fecharConfig();
-            }
-        }
-        else {
-            fecharConfig();
-        }
-    }
-    
-    private boolean isHipoteseEncerrada(int linhaSelec) {
-        
-        // Verifica o nível da hipótese
-        String formulaSelec = jtResolucao.getValueAt(linhaSelec, 1).toString();
-        int hipLevelAnterior = (formulaSelec.length() - formulaSelec.replace("| ", "").length()) / "| ".length();
-        
-        int linhaAtual = jtResolucao.getRowCount()-1;
-        
-        int contQuedas = 0;
-        
-        for(int i = linhaSelec+1; i <= linhaAtual; i++) {
-            String formulaProx = jtResolucao.getValueAt(i, 1).toString();
-            int hipLevelProx = (formulaProx.length() - formulaProx.replace("| ", "").length()) / "| ".length();
-            if(hipLevelProx > hipLevelAnterior)
-                contQuedas++;
-            else if(hipLevelProx < hipLevelAnterior)
-                contQuedas--;
-            
-            if(contQuedas < 0)
-                return true;
-            else
-                hipLevelAnterior = hipLevelProx;
-        }
-        
-        return false;
-    }
-    
-    private boolean isEntradaValida(String entrada) {
-        
-        // Validar String vazia
-        if ("".equals(entrada))
-            return false;
-        // Validar mais de um caracter por variável
-        
-        // Validar símbolo $
-        else if(entrada.contains("$"))
-            return false;
-        else
-            return true;
-        
-    }
-    
-    private void salvarNota() {
-        
-        Tutor.notaExercicio(ativ, contAjudas);
-        
     }
     
     private void gravarSolucao() throws SQLException {
@@ -1635,95 +1565,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         
     }
-
-    /* Carrega o próximo exercício */
-    private void novoExercicio() {
-        
-        contAjudas = 0;
-        
-        // Fechar configuração
-        limparLinhas();
-        jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
-        regraAtual = null;
-        CardLayout cl = (CardLayout) cardRegras.getLayout();
-        cl.show(cardRegras, "cartaoBotoes");
-        
-        // Limpar tabela
-        DefaultTableModel model = (DefaultTableModel) jtResolucao.getModel();
-        model.setRowCount(0);
-
-        // Limpar feedback
-        
-        // Seleciona a atividade a ser mostrada
-        ativ = Tutor.proxAtividade();
-        
-        if(ativ == null) {
-            JOptionPane.showMessageDialog(null, "Erro ao carregar atividade do Banco de Dados!", "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        // Formata a fórmula da atividade para ser exibida
-        String exercicio = ativ.getPremissas() + " |- " + ativ.getConclusao();
-        exercicio = Exercicio.formatarFormula(exercicio);
-        jlAtivAtual.setText("<html><font face='Tahoma'>"+exercicio);
-        respostaFinal = Exercicio.formatarFormula(ativ.getConclusao());
-        
-        // Mostra as premissas da atividade na resolução
-        String premissas[] = Exercicio.getPremissas(exercicio);
-        DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
-
-        if(!"".equals(premissas[0])) {
-            int i = 0;
-            for (String s : premissas) {
-                dtm.addRow(new Object[]{++i + ".", "<html>"+s, "Premissa"});
-            }
-        }
-    }
-    
-    private void respostaCorreta() {
-        
-        JOptionPane.showMessageDialog(null, "Você chegou à resposta final!");
-        
-        // Muda para a aba de exercício concluído
-        CardLayout cl = (CardLayout) cardRegras.getLayout();
-        if(modoLivre)
-            cl.show(cardRegras, "cartaoConcluidoLivre");
-        else {
-            salvarNota();
-            cl.show(cardRegras, "cartaoConcluido");
-        }
-        
-    }
-    
-    private void modalModoLivre() {
-        
-        JTextField tfPremissas = new JTextField();
-        JTextField tfConclusao = new JTextField();
-        final JComponent[] inputs = new JComponent[] {
-            new JLabel("<html>Utilize o Modo Livre para inserir sua própria atividade. O exercício realizado no <br>"
-                    + "Modo Livre não é computado para fins de avaliação do desempenho do aluno."
-                    + "<br><br><i>Aviso: A atividade atual será interrompida!</i></html>"), 
-            new JLabel("<html><br>Premissas: <i>(separadas por vírgula)</i>"),
-            tfPremissas,
-            new JLabel("<html>Conclusão:"),
-            tfConclusao,
-            new JLabel("<html><small><br>Legenda:<br>"
-                    + ">: implicação<br>"
-                    + "+: disjunção<br>"
-                    + "*: conjunção<br>"
-                    + "~: negação")
-        };
-        int result = JOptionPane.showConfirmDialog(null, inputs, "Modo Livre", JOptionPane.PLAIN_MESSAGE);
-
-        if (result == JOptionPane.OK_OPTION) {
-            String prem = tfPremissas.getText();
-            String conc = tfConclusao.getText();
-            if(isEntradaValida(conc))
-                iniciarModoLivre(prem, conc);
-            else
-                novoFeedback("Entrada inválida para iniciar o Modo Livre.");
-        }
-        
-    }
     
     private void iniciarModoLivre(String prem, String concl) {
         
@@ -1802,98 +1643,271 @@ public class jfPrincipal extends javax.swing.JFrame {
         }
     }
     
-    private void encerrarModoLivre() {
+    private boolean isHipoteseEncerrada(int linhaSelec) {
         
-        // 1 - Altera as configurações
-        modoLivre = false;
-        miModoLivre.setText("Modo Livre");
+        // Verifica o nível da hipótese
+        String formulaSelec = jtResolucao.getValueAt(linhaSelec, 1).toString();
+        int hipLevelAnterior = (formulaSelec.length() - formulaSelec.replace("| ", "").length()) / "| ".length();
         
-        jmMenuSuperior.setBackground(GREEN);
-        jmMenuSuperior.setBorder(new javax.swing.border.LineBorder(GREEN, 3, true));
-        jbAjuda.setBackground(GREEN);
-        jbRevisar.setBackground(GREEN);
-        btElimConju.setBackground(GREEN);
-        btElimDisju.setBackground(GREEN);
-        btElimImpl.setBackground(GREEN);
-        btElimNeg.setBackground(GREEN);
-        btIntroConju.setBackground(GREEN);
-        btIntroDisju.setBackground(GREEN);
-        btIntroImpl.setBackground(GREEN);
-        btIntroNeg.setBackground(GREEN);
-        jbAplicarRegra.setBackground(GREEN);
-        jbHip.setBackground(GREEN);
+        int linhaAtual = jtResolucao.getRowCount()-1;
         
-        MouseAdapter ma = new MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ((JButton)evt.getSource()).setBackground(HOVER_GREEN);
-            }
-
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                ((JButton)evt.getSource()).setBackground(GREEN);
-            }
-        };
+        int contQuedas = 0;
         
-        jbAjuda.addMouseListener(ma);
-        jbRevisar.addMouseListener(ma);
-        btElimConju.addMouseListener(ma);
-        btElimDisju.addMouseListener(ma);
-        btElimImpl.addMouseListener(ma);
-        btElimNeg.addMouseListener(ma);
-        btIntroConju.addMouseListener(ma);
-        btIntroDisju.addMouseListener(ma);
-        btIntroImpl.addMouseListener(ma);
-        btIntroNeg.addMouseListener(ma);
-        jbAplicarRegra.addMouseListener(ma);
-        jbHip.addMouseListener(ma);
+        for(int i = linhaSelec+1; i <= linhaAtual; i++) {
+            String formulaProx = jtResolucao.getValueAt(i, 1).toString();
+            int hipLevelProx = (formulaProx.length() - formulaProx.replace("| ", "").length()) / "| ".length();
+            if(hipLevelProx > hipLevelAnterior)
+                contQuedas++;
+            else if(hipLevelProx < hipLevelAnterior)
+                contQuedas--;
+            
+            if(contQuedas < 0)
+                return true;
+            else
+                hipLevelAnterior = hipLevelProx;
+        }
         
-        // 2 - Inicia novo exercício do Tutor
-        novoExercicio();
+        return false;
     }
     
-    private void customInitComponents() {
+    private boolean isEntradaValida(String entrada) {
         
-        // Eventos hover dos botões
-        MouseAdapter ma = new MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ((JButton)evt.getSource()).setBackground(HOVER_GREEN);
-            }
-
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                ((JButton)evt.getSource()).setBackground(GREEN);
-            }
+        // Validar String vazia
+        if ("".equals(entrada))
+            return false;
+        // Validar mais de um caracter por variável
+        
+        // Validar símbolo $
+        else if(entrada.contains("$"))
+            return false;
+        else
+            return true;
+        
+    }
+    
+    private void limparLinhas() {
+        jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
+        
+        textoLinhas = "<html>";
+        jlLinhasSelecionadas.setText(textoLinhas);
+        contLinhas = 0;
+        jtResolucao.clearSelection();
+        
+        jbAplicarRegra.setEnabled(false);
+        jbLimparLinhas.setEnabled(false);
+        
+        jtResolucao.getSelectionModel().addListSelectionListener(tableListener);
+    }
+    
+    private void modalModoLivre() {
+        
+        JTextField tfPremissas = new JTextField();
+        JTextField tfConclusao = new JTextField();
+        final JComponent[] inputs = new JComponent[] {
+            new JLabel("<html>Utilize o Modo Livre para inserir sua própria atividade. O exercício realizado no <br>"
+                    + "Modo Livre não é computado para fins de avaliação do desempenho do aluno."
+                    + "<br><br><i>Aviso: A atividade atual será interrompida!</i></html>"), 
+            new JLabel("<html><br>Premissas: <i>(separadas por vírgula)</i>"),
+            tfPremissas,
+            new JLabel("<html>Conclusão:"),
+            tfConclusao,
+            new JLabel("<html><small><br>Legenda:<br>"
+                    + ">: implicação<br>"
+                    + "+: disjunção<br>"
+                    + "*: conjunção<br>"
+                    + "~: negação")
         };
-        MouseAdapter maGrey = new MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ((JButton)evt.getSource()).setBackground(new Color(207, 207, 207));
-            }
+        int result = JOptionPane.showConfirmDialog(null, inputs, "Modo Livre", JOptionPane.PLAIN_MESSAGE);
 
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                ((JButton)evt.getSource()).setBackground(new Color(240, 240, 240));
+        if (result == JOptionPane.OK_OPTION) {
+            String prem = tfPremissas.getText();
+            String conc = tfConclusao.getText();
+            if(isEntradaValida(conc))
+                iniciarModoLivre(prem, conc);
+            else
+                novoFeedback("Entrada inválida para iniciar o Modo Livre.");
+        }
+        
+    }
+    
+    private void novaLinha(String formula, String col3) {
+        String col1 = jtResolucao.getRowCount()+1 + ".";
+        
+        String col2 = formula;
+        
+        // Adiciona níveis de hipótese
+        for(int i = 0; i < hipLevel; i++)
+            col2 = "| ".concat(col2);
+        
+        col2 = "<html>".concat(col2);
+        
+        DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
+        dtm.addRow(new Object[]{col1, col2, col3});
+        
+        jbDesfazer.setEnabled(true);
+        
+        // Verifica se chegou à conclusão
+        if(hipLevel == 0) {
+            String formulaComp = ExpressionTree.getFullNode(formula);
+            String respostaComp = ExpressionTree.getFullNode(respostaFinal);
+            if(formulaComp.compareTo(respostaComp)==0) {
+                respostaCorreta();
             }
+            else {
+                fecharConfig();
+            }
+        }
+        else {
+            fecharConfig();
+        }
+    }
+    
+    private void novoExercicio() {
+        
+        contAjudas = 0;
+        
+        // Fechar configuração
+        limparLinhas();
+        jtResolucao.getSelectionModel().removeListSelectionListener(tableListener);
+        regraAtual = null;
+        CardLayout cl = (CardLayout) cardRegras.getLayout();
+        cl.show(cardRegras, "cartaoBotoes");
+        
+        // Limpar tabela
+        DefaultTableModel model = (DefaultTableModel) jtResolucao.getModel();
+        model.setRowCount(0);
+
+        // Limpar feedback
+        
+        // Seleciona a atividade a ser mostrada
+        ativ = Tutor.proxAtividade();
+        
+        if(ativ == null) {
+            JOptionPane.showMessageDialog(null, "Erro ao carregar atividade do Banco de Dados!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        // Formata a fórmula da atividade para ser exibida
+        String exercicio = ativ.getPremissas() + " |- " + ativ.getConclusao();
+        exercicio = Exercicio.formatarFormula(exercicio);
+        jlAtivAtual.setText("<html><font face='Tahoma'>"+exercicio);
+        respostaFinal = Exercicio.formatarFormula(ativ.getConclusao());
+        
+        // Mostra as premissas da atividade na resolução
+        String premissas[] = Exercicio.getPremissas(exercicio);
+        numPremissas = premissas.length;
+        DefaultTableModel dtm = (DefaultTableModel) jtResolucao.getModel();
+
+        if(!"".equals(premissas[0])) {
+            int i = 0;
+            for (String s : premissas) {
+                dtm.addRow(new Object[]{++i + ".", "<html>"+s, "Premissa"});
+            }
+        }
+    }
+    
+    private void novoFeedback(String mensagem) {
+        ImageIcon image = new ImageIcon(System.getProperty("user.dir") + "\\src\\img\\icon_info.png");
+        JLabel novaMensagem = new JLabel("<html><div WIDTH='242' style='margin:7'>"+mensagem, image, JLabel.LEFT);
+        
+        novaMensagem.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+            new javax.swing.border.LineBorder(GREEN, 2, true), 
+            new javax.swing.border.LineBorder(Color.WHITE, 3, true)
+        ));
+        
+        jpListaFeedback.add(novaMensagem, 0);
+        
+        // Remove borda dos demais elementos
+        if(filaFeedback.size() >= 1)
+            ((JLabel)jpListaFeedback.getComponent(1)).setBorder(null);
+        
+        jpListaFeedback.revalidate();
+        jpListaFeedback.repaint();
+        filaFeedback.add(novaMensagem);
+        if(filaFeedback.size() > 10)
+            jpListaFeedback.remove(filaFeedback.poll());
+    }
+    
+    private void respostaCorreta() {
+        
+        JOptionPane.showMessageDialog(null, "Você chegou à resposta final!");
+        
+        // Muda para a aba de exercício concluído
+        CardLayout cl = (CardLayout) cardRegras.getLayout();
+        if(modoLivre)
+            cl.show(cardRegras, "cartaoConcluidoLivre");
+        else {
+            salvarNota();
+            cl.show(cardRegras, "cartaoConcluido");
+        }
+        
+    }
+    
+    private void salvarNota() {
+        
+        Tutor.notaExercicio(ativ, contAjudas);
+        
+    }
+    
+    private void selecionarFormulas(final int numFormulas) {
+        // Configura texto das linhas selecionadas
+        textoLinhas = "<html>";
+        jlLinhasSelecionadas.setText(textoLinhas);
+        contLinhas = 0;
+        jtResolucao.clearSelection();
+        linhasSelec = new int[numFormulas];
+        
+        // Muda para a aba de selecionar linhas
+       CardLayout cl = (CardLayout) cardRegras.getLayout();
+        cl.show(cardRegras, "cartaoLinhas");
+        
+        // Verifica a seleção de linhas na tabela
+        tableListener = new ListSelectionListener(){
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                try {
+                    if(!event.getValueIsAdjusting() && contLinhas < numFormulas) { // evita eventos duplicados
+
+                        if(isHipoteseEncerrada(jtResolucao.getSelectedRow())) {
+                            novoFeedback("Não é possível utilizar fórmulas de uma hipótese encerrada.");
+                            contAjudas++;
+                        }
+                        // Adiciona a linha selecionada à lista
+                        else {
+                            // Adiciona texto aos labels
+                            String col1 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 0).toString();
+                            String col2 = jtResolucao.getValueAt(jtResolucao.getSelectedRow(), 1).toString();
+                            textoLinhas = textoLinhas + col1 + " " + col2 + "<br>";
+                            jlLinhasSelecionadas.setText(textoLinhas);
+                            // Adiciona índice ao array
+                            linhasSelec[contLinhas] = jtResolucao.getSelectedRow();
+                            contLinhas++;
+
+                            jbLimparLinhas.setEnabled(true);
+
+                            // Se a regra for de uma fórmula, aplica automaticamente
+                            // Se for de duas fórmulas ou mais, ativa o botão aplicar
+                            if(contLinhas >= numFormulas) {
+                                if(numFormulas == 1) {
+                                    switch(regraAtual) {
+                                        case ELIM_CONJ: elimConj(); break;
+                                        case ELIM_NEG: elimNeg(); break;
+                                        case INTRO_DISJ: introDisj(); break;
+                                    }
+                                }
+                                else
+                                    jbAplicarRegra.setEnabled(true);
+                            } //end if(contLinhas >= numFormulas)
+                        } //end if(isHipoteseEncerrada(jtResolucao.getSelectedRow())) else
+                        event = null;
+                        jtResolucao.clearSelection();
+                    } //end if(!event.getValueIsAdjusting() && contLinhas < numFormulas)
+                }
+                catch(Exception e) { /* esconde exceção de limpar seleção durante o evento */ }
+            } //end valueChanged(ListSelectionEvent event)
         };
         
-        // Eventos hover nos botões verdes
-        jbAjuda.addMouseListener(ma);
-        jbRevisar.addMouseListener(ma);
-        btElimConju.addMouseListener(ma);
-        btElimDisju.addMouseListener(ma);
-        btElimImpl.addMouseListener(ma);
-        btElimNeg.addMouseListener(ma);
-        btIntroConju.addMouseListener(ma);
-        btIntroDisju.addMouseListener(ma);
-        btIntroImpl.addMouseListener(ma);
-        btIntroNeg.addMouseListener(ma);
-        jbAplicarRegra.addMouseListener(ma);
-        jbHip.addMouseListener(ma);
-        jbProxAtiv.addMouseListener(ma);
-        
-        // Eventos hover nos botões cinza
-        jbDesfazer.addMouseListener(maGrey);
-        jbLimparLinhas.addMouseListener(maGrey);
-        jbCancelarRegra.addMouseListener(maGrey);
-        jbSalvarImagem.addMouseListener(maGrey);
-        
-    }    
+        jtResolucao.getSelectionModel().addListSelectionListener(tableListener);
+    }
     
     private void salvarImagem() throws IOException {
         Component com = jtResolucao;
@@ -1914,12 +1928,6 @@ public class jfPrincipal extends javax.swing.JFrame {
             ImageIO.write(img, "png", arquivo);
         }
         
-    }
-    
-    private static BufferedImage getScreenShot(Component com) {
-        BufferedImage image = new BufferedImage(com.getWidth(), com.getHeight(), BufferedImage.TYPE_INT_RGB);
-        com.paint(image.getGraphics());
-        return image;
     }
     
     // Funções das regras
