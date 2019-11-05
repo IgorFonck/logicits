@@ -71,10 +71,10 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         
         
-        // Oculta menus com funcionalidades não implementadas
-        //jmOpcoes.setVisible(false);
+        // Oculta menus com funcionalidades não implementadas ou internas
         miDominio.setVisible(false);
         miNovo.setVisible(false);
+        jbGravarSolucao.setVisible(false);
         
         novoExercicio();
         
@@ -825,7 +825,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         jmAjuda.setForeground(new java.awt.Color(255, 255, 255));
         jmAjuda.setText("Ajuda");
 
-        miGuia.setText("Ajuda");
+        miGuia.setText("Ajuda do sistema");
         miGuia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miGuiaActionPerformed(evt);
@@ -1030,7 +1030,7 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         // Restrição da regra
         if(hipLevel <= 0) {
-            novoFeedback("É preciso iniciar uma hipótese para utilizar esta regra!", 5);
+            novoFeedback("É preciso iniciar uma hipótese para utilizar a regra →<sub>i</sub>!", 5);
             contAjudas++;
             return;
         }
@@ -1061,7 +1061,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         // Restrição da regra
         if(hipLevel <= 0) {
-            novoFeedback("É preciso iniciar uma hipótese para utilizar esta regra!", 7);
+            novoFeedback("É preciso iniciar uma hipótese para utilizar a regra ¬<sub>i</sub>!", 7);
             contAjudas++;
             return;
         }
@@ -1875,7 +1875,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     
     private void novoFeedback(String mensagem, int conceito) {
         ImageIcon image = new ImageIcon(System.getProperty("user.dir") + "\\src\\img\\icon_info.png");
-        JLabel novaMensagem = new JLabel("<html><div WIDTH='242' style='margin:7'>"+mensagem, image, JLabel.LEFT);
+        JLabel novaMensagem = new JLabel("<html><div WIDTH='242' style='margin:7;line-height:40'>"+mensagem, image, JLabel.LEFT);
         
         novaMensagem.setBorder(javax.swing.BorderFactory.createCompoundBorder(
             new javax.swing.border.LineBorder(GREEN, 2, true), 
@@ -2060,7 +2060,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                 novaLinha(opt2, col3);
         }
         else {
-            novoFeedback("Esta regra só pode ser aplicada em uma conjunção.", 2);
+            novoFeedback("A regra ∧<sub>e</sub> só pode ser aplicada em uma conjunção (∧).", 2);
             contAjudas++;
             fecharConfig();
         }
@@ -2110,12 +2110,12 @@ public class jfPrincipal extends javax.swing.JFrame {
             novaLinha(col2, col3);
         }
         else if(!regraImplicacao) {
-            novoFeedback("Uma das fórmulas precisa ser uma implicação!", 6);
+            novoFeedback("Para usar a regra →<sub>e</sub>, uma das fórmulas precisa ser uma implicação (→)!", 6);
             contAjudas++;
             fecharConfig();
         }
         else {
-            novoFeedback("Para eliminar uma implicação, uma das fórmulas deve ser seu antecedente!", 6);
+            novoFeedback("Para eliminar uma implicação (→<sub>e</sub>), uma das fórmulas deve ser seu antecedente!", 6);
             contAjudas++;
             fecharConfig();
         }
@@ -2133,7 +2133,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         int contNivelFormula2 = (formula2.length() - formula2.replace("| ", "").length()) / "| ".length();
 
         if(contNivelFormula1 != hipLevel || contNivelFormula2 != hipLevel) {
-            novoFeedback("As fórmulas selecionadas devem estar na última hipótese.", 5);
+            novoFeedback("Para usar a regra →<sub>i</sub>, as fórmulas selecionadas devem estar na última hipótese.", 5);
             contAjudas++;
             fecharConfig();
         }
@@ -2141,7 +2141,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             String tipoRegra1 = jtResolucao.getValueAt(linhasSelec[0], 2).toString();
             // Verifica se é a primeira da hipótese
             if(tipoRegra1.compareTo("Hipótese") != 0) {
-                novoFeedback("A primeira fórmula precisa ser o início da hipótese.", 5);
+                novoFeedback("Para usar a regra →<sub>i</sub>, a primeira fórmula precisa ser o início da hipótese.", 5);
                 contAjudas++;
                 fecharConfig();
             }
@@ -2173,13 +2173,13 @@ public class jfPrincipal extends javax.swing.JFrame {
                 novaLinha(resultado, col3);
             }
             else {
-                novoFeedback("Esta regra deve ser aplicada na dupla negação.", 8);
+                novoFeedback("A regra ¬<sub>e</sub> deve ser aplicada na dupla negação.", 8);
                 contAjudas++;
                 fecharConfig();
             }
         }
         else {
-            novoFeedback("Esta regra deve ser aplicada na dupla negação.", 8);
+            novoFeedback("A regra →<sub>e</sub< deve ser aplicada na dupla negação.", 8);
             contAjudas++;
             fecharConfig();
         }
@@ -2196,7 +2196,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         int contNivelFormula2 = (formula2.length() - formula2.replace("| ", "").length()) / "| ".length();
 
         if(contNivelFormula1 != hipLevel || contNivelFormula2 != hipLevel) {
-            novoFeedback("As fórmulas selecionadas devem estar na última hipótese.", 7);
+            novoFeedback("Para usar a regra ¬<sub>i</sub>, as fórmulas selecionadas devem estar na última hipótese.", 7);
             contAjudas++;
             fecharConfig();
         }
@@ -2204,7 +2204,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             // Verifica se é a primeira da hipótese
             String tipoRegra1 = jtResolucao.getValueAt(linhasSelec[0], 2).toString();
             if(tipoRegra1.compareTo("Hipótese") != 0) {
-                novoFeedback("A primeira fórmula precisa ser o início da hipótese.", 7);
+                novoFeedback("A primeira fórmula precisa ser o início da hipótese para aplicar a regra ¬<sub>i</sub>.", 7);
                 contAjudas++;
                 fecharConfig();
             }
@@ -2212,7 +2212,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                 formula2 = Exercicio.limpaFormula(formula2);
                 // Verifica se a segunda é a contradição
                 if(formula2.compareTo("⊥") != 0) {
-                    novoFeedback("A segunda fórmula precisa ser uma contradição.", 7);
+                    novoFeedback("Para aplicar ¬<sub>i</sub>, a segunda fórmula precisa ser uma contradição (⊥).", 7);
                     contAjudas++;
                     fecharConfig();
                 }
@@ -2265,7 +2265,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                 novaLinha(col2, col3);
             }
             else {
-                novoFeedback("O valor informado para a disjunção não é válido.", 3);
+                novoFeedback("O valor informado para a introdução da disjunção (∨<sub>i</sub>) não é válido.", 3);
                 fecharConfig();
             }
         }
@@ -2343,20 +2343,20 @@ public class jfPrincipal extends javax.swing.JFrame {
                 }
                 else {
                     // As regras não fecham
-                    novoFeedback("Não é possível aplicar a eliminação da disjunção com as regras selecionadas.", 4);
+                    novoFeedback("Não é possível aplicar a eliminação da disjunção (∨<sub>e</sub>) com as regras selecionadas.", 4);
                     contAjudas++;
                     fecharConfig();
                 }
             }
             else {
                 // Não tem duas implicações
-                novoFeedback("É necessário uma conjunção e duas implicações.", 4);
+                novoFeedback("É necessário selecionar uma conjunção (∨) e duas implicações (→) para utilizar a regra ∨<sub>e</sub>.", 4);
                 contAjudas++;
                 fecharConfig();
             }
         }
         else {
-            novoFeedback("Uma das fórmulas precisa ser uma disjunção.", 4);
+            novoFeedback("Para usar ∨<sub>e</sub>, uma das fórmulas precisa ser uma disjunção.", 4);
             contAjudas++;
             fecharConfig();
         }

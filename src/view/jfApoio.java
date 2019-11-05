@@ -5,10 +5,13 @@
  */
 package view;
 
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import javax.swing.JButton;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
@@ -27,6 +30,18 @@ public class jfApoio extends javax.swing.JFrame {
         
         initComponents();
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+        
+        MouseAdapter maGrey = new MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(new Color(207, 207, 207));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(new Color(240, 240, 240));
+            }
+        };
+        
+        jbFechar.addMouseListener(maGrey);
         
         jepApoio.setEditable(false);
         HTMLEditorKit kit = new HTMLEditorKit();
