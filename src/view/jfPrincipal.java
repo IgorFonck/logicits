@@ -260,7 +260,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpResolucaoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpResolucaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
                     .addComponent(jpAtividade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpResolucaoLayout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -423,7 +423,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbHip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
         jpRegrasLayout.setVerticalGroup(
             jpRegrasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -568,7 +568,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                     .addGroup(jpConcluidoLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jbSalvarImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(229, Short.MAX_VALUE))))
+                        .addContainerGap(228, Short.MAX_VALUE))))
         );
         jpConcluidoLayout.setVerticalGroup(
             jpConcluidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -619,7 +619,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jbEncerrarModoLivre, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbInserirOutra, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(430, Short.MAX_VALUE))
+                .addContainerGap(429, Short.MAX_VALUE))
         );
         jpConcluidoLivreLayout.setVerticalGroup(
             jpConcluidoLivreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -650,7 +650,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         jLabel4.setText("Feedback");
 
         jbRevisar.setBackground(new java.awt.Color(6, 158, 79));
-        jbRevisar.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        jbRevisar.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jbRevisar.setForeground(new java.awt.Color(255, 255, 255));
         jbRevisar.setText("Revisar material");
         jbRevisar.addActionListener(new java.awt.event.ActionListener() {
@@ -660,7 +660,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         });
 
         jbAjuda.setBackground(new java.awt.Color(6, 158, 79));
-        jbAjuda.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        jbAjuda.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jbAjuda.setForeground(new java.awt.Color(255, 255, 255));
         jbAjuda.setText("Solicitar ajuda");
         jbAjuda.addActionListener(new java.awt.event.ActionListener() {
@@ -679,7 +679,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         jpListaFeedback.setLayout(jpListaFeedbackLayout);
         jpListaFeedbackLayout.setHorizontalGroup(
             jpListaFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGap(0, 278, Short.MAX_VALUE)
         );
         jpListaFeedbackLayout.setVerticalGroup(
             jpListaFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -700,7 +700,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpFeedbackContainerLayout.createSequentialGroup()
                         .addGroup(jpFeedbackContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jbRevisar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                            .addComponent(jbRevisar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                             .addComponent(jbAjuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
@@ -916,12 +916,42 @@ public class jfPrincipal extends javax.swing.JFrame {
        
         contAjudas++;
         
-        if(filaFeedback.size() > 0)
-            System.out.println(filaFeedback.peek().getText());
-        else
-            System.out.println("Nenhum feedback.");
-        
-        //new jfApoio("ajuda").setVisible(true);
+        switch(conceitoUltimoFeedback) {
+            case -1:
+                new jfApoio("hip").setVisible(true);
+                break;
+            case 0:
+                new jfApoio("ajuda").setVisible(true);
+                break;
+            case 1:
+                new jfApoio("introConj").setVisible(true);
+                break;
+            case 2:
+                new jfApoio("elimConj").setVisible(true);
+                break;
+            case 3:
+                new jfApoio("introDisj").setVisible(true);
+                break;
+            case 4:
+                new jfApoio("elimDisj").setVisible(true);
+                break;
+            case 5:
+                new jfApoio("introImpl").setVisible(true);
+                break;
+            case 6:
+                new jfApoio("elimImpl").setVisible(true);
+                break;
+            case 7:
+                new jfApoio("introNeg").setVisible(true);
+                break;
+            case 8:
+                new jfApoio("elimNeg").setVisible(true);
+                break;
+            default:
+                new jfApoio("ajuda").setVisible(true);
+                break;
+        }
+            
         
     }//GEN-LAST:event_jbAjudaActionPerformed
 
@@ -933,13 +963,13 @@ public class jfPrincipal extends javax.swing.JFrame {
         // Verifica se a última regra não é premissa
         if(ultimaLinha == -1) {
             podeDesfazer = false;
-            novoFeedback("Não é possível desfazer.");
+            novoFeedback("Não é possível desfazer.", 0);
         }
         else {
             String ultimaRegra = jtResolucao.getValueAt(ultimaLinha, 2).toString();
             if(ultimaRegra.compareTo("Premissa") == 0) {
                 podeDesfazer = false;
-                novoFeedback("Não é possível desfazer.");
+                novoFeedback("Não é possível desfazer.", 0);
             }
             else if(ultimaRegra.compareTo("Hipótese") == 0) {
                 hipLevel--;
@@ -991,7 +1021,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                 novaLinha(hip, "Hipótese");
             }
             else
-                novoFeedback("O valor informado para a hipótese não é válido.");
+                novoFeedback("O valor informado para a hipótese não é válido.", -1);
         }
         
     }//GEN-LAST:event_jbHipActionPerformed
@@ -1000,7 +1030,7 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         // Restrição da regra
         if(hipLevel <= 0) {
-            novoFeedback("É preciso iniciar uma hipótese para utilizar esta regra!");
+            novoFeedback("É preciso iniciar uma hipótese para utilizar esta regra!", 5);
             contAjudas++;
             return;
         }
@@ -1031,7 +1061,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         // Restrição da regra
         if(hipLevel <= 0) {
-            novoFeedback("É preciso iniciar uma hipótese para utilizar esta regra!");
+            novoFeedback("É preciso iniciar uma hipótese para utilizar esta regra!", 7);
             contAjudas++;
             return;
         }
@@ -1303,6 +1333,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     private Regra regraAtual;       // Registra qual regra foi selecionada
     private String respostaFinal;   // Armazena a conclusão
     Queue<JLabel> filaFeedback = new LinkedList<>();
+    int conceitoUltimoFeedback = 0;
 
     enum Regra {
         INTRO_CONJ,
@@ -1319,6 +1350,43 @@ public class jfPrincipal extends javax.swing.JFrame {
     
     // Funções internas
     
+    private void atualizaBotaoAjuda(int conceito) {
+        switch(conceito) {
+            case -1:
+                jbAjuda.setText("Solicitar ajuda (hipóteses)");
+                break;
+            case 0:
+                jbAjuda.setText("Solicitar ajuda");
+                break;
+            case 1:
+                jbAjuda.setText("<html>Solicitar ajuda (∧<sub>i</sub>)");
+                break;
+            case 2:
+                jbAjuda.setText("<html>Solicitar ajuda (∧<sub>e</sub>)");
+                break;
+            case 3:
+                jbAjuda.setText("<html>Solicitar ajuda (∨<sub>i</sub>)");
+                break;
+            case 4:
+                jbAjuda.setText("<html>Solicitar ajuda (∨<sub>e</sub>)");
+                break;
+            case 5:
+                jbAjuda.setText("<html>Solicitar ajuda (→<sub>i</sub>)");
+                break;
+            case 6:
+                jbAjuda.setText("<html>Solicitar ajuda (→<sub>e</sub>)");
+                break;
+            case 7:
+                jbAjuda.setText("<html>Solicitar ajuda (¬<sub>i</sub>)");
+                break;
+            case 8:
+                jbAjuda.setText("<html>Solicitar ajuda (¬<sub>e</sub>)");
+                break;
+            default:
+                new jfApoio("ajuda").setVisible(true);
+                break;
+        }
+    }
     
     private void customInitComponents() {
         
@@ -1725,7 +1793,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             if(isEntradaValida(conc))
                 iniciarModoLivre(prem, conc);
             else
-                novoFeedback("Entrada inválida para iniciar o Modo Livre.");
+                JOptionPane.showMessageDialog(this, "A entrada inserida é inválida para iniciar o Modo Livre.");
         }
         
     }
@@ -1805,7 +1873,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         }
     }
     
-    private void novoFeedback(String mensagem) {
+    private void novoFeedback(String mensagem, int conceito) {
         ImageIcon image = new ImageIcon(System.getProperty("user.dir") + "\\src\\img\\icon_info.png");
         JLabel novaMensagem = new JLabel("<html><div WIDTH='242' style='margin:7'>"+mensagem, image, JLabel.LEFT);
         
@@ -1822,7 +1890,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         
         jpListaFeedback.revalidate();
         jpListaFeedback.repaint();
+        
         filaFeedback.add(novaMensagem);
+        conceitoUltimoFeedback = conceito;
+        atualizaBotaoAjuda(conceito);
+        
         if(filaFeedback.size() > 10)
             jpListaFeedback.remove(filaFeedback.poll());
     }
@@ -1868,7 +1940,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                     if(!event.getValueIsAdjusting() && contLinhas < numFormulas) { // evita eventos duplicados
 
                         if(isHipoteseEncerrada(jtResolucao.getSelectedRow())) {
-                            novoFeedback("Não é possível utilizar fórmulas de uma hipótese encerrada.");
+                            novoFeedback("Não é possível utilizar fórmulas de uma hipótese encerrada.", -1);
                             contAjudas++;
                         }
                         // Adiciona a linha selecionada à lista
@@ -1988,7 +2060,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                 novaLinha(opt2, col3);
         }
         else {
-            novoFeedback("Esta regra só pode ser aplicada em uma conjunção.");
+            novoFeedback("Esta regra só pode ser aplicada em uma conjunção.", 2);
             contAjudas++;
             fecharConfig();
         }
@@ -2038,12 +2110,12 @@ public class jfPrincipal extends javax.swing.JFrame {
             novaLinha(col2, col3);
         }
         else if(!regraImplicacao) {
-            novoFeedback("Uma das fórmulas precisa ser uma implicação!");
+            novoFeedback("Uma das fórmulas precisa ser uma implicação!", 6);
             contAjudas++;
             fecharConfig();
         }
         else {
-            novoFeedback("Para eliminar uma implicação, uma das fórmulas deve ser seu antecedente!");
+            novoFeedback("Para eliminar uma implicação, uma das fórmulas deve ser seu antecedente!", 6);
             contAjudas++;
             fecharConfig();
         }
@@ -2061,7 +2133,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         int contNivelFormula2 = (formula2.length() - formula2.replace("| ", "").length()) / "| ".length();
 
         if(contNivelFormula1 != hipLevel || contNivelFormula2 != hipLevel) {
-            novoFeedback("As fórmulas selecionadas devem estar na última hipótese.");
+            novoFeedback("As fórmulas selecionadas devem estar na última hipótese.", 5);
             contAjudas++;
             fecharConfig();
         }
@@ -2069,7 +2141,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             String tipoRegra1 = jtResolucao.getValueAt(linhasSelec[0], 2).toString();
             // Verifica se é a primeira da hipótese
             if(tipoRegra1.compareTo("Hipótese") != 0) {
-                novoFeedback("A primeira fórmula precisa ser o início da hipótese.");
+                novoFeedback("A primeira fórmula precisa ser o início da hipótese.", 5);
                 contAjudas++;
                 fecharConfig();
             }
@@ -2101,13 +2173,13 @@ public class jfPrincipal extends javax.swing.JFrame {
                 novaLinha(resultado, col3);
             }
             else {
-                novoFeedback("Esta regra deve ser aplicada na dupla negação.");
+                novoFeedback("Esta regra deve ser aplicada na dupla negação.", 8);
                 contAjudas++;
                 fecharConfig();
             }
         }
         else {
-            novoFeedback("Esta regra deve ser aplicada na dupla negação.");
+            novoFeedback("Esta regra deve ser aplicada na dupla negação.", 8);
             contAjudas++;
             fecharConfig();
         }
@@ -2124,7 +2196,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         int contNivelFormula2 = (formula2.length() - formula2.replace("| ", "").length()) / "| ".length();
 
         if(contNivelFormula1 != hipLevel || contNivelFormula2 != hipLevel) {
-            novoFeedback("As fórmulas selecionadas devem estar na última hipótese.");
+            novoFeedback("As fórmulas selecionadas devem estar na última hipótese.", 7);
             contAjudas++;
             fecharConfig();
         }
@@ -2132,7 +2204,7 @@ public class jfPrincipal extends javax.swing.JFrame {
             // Verifica se é a primeira da hipótese
             String tipoRegra1 = jtResolucao.getValueAt(linhasSelec[0], 2).toString();
             if(tipoRegra1.compareTo("Hipótese") != 0) {
-                novoFeedback("A primeira fórmula precisa ser o início da hipótese.");
+                novoFeedback("A primeira fórmula precisa ser o início da hipótese.", 7);
                 contAjudas++;
                 fecharConfig();
             }
@@ -2140,7 +2212,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                 formula2 = Exercicio.limpaFormula(formula2);
                 // Verifica se a segunda é a contradição
                 if(formula2.compareTo("⊥") != 0) {
-                    novoFeedback("A segunda fórmula precisa ser uma contradição.");
+                    novoFeedback("A segunda fórmula precisa ser uma contradição.", 7);
                     contAjudas++;
                     fecharConfig();
                 }
@@ -2193,7 +2265,7 @@ public class jfPrincipal extends javax.swing.JFrame {
                 novaLinha(col2, col3);
             }
             else {
-                novoFeedback("O valor informado para a disjunção não é válido.");
+                novoFeedback("O valor informado para a disjunção não é válido.", 3);
                 fecharConfig();
             }
         }
@@ -2271,20 +2343,20 @@ public class jfPrincipal extends javax.swing.JFrame {
                 }
                 else {
                     // As regras não fecham
-                    novoFeedback("Não é possível aplicar a eliminação da disjunção com as regras selecionadas.");
+                    novoFeedback("Não é possível aplicar a eliminação da disjunção com as regras selecionadas.", 4);
                     contAjudas++;
                     fecharConfig();
                 }
             }
             else {
                 // Não tem duas implicações
-                novoFeedback("É necessário uma conjunção e duas implicações.");
+                novoFeedback("É necessário uma conjunção e duas implicações.", 4);
                 contAjudas++;
                 fecharConfig();
             }
         }
         else {
-            novoFeedback("Uma das fórmulas precisa ser uma disjunção.");
+            novoFeedback("Uma das fórmulas precisa ser uma disjunção.", 4);
             contAjudas++;
             fecharConfig();
         }

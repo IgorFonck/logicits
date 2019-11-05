@@ -1,0 +1,37 @@
+<h1>Material de apoio</h1>
+
+<h2>Hipóteses</h2>
+
+<span><i>Este texto é um EXEMPLO de material de apoio para a versão de desenvolvimento do sistema LogicITS.</i></span>
+
+<span>Texto de apoio para hipóteses. [...]</span>
+
+<h3>Introdução da implicação</h3>
+<span>Incluir a implicação é uma tarefa um pouco mais complicada do que vimos, até agora, para os outros conectivos. A regra de introdução da implicação é mostrada a seguir.</span>
+
+<table class="tg">
+  <tr>
+    <td class="tg-ljam" style="text-align:center;border:1px solid #000;border-width: 0 0 1px 0;">[A]<br>.<br>.<br>.<br>B</td>
+    <td class="tg-v0mg" rowspan="2">→<sub>i</sub></td>
+  </tr>
+  <tr>
+    <td class="tg-wp8o" style="text-align:center">A → B</td>
+  </tr>
+</table>
+
+<span>A primeira linha da regra, [A], é uma hipótese. Uma suposição temporária de que uma fórmula A é verdadeira. A premissa da regra informa que a partir da hipótese A, usando quaisquer regras de dedução natural, foi produzido um conjunto de deduções A, A<sub>1</sub>, A<sub>2</sub>, . . . , A<sub>n</sub>, com A<sub>n</sub> = B. Em outras palavras, foi possível deduzir B a partir de A. A conclusão da regra significa que, se tal dedução foi possível, então podemos concluir que A → B é verdadeira.</span>
+<br>
+<span>Além disso, a regra diz que a hipótese A e todas as regras derivadas dela até B podem ser usadas até o momento em que B é encontrada. A partir do momento que concluímos A → B, nenhuma das fórmulas entre A e B, incluindo estas, pode ser mais usada. Existe um escopo definido para a hipótese, um determinado local em que é possível usá-la. Em nosso sistema, mostramos esse escopo com um sinal de | que antecede as fórmula.</span>
+
+<h3>Introdução da negação</h3>
+<span>Introduzimos a hipótese A. Se chegarmos a uma contradição ⊥, significa que não há situação onde A possa ser verdadeira. Logo, chegamos à conclusão que ¬A. Pra introduzir ⊥, utiliza-se a regra ∧<sub>i</sub> em duas fórmulas opostas, como B e ¬B, dada que a conjunção de ambas nunca pode ser verdadeira.</span>
+
+<table class="tg">
+  <tr>
+    <td class="tg-ljam" style="text-align:center;border:1px solid #000;border-width: 0 0 1px 0;">[A]<br>.<br>.<br>.<br>⊥</td>
+    <td class="tg-v0mg" rowspan="2">¬<sub>i</sub></td>
+  </tr>
+  <tr>
+    <td class="tg-wp8o" style="text-align:center">¬A</td>
+  </tr>
+</table>
