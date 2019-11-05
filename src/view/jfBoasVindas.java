@@ -5,6 +5,10 @@
  */
 package view;
 
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import javax.swing.JButton;
+
 /**
  *
  * @author igorfonseca
@@ -16,6 +20,34 @@ public class jfBoasVindas extends javax.swing.JFrame {
      */
     public jfBoasVindas() {
         initComponents();
+        
+        // Efeito hover nos botões
+        //0, 121, 201
+        MouseAdapter ma = new MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(new Color(0, 121, 201));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(new Color(0, 153, 255));
+            }
+        };
+        MouseAdapter maGrey = new MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(new Color(207, 207, 207));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(new Color(240, 240, 240));
+            }
+        };
+        
+        jbAjuda.addMouseListener(ma);
+        jbApoio.addMouseListener(ma);
+        jbFechar.addMouseListener(maGrey);
+        
+        
+        
     }
 
     /**

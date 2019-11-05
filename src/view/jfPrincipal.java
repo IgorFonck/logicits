@@ -11,6 +11,8 @@ import control.Tutor;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -30,7 +32,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -66,7 +71,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         // Oculta menus com funcionalidades não implementadas
         //jmOpcoes.setVisible(false);
         miDominio.setVisible(false);
-        miGuia.setVisible(false);
         miNovo.setVisible(false);
         
         novoExercicio();
@@ -817,7 +821,12 @@ public class jfPrincipal extends javax.swing.JFrame {
         jmAjuda.setForeground(new java.awt.Color(255, 255, 255));
         jmAjuda.setText("Ajuda");
 
-        miGuia.setText("Guia do usuário");
+        miGuia.setText("Ajuda");
+        miGuia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miGuiaActionPerformed(evt);
+            }
+        });
         jmAjuda.add(miGuia);
 
         miSobre.setText("Sobre");
@@ -902,8 +911,13 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void jbAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAjudaActionPerformed
        
         contAjudas++;
-
-        new jfApoio("ajuda").setVisible(true);
+        
+        if(filaFeedback.size() > 0)
+            System.out.println(filaFeedback.peek().getText());
+        else
+            System.out.println("Nenhum feedback.");
+        
+        //new jfApoio("ajuda").setVisible(true);
         
     }//GEN-LAST:event_jbAjudaActionPerformed
 
@@ -1177,6 +1191,13 @@ public class jfPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbSalvarImagemActionPerformed
 
+    private void miGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miGuiaActionPerformed
+        
+        contAjudas++;
+        new jfApoio("ajuda").setVisible(true);
+        
+    }//GEN-LAST:event_miGuiaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgSistemaProva;
     private javax.swing.JButton btElimConju;
@@ -1306,16 +1327,25 @@ public class jfPrincipal extends javax.swing.JFrame {
     
     private void novoFeedback(String mensagem) {
         ImageIcon image = new ImageIcon(System.getProperty("user.dir") + "\\src\\img\\icon_info.png");
-        JLabel novaMensagem = new JLabel("<html><div WIDTH='245' style='margin:7'>"+mensagem, image, JLabel.LEFT);
-        jpListaFeedback.add(novaMensagem);
+        JLabel novaMensagem = new JLabel("<html><div WIDTH='242' style='margin:0'>"+mensagem, image, JLabel.LEFT);
+        
+        novaMensagem.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+            new javax.swing.border.LineBorder(GREEN, 2, true), 
+            new javax.swing.border.LineBorder(Color.WHITE, 3, true)
+        ));
+        
+        jpListaFeedback.add(novaMensagem, 0);
+        
+        // Remove borda dos demais elementos
+        if(filaFeedback.size() >= 1)
+            ((JLabel)jpListaFeedback.getComponent(1)).setBorder(null);
+        
         jpListaFeedback.revalidate();
         jpListaFeedback.repaint();
         filaFeedback.add(novaMensagem);
         if(filaFeedback.size() > 10)
             jpListaFeedback.remove(filaFeedback.poll());
     }
-    
-    
     
     private void selecionarFormulas(final int numFormulas) {
         // Configura texto das linhas selecionadas
@@ -1807,6 +1837,7 @@ public class jfPrincipal extends javax.swing.JFrame {
     
     private void customInitComponents() {
         
+        // Eventos hover dos botões
         MouseAdapter ma = new MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 ((JButton)evt.getSource()).setBackground(HOVER_GREEN);
@@ -1816,7 +1847,17 @@ public class jfPrincipal extends javax.swing.JFrame {
                 ((JButton)evt.getSource()).setBackground(GREEN);
             }
         };
+        MouseAdapter maGrey = new MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(new Color(207, 207, 207));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(new Color(240, 240, 240));
+            }
+        };
         
+        // Eventos hover nos botões verdes
         jbAjuda.addMouseListener(ma);
         jbRevisar.addMouseListener(ma);
         btElimConju.addMouseListener(ma);
@@ -1830,6 +1871,12 @@ public class jfPrincipal extends javax.swing.JFrame {
         jbAplicarRegra.addMouseListener(ma);
         jbHip.addMouseListener(ma);
         jbProxAtiv.addMouseListener(ma);
+        
+        // Eventos hover nos botões cinza
+        jbDesfazer.addMouseListener(maGrey);
+        jbLimparLinhas.addMouseListener(maGrey);
+        jbCancelarRegra.addMouseListener(maGrey);
+        jbSalvarImagem.addMouseListener(maGrey);
         
     }    
     

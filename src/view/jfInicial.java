@@ -5,10 +5,13 @@
  */
 package view;
 
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import mdlaf.MaterialLookAndFeel;
@@ -28,14 +31,17 @@ public class jfInicial extends javax.swing.JFrame {
     public jfInicial() throws SQLException {
         initComponents();
         
-        // Preenche jList com perfis cadastrados
-        /*List<Object> perfis = dao.listar();
-        String[] lista = new String[perfis.size()];
-        for(int i = 0; i > perfis.size(); i++) {
-            lista[i] = perfis.get(i).toString();
-        }*/
-//        String[] dados = {"Igor", "Maria"};
-//        jlPerfis.setListData(dados);
+        MouseAdapter maGrey = new MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(new Color(207, 207, 207));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((JButton)evt.getSource()).setBackground(new Color(240, 240, 240));
+            }
+        };
+        
+        btSelecionar.addMouseListener(maGrey);
         
     }
 
