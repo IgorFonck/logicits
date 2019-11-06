@@ -14,6 +14,8 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -32,6 +34,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -69,7 +72,21 @@ public class jfPrincipal extends javax.swing.JFrame {
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         customInitComponents();
         
+        final JFrame frame = this;
         
+        addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                int opt = JOptionPane.showConfirmDialog(null, "Deseja encerrar a aplicação?","Sair", JOptionPane.YES_NO_OPTION);
+
+                if(opt == JOptionPane.YES_OPTION)
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                else
+                    frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            }
+        });
         
         // Oculta menus com funcionalidades não implementadas ou internas
         miDominio.setVisible(false);
@@ -1090,7 +1107,10 @@ public class jfPrincipal extends javax.swing.JFrame {
 
     private void miSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSairActionPerformed
         
-        System.exit(0);
+        int opt = JOptionPane.showConfirmDialog(this, "Deseja encerrar a aplicação?","Sair", JOptionPane.YES_NO_OPTION);
+        
+        if(opt == JOptionPane.YES_OPTION)
+            System.exit(0);
         
     }//GEN-LAST:event_miSairActionPerformed
 
