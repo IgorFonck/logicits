@@ -12,8 +12,6 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
@@ -38,10 +36,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -91,7 +86,7 @@ public class jfPrincipal extends javax.swing.JFrame {
         // Oculta menus com funcionalidades não implementadas ou internas
         miDominio.setVisible(false);
         miNovo.setVisible(false);
-        jbGravarSolucao.setVisible(false);
+        //jbGravarSolucao.setVisible(false);
         
         novoExercicio();
         
@@ -2124,9 +2119,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         if(regraImplicacao && regraAntecedente) {
             String col2;
             if(posicaoImpl == 1)
-                col2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula1));
+                col2 = Exercicio.limpaFormula(Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula1)));
             else
-                col2 = Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula2));
+                col2 = Exercicio.limpaFormula(Exercicio.formatarParserParaLegivel(ExpressionTree.getRightNode(formula2)));
             novaLinha(col2, col3);
         }
         else if(!regraImplicacao) {

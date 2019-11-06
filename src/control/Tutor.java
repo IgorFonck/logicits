@@ -58,7 +58,7 @@ public class Tutor {
         /*Random rand = new Random();
         int codAtividade = rand.nextInt((7 - 1) + 1) + 1;
         ativ = ativ_dao.consultar(codAtividade);*/
-        //ativ = ativ_dao.consultar(31);
+        //ativ = ativ_dao.consultar(33);
         
         return ativ;
         
@@ -202,6 +202,9 @@ public class Tutor {
             // Seleção estática simples: considerar notas nos conceitos por ordem de dificuldade
             // Também considerar se já fez todas as atividades do conceito
             // Ordem: {1, 2, 8, 3}, 6, 4, {5, 7}
+            if(true) {
+                
+            }
             if(medias[1-1] < 6 || medias[2-1] < 6 || medias[8-1] < 6 || medias[3-1] < 6) {
                 if(medias[1-1] <= medias[2-1] && medias[1-1] <= medias[8-1] && medias[1-1] <= medias[3-1])
                     return 1;

@@ -1,9 +1,0 @@
-cod_atividade,premissas,conclusao
-1,(a > b) * (c > d),(a * c) > (b * d)
-2,"a + b, ~a",b
-4,"(a * b) > c, ~c",~(a * b)
-5,"a > b, ~b",~a
-6,"p * q, r",p * r
-3,a * b,a
-7,"p > q, q > s",~s > ~p
-8,"a > (~~c), b > (~~c), a + b, d",c + d
