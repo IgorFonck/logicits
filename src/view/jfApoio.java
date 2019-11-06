@@ -8,8 +8,10 @@ package view;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import javax.swing.JButton;
 import javax.swing.text.Document;
@@ -59,13 +61,15 @@ public class jfApoio extends javax.swing.JFrame {
         // Lê arquivo inteiro para uma String
         StringBuilder contentBuilder = new StringBuilder();
         try {
-            Reader fileReader = new FileReader(System.getProperty("user.dir")+"/src/pages/"+conteudo+".html");
-            BufferedReader in = new BufferedReader(fileReader);
+            String fileName = System.getProperty("user.dir")+"/src/pages/"+conteudo+".html";
+            //Reader fileReader = new FileReader();
+            //BufferedReader in = new BufferedReader(fileReader);
+            BufferedReader myBuffer = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), "UTF-8"));
             String str;
-            while ((str = in.readLine()) != null) {
+            while ((str = myBuffer.readLine()) != null) {
                 contentBuilder.append(str);
             }
-            in.close();
+            myBuffer.close();
         } catch (IOException e) {
             System.err.println(e);
         }
